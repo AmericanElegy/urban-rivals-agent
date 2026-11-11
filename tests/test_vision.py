@@ -104,6 +104,7 @@ class SessionTests(unittest.TestCase):
     def test_select_reset_confirm_then_wait(self):
         r=FakeReader()
         s=VisionSession(r,execute=True,iterations=10)
+        self.assertIsNone(s.step(None)["action"])
         self.assertEqual(s.step(None)["action"]["x"],.22)
         r.panel=True
         self.assertEqual(s.step(None)["action"]["x"],.578)
@@ -114,6 +115,7 @@ class SessionTests(unittest.TestCase):
     def test_wrong_card_or_attack_stops(self):
         r=FakeReader()
         s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
         s.step(None)
         r.panel=True
         s.step(None)
@@ -126,6 +128,7 @@ class SessionTests(unittest.TestCase):
         r=FakeReader()
         s=VisionSession(r,execute=True,iterations=10)
         s.step(None)
+        s.step(None)
         r.panel=True
         s.step(None)
         r.attack=14
@@ -136,8 +139,43 @@ class SessionTests(unittest.TestCase):
         r=FakeReader()
         s=VisionSession(r,execute=True,iterations=10)
         s.step(None)
+        s.step(None)
         r.panel=True
         s.step(None)
         r.number=lambda image,box: 6 if box==(.74,.55,.79,.64) else 7
         with self.assertRaises(RecognitionError):
             s.step(None)
+
+    def test_board_change_or_long_gap_requires_another_read(self):
+        from dataclasses import replace
+        r=FakeReader()
+        tick=[0]
+        s=VisionSession(r,execute=True,iterations=10,clock=lambda:tick[0])
+        self.assertIsNone(s.step(None)["action"])
+        r.state=replace(r.state,players=(replace(r.state.players[0],life=11),r.state.players[1]))
+        self.assertIsNone(s.step(None)["action"])
+        tick[0]=21
+        self.assertIsNone(s.step(None)["action"])
+        tick[0]=22
+        self.assertIsNotNone(s.step(None)["action"])
+
+    def test_timer_changes_do_not_prevent_settling(self):
+        from dataclasses import replace
+        r=FakeReader()
+        original=r.board
+        seconds=iter((90,89))
+        r.board=lambda *args:replace(original(),seconds_left=next(seconds))
+        s=VisionSession(r,execute=True,iterations=10)
+        self.assertIsNone(s.step(None)["action"])
+        self.assertIsNotNone(s.step(None)["action"])
+
+    def test_unreadable_board_breaks_consecutive_reads(self):
+        r=FakeReader()
+        original=r.board
+        s=VisionSession(r,execute=True,iterations=10)
+        self.assertIsNone(s.step(None)["action"])
+        r.board=lambda *args:None
+        self.assertIsNone(s.step(None)["action"])
+        r.board=original
+        self.assertIsNone(s.step(None)["action"])
+        self.assertIsNotNone(s.step(None)["action"])

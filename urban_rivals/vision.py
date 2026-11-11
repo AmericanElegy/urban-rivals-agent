@@ -4,6 +4,7 @@ from pathlib import Path
 import json
 import re
 import uuid
+import time
 import unicodedata
 from .engine import Card, Move, Player, State, parse_effect, resolve
 from .solver import advise
@@ -59,7 +60,7 @@ class LocalOCR:
     def title(self,image,box,minimum=.8):
         return self.text(image,box,minimum,first_line=True)
 
-    def number(self,image,box):
+    def number(self,image,box,palette="white"):
         import cv2
         import numpy as np
         from PIL import Image
@@ -69,12 +70,21 @@ class LocalOCR:
         # Stats use white digits over colored icons. Remove those colored icons
         # before OCR rather than accepting a low-confidence guess at a digit.
         pixels=np.array(crop)
+        if palette not in ("white","attack","damage"):
+            raise ValueError("Unknown numeric palette")
+        r,g,b=pixels.astype("float32").transpose(2,0,1)
         from PIL import ImageOps
         readings=[]
         self.last_number_evidence=readings
         masks=[]
         for threshold in (145,160,175,190,205):
-            white=(pixels.min(axis=2)>threshold).astype("uint8")*255
+            if palette=="attack":
+                ink=(b>threshold)&(b>r*1.2)&(g<b*.65)&(r>g*1.2)
+            elif palette=="damage":
+                ink=(r>threshold)&(g<r*.65)&(b>50)&(b<r*.8)
+            else:
+                ink=pixels.min(axis=2)>threshold
+            white=ink.astype("uint8")*255
             count,labels,stats,_=cv2.connectedComponentsWithStats(white)
             clean=np.zeros_like(white)
             height,width=white.shape
@@ -287,13 +297,18 @@ class CanvasReader:
         return (x-.075,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
 
     def number(self,image,box,kind="number"):
-        if kind=="counter" and hasattr(self.ocr,"counter"):
+        if kind in ("attack","damage"):
+            text=self.ocr.number(image,box,palette=kind)
+        elif kind=="counter" and hasattr(self.ocr,"counter"):
             text=self.ocr.counter(image,box)
         else:
             text=self.ocr.number(image,box) if hasattr(self.ocr,"number") else self.text(image,box)
         if not re.fullmatch(r"\s*\d{1,3}\s*",text):
             raise RecognitionError(f"Resource or attack count is unreadable: {text!r}")
         return int(text)
+
+    def panel_number(self,image,box,kind):
+        return self.number(image,box,kind)
 
     def stars(self,image,x,y):
         import numpy as np
@@ -480,7 +495,7 @@ class CanvasReader:
 
 class VisionSession:
     """Single-match, single-action-per-frame state machine. Defaults to inspect."""
-    def __init__(self, reader=None, execute=False, iterations=500):
+    def __init__(self, reader=None, execute=False, iterations=500, clock=time.monotonic):
         self.reader=reader or CanvasReader()
         self.execute=execute
         self.iterations=iterations
@@ -495,6 +510,9 @@ class VisionSession:
         self.awaiting_round=None
         self.panel_power=None
         self.panel_damage=None
+        self.clock=clock
+        self.board_candidate=None
+        self.board_candidate_at=None
 
     def action(self,x,y,status):
         return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
@@ -516,9 +534,22 @@ class VisionSession:
                 raise RecognitionError("Unexpected open stake panel; close it before starting")
             board=self.reader.board(image,self.state,self.submitted)
             if board is None:
+                self.board_candidate=None
                 return {"status":"Waiting for a readable YOUR TURN board", "action":None}
             if self.awaiting_round==board.state.round:
                 return {"status":"Waiting for round submission receipt", "action":None}
+            if self.execute:
+                # Compare public state, not the ticking timer or animated pixels.
+                fingerprint=(board.state,board.observed_card,board.spent)
+                now=self.clock()
+                settled=(fingerprint==self.board_candidate
+                         and self.board_candidate_at is not None
+                         and 0 <= now-self.board_candidate_at <= 20)
+                self.board_candidate=fingerprint
+                self.board_candidate_at=now
+                if not settled:
+                    return {"status":"Waiting for a second matching board reading", "action":None}
+                self.board_candidate=None
             self.state=board.state
             if not self.execute:
                 return {"status":"Inspect: board recognized", "round":self.state.round,
@@ -548,8 +579,11 @@ class VisionSession:
         if self.phase=="selected":
             self.phase="reset"
             return self.action(.578,.513,"Reset paid pillz to zero")
-        attack=self.reader.number(image,(.55,.55,.61,.64))
-        damage=self.reader.number(image,(.74,.55,.79,.64))
+        panel_number=getattr(self.reader,"panel_number",None)
+        attack=(panel_number(image,(.55,.55,.61,.64),"attack") if panel_number
+                else self.reader.number(image,(.55,.55,.61,.64)))
+        damage=(panel_number(image,(.74,.55,.79,.64),"damage") if panel_number
+                else self.reader.number(image,(.74,.55,.79,.64)))
         if damage!=self.panel_damage:
             raise RecognitionError("Damage panel differs from the no-Fury expectation")
         if self.phase=="reset":

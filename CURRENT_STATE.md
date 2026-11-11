@@ -6,14 +6,20 @@ Private GitHub repository: https://github.com/AmericanElegy/urban-rivals-agent
 
 ## Latest checkpoint
 
-Eighteen exact card evolutions; 764/764 OCR/readiness checks across twenty cases;
-71 Python tests and six extension tests pass. The real board reader reconciles
-four sequential recorded boards (three completed rounds). See
-MECHANICS_STATUS.md and OCR_STATUS.md for scope and current official sources.
-The local bridge is updated, inspect-only, authenticated, and retains the same
-pairing token. No new setup is needed. Live automatic input/full-match validation
-remains pending. Historical diagnostic failures below are superseded by this
-checkpoint and the latest mechanics section.
+Eighteen exact card evolutions; prior board replay passed 764/764 checks.
+The paired extension successfully captured a canvas. The subsequent execution
+attempt was stopped by Computer Use because it could not verify the browser URL;
+the execution bridge was shut down. No automatic live round is confirmed.
+Pairing is resolved; older pairing/server-running notes below are historical.
+
+Execution now requires two consecutive matching public board readings, within
+20 seconds, before card selection. Timer changes are excluded; missing or changed
+boards reset the candidate. Inspect capture remains a single frame.
+The saved stake panel exposed another OCR defect: white-only numeric extraction
+could not read purple attack or pink damage. Dedicated color masks now read its
+attack 9 and damage 5 with the existing two-read confidence requirement.
+This is one recorded panel, not validation across all values or live inputs.
+Full-match validation and untimed browser targeting verification remain pending.
 
 ## Goal and authority
 
