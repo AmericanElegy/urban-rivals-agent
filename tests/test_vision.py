@@ -5,6 +5,17 @@ from urban_rivals.engine import Card, Player, State, Move
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_menu_is_classified_without_inventing_card_reads(self):
+        from urban_rivals.vision import CanvasReader
+        class OCRStub:
+            def text(self,image,box,minimum):
+                return "TRAINING UNNAMED DECK compatible PLAY More info" if box==(0,0,1,1) else "PLAY"
+        reader=object.__new__(CanvasReader)
+        reader.ocr=OCRStub()
+        result=reader.diagnostics(None)
+        self.assertEqual(result["phase"],"training_menu")
+        self.assertEqual(result["cards"],[])
+
     def test_raised_title_ignores_background_digits_and_single_letters(self):
         from urban_rivals.vision import CanvasReader
         class OCRStub:

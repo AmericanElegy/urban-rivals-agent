@@ -29,7 +29,7 @@ No discretionary paid model call is authorized or required.
 
 ## Evidence and limitations
 
-38 Python tests passed, including real authenticated loopback bridge requests,
+39 Python tests passed, including real authenticated loopback bridge requests,
 wrong-origin/unauthorized rejection and duplicate-frame rejection. Six Node
 policy/worker tests pass, including popup-started one-frame capture with an
 unfocused parent window and no debugger/input calls. Local ONNX OCR correctly read a synthetic round/turn/timer
@@ -53,7 +53,13 @@ one-frame inspect capture while the popup/another window holds focus, provided
 the exact game tab is still selected in its own window. Live clicks still
 require foreground focus; both modes still reject navigation/tab changes.
 The popup now states the actual diagnostic workflow and shows its version.
-James needs to reload 0.2.2 once; actual new transport validation is pending.
+James reloaded 0.2.2. A local /ready check verified that the on-disk token matched
+the running server after a reported invalid-token error. Replacing the popup's
+token resolved it. The first actual extension capture succeeded: receipt has
+action null, stop true, sequence 1. The 332,838-byte canvas PNG shows the Training
+menu, correctly cropped without the extension popup. Preserved locally as
+`local/first-extension-capture.png`; offline diagnostics classify `training_menu`
+and do not invent card records. The real capture transport is now verified.
 The separate inspect-only-server rejection with automatic play checked is
 intentional and confirmed in James's second screenshot.
 
@@ -77,10 +83,14 @@ not a general card database. Many abilities remain unsupported.
 
 ## Next step
 
-James reloads the installed extension to 0.2.2 and takes one inspect-only frame.
-Then validate the saved canvas, OCR crops and evolution recognition offline
-before enabling any automatic input. Use the supplied recording for continued
-diagnostics instead of repeatedly asking James to start timed matches.
+Continue supported-effect/catalog implementation and board OCR work offline
+before enabling automatic input. The one-frame transport works; do not ask
+James to repeat pairing, reload or start matches to prove that same fact.
+Use the supplied recording for continued diagnostics instead of repeatedly
+asking James to start timed matches. The latest screenshot adds Doug Snop,
+Joy, Dr Elisa, Mendossa, Orenichi and a partly obscured fourth Montana card.
+The unchecked popup can retain a previous checked-mode error until Start is
+clicked again; that message alone is not a fresh capture failure.
 Do not use Codex's
 browser debugger on the same tab while this extension controls it.
 

@@ -150,7 +150,17 @@ class CanvasReader:
         """Read every crop independently. Never click, require a timer, or stop at
         the first unknown name. Useful on a saved board long after a match ends.
         """
-        report={"banner":self.text(image,(.27,.46,.73,.55),.7),"day":self.day(image),"cards":[]}
+        banner=self.text(image,(.27,.46,.73,.55),.7)
+        report={"phase":"round_board","banner":banner,"day":None,"cards":[]}
+        if not re.search(r"ROUND\s*[1-4]\s*[/|]\s*4",banner,re.I):
+            screen=self.text(image,(0,0,1,1),.7)
+            text=normalize(screen)
+            report["phase"]=("stake_panel" if "confirmthestake" in text else
+                             "match_result" if "playagain" in text and ("victory" in text or "defeat" in text) else
+                             "training_menu" if "training" in text and "play" in text else "not_round_board")
+            report["screen_text"]=screen
+            return report
+        report["day"]=self.day(image)
         for side,(name_y,stat_y,star_y) in enumerate(((.54,.80,.785),(.09,.35,.335))):
             for i,x in enumerate(self.CENTERS):
                 entry={"side":side,"slot":i,"name":self.card_name(image,x,name_y,side,.7)}
