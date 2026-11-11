@@ -55,7 +55,8 @@ against real captures from the installed extension. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
 The initial catalog covers eight specific card evolutions from the observed
-training hand. Other cards/evolutions stop recognition. The GhosTown entries are
+training hand. The first input profile supports the cataloged Bangers cards in
+our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
 Day-only until their Night behavior is cataloged. The first live driver uses no
 Fury; the simulator still models Fury. It plays the current manually opened
 Training Bot match only. It does not log in or automatically queue another match.
@@ -136,7 +137,7 @@ Set-Location -LiteralPath 'C:\Users\James\OneDrive\Documents\ChatGPT\urban-rival
 
 The OCR environment is already installed on the current desktop. Reinstallation
 is needed only on a fresh checkout/machine. The starter defaults to **inspect
-only**, prints a temporary pairing token, and listens on `127.0.0.1:8876`.
+only**, saves a temporary pairing token to `local/pairing-token.txt`, and listens on `127.0.0.1:8876`.
 Leave that PowerShell window open. Ctrl+C stops the bridge.
 
 Load `browser-extension/` as an unpacked Chrome extension. In `chrome://extensions`,
@@ -156,7 +157,8 @@ The pairing token stays in extension memory for the run, not persistent storage.
    before selecting any card. Keep the full canvas visible.
 2. Close DevTools and end any other debugger control of that tab (including Codex
    browser control) before starting the extension; two debuggers may conflict.
-3. Open the extension popup, paste the bridge token, leave automatic play
+3. Open `local/pairing-token.txt`, copy its contents into the extension popup's
+   token field, leave automatic play
    **unchecked**, and click Start. Close the popup so the game remains focused.
 4. Inspect `local/latest-canvas.png` and `local/receipts.jsonl`. Recognition errors
    stop the run. These are local, ignored by Git, and never sent to GitHub.

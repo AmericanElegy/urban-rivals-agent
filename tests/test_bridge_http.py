@@ -28,11 +28,9 @@ class BridgeHTTPTests(unittest.TestCase):
             try:
                 token=None
                 for _ in range(150):
-                    lines=log_path.read_text(encoding="utf-8").splitlines()
-                    for line in lines:
-                        if line.startswith("Pairing token "):
-                            token=line.rsplit(": ",1)[1]
-                    if token:
+                    token_path=Path(directory)/"pairing-token.txt"
+                    if token_path.exists() and "Local OCR bridge:" in log_path.read_text(encoding="utf-8"):
+                        token=token_path.read_text(encoding="utf-8")
                         break
                     if process.poll() is not None:
                         self.fail("OCR bridge failed to start; inspect its temporary log locally")

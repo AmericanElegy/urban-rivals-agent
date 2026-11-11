@@ -39,6 +39,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
     token=secrets.token_urlsafe(32)
     output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
+    (output/"pairing-token.txt").write_text(token,encoding="utf-8")
     sessions={}
     stopped=set()
     sequences={}
@@ -157,7 +158,13 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 if run_id:
                     stopped.add(run_id)
                     sessions.pop(run_id,None)
-                self.send(422,{"error":str(error),"stop":True})
+                result={"error":str(error),"stop":True}
+                try:
+                    with (output/"receipts.jsonl").open("a",encoding="utf-8") as stream:
+                        stream.write(json.dumps({"time":time.time(),"run_id":run_id,**result})+"\n")
+                except OSError:
+                    pass
+                self.send(422,result)
             except Exception as error:
                 # Unexpected OCR/runtime errors must also stop, never trigger a retry.
                 if isinstance(locals().get("data"),dict):
@@ -168,7 +175,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
     server=HTTPServer((host,port),Handler)
     server.timeout=1
     print(f"Local OCR bridge: http://{expected_host}",flush=True)
-    print(f"Pairing token (paste into the extension, keep local): {token}",flush=True)
+    print(f"Pairing token saved locally: {(output/'pairing-token.txt').resolve()}",flush=True)
     print(f"Mode: {'execution permitted; extension must also opt in' if execute else 'INSPECT ONLY; no clicks'}",flush=True)
     try:
         server.serve_forever(poll_interval=.5)

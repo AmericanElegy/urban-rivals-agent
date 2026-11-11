@@ -29,12 +29,16 @@ No discretionary paid model call is authorized or required.
 
 ## Evidence and limitations
 
-33 Python tests passed, including real authenticated loopback bridge requests,
+36 Python tests passed, including real authenticated loopback bridge requests,
 wrong-origin/unauthorized rejection and duplicate-frame rejection. Two Node
 policy tests passed. Local ONNX OCR correctly read a synthetic round/turn/timer
 banner. These checks are NOT real screen-recognition or game-strength evidence.
+Offline replay of the first two publicly observed calibration rounds matches
+the visible life and pillz receipts (Randal/Taurite, then Bennie/Dr Web Ld).
+This does not attribute those rounds to the automatic driver.
 
-No extension has been installed or granted debugger permission by this work.
+James confirmed the extension is installed. The local bridge has been started
+in inspect-only mode; pairing and the first actual OCR capture are pending.
 No full live match has been validated or attributed to the program. Pixel crop
 coordinates and the card catalog were transcribed from the earlier visible
 training board, and need verification on captures from the installed extension.

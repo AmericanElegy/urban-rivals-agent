@@ -39,7 +39,7 @@ class FakeReader:
         return "Test"
 
     def number(self,image,box):
-        return self.attack
+        return 4 if box==(.74,.55,.79,.64) else self.attack
 
     def board(self,*args):
         return Board(self.state,None,90,((None,),(None,)))
@@ -68,5 +68,25 @@ class SessionTests(unittest.TestCase):
         s.step(None)
         s.phase="increment"
         s.expected_attack=14
+        with self.assertRaises(RecognitionError):
+            s.step(None)
+
+    def test_failed_minimum_reset_is_not_confirmed(self):
+        r=FakeReader()
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        r.panel=True
+        s.step(None)
+        r.attack=14
+        with self.assertRaises(RecognitionError):
+            s.step(None)
+
+    def test_fury_damage_is_not_confirmed(self):
+        r=FakeReader()
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        r.panel=True
+        s.step(None)
+        r.number=lambda image,box: 6 if box==(.74,.55,.79,.64) else 7
         with self.assertRaises(RecognitionError):
             s.step(None)

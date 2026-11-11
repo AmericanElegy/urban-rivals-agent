@@ -152,6 +152,8 @@ class CanvasReader:
             hands.append(tuple(hand))
             spent.append(tuple(used))
         hands=tuple(hands)
+        if any(c.clan!="Bangers" for c in hands[0]):
+            raise RecognitionError("First live input profile supports the cataloged Bangers hand only")
         if self.initial_hand is not None and hands!=self.initial_hand:
             raise RecognitionError("Hand/order changed; start a fresh session for each match")
         life=(self.number(image,(.76,.90,.81,.99)),self.number(image,(.22,0,.275,.08)))
@@ -224,6 +226,8 @@ class VisionSession:
         self.base_attack=None
         self.expected_attack=None
         self.awaiting_round=None
+        self.panel_power=None
+        self.panel_damage=None
 
     def action(self,x,y,status):
         return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
@@ -251,6 +255,15 @@ class VisionSession:
             advice=advise(self.state,0,board.observed_card,self.iterations,allow_fury=False)
             import random
             self.pending=random.SystemRandom().choices(advice.moves,advice.probabilities,k=1)[0]
+            selected=self.state.players[0].hand[self.pending.card]
+            effects=selected.ability
+            if sum(c.clan==selected.clan for c in self.state.players[0].hand)>=2:
+                effects+=selected.bonus
+            own_power=[e for e in effects if e.stat=="power" and not e.opponent]
+            if any(e.condition!="always" or e.multiplier!="none" for e in own_power):
+                raise RecognitionError("Selected card needs an uncalibrated attack-panel rule")
+            self.panel_power=selected.power+sum(e.amount for e in own_power)
+            self.panel_damage=selected.damage
             self.phase="selected"
             return self.action(self.reader.CENTERS[self.pending.card],.69,
                                f"Round {self.state.round}: select {self.state.players[0].hand[self.pending.card].name}")
@@ -265,10 +278,13 @@ class VisionSession:
             self.phase="reset"
             return self.action(.578,.513,"Reset paid pillz to zero")
         attack=self.reader.number(image,(.55,.55,.61,.64))
+        damage=self.reader.number(image,(.74,.55,.79,.64))
+        if damage!=self.panel_damage:
+            raise RecognitionError("Damage panel differs from the no-Fury expectation")
         if self.phase=="reset":
             self.base_attack=attack
-            if attack<1:
-                raise RecognitionError("Zero attack after MIN is unexpected")
+            if attack!=self.panel_power:
+                raise RecognitionError("MIN did not confirm zero paid pillz at the expected power")
             # Fury is intentionally not enabled by the first live driver. A
             # fresh panel defaults off; never reuse a manually edited panel.
             self.remaining=self.pending.pillz
