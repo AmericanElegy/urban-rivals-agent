@@ -21,9 +21,9 @@ class RecognitionError(ValueError):
 class LocalOCR:
     def __init__(self):
         from rapidocr_onnxruntime import RapidOCR
-        self.model = RapidOCR(det_use_cuda=False, cls_use_cuda=False, rec_use_cuda=False)
+        self.model = RapidOCR(det_use_cuda=False, cls_use_cuda=False, rec_use_cuda=False, intra_op_num_threads=2, inter_op_num_threads=1)
 
-    def text(self, image, box, minimum=.85):
+    def text(self, image, box, minimum=.85, first_line=False):
         import numpy as np
         from PIL import ImageOps
         w,h = image.size
@@ -34,9 +34,20 @@ class LocalOCR:
         result, _ = self.model(np.array(crop)[:,:,::-1].copy())
         if not result:
             return ""
-        return " ".join(item[1] for item in result if float(item[2]) >= minimum)
+        items=[item for item in result if float(item[2])>=minimum]
+        if first_line and items:
+            items.sort(key=lambda item: min(point[1] for point in item[0]))
+            top=min(point[1] for point in items[0][0])
+            height=max(point[1] for point in items[0][0])-top
+            items=[item for item in items if min(point[1] for point in item[0])<top+height*.6]
+            items.sort(key=lambda item: min(point[0] for point in item[0]))
+        return " ".join(item[1] for item in items)
+
+    def title(self,image,box,minimum=.8):
+        return self.text(image,box,minimum,first_line=True)
 
     def number(self,image,box):
+        import cv2
         import numpy as np
         from PIL import Image
         w,h=image.size
@@ -45,17 +56,68 @@ class LocalOCR:
         # Stats use white digits over colored icons. Remove those colored icons
         # before OCR rather than accepting a low-confidence guess at a digit.
         pixels=np.array(crop)
-        white=(pixels.min(axis=2)>175).astype("uint8")*255
-        monochrome=Image.fromarray(white).convert("RGB")
-        detected=self.text(monochrome,(0,0,1,1),.85)
-        if detected.strip():
-            return detected
-        # Text detection can miss a thin standalone '1'. The numeric crop is
-        # already located; direct recognition is allowed only at high confidence.
-        result,_=self.model(np.array(monochrome),use_det=False,use_cls=False,use_rec=True)
-        if result and float(result[0][1])>=.95 and re.fullmatch(r"\d{1,3}",result[0][0]):
-            return result[0][0]
+        from PIL import ImageOps
+        readings=[]
+        self.last_number_evidence=readings
+        masks=[]
+        for threshold in (145,160,175,190,205):
+            white=(pixels.min(axis=2)>threshold).astype("uint8")*255
+            count,labels,stats,_=cv2.connectedComponentsWithStats(white)
+            clean=np.zeros_like(white)
+            height,width=white.shape
+            components=[]
+            for i in range(1,count):
+                x,y,cw,ch,area=stats[i]
+                if (area<6 or ch<height*.22 or ch>height*.90 or cw>width*.8
+                        or x==0 or y==0 or x+cw>=width or y+ch>=height
+                        or cw/ch<.15):
+                    continue
+                components.append((i,ch,area))
+            if not components:
+                continue
+            tallest=max(ch for _,ch,_ in components)
+            largest=max(area for _,ch,area in components if ch>=tallest*.75)
+            for i,ch,area in components:
+                if ch>=tallest*.75 and area>=largest*.25:
+                    clean[labels==i]=255
+            points=cv2.findNonZero(clean)
+            if points is None:
+                continue
+            x,y,cw,ch=cv2.boundingRect(points)
+            monochrome=ImageOps.expand(Image.fromarray(clean[y:y+ch,x:x+cw]).convert("RGB"),border=6,fill="black")
+            masks.append(monochrome)
+            result,_=self.model(np.array(monochrome),use_det=False,use_cls=False,use_rec=True)
+            if result and re.fullmatch(r"\d{1,3}",result[0][0]):
+                readings.append((result[0][0],float(result[0][1])))
+            value=numeric_consensus(readings)
+            if value:
+                return value
+        for monochrome in masks:
+            detected=self.text(monochrome,(0,0,1,1),.95)
+            if re.fullmatch(r"\d{1,3}",detected):
+                readings.append((detected,.95))
+            value=numeric_consensus(readings)
+            if value:
+                return value
         return ""
+
+
+def numeric_consensus(readings):
+    """Two agreeing reads, including a high-score read; conflicts abstain.
+
+    OCR scores are model scores, not calibrated probabilities of correctness.
+    """
+    high={text for text,score in readings if score>=.95}
+    if len(high)!=1:
+        return ""
+    value=next(iter(high))
+    return value if sum(text==value and score>=.85 for text,score in readings)>=2 else ""
+
+
+def parse_timer(text):
+    """Accept only the isolated training move clock, at most 2:59."""
+    match=re.fullmatch(r"\s*(0?[0-2]):([0-5]\d)\s*",text)
+    return int(match[1])*60+int(match[2]) if match else None
 
 
 class Catalog:
@@ -106,12 +168,60 @@ class CanvasReader:
     def text(self,image,box,minimum=.85):
         return self.ocr.text(image,box,minimum)
 
+    def title(self,image,box,minimum=.8):
+        return self.ocr.title(image,box,minimum) if hasattr(self.ocr,"title") else self.text(image,box,minimum)
+
     def card_name(self,image,x,y,side,minimum=.8):
         if side==1:
-            raised=self.text(image,(x-.055,.055,x+.075,.105),minimum)
-            if len(re.sub(r"[^a-z]","",normalize(raised)))>=3:
+            raised=self.raised_title(image,x,minimum)
+            if raised:
                 return raised
-        return self.text(image,(x-.055,y,x+.065,y+.08),minimum)
+        return self.title(image,(x-.055,y-.02,x+.065,y+.08),minimum)
+
+    def raised_title(self,image,x,minimum=.8):
+        if not self.raised_marker(image,x):
+            return ""
+        raised=self.text(image,(x-.025,.075,x+.085,.115),minimum)
+        return raised if len(re.sub(r"[^a-z]","",normalize(raised)))>=3 else ""
+
+    @staticmethod
+    def raised_marker(image,x):
+        """Find the white selection disc, not letters in scenery above a card."""
+        import cv2
+        import numpy as np
+        w,h=image.size
+        left,top=int((x-.08)*w),int(.045*h)
+        pixels=np.array(image.convert("RGB"))[top:int(.115*h),left:int((x-.04)*w)]
+        white=((pixels.min(axis=2)>195)*255).astype("uint8")
+        contours,_=cv2.findContours(white,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        for contour in contours:
+            area=cv2.contourArea(contour)
+            perimeter=cv2.arcLength(contour,True)
+            bx,by,bw,bh=cv2.boundingRect(contour)
+            if (70<=area<=650 and .65<=bw/bh<=1.5 and perimeter
+                    and 4*3.14159*area/(perimeter*perimeter)>.60
+                    and top+by+bh/2 < .11*h):
+                return True
+        return False
+
+    @staticmethod
+    def played_marker(image,x,side):
+        import numpy as np
+        w,h=image.size
+        y=.695 if side==0 else .245
+        p=np.array(image.convert("RGB"))[int((y+.006)*h):int((y+.045)*h),int((x-.025)*w):int((x+.005)*w)]
+        r,g,b=[p[:,:,i].astype("int16") for i in range(3)]
+        purple=(r>80)&(b>100)&(g<r*.7)&(g<b*.7)
+        yellow=(r>170)&(g>140)&(b<120)
+        star_y=.785 if side==0 else .335
+        stars=np.array(image.convert("RGB"))[int((star_y-.012)*h):int((star_y+.012)*h),int((x-.05)*w):int((x+.05)*w)].astype("int16")
+        sr,sg,sb=[stars[:,:,i] for i in range(3)]
+        bright_stars=(sr>200)&(sg>120)&(sb<sg*.55)
+        return bool(purple.sum()>=6 and yellow.sum()>=4 and bright_stars.sum()<3)
+
+    @staticmethod
+    def stat_box(x,y,damage=False):
+        return (x-.075,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
 
     def number(self,image,box):
         text=self.ocr.number(image,box) if hasattr(self.ocr,"number") else self.text(image,box)
@@ -161,19 +271,60 @@ class CanvasReader:
             report["screen_text"]=screen
             return report
         report["day"]=self.day(image)
+        report["round"]=int(re.search(r"ROUND\s*([1-4])",banner,re.I)[1])
+        seconds=parse_timer(self.text(image,(.64,.46,.73,.54),.8))
+        report["seconds_left"]=seconds
+        report["our_turn"]="yourturn" in normalize(banner)
+        report["resources"]={}
+        for label,box in (("our_life",(.76,.90,.81,.99)),("opponent_life",(.22,0,.275,.08)),
+                          ("our_pillz",(.68,.90,.735,.99)),("opponent_pillz",(.30,0,.35,.08))):
+            try:
+                report["resources"][label]=self.number(image,box)
+            except RecognitionError as error:
+                report["resources"][label+"_error"]=str(error)
+        raised=[]
         for side,(name_y,stat_y,star_y) in enumerate(((.54,.80,.785),(.09,.35,.335))):
             for i,x in enumerate(self.CENTERS):
-                entry={"side":side,"slot":i,"name":self.card_name(image,x,name_y,side,.7)}
-                for label,operation in (
-                    ("power",lambda:self.number(image,(x-.07,stat_y-.025,x-.045,stat_y+.025))),
-                    ("damage",lambda:self.number(image,(x-.07,stat_y+.035,x-.045,stat_y+.09))),
-                    ("stars",lambda:self.stars(image,x,star_y)),
-                    ("catalog",lambda:self.catalog.identify(entry["name"],report["day"]).name)):
+                title=self.raised_title(image,x) if side==1 else ""
+                name=title or self.title(image,(x-.055,name_y-.02,x+.065,name_y+.08),.8)
+                overlay_y=.695 if side==0 else .245
+                overlay=self.text(image,(x-.05,overlay_y,x+.055,overlay_y+.055),.8)
+                count=re.search(r"[xX\u00d7]\s*(\d{1,2}|[lI])(?:\s|$)",overlay)
+                marker=self.played_marker(image,x,side)
+                entry={"side":side,"slot":i,"name":name,"used":bool(count) or marker}
+                if count:
+                    entry["paid_pillz"]=int(count[1].replace("l","1").replace("I","1"))-1
+                elif marker:
+                    try:
+                        entry["paid_pillz"]=self.number(image,(x+.007,overlay_y+.007,x+.025,overlay_y+.047))-1
+                    except RecognitionError:
+                        entry["paid_pillz_error"]="Played marker detected; pill count is unreadable"
+                elif title:
+                    raised.append(i)
+                operations=(
+                    ("power",lambda:self.number(image,self.stat_box(x,stat_y))),
+                    ("damage",lambda:self.number(image,self.stat_box(x,stat_y,True))),
+                    ("stars",lambda:self.stars(image,x,star_y)))
+                if entry["used"]:
+                    entry["stats_status"]="played card; retain previously verified base stats"
+                    operations=()
+                for label,operation in operations+(("catalog",lambda:self.catalog.identify(entry["name"],report["day"]).name),):
                     try:
                         entry[label]=operation()
                     except ValueError as error:
                         entry[label+"_error"]=str(error)
                 report["cards"].append(entry)
+        report["observed_card"]=raised[0] if len(raised)==1 else None
+        if len(raised)>1:
+            report["lead_error"]="Multiple raised opponent titles"
+        report["recognition_complete"]=all(
+            c["name"] and not any(key.endswith("_error") and key!="catalog_error" for key in c)
+            for c in report["cards"]) and not any(key.endswith("_error") for key in report["resources"]) and len(raised)<=1
+        if any(sum(c["used"] for c in report["cards"] if c["side"]==side)!=report["round"]-1 for side in range(2)):
+            report["played_count_error"]="Played-card markers disagree with the round number"
+            report["recognition_complete"]=False
+        report["recognition_complete"] = report["recognition_complete"] and report["seconds_left"] is not None
+        report["engine_ready"]=report["recognition_complete"] and all("catalog_error" not in c for c in report["cards"])
         return report
 
     def board(self,image,previous=None,submitted=None):
@@ -181,11 +332,10 @@ class CanvasReader:
         if "yourturn" not in normalize(banner):
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
-        timer=re.search(r"(\d{1,2}):(\d{2})",banner)
-        if not match or not timer:
+        seconds=parse_timer(self.text(image,(.64,.46,.73,.54),.8))
+        if not match or seconds is None:
             raise RecognitionError(f"Round/timer is unreadable: {banner!r}")
         round_no=int(match[1])
-        seconds=int(timer[1])*60+int(timer[2])
         if seconds<12:
             raise RecognitionError("Fewer than 12 seconds remain; stopping before a rushed input")
         day=self.day(image)
@@ -197,12 +347,15 @@ class CanvasReader:
             for i,x in enumerate(self.CENTERS):
                 text=self.card_name(image,x,name_y,side,.8)
                 c=self.catalog.identify(text,day)
-                overlay=self.text(image,(x-.055,overlay_y,x+.055,overlay_y+.12),.75)
-                count=re.search(r"[xX×]\s*(\d{1,3})",overlay)
-                used.append(int(count[1])-1 if count else None)
+                overlay_y=.695 if side==0 else .245
+                overlay=self.text(image,(x-.05,overlay_y,x+.055,overlay_y+.055),.8)
+                count=re.search(r"[xX\u00d7]\s*(\d{1,2}|[lI])(?:\s|$)",overlay)
+                if self.played_marker(image,x,side) and not count:
+                    raise RecognitionError("Played marker detected; pill count is unreadable")
+                used.append(int(count[1].replace("l","1").replace("I","1"))-1 if count else None)
                 if self.initial_hand is None:
-                    power=self.number(image,(x-.07,stat_y-.025,x-.045,stat_y+.025))
-                    damage=self.number(image,(x-.07,stat_y+.035,x-.045,stat_y+.09))
+                    power=self.number(image,self.stat_box(x,stat_y))
+                    damage=self.number(image,self.stat_box(x,stat_y,True))
                     stars=self.stars(image,x,star_y)
                     if (power,damage,stars)!=(c.power,c.damage,c.stars):
                         raise RecognitionError(f"{c.name}: screen stats/level disagree with catalog")
@@ -228,7 +381,7 @@ class CanvasReader:
                 continue
             # A revealed opponent lead is enlarged upward. Require its name to
             # appear in the narrow raised title band, not just a bright card.
-            title=self.text(image,(x-.05,.065,x+.07,.105),.8)
+            title=self.raised_title(image,x,.8)
             if normalize(title)==normalize(hands[1][i].name):
                 lifted.append(i)
         if len(lifted)>1:

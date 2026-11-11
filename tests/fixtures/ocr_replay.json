@@ -1,0 +1,23 @@
+{
+  "schema": "urban-rivals/ocr-replay/v1",
+  "label_source": "Manually checked against James's saved extension capture and 2026-11-11 recording. Media stays local and is not shipped with this manifest.",
+  "hands": {
+    "montana": [
+      [["Bennie",5,3,2],["Doug Snop",7,2,2],["Joy",6,6,4],["Pacarezza",7,5,2]],
+      [["Dr Elisa",6,4,3],["Mendossa",7,6,4],["Orenichi",6,6,4],["Waller",7,4,3]]
+    ],
+    "recording": [
+      [["Bennie",5,3,2],["Fixit",7,6,4],["Pacarezza",7,5,2],["Vermyn Noel",5,4,2]],
+      [["Austin",7,8,5],["Barcius",8,4,3],["Buford",7,3,3],["Lucien",8,1,4]]
+    ]
+  },
+  "frames": [
+    {"id":"extension-round1","path":"local/first-board-capture.png","phase":"round_board","hands":"montana","round":1,"seconds_left":108,"observed_card":0,"used":[[],[]],"resources":{"our_life":15,"opponent_life":15,"our_pillz":12,"opponent_pillz":12},"scales":[1,0.85,1.15]},
+    {"id":"recording-round1","path":"local/recording/round1-canvas.png","phase":"round_board","hands":"recording","round":1,"seconds_left":100,"observed_card":0,"used":[[],[]],"resources":{"our_life":15,"opponent_life":15,"our_pillz":12,"opponent_pillz":12},"scales":[1,0.85,1.15]},
+    {"id":"recording-round2","path":"local/recording/board-25.png","phase":"round_board","hands":"recording","round":2,"seconds_left":101,"observed_card":null,"used":[[1],[0]],"spent":{"0:1":0,"1:0":5},"resources":{"our_life":7,"opponent_life":15,"our_pillz":12,"opponent_pillz":7},"scales":[1]},
+    {"id":"recording-round3","path":"local/recording/board-40.png","phase":"round_board","hands":"recording","round":3,"seconds_left":69,"observed_card":2,"used":[[1,3],[0,1]],"spent":{"0:1":0,"0:3":0,"1:0":5,"1:1":0},"resources":{"our_life":7,"opponent_life":11,"our_pillz":12,"opponent_pillz":7},"scales":[1]},
+    {"id":"training-menu","path":"local/first-extension-capture.png","phase":"training_menu","scales":[1]},
+    {"id":"stake-panel","path":"local/recording/frame-58.8.png","crop":[293,169,1612,903],"phase":"stake_panel","scales":[1]},
+    {"id":"match-result","path":"local/recording/frame-72.5.png","crop":[293,169,1612,903],"phase":"match_result","scales":[1]}
+  ]
+}

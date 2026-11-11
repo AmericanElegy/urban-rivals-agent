@@ -209,3 +209,26 @@ schedules or production dependencies. No FantasyBrief files were modified.
 The official rules differ from the thesis in places, such as Protection versus
 Cancel. Unsupported mechanics must be checked against current sources before
 implementation. Do not assume 2024 card data or mode rules are current.
+
+
+## Offline OCR regression replay
+
+Run the labeled replay from this checkout with the OCR virtual environment:
+
+```powershell
+.\.venv\Scripts\python.exe -m urban_rivals replay tests/fixtures/ocr_replay.json
+```
+
+The manifest contains manually checked labels for the saved extension board,
+recording rounds 1–3, training menu, stake panel and match result. Source PNGs
+stay in ignored `local/`; missing images are reported as missing, never passed.
+The report at `local/ocr-replay-report.json` separates incorrect values from
+unreadable fields and records per-frame processing time. Resampling at 85% and
+115% tests image degradation, not arbitrary browser layouts. Played cards are
+checked for identity and paid pillz; their dimmed base stats must be retained
+from a verified initial hand rather than inferred anew.
+
+OCR uses local CPU inference only. Recognition scores are not calibrated
+probabilities. Unsupported catalog entries still block execution even if their
+visible text and stats can be read. Replay success is separate from live input
+validation and move speed.

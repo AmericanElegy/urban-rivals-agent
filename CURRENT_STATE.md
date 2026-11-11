@@ -29,7 +29,7 @@ No discretionary paid model call is authorized or required.
 
 ## Evidence and limitations
 
-39 Python tests passed, including real authenticated loopback bridge requests,
+44 Python tests passed, including real authenticated loopback bridge requests,
 wrong-origin/unauthorized rejection and duplicate-frame rejection. Six Node
 policy/worker tests pass, including popup-started one-frame capture with an
 unfocused parent window and no debugger/input calls. Local ONNX OCR correctly read a synthetic round/turn/timer
@@ -122,3 +122,37 @@ No FantasyBrief pipeline was run as a verification step.
 Official support says the legacy public API is discontinued and a replacement
 is planned. The thesis's API address is historical, not a setup step. Use official
 card/rules pages and visible game data. Source links and setup are in README.md.
+
+
+## Offline OCR repair, 2026-11-11
+
+James authorized the proposed OCR work. No new match, pairing, extension reload,
+API access or paid call is needed. Work uses the existing full-board extension
+capture and supplied recording only. The running bridge remains inspect-only;
+restart is unnecessary for offline replay and it has not loaded these changes.
+
+Added `tests/fixtures/ocr_replay.json`, `urban_rivals/replay.py` and the `replay`
+CLI. Seven labeled source frames produce eleven cases including resampling at
+85%/115%, rounds 1–3, menus, stake and result. Labels are checked in; all source
+media and detailed reports remain ignored in local/. Resampling is not proof
+of responsive layouts or different browser geometry.
+
+Changes: wider stat crops avoid clipping selected digits; threshold/component
+filtering removes colored icons and border fragments; digit consensus abstains
+on disagreement. Title OCR groups the top text line, avoiding art lettering.
+A white selection disc distinguishes a revealed lead from a hover enlargement.
+The isolated move clock rejects invalid seconds and world-clock/banner noise.
+Purple/yellow pill markers separately identify played cards; unreadable counts
+are explicit errors and prevent recognition_complete/live actions. Dimmed base
+stats are retained from the verified initial hand, not guessed from dim pixels.
+Unknown abilities/catalog entries still block execution.
+
+44 Python tests, six Node tests and the one-game simulator smoke check pass.
+The real-image replay is separate from these unit checks. Remaining work is
+small-font digit/count recognition and reducing first-board processing latency;
+no live match or automatic input has been validated. Keep live input disabled.
+
+Latest full replay: 370/375 fields passed, five unreadable, zero incorrect.
+All 64 played-slot observations pass. Exact remaining fields and timing are
+in `OCR_STATUS.md`; raw ignored report is `local/ocr-replay-report.json`.
+The replay intentionally exits 1 until all fields pass.

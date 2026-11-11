@@ -20,9 +20,10 @@ class ProtocolTests(unittest.TestCase):
         from urban_rivals.vision import CanvasReader
         class OCRStub:
             def text(self,image,box,minimum):
-                return self.raised if box[1]==.055 else "BARCIUS"
+                return self.raised if box[1]==.075 else "BARCIUS"
         reader=object.__new__(CanvasReader)
         reader.ocr=OCRStub()
+        reader.raised_marker=lambda image,x: True
         for contamination in ("E","1 2",""):
             reader.ocr.raised=contamination
             self.assertEqual(reader.card_name(None,.4,.09,1),"BARCIUS")

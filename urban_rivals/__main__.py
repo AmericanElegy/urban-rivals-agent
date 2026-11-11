@@ -2,6 +2,7 @@ import argparse
 import json
 import random
 import time
+from pathlib import Path
 from dataclasses import asdict
 from .engine import resolve, legal_moves
 from .io import load_state
@@ -14,7 +15,7 @@ def sample(advice, rng):
 
 def main():
     parser = argparse.ArgumentParser(description="Urban Rivals local strategy agent")
-    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect"))
+    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect", "replay"))
     parser.add_argument("state", nargs="?", help="JSON state file (advise/simulate only)")
     parser.add_argument("--side", type=int, choices=(0, 1), default=0)
     parser.add_argument("--observed-card", type=int)
@@ -27,6 +28,15 @@ def main():
     parser.add_argument("--output", default="local", help="Local canvas/receipt directory")
     args = parser.parse_args()
     try:
+        if args.command=="replay":
+            if args.state is None:
+                raise ValueError("replay requires a labeled manifest JSON")
+            from .replay import replay
+            result=replay(args.state,output_path=str(Path(args.output)/"ocr-replay-report.json"))
+            print(json.dumps({"passed":result["passed"],"groups":result["groups"],"missing":result["missing"]},indent=2))
+            if not result["passed"]:
+                parser.exit(1)
+            return
         if args.command == "inspect":
             if args.state is None:
                 raise ValueError("inspect requires a saved canvas PNG")
