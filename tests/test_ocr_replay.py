@@ -39,3 +39,53 @@ class TimerTests(unittest.TestCase):
             self.assertEqual(parse_timer(text),expected)
         for text in ("60:10","01:99","YOUR TURN 01:09","14:26",""):
             self.assertIsNone(parse_timer(text))
+
+
+class PlayedPillTests(unittest.TestCase):
+    def reader(self,marker,value):
+        from urban_rivals.vision import CanvasReader
+        reader=object.__new__(CanvasReader)
+        reader.played_marker=lambda *args: marker
+        def number(*args,**kwargs):
+            if isinstance(value,Exception):
+                raise value
+            return value
+        reader.number=number
+        return reader
+
+    def test_no_marker_does_not_read_artwork_as_a_counter(self):
+        self.assertIsNone(self.reader(False,AssertionError()).played_pillz(None,.4,0))
+
+    def test_free_pill_and_two_digit_counts(self):
+        self.assertEqual(self.reader(True,1).played_pillz(None,.4,0),0)
+        self.assertEqual(self.reader(True,13).played_pillz(None,.4,1),12)
+
+    def test_invalid_or_unreadable_count_stops(self):
+        from urban_rivals.vision import RecognitionError
+        for value in (0,100,RecognitionError("unreadable")):
+            with self.assertRaises(RecognitionError):
+                self.reader(True,value).played_pillz(None,.4,0)
+
+
+class DetectorConfigurationTests(unittest.TestCase):
+    def test_normal_and_detailed_calls_restore_shared_settings(self):
+        from types import SimpleNamespace
+        from urban_rivals.vision import LocalOCR
+        class Model:
+            text_det=SimpleNamespace(limit_side_len=333)
+            fail=False
+            def __call__(self,pixels):
+                self.seen=self.text_det.limit_side_len
+                if self.fail:
+                    raise RuntimeError("inference failed")
+                return [],None
+        reader=object.__new__(LocalOCR)
+        reader.model=Model()
+        for detail,expected in ((False,192),(True,736)):
+            reader.detect(None,detail)
+            self.assertEqual(reader.model.seen,expected)
+            self.assertEqual(reader.model.text_det.limit_side_len,333)
+        reader.model.fail=True
+        with self.assertRaises(RuntimeError):
+            reader.detect(None,True)
+        self.assertEqual(reader.model.text_det.limit_side_len,333)

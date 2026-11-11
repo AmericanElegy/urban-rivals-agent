@@ -232,3 +232,10 @@ OCR uses local CPU inference only. Recognition scores are not calibrated
 probabilities. Unsupported catalog entries still block execution even if their
 visible text and stats can be read. Replay success is separate from live input
 validation and move speed.
+
+
+Latest local OCR validation: **639/639 fields pass across 17 cases**, with board
+diagnostics approximately 2.2–5.3 seconds. See [OCR_STATUS.md](OCR_STATUS.md) for
+exact coverage and remaining live-play blockers. These results do not establish
+support for unknown abilities or authorize automatic input from an unsupported
+hand. Source media remains local; GitHub CI runs the portable tests only.

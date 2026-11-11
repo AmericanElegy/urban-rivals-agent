@@ -29,7 +29,7 @@ No discretionary paid model call is authorized or required.
 
 ## Evidence and limitations
 
-44 Python tests passed, including real authenticated loopback bridge requests,
+48 Python tests passed, including real authenticated loopback bridge requests,
 wrong-origin/unauthorized rejection and duplicate-frame rejection. Six Node
 policy/worker tests pass, including popup-started one-frame capture with an
 unfocused parent window and no debugger/input calls. Local ONNX OCR correctly read a synthetic round/turn/timer
@@ -152,7 +152,19 @@ The real-image replay is separate from these unit checks. Remaining work is
 small-font digit/count recognition and reducing first-board processing latency;
 no live match or automatic input has been validated. Keep live input disabled.
 
-Latest full replay: 370/375 fields passed, five unreadable, zero incorrect.
-All 64 played-slot observations pass. Exact remaining fields and timing are
-in `OCR_STATUS.md`; raw ignored report is `local/ocr-replay-report.json`.
-The replay intentionally exits 1 until all fields pass.
+Latest OCR continuation: all original 375 checks pass. Expanded replay now
+passes 639/639 fields over seventeen cases, including additional resampling of
+rounds 1–3; zero unreadable or incorrect values. Board diagnostics now take
+2.2–5.3 seconds after profiling and detector-size changes, versus 9.6–13.4 before.
+Narrow glyph padding and a dedicated padded counter crop resolve the five old
+failures without lowering confidence thresholds. Diagnostics/live perception
+share the counter routine. Detailed detector settings restore after exceptions.
+48 Python tests, six Node tests and simulator smoke check pass. Exact scope and
+limits are in `OCR_STATUS.md`; detailed ignored report is
+`local/ocr-replay-report.json`. The local replay now exits 0.
+
+Next: unsupported ability/catalog implementation and full live input/receipt
+validation. No new match or input was attempted; the running bridge remains on
+the prior inspect-only process. No hand cache was added because measured OCR
+work alone delivered the speed improvement. Treat all older OCR-failure notes
+above as historical; this paragraph and OCR_STATUS.md describe current evidence.

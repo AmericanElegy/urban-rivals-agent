@@ -21,9 +21,9 @@ class RecognitionError(ValueError):
 class LocalOCR:
     def __init__(self):
         from rapidocr_onnxruntime import RapidOCR
-        self.model = RapidOCR(det_use_cuda=False, cls_use_cuda=False, rec_use_cuda=False, intra_op_num_threads=2, inter_op_num_threads=1)
+        self.model = RapidOCR(det_use_cuda=False, cls_use_cuda=False, rec_use_cuda=False, intra_op_num_threads=2, inter_op_num_threads=1, det_limit_type="min", det_limit_side_len=192)
 
-    def text(self, image, box, minimum=.85, first_line=False):
+    def text(self, image, box, minimum=.85, first_line=False, detail=False):
         import numpy as np
         from PIL import ImageOps
         w,h = image.size
@@ -31,7 +31,7 @@ class LocalOCR:
         crop = image.crop((int(x1*w),int(y1*h),int(x2*w),int(y2*h)))
         scale=1 if crop.width>650 else 3
         crop = ImageOps.expand(crop.resize((crop.width*scale,crop.height*scale)), border=12, fill="black")
-        result, _ = self.model(np.array(crop)[:,:,::-1].copy())
+        result, _ = self.detect(np.array(crop)[:,:,::-1].copy(),detail)
         if not result:
             return ""
         items=[item for item in result if float(item[2])>=minimum]
@@ -42,6 +42,19 @@ class LocalOCR:
             items=[item for item in items if min(point[1] for point in item[0])<top+height*.6]
             items.sort(key=lambda item: min(point[0] for point in item[0]))
         return " ".join(item[1] for item in items)
+
+    def detect(self,pixels,detail=False):
+        """Restore shared detector settings even when inference fails."""
+        detector=self.model.text_det
+        previous=detector.limit_side_len
+        try:
+            detector.limit_side_len=736 if detail else 192
+            return self.model(pixels)
+        finally:
+            detector.limit_side_len=previous
+
+    def precise_text(self,image,box,minimum=.85):
+        return self.text(image,box,minimum,detail=True)
 
     def title(self,image,box,minimum=.8):
         return self.text(image,box,minimum,first_line=True)
@@ -92,14 +105,37 @@ class LocalOCR:
             value=numeric_consensus(readings)
             if value:
                 return value
+        # Very narrow glyphs need different context around their strokes.
+        # Vary padding with the same confidence/consensus requirements.
         for monochrome in masks:
-            detected=self.text(monochrome,(0,0,1,1),.95)
+            glyph=monochrome.crop((6,6,monochrome.width-6,monochrome.height-6))
+            for border in (2,4,8,12):
+                variant=ImageOps.expand(glyph,border=border,fill="black")
+                result,_=self.model(np.array(variant),use_det=False,use_cls=False,use_rec=True)
+                if result and re.fullmatch(r"\d{1,3}",result[0][0]):
+                    readings.append((result[0][0],float(result[0][1])))
+                value=numeric_consensus(readings)
+                if value:
+                    return value
+        for monochrome in masks:
+            detected=self.precise_text(monochrome,(0,0,1,1),.95)
             if re.fullmatch(r"\d{1,3}",detected):
                 readings.append((detected,.95))
             value=numeric_consensus(readings)
             if value:
                 return value
         return ""
+
+    def counter(self,image,box):
+        # The multiplier sign can touch the first digit after video resampling.
+        # Black padding keeps that clipped sign fragment from discarding the
+        # entire digit component. It does not change recognition thresholds.
+        from PIL import ImageOps
+        w,h=image.size
+        x1,y1,x2,y2=box
+        # Inputs are canonical 1318x744 boards: remove two residual sign pixels.
+        crop=image.crop((int(x1*w)+2,int(y1*h),int(x2*w),int(y2*h)))
+        return self.number(ImageOps.expand(crop,3,"black"),(0,0,1,1))
 
 
 def numeric_consensus(readings):
@@ -171,6 +207,9 @@ class CanvasReader:
     def title(self,image,box,minimum=.8):
         return self.ocr.title(image,box,minimum) if hasattr(self.ocr,"title") else self.text(image,box,minimum)
 
+    def precise_text(self,image,box,minimum=.85):
+        return self.ocr.precise_text(image,box,minimum) if hasattr(self.ocr,"precise_text") else self.text(image,box,minimum)
+
     def card_name(self,image,x,y,side,minimum=.8):
         if side==1:
             raised=self.raised_title(image,x,minimum)
@@ -181,7 +220,7 @@ class CanvasReader:
     def raised_title(self,image,x,minimum=.8):
         if not self.raised_marker(image,x):
             return ""
-        raised=self.text(image,(x-.025,.075,x+.085,.115),minimum)
+        raised=self.precise_text(image,(x-.025,.075,x+.085,.115),minimum)
         return raised if len(re.sub(r"[^a-z]","",normalize(raised)))>=3 else ""
 
     @staticmethod
@@ -219,12 +258,25 @@ class CanvasReader:
         bright_stars=(sr>200)&(sg>120)&(sb<sg*.55)
         return bool(purple.sum()>=6 and yellow.sum()>=4 and bright_stars.sum()<3)
 
+    def played_pillz(self,image,x,side):
+        """Read only verified dimmed-card markers, including the free pill."""
+        if not self.played_marker(image,x,side):
+            return None
+        y=.695 if side==0 else .245
+        count=self.number(image,(x+.007,y+.003,x+.04,y+.052),kind="counter")
+        if not 1<=count<=99:
+            raise RecognitionError("Played pill multiplier is outside the supported range")
+        return count-1
+
     @staticmethod
     def stat_box(x,y,damage=False):
         return (x-.075,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
 
-    def number(self,image,box):
-        text=self.ocr.number(image,box) if hasattr(self.ocr,"number") else self.text(image,box)
+    def number(self,image,box,kind="number"):
+        if kind=="counter" and hasattr(self.ocr,"counter"):
+            text=self.ocr.counter(image,box)
+        else:
+            text=self.ocr.number(image,box) if hasattr(self.ocr,"number") else self.text(image,box)
         if not re.fullmatch(r"\s*\d{1,3}\s*",text):
             raise RecognitionError(f"Resource or attack count is unreadable: {text!r}")
         return int(text)
@@ -272,7 +324,7 @@ class CanvasReader:
             return report
         report["day"]=self.day(image)
         report["round"]=int(re.search(r"ROUND\s*([1-4])",banner,re.I)[1])
-        seconds=parse_timer(self.text(image,(.64,.46,.73,.54),.8))
+        seconds=parse_timer(self.precise_text(image,(.64,.46,.73,.54),.8))
         report["seconds_left"]=seconds
         report["our_turn"]="yourturn" in normalize(banner)
         report["resources"]={}
@@ -287,18 +339,13 @@ class CanvasReader:
             for i,x in enumerate(self.CENTERS):
                 title=self.raised_title(image,x) if side==1 else ""
                 name=title or self.title(image,(x-.055,name_y-.02,x+.065,name_y+.08),.8)
-                overlay_y=.695 if side==0 else .245
-                overlay=self.text(image,(x-.05,overlay_y,x+.055,overlay_y+.055),.8)
-                count=re.search(r"[xX\u00d7]\s*(\d{1,2}|[lI])(?:\s|$)",overlay)
                 marker=self.played_marker(image,x,side)
-                entry={"side":side,"slot":i,"name":name,"used":bool(count) or marker}
-                if count:
-                    entry["paid_pillz"]=int(count[1].replace("l","1").replace("I","1"))-1
-                elif marker:
+                entry={"side":side,"slot":i,"name":name,"used":marker}
+                if marker:
                     try:
-                        entry["paid_pillz"]=self.number(image,(x+.007,overlay_y+.007,x+.025,overlay_y+.047))-1
-                    except RecognitionError:
-                        entry["paid_pillz_error"]="Played marker detected; pill count is unreadable"
+                        entry["paid_pillz"]=self.played_pillz(image,x,side)
+                    except RecognitionError as error:
+                        entry["paid_pillz_error"]=str(error)
                 elif title:
                     raised.append(i)
                 operations=(
@@ -332,7 +379,7 @@ class CanvasReader:
         if "yourturn" not in normalize(banner):
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
-        seconds=parse_timer(self.text(image,(.64,.46,.73,.54),.8))
+        seconds=parse_timer(self.precise_text(image,(.64,.46,.73,.54),.8))
         if not match or seconds is None:
             raise RecognitionError(f"Round/timer is unreadable: {banner!r}")
         round_no=int(match[1])
@@ -347,12 +394,7 @@ class CanvasReader:
             for i,x in enumerate(self.CENTERS):
                 text=self.card_name(image,x,name_y,side,.8)
                 c=self.catalog.identify(text,day)
-                overlay_y=.695 if side==0 else .245
-                overlay=self.text(image,(x-.05,overlay_y,x+.055,overlay_y+.055),.8)
-                count=re.search(r"[xX\u00d7]\s*(\d{1,2}|[lI])(?:\s|$)",overlay)
-                if self.played_marker(image,x,side) and not count:
-                    raise RecognitionError("Played marker detected; pill count is unreadable")
-                used.append(int(count[1].replace("l","1").replace("I","1"))-1 if count else None)
+                used.append(self.played_pillz(image,x,side))
                 if self.initial_hand is None:
                     power=self.number(image,self.stat_box(x,stat_y))
                     damage=self.number(image,self.stat_box(x,stat_y,True))
