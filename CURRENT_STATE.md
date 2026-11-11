@@ -60,6 +60,14 @@ action null, stop true, sequence 1. The 332,838-byte canvas PNG shows the Traini
 menu, correctly cropped without the extension popup. Preserved locally as
 `local/first-extension-capture.png`; offline diagnostics classify `training_menu`
 and do not invent card records. The real capture transport is now verified.
+A second successful extension capture contains the full round-1 Montana/Bangers
+board (receipt again action null, stop true). Preserved as
+`local/first-board-capture.png` and analyzed in `local/first-board-diagnostics.json`.
+The crop excludes the popup and includes the whole board. Offline OCR identifies
+the phase and round correctly and reads most names/stats, but Doug Snop's power,
+Mendossa's power, Waller's stats and Dr Elisa's raised title still have recognition
+errors. Keep those uncertain; do not present recording-frame OCR success as proof
+that every live capture is readable. No more setup or transport proof is needed.
 The separate inspect-only-server rejection with automatic play checked is
 intentional and confirmed in James's second screenshot.
 
