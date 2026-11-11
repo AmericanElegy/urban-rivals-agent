@@ -174,7 +174,7 @@ The pairing token stays in extension memory for the run, not persistent storage.
    crop independently and reports unknown names and unreadable stats. Captures
    and reports are local, ignored by Git, and never sent to GitHub.
 5. Only after real OCR/input calibration, restart the server with
-   `.\Start-TrainingAgent.ps1 -Execute`, start a fresh match, and explicitly check
+   `.\Start-TrainingAgent.ps1 -Execute -ReusePairingToken`, start a fresh match, and explicitly check
    automatic play in the extension. Both switches are required for clicks.
 6. Press Escape in the game or Stop in the popup to end control. Focus loss,
    navigation, stale observations, unknown cards, engine/receipt disagreement and

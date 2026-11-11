@@ -83,6 +83,20 @@ class FakeReader:
 
 
 class SessionTests(unittest.TestCase):
+    def test_round_hint_skips_full_screen_ocr_but_still_requires_board_read(self):
+        class RoundReader(FakeReader):
+            read=False
+            def round_scene(self,image):
+                return True
+            def text(self,*args):
+                raise AssertionError("Redundant full-screen OCR")
+            def board(self,*args):
+                self.read=True
+                return super().board(*args)
+        reader=RoundReader()
+        self.assertIsNone(VisionSession(reader).step(None)["action"])
+        self.assertTrue(reader.read)
+
     def test_inspect_never_clicks(self):
         s=VisionSession(FakeReader())
         self.assertIsNone(s.step(None)["action"])

@@ -212,6 +212,12 @@ class CanvasReader:
     def text(self,image,box,minimum=.85):
         return self.ocr.text(image,box,minimum)
 
+    def round_scene(self,image):
+        """A phase hint only: board() must still verify the complete state."""
+        banner=self.text(image,(.27,.46,.73,.55),.8)
+        return bool(re.search(r"ROUND\s*[1-4]\s*[/|]\s*4",banner,re.I)
+                    and "yourturn" in normalize(banner))
+
     def title(self,image,box,minimum=.8):
         return self.ocr.title(image,box,minimum) if hasattr(self.ocr,"title") else self.text(image,box,minimum)
 
@@ -494,7 +500,11 @@ class VisionSession:
         return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
 
     def step(self,image):
-        text=self.reader.text(image,(0,0,1,1),.8)
+        # Avoid a full-screen detector pass before a complete round-board read.
+        # Menus, results, login screens and stake panels retain full-screen OCR.
+        round_scene=(self.phase=="board" and hasattr(self.reader,"round_scene")
+                     and self.reader.round_scene(image))
+        text="YOUR TURN" if round_scene else self.reader.text(image,(0,0,1,1),.8)
         norm=normalize(text)
         if "login" in norm or "playasguest" in norm:
             raise RecognitionError("Game requires sign-in; no login is automated")

@@ -216,3 +216,10 @@ change is needed. Next work
 is bounded Training Bot action-panel/input validation on an idle supported match,
 then full live round receipts. Do not interfere with an active game or infer a
 complete match from the fourth round's intermediate animation.
+
+
+Live calibration was explicitly authorized by James. Preparation and the current
+pairing blocker are recorded in LIVE_CALIBRATION.md. No timed match has started.
+A phase-hint timing repair and explicit PowerShell token-reuse switch are ready;
+72 Python tests and launcher syntax validation pass. Resume live calibration
+after the user's local pairing step; do not repeat an authorization question.
