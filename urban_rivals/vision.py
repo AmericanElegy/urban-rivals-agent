@@ -109,7 +109,7 @@ class LocalOCR:
         # Vary padding with the same confidence/consensus requirements.
         for monochrome in masks:
             glyph=monochrome.crop((6,6,monochrome.width-6,monochrome.height-6))
-            for border in (2,4,8,12):
+            for border in (2,4,1,8,12):
                 variant=ImageOps.expand(glyph,border=border,fill="black")
                 result,_=self.model(np.array(variant),use_det=False,use_cls=False,use_rec=True)
                 if result and re.fullmatch(r"\d{1,3}",result[0][0]):
@@ -133,9 +133,17 @@ class LocalOCR:
         from PIL import ImageOps
         w,h=image.size
         x1,y1,x2,y2=box
-        # Inputs are canonical 1318x744 boards: remove two residual sign pixels.
-        crop=image.crop((int(x1*w)+2,int(y1*h),int(x2*w),int(y2*h)))
-        return self.number(ImageOps.expand(crop,3,"black"),(0,0,1,1))
+        # Inputs are canonical 1318x744 boards. Resampling can leave a connected
+        # sign fragment; a failed primary crop needs two agreeing tighter crops.
+        readings=[]
+        for trim in (2,3,4):
+            crop=image.crop((int(x1*w)+trim,int(y1*h),int(x2*w),int(y2*h)))
+            value=self.number(ImageOps.expand(crop,3,"black"),(0,0,1,1))
+            if trim==2 and value:
+                return value
+            if trim!=2:
+                readings.append(value)
+        return readings[0] if readings[0] and readings[0]==readings[1] else ""
 
 
 def numeric_consensus(readings):

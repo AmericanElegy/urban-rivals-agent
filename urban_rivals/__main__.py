@@ -15,8 +15,8 @@ def sample(advice, rng):
 
 def main():
     parser = argparse.ArgumentParser(description="Urban Rivals local strategy agent")
-    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect", "replay"))
-    parser.add_argument("state", nargs="?", help="JSON state file (advise/simulate only)")
+    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect", "replay", "verify-match"))
+    parser.add_argument("state", nargs="?", help="State JSON, canvas PNG, or manifest for the selected command")
     parser.add_argument("--side", type=int, choices=(0, 1), default=0)
     parser.add_argument("--observed-card", type=int)
     parser.add_argument("--iterations", type=int, default=1000)
@@ -28,6 +28,15 @@ def main():
     parser.add_argument("--output", default="local", help="Local canvas/receipt directory")
     args = parser.parse_args()
     try:
+        if args.command=="verify-match":
+            if args.state is None:
+                raise ValueError("verify-match requires a recorded-match manifest JSON")
+            from .replay import verify_match
+            result=verify_match(args.state,output_path=str(Path(args.output)/"match-verification.json"))
+            print(json.dumps({"passed":result["passed"],"rounds":[{k:c[k] for k in ("id","passed","seconds","error") if k in c} for c in result["cases"]],"report":str(Path(args.output)/"match-verification.json")},indent=2))
+            if not result["passed"]:
+                parser.exit(1)
+            return
         if args.command=="replay":
             if args.state is None:
                 raise ValueError("replay requires a labeled manifest JSON")

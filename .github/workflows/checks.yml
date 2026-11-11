@@ -16,3 +16,4 @@ jobs:
       - run: python -m unittest discover -s tests -v
       - run: node --test browser-extension/policy.test.js browser-extension/worker.test.js
       - run: python -m urban_rivals simulate examples/basic.json --games 1 --iterations 100
+      - run: python -m urban_rivals simulate examples/recorded_training.json --games 1 --iterations 100

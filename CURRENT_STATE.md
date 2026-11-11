@@ -4,6 +4,17 @@ Updated 2026-11-11. Owner: James / AmericanElegy. Live checkout is this folder;
 there is no dependency on a FantasyBrief checkout for running this project.
 Private GitHub repository: https://github.com/AmericanElegy/urban-rivals-agent
 
+## Latest checkpoint
+
+Eighteen exact card evolutions; 764/764 OCR/readiness checks across twenty cases;
+71 Python tests and six extension tests pass. The real board reader reconciles
+four sequential recorded boards (three completed rounds). See
+MECHANICS_STATUS.md and OCR_STATUS.md for scope and current official sources.
+The local bridge is updated, inspect-only, authenticated, and retains the same
+pairing token. No new setup is needed. Live automatic input/full-match validation
+remains pending. Historical diagnostic failures below are superseded by this
+checkpoint and the latest mechanics section.
+
 ## Goal and authority
 
 Build an automatic browser player inspired by Oset's thesis. James selected the
@@ -168,3 +179,40 @@ validation. No new match or input was attempted; the running bridge remains on
 the prior inspect-only process. No hand cache was added because measured OCR
 work alone delivered the speed improvement. Treat all older OCR-failure notes
 above as historical; this paragraph and OCR_STATUS.md describe current evidence.
+
+
+## Mechanics continuation, 2026-11-11
+
+Current evidence supersedes the earlier eight-card/unsupported recording-hand
+notes above. Catalog: eighteen exact evolutions. Added Doug Snop, Joy, Fixit 4*,
+Pacarezza 2*, Orenichi, Waller, Austin 5*, Barcius 3*, Buford 3* and Lucien 4*.
+Protection Power/Damage, conditional Exchange, Tune Out and Bet are implemented.
+Current official card definitions were read via existing signed-in Chrome, with
+public source links and limitations in MECHANICS_STATUS.md. Temporary research
+tabs were closed; the original collection tab, decks and game client were not
+changed. No authentication/session data was saved or uploaded.
+
+The engine matches three completed recorded rounds, and the real live board
+reader reconciles four sequential native boards through the start of round 4.
+New command: `python -m urban_rivals verify-match tests/fixtures/recorded_match.json`.
+An offline advice example is examples/recorded_training.json (respond with
+--observed-card 0). These are recording checks, not a completed automatic match.
+
+Expanded OCR corpus: 764/764 fields across twenty cases, including a new stable
+round-4 frame and readiness checks. All recording-hand cases are engine_ready;
+Montana remains blocked on Dr Elisa/Mendossa. Native sequence report stays in
+local/match-verification.json. Latest 20-case diagnostic timings: 3.0–7.1 seconds;
+extra resampled counter fallbacks make this broader run slower than the previous
+17-case measurement. Do not claim a live end-to-end latency guarantee.
+
+71 Python tests, six Node tests, existing two older round receipts, three newly
+reconciled round receipts and simulator/advice checks pass. Simultaneous same-stat
+Exchange, Copy, persistent effects, Stop Bonus and Protection Ability/Bonus still
+fail closed. Fury/Tune Out has unit coverage but no supplied Fury-round receipt.
+Fixit/Pacarezza's active effects have rule-based tests, not isolated live receipts.
+The local bridge was refreshed with --reuse-pairing-token, execution remains
+disabled, and authenticated readiness passed. No extension reload or pairing
+change is needed. Next work
+is bounded Training Bot action-panel/input validation on an idle supported match,
+then full live round receipts. Do not interfere with an active game or infer a
+complete match from the fourth round's intermediate animation.

@@ -18,6 +18,8 @@ def compare_report(actual,frame,hands):
     for key in ("round","seconds_left","observed_card"):
         # Missing is distinct from an intentionally null observed opponent card.
         check("board",key,frame[key],actual.get(key,"<missing>"))
+    if "engine_ready" in frame:
+        check("readiness","engine_ready",frame["engine_ready"],actual.get("engine_ready"))
     for key,expected in frame["resources"].items():
         check("resources",key,expected,actual.get("resources",{}).get(key))
     observed={(c["side"],c["slot"]):c for c in actual.get("cards",[])}
@@ -73,4 +75,51 @@ def replay(manifest_path,output_path="local/ocr-replay-report.json",root=".",rea
     path=Path(output_path)
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2,ensure_ascii=True),encoding="utf-8")
+    return result
+
+
+def verify_match(manifest_path,output_path="local/match-verification.json",root=".",reader=None):
+    """Exercise the real board reader and round-receipt reconciliation offline."""
+    from PIL import Image
+    from .engine import Move
+    manifest=json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    if manifest.get("schema")!="urban-rivals/recorded-match/v1":
+        raise ValueError("Unknown recorded-match schema")
+    reader=reader or CanvasReader()
+    previous=None
+    cases=[]
+    for frame in manifest["frames"]:
+        start=time.perf_counter()
+        try:
+            image=Image.open(Path(root)/frame["path"]).convert("RGB")
+            if frame.get("crop"):
+                image=image.crop(frame["crop"])
+            image=image.resize((1318,744))
+            submitted=Move(**frame["submitted"]) if frame.get("submitted") else None
+            board=reader.board(image,previous,submitted)
+            if board is None:
+                raise ValueError("Not a readable YOUR TURN board")
+            state=board.state
+            actual={"round":state.round,"leader":state.leader,"observed_card":board.observed_card,
+                    "life":[p.life for p in state.players],"pillz":[p.pillz for p in state.players],
+                    "used":[list(p.used) for p in state.players],
+                    "last_won":[p.last_won for p in state.players],
+                    "hands":[[c.name for c in p.hand] for p in state.players]}
+            checks=[{"field":key,"expected":value,"actual":actual.get(key),
+                     "passed":actual.get(key)==value} for key,value in frame["expected"].items()]
+            case={"id":frame["id"],"passed":all(c["passed"] for c in checks),"checks":checks,
+                  "seconds":round(time.perf_counter()-start,3)}
+            previous=state
+        except (ValueError,OSError) as error:
+            case={"id":frame["id"],"passed":False,"error":str(error)}
+        cases.append(case)
+        print(f"Match {frame['id']}: {'pass' if case['passed'] else 'FAIL'}",flush=True)
+        if not case["passed"]:
+            break
+    result={"schema":"urban-rivals/match-verification/v1","cases":cases,
+            "passed":bool(cases) and len(cases)==len(manifest["frames"]) and all(c["passed"] for c in cases),
+            "limits":"Offline board and receipt validation only; no capture transport, live clicks or complete automatic match is proven."}
+    path=Path(output_path)
+    path.parent.mkdir(parents=True,exist_ok=True)
+    path.write_text(json.dumps(result,indent=2),encoding="utf-8")
     return result

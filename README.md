@@ -39,6 +39,8 @@ per player. Never infer a game mode's starting life from the example.
 - Courage, Reprisal, Confidence, Revenge, Defeat and Victory Or Defeat conditions.
 - Stop Opp. Ability, compound modifiers, Day/Night (requires an observation),
   Unison/Disunion, Symmetry/Asymmetry, Support/Brawl, Growth/Degrowth and Equalizer.
+- Power/Damage Protection and Exchange, Tune Out, and strict Bet conditions
+  (with unverified combinations still rejected; see MECHANICS_STATUS.md).
 - Approximate zero-sum mixed strategies via averaged regret matching.
 - Public lead-card choice is separated from hidden pillz and Fury bidding.
 - A local OCR reader and Chrome bridge, with separate inspect and execute modes,
@@ -50,12 +52,12 @@ per player. Never infer a game mode's starting life from the example.
 
 **The browser driver is implemented but not live-validated.** The Unity WebGL
 client exposes a canvas rather than card/button DOM elements. OCR crop positions,
-star counting, selected-card detection and input coordinates still need validation
-against real captures from the installed extension. Do not treat passing mocked
+star counting and selected-card detection pass the saved-capture regression set.
+Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The initial catalog covers eight specific card evolutions from the observed
-training hand. The first input profile supports the cataloged Bangers cards in
+The catalog covers eighteen specific card evolutions from the saved training
+boards and recording. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
 Day-only until their Night behavior is cataloged. The first live driver uses no
 Fury; the simulator still models Fury. It plays the current manually opened
@@ -234,8 +236,22 @@ visible text and stats can be read. Replay success is separate from live input
 validation and move speed.
 
 
-Latest local OCR validation: **639/639 fields pass across 17 cases**, with board
-diagnostics approximately 2.2–5.3 seconds. See [OCR_STATUS.md](OCR_STATUS.md) for
+Latest local OCR validation: **764/764 fields pass across 20 cases**, with board
+diagnostics approximately 3.0–7.1 seconds in this broader run. See [OCR_STATUS.md](OCR_STATUS.md) for
 exact coverage and remaining live-play blockers. These results do not establish
 support for unknown abilities or authorize automatic input from an unsupported
 hand. Source media remains local; GitHub CI runs the portable tests only.
+
+
+## Recorded-match verification
+
+```powershell
+.\.venv\Scripts\python.exe -m urban_rivals verify-match tests/fixtures/recorded_match.json
+.\.venv\Scripts\python.exe -m urban_rivals advise examples/recorded_training.json --observed-card 0 --iterations 100
+```
+
+The first command exercises the live board reader against four saved native
+boards, including real round-to-round engine/resource reconciliation. It stops
+on any missing source, recognition failure or mismatched expected receipt. The
+second analyzes the recorded opening hand offline. Neither command clicks or
+queues a game. Full scope and current official sources: [MECHANICS_STATUS.md](MECHANICS_STATUS.md).

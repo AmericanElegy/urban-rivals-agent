@@ -1,0 +1,92 @@
+{
+  "description": "Saved recording opening hand: offline analysis, not a claimed automatic match.",
+  "leader": 1,
+  "round": 1,
+  "day": true,
+  "players": [
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Bennie",
+          "power": 5,
+          "damage": 3,
+          "stars": 2,
+          "clan": "Bangers",
+          "ability": "Power +2",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Fixit",
+          "power": 7,
+          "damage": 6,
+          "stars": 4,
+          "clan": "Bangers",
+          "ability": "Reprisal: Protection: Power And Damage",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Pacarezza",
+          "power": 7,
+          "damage": 5,
+          "stars": 2,
+          "clan": "Bangers",
+          "ability": "Reprisal: Damage Exchange",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Vermyn Noel",
+          "power": 5,
+          "damage": 4,
+          "stars": 2,
+          "clan": "Bangers",
+          "ability": "Brawl: -1 Opp. Power, Min 1",
+          "bonus": "Power +2"
+        }
+      ]
+    },
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Austin",
+          "power": 7,
+          "damage": 8,
+          "stars": 5,
+          "clan": "Cosmohnuts",
+          "ability": "Bet > 5 Pillz: -2 Opp. Damage, Min 1",
+          "bonus": "Tune Out"
+        },
+        {
+          "name": "Barcius",
+          "power": 8,
+          "damage": 4,
+          "stars": 3,
+          "clan": "Cosmohnuts",
+          "ability": "Confidence: +3 Life",
+          "bonus": "Tune Out"
+        },
+        {
+          "name": "Buford",
+          "power": 7,
+          "damage": 3,
+          "stars": 3,
+          "clan": "Cosmohnuts",
+          "ability": "Bet > 3 Pillz: -4 Opp. Life, Min 3",
+          "bonus": "Tune Out"
+        },
+        {
+          "name": "Lucien",
+          "power": 8,
+          "damage": 1,
+          "stars": 4,
+          "clan": "Cosmohnuts",
+          "ability": "-6 Opp. Life, Min 0",
+          "bonus": "Tune Out"
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,18 @@
 # OCR validation status — 2026-11-11
 
-The expanded offline replay passes **639/639 fields across seventeen cases** from
-seven saved source frames, with zero unreadable or incorrect values. The original
+The expanded offline replay passes **764/764 fields across twenty cases** from
+eight saved source frames, with zero unreadable or incorrect values. The original
 375-check replay also passes completely. This is a local regression set from
 one extension capture and one recorded match, not an unseen-match accuracy rate.
 
 | Field group | Passed | Unreadable | Incorrect |
 | --- | ---: | ---: | ---: |
-| Screen phase | 17 | 0 | 0 |
-| Round, move clock, revealed opponent | 42 | 0 | 0 |
-| Life and pillz | 56 | 0 | 0 |
-| Names and active-card stats/evolution | 394 | 0 | 0 |
-| Played slots and paid pill counts | 130 | 0 | 0 |
+| Screen phase | 20 | 0 | 0 |
+| Round, move clock, revealed opponent | 51 | 0 | 0 |
+| Catalog/recognition readiness | 17 | 0 | 0 |
+| Life and pillz | 68 | 0 | 0 |
+| Names and active-card stats/evolution | 436 | 0 | 0 |
+| Played slots and paid pill counts | 172 | 0 | 0 |
 
 The five formerly unreadable fields are resolved. Narrow digits use tighter
 padding variants with the original confidence/consensus thresholds. Played
@@ -26,11 +27,19 @@ experiment and exposed counter-crop failures that were then repaired. They are
 regression cases, not a permanently held-out evaluation set. Synthetic resizing
 does not prove support for arbitrary responsive layouts or new card fonts.
 
+A newly extracted stable round-4 board at 57 seconds adds six played counters,
+including Buford's x4. The corpus now also checks recognition/catalog readiness:
+recording hands pass; the Montana capture remains blocked on unknown cards.
+Narrow counter failures can use two agreeing shifted crops, with the same
+numeric confidence rules.
+
 ## Processing time
 
-Board diagnostics took **2.2–5.3 seconds** in the latest expanded replay (first
-board 5.26 seconds; subsequent boards approximately 2.2–3.8 seconds), versus the
-previous 9.6–13.4 seconds. Profiling found detector inference dominated time:
+Board diagnostics took **3.0–7.1 seconds** in the latest 20-case replay (first
+board 6.79 seconds). The earlier 17-case run measured 2.2–5.3 seconds. The new
+resampled round-4 counters require extra fallback reads. The older implementation
+measured 9.6–13.4 seconds on its original source set. These runs are local timings,
+not a controlled speed benchmark. Profiling found detector inference dominated time:
 small text crops were being enlarged to a 736-pixel minimum side. General text
 now uses 192 pixels; the clock, revealed title and difficult numeric fallback
 retain detailed detection. Detector settings restore even when inference fails.
@@ -38,13 +47,14 @@ Unused card artwork no longer incurs played-counter OCR calls.
 
 These are local diagnostic timings, not a live capture/solver/click benchmark.
 No first-hand cache was needed for this reduction. Freshness checks and input
-safety limits are unchanged. The running inspect-only bridge was not restarted
-and has not loaded these on-disk changes.
+safety limits are unchanged. The local bridge has now been refreshed in inspect-only mode with the existing
+pairing token retained; authenticated readiness passed.
 
 ## Remaining before automatic matches
 
-- Verify and implement unsupported abilities/evolutions; unknown catalog entries
-  still block input, including cards in these readable captured hands.
+- Broaden supported abilities/evolutions beyond the eighteen-entry catalog. The
+  recorded Bangers/Cosmohnuts hand is now fully covered; Montana is still blocked.
+  See [MECHANICS_STATUS.md](MECHANICS_STATUS.md) for exact mechanic scope.
 - Validate the full capture, decision, input and round-receipt path in Training
   Bot with a supported hand. No live match is attributed to this program yet.
 - Broaden independent source coverage: different hands, fonts, counters, layouts
@@ -60,4 +70,5 @@ The command now returns exit 0 on the local source set. Detailed output is
 `local/ocr-replay-report.json`. Media remains ignored and local; missing sources
 fail the replay. No API, paid call, new pairing or new match was required.
 
-48 Python tests, six Node extension tests and a simulator smoke match pass.
+71 Python tests, six Node extension tests, a simulator smoke match and offline
+verification of four sequential native boards pass. No live inputs were issued.

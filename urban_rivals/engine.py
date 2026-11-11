@@ -17,16 +17,25 @@ class Effect:
     maximum: int = 10000
     condition: str = "always"
     multiplier: str = "none"
+    threshold: int = 0
 
     def __post_init__(self):
-        if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability"}:
+        if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability",
+                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
-        if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry"}:
+        if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
         if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer"}:
             raise ValueError(f"Unsupported multiplier: {self.multiplier}")
         if self.minimum < 0 or self.maximum < self.minimum:
             raise ValueError("Invalid effect bounds")
+        if type(self.threshold) is not int or self.threshold < 0 or (
+                self.condition not in {"bet_over", "bet_under"} and self.threshold != 0):
+            raise ValueError("Invalid Bet threshold")
+        if self.stat.startswith(("protect_", "exchange_")) and (
+                self.amount != 0 or self.opponent or self.multiplier != "none"
+                or self.condition in {"defeat", "victory or defeat"}):
+            raise ValueError("Unsupported protection/exchange parameters")
 
 
 def parse_effect(text: str) -> tuple[Effect, ...]:
@@ -34,17 +43,40 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
     text = text.strip().rstrip(".")
     if text.lower() in ("", "none", "no ability", "no bonus"):
         return ()
-    condition, multiplier = "always", "none"
+    condition, multiplier, threshold = "always", "none", 0
     if ":" in text:
-        prefix, text = text.split(":", 1)
+        prefix, remainder = text.split(":", 1)
         condition = prefix.strip().lower()
+        bet = re.fullmatch(r"Bet\s*([<>])\s*(\d+)\s*Pillz", prefix.strip(), re.I)
+        if bet:
+            condition = "bet_over" if bet[1] == ">" else "bet_under"
+            threshold = int(bet[2])
+        # Protection's colon belongs to the mechanic, not a condition.
+        if condition == "protection":
+            condition = "always"
+        else:
+            text = remainder
         if condition in {"support", "brawl", "growth", "degrowth", "equalizer"}:
             multiplier, condition = condition, "always"
-        if condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry"}:
+        if condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {prefix}")
         text = text.strip()
+    match = re.fullmatch(r"Protection:\s*(Power|Damage|Power\s+And\s+Damage)", text, re.I)
+    if match:
+        if multiplier != "none":
+            raise ValueError("Protection does not support numeric multipliers")
+        return tuple(Effect("protect_" + stat, 0, condition=condition, threshold=threshold)
+                     for stat in re.split(r"\s+and\s+", match[1].lower()))
+    match = re.fullmatch(r"(Power|Damage|Power\s+And\s+Damage)\s+Exchange", text, re.I)
+    if match:
+        if multiplier != "none":
+            raise ValueError("Exchange does not support numeric multipliers")
+        return tuple(Effect("exchange_" + stat, 0, condition=condition, threshold=threshold)
+                     for stat in re.split(r"\s+and\s+", match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Ability", text, re.I):
-        return (Effect("stop_ability", 0, True, condition=condition),)
+        return (Effect("stop_ability", 0, True, condition=condition, threshold=threshold),)
+    if re.fullmatch(r"Tune\s+Out", text, re.I) and condition == "always":
+        return (Effect("tune_out", 0),)
     patterns = (
         r"(?P<stat>(?:Power|Damage|Attack|Life|Pillz)(?:\s+And\s+(?:Power|Damage|Attack|Life|Pillz))?)\s*(?P<amount>[+-]\s*\d+)",
         r"(?P<amount>[+-]\s*\d+)\s*(?P<opp>Opp\.?\s*)?(?P<stat>(?:Power|Damage|Attack|Life|Pillz)(?:\s+And\s+(?:Power|Damage|Attack|Life|Pillz))?)",
@@ -60,7 +92,7 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
                            bool(values.get("opp")),
                            int(values["limit"]) if (values["bound"] or "").lower() == "min" else 0,
                            int(values["limit"]) if (values["bound"] or "").lower() == "max" else 10000,
-                           condition, multiplier) for stat in stats)
+                           condition, multiplier, threshold) for stat in stats)
     raise ValueError(f"Unsupported effect: {text!r}")
 
 
@@ -158,6 +190,7 @@ def resolve(state: State, first: Move, second: Move) -> State:
             raise ValueError(f"Illegal move for side {side}: {move}")
     cards = [p.hand[m.card] for p, m in zip(state.players, moves)]
     active = []
+    ability_sizes = []
     for side, (p, c) in enumerate(zip(state.players, cards)):
         bonus_on = sum(x.clan == c.clan for x in p.hand) >= 2
         effects = c.ability + (c.bonus if bonus_on else ())
@@ -175,34 +208,54 @@ def resolve(state: State, first: Move, second: Move) -> State:
                        "support": sum(x.clan == c.clan for x in p.hand),
                        "brawl": sum(x.clan == cards[1-side].clan for x in state.players[1-side].hand),
                        "equalizer": cards[1-side].stars}
+        def enabled(e):
+            # Bets count the attack allocation plus its free pill, not Fury's
+            # separate three-pill cost or the player's remaining reserve.
+            if e.condition == "bet_over":
+                return moves[side].pillz + 1 > e.threshold
+            if e.condition == "bet_under":
+                return moves[side].pillz + 1 < e.threshold
+            return conditions[e.condition]
         active.append(tuple(replace(e, amount=e.amount * multipliers[e.multiplier])
-                            for e in effects if conditions[e.condition]))
-    # Supported Stop Opp. Ability is simultaneous. Stop Opp. Bonus and protection
-    # interactions remain rejected by the parser rather than guessed here.
+                            for e in effects if enabled(e)))
+        ability_sizes.append(sum(enabled(e) for e in c.ability))
+    # Supported Stop Opp. Ability is simultaneous. Stop Opp. Bonus and
+    # Protection: Ability/Bonus remain rejected rather than guessed here.
     blocked = [any(e.stat == "stop_ability" for e in active[1-i]) for i in range(2)]
     for side in range(2):
         if blocked[side]:
-            bonus_on = sum(x.clan == cards[side].clan for x in state.players[side].hand) >= 2
-            # Active effects preserve ability-then-bonus order. Strip precisely
-            # the active ability prefix, even when values were multiplied.
-            ability_count = sum(1 for e in cards[side].ability
-                                if any(a.stat == e.stat and a.condition == e.condition for a in active[side]))
-            active[side] = active[side][ability_count:] if bonus_on else ()
+            # Preserve source identity even when ability/bonus use the same stat
+            # and condition with different Bet thresholds.
+            active[side] = active[side][ability_sizes[side]:]
 
     def stat(side, name, initial):
         result = initial
+        protected = any(e.stat == "protect_" + name for e in active[side])
         for owner in (side, 1 - side):
             for e in active[owner]:
                 if e.stat == name and (owner != side) == e.opponent:
+                    if protected and e.amount < 0:
+                        continue
                     result = _modify(result, e)
         return result
 
-    power = [max(0, stat(i, "power", c.power)) for i, c in enumerate(cards)]
+    bases = {}
+    for name in ("power", "damage"):
+        exchanging = [any(e.stat == "exchange_" + name for e in row) for row in active]
+        if all(exchanging):
+            raise ValueError(f"Simultaneous {name} Exchange is not yet verified")
+        values = [getattr(c, name) for c in cards]
+        # Exchange changes starting values, bypasses Protection, and precedes
+        # ordinary modifiers and Fury. Each round starts from immutable cards.
+        bases[name] = values[::-1] if any(exchanging) else values
+    power = [max(0, stat(i, "power", bases["power"][i])) for i in range(2)]
     attack = [max(0, stat(i, "attack", power[i] * (m.pillz + 1))) for i, m in enumerate(moves)]
-    winner = max(range(2), key=lambda i: (attack[i], -cards[i].stars, i == state.leader))
+    tune_out = any(e.stat == "tune_out" for row in active for e in row)
+    contest = [m.pillz + 1 for m in moves] if tune_out else attack
+    winner = max(range(2), key=lambda i: (contest[i], -cards[i].stars, i == state.leader))
     life = [p.life for p in state.players]
     pillz = [p.pillz - m.pillz - 3 * m.fury for p, m in zip(state.players, moves)]
-    damage = max(0, stat(winner, "damage", cards[winner].damage + 2 * moves[winner].fury))
+    damage = max(0, stat(winner, "damage", bases["damage"][winner] + 2 * moves[winner].fury))
     life[1 - winner] = max(0, life[1 - winner] - damage)
     for owner in range(2):
         for e in active[owner]:

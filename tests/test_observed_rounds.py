@@ -9,6 +9,23 @@ from urban_rivals.vision import Catalog
 
 
 class ObservedRoundTests(unittest.TestCase):
+    def test_recorded_cosmohnuts_rounds_through_final_start(self):
+        catalog=Catalog()
+        own=tuple(catalog.identify(n,True) for n in ("Bennie","Fixit","Pacarezza","Vermyn Noel"))
+        opponent=tuple(catalog.identify(n,True) for n in ("Austin","Barcius","Buford","Lucien"))
+        current=State((Player(own,life=15),Player(opponent,life=15)),leader=1,day=True)
+        current=resolve(current,Move(1,0),Move(0,5))
+        self.assertEqual([(p.life,p.pillz) for p in current.players],[(7,12),(15,7)])
+        # Vermyn's lower power still wins: zero-paid-pill tie, 2* versus 3*.
+        current=resolve(current,Move(3,0),Move(1,0))
+        self.assertEqual([(p.life,p.pillz) for p in current.players],[(7,12),(11,7)])
+        current=resolve(current,Move(0,0),Move(2,3))
+        # The 55s animation first shows life 4; its Bet effect then reaches 3.
+        # The stable 57s ROUND 4 board is the completed receipt.
+        self.assertEqual([(p.life,p.pillz) for p in current.players],[(3,12),(11,4)])
+        self.assertEqual(current.round,4)
+        self.assertEqual(current.leader,0)
+
     def test_bangers_vs_ghostown_riots_public_receipts(self):
         catalog=Catalog()
         own=tuple(catalog.identify(name,True) for name in ("Bennie","Graff Cr","Randal","Vermyn Noel"))
