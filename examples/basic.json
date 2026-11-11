@@ -1,0 +1,17 @@
+{
+  "leader": 0,
+  "players": [
+    {"hand": [
+      {"name": "Demo Bruiser", "clan": "Demo B", "stars": 4, "power": 7, "damage": 6, "bonus": "Power +2"},
+      {"name": "Demo Bluffer", "clan": "Demo B", "stars": 2, "power": 7, "damage": 2, "bonus": "Power +2"},
+      {"name": "Demo Striker", "clan": "Demo B", "stars": 3, "power": 8, "damage": 4, "bonus": "Power +2"},
+      {"name": "Demo Finisher", "clan": "Demo B", "stars": 5, "power": 7, "damage": 7, "bonus": "Power +2"}
+    ]},
+    {"hand": [
+      {"name": "Demo Guard", "clan": "Demo M", "stars": 3, "power": 7, "damage": 4, "bonus": "-12 Opp. Attack, Min 8"},
+      {"name": "Demo Heavy", "clan": "Demo M", "stars": 5, "power": 7, "damage": 7, "bonus": "-12 Opp. Attack, Min 8"},
+      {"name": "Demo Scout", "clan": "Demo M", "stars": 2, "power": 6, "damage": 2, "bonus": "-12 Opp. Attack, Min 8"},
+      {"name": "Demo Fighter", "clan": "Demo M", "stars": 4, "power": 8, "damage": 5, "bonus": "-12 Opp. Attack, Min 8"}
+    ]}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "urban-rivals/cards/v1",
+  "provenance": "Transcribed from the visible browser Training Bot board on 2026-11-11; only these evolution levels are covered. Live reader must verify level and base stats.",
+  "cards": [
+    {"name":"Bennie","power":5,"damage":3,"stars":2,"clan":"Bangers","ability":"Power +2","bonus":"Power +2"},
+    {"name":"Graff Cr","power":6,"damage":1,"stars":1,"clan":"Bangers","ability":"Stop Opp. Ability","bonus":"Power +2"},
+    {"name":"Randal","power":6,"damage":4,"stars":3,"clan":"Bangers","ability":"Stop Opp. Ability","bonus":"Power +2"},
+    {"name":"Vermyn Noel","power":5,"damage":4,"stars":2,"clan":"Bangers","ability":"Brawl: -1 Opp. Power, Min 1","bonus":"Power +2"},
+    {"name":"Cooak","power":5,"damage":1,"stars":2,"clan":"GhosTown","ability":"Asymmetry: Power And Damage +3","bonus":"Day: Power And Damage +1","day_only":true},
+    {"name":"Taurite","power":8,"damage":3,"stars":3,"clan":"GhosTown","ability":"Unison: Attack +16","bonus":"Day: Power And Damage +1","day_only":true},
+    {"name":"Dr Web Ld","power":5,"damage":3,"stars":2,"clan":"Riots","ability":"-2 Opp. Power And Damage, Min 0","bonus":"Victory Or Defeat: +1 Pillz"},
+    {"name":"Fastbender","power":8,"damage":3,"stars":3,"clan":"Riots","ability":"Revenge: Power And Damage +2","bonus":"Victory Or Defeat: +1 Pillz"}
+  ]
+}

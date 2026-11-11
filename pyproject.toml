@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "urban-rivals-agent"
+version = "0.2.0"
+description = "Local Urban Rivals engine and hidden-pillz strategy research"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+vision = ["rapidocr-onnxruntime==1.4.4", "Pillow>=10,<13", "numpy==1.26.4", "opencv-python==4.11.0.86"]
+
+[project.scripts]
+urban-rivals = "urban_rivals.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["urban_rivals*"]
+
+[tool.setuptools.package-data]
+urban_rivals = ["data/*.json"]
