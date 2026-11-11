@@ -30,8 +30,9 @@ No discretionary paid model call is authorized or required.
 ## Evidence and limitations
 
 38 Python tests passed, including real authenticated loopback bridge requests,
-wrong-origin/unauthorized rejection and duplicate-frame rejection. Two Node
-policy tests passed. Local ONNX OCR correctly read a synthetic round/turn/timer
+wrong-origin/unauthorized rejection and duplicate-frame rejection. Six Node
+policy/worker tests pass, including popup-started one-frame capture with an
+unfocused parent window and no debugger/input calls. Local ONNX OCR correctly read a synthetic round/turn/timer
 banner. These checks are NOT real screen-recognition or game-strength evidence.
 Offline replay of the first two publicly observed calibration rounds matches
 the visible life and pillz receipts (Randal/Taurite, then Bennie/Dr Web Ld).
@@ -45,8 +46,16 @@ Inspect capture now uses visible-tab pixels, without attaching the debugger, and
 stops after saving one frame. Offline `inspect` has no game-turn deadline.
 
 The inspect-only bridge is running on 127.0.0.1:8876, restarted with the existing
-local pairing token retained. James has been asked to reload the extension and
-take a one-frame capture; its actual new transport validation is pending.
+local pairing token retained. James reloaded 0.2.1 and reported "Game tab lost
+focus or navigated; stopped" with automatic play unchecked. Its window focus
+check was incorrectly shared by diagnostics and execution. Version 0.2.2 allows
+one-frame inspect capture while the popup/another window holds focus, provided
+the exact game tab is still selected in its own window. Live clicks still
+require foreground focus; both modes still reject navigation/tab changes.
+The popup now states the actual diagnostic workflow and shows its version.
+James needs to reload 0.2.2 once; actual new transport validation is pending.
+The separate inspect-only-server rejection with automatic play checked is
+intentional and confirmed in James's second screenshot.
 
 James supplied `C:\Users\James\OneDrive\Desktop\Recording 2026-11-11 054927.mp4`
 (73.47 seconds). Six frames were extracted locally under `local/recording/`.
@@ -68,7 +77,7 @@ not a general card database. Many abilities remain unsupported.
 
 ## Next step
 
-James reloads the installed extension to 0.2.1 and takes one inspect-only frame.
+James reloads the installed extension to 0.2.2 and takes one inspect-only frame.
 Then validate the saved canvas, OCR crops and evolution recognition offline
 before enabling any automatic input. Use the supplied recording for continued
 diagnostics instead of repeatedly asking James to start timed matches.

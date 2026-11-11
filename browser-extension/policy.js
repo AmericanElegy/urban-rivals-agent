@@ -10,3 +10,9 @@ export function validateAction(result,frame){
   if(a.type!=="click"||!Number.isFinite(a.x)||!Number.isFinite(a.y)||a.x<0||a.x>1||a.y<0||a.y>1)throw new Error("Invalid canvas action");
   return a;
 }
+export function validateTarget(tab,window,execute){
+  if(!allowedURL(tab.url))throw new Error("Game tab navigated away; stopped");
+  if(!tab.active)throw new Error("Another tab is selected in the game window; stopped");
+  if(execute&&!window.focused)throw new Error("Game window lost focus; live input stopped");
+  return tab;
+}

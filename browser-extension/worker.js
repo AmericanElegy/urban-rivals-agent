@@ -1,4 +1,4 @@
-import {allowedURL,validateAction} from "./policy.js";
+import {allowedURL,validateAction,validateTarget} from "./policy.js";
 const ENDPOINT="http://127.0.0.1:8876";
 let run=null;
 let status="Not started";
@@ -32,8 +32,7 @@ async function geometry(tabId){
 async function currentTab(activeRun){
   const tab=await chrome.tabs.get(activeRun.tabId);
   const window=await chrome.windows.get(tab.windowId);
-  if(!tab.active||!window.focused||!allowedURL(tab.url))throw new Error("Game tab lost focus or navigated; stopped");
-  return tab;
+  return validateTarget(tab,window,activeRun.execute);
 }
 
 async function loop(activeRun){
@@ -74,7 +73,7 @@ async function loop(activeRun){
 }
 
 chrome.debugger.onDetach.addListener(source=>{
-  if(run?.tabId===source.tabId)void stop("Browser debugging connection ended");
+  if(run?.execute&&run.tabId===source.tabId)void stop("Browser debugging connection ended");
 });
 chrome.runtime.onMessage.addListener((message,sender,reply)=>{
   if(message.type==="escape"&&sender.tab?.id===run?.tabId){void stop("Stopped with Escape");return;}
