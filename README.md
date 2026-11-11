@@ -149,19 +149,28 @@ FantasyBrief extension and changes none of its permissions or sources.
 The extension requests `activeTab`, `scripting`, `debugger` and access to the
 local loopback bridge. Chrome's debugger permission is broad; this code restricts
 it to the exact official WebGL game URL and the tab explicitly started by the
-user. It uses that connection to capture the canvas and send mouse inputs. It
+user. Inspect mode uses visible-tab capture without attaching the debugger.
+Execution mode uses the debugger connection for mouse inputs. It
 does not read cookies, passwords, hidden game memory or private game API traffic.
 The pairing token stays in extension memory for the run, not persistent storage.
 
-1. Open the signed-in browser game and a fresh **Training Bot** match at round 1,
-   before selecting any card. Keep the full canvas visible.
+1. Open the signed-in browser game and keep the full canvas visible. Any board
+   is useful for diagnostics. Only automatic play requires a fresh **Training
+   Bot** match at round 1 before any card is selected.
 2. Close DevTools and end any other debugger control of that tab (including Codex
    browser control) before starting the extension; two debuggers may conflict.
 3. Open `local/pairing-token.txt`, copy its contents into the extension popup's
-   token field, leave automatic play
-   **unchecked**, and click Start. Close the popup so the game remains focused.
-4. Inspect `local/latest-canvas.png` and `local/receipts.jsonl`. Recognition errors
-   stop the run. These are local, ignored by Git, and never sent to GitHub.
+   token field, leave automatic play **unchecked**, and click Start. Inspect
+   mode captures one frame and stops; there is no ongoing diagnostic match loop.
+4. Analyze `local/latest-canvas.png` without a turn deadline:
+
+   ```powershell
+   .\.venv\Scripts\python.exe -m urban_rivals inspect local/latest-canvas.png
+   ```
+
+   `local/receipts.jsonl` records capture status. The offline reader checks every
+   crop independently and reports unknown names and unreadable stats. Captures
+   and reports are local, ignored by Git, and never sent to GitHub.
 5. Only after real OCR/input calibration, restart the server with
    `.\Start-TrainingAgent.ps1 -Execute`, start a fresh match, and explicitly check
    automatic play in the extension. Both switches are required for clicks.
@@ -173,7 +182,8 @@ The pairing token stays in extension memory for the run, not persistent storage.
 `local/latest-canvas.png` is overwritten by each capture; `local/receipts.jsonl`
 holds action/status receipts. The image contains the game canvas only. The bridge
 requires a random pairing token, rejects website origins, and binds to loopback.
-Restarting the bridge rotates the token. Never expose its port to the network.
+Restarting the bridge normally rotates the token. `serve --reuse-pairing-token`
+retains it for an explicit diagnostic restart. Never expose its port to the network.
 
 ## Reused FantasyBrief patterns
 

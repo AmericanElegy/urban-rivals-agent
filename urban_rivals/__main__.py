@@ -14,7 +14,7 @@ def sample(advice, rng):
 
 def main():
     parser = argparse.ArgumentParser(description="Urban Rivals local strategy agent")
-    parser.add_argument("command", choices=("advise", "simulate", "serve"))
+    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect"))
     parser.add_argument("state", nargs="?", help="JSON state file (advise/simulate only)")
     parser.add_argument("--side", type=int, choices=(0, 1), default=0)
     parser.add_argument("--observed-card", type=int)
@@ -22,13 +22,22 @@ def main():
     parser.add_argument("--games", type=int, default=1)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--execute", action="store_true", help="Allow extension clicks; serve defaults to inspect only")
+    parser.add_argument("--reuse-pairing-token", action="store_true", help="Reuse the existing local token for a diagnostic server restart")
     parser.add_argument("--port", type=int, default=8876)
     parser.add_argument("--output", default="local", help="Local canvas/receipt directory")
     args = parser.parse_args()
     try:
+        if args.command == "inspect":
+            if args.state is None:
+                raise ValueError("inspect requires a saved canvas PNG")
+            from .vision import CanvasReader
+            from PIL import Image
+            report=CanvasReader().diagnostics(Image.open(args.state).convert("RGB").resize((1318,744)))
+            print(json.dumps(report,indent=2,ensure_ascii=True))
+            return
         if args.command == "serve":
             from .bridge import serve
-            serve(port=args.port,execute=args.execute,output=args.output)
+            serve(port=args.port,execute=args.execute,output=args.output,reuse_token=args.reuse_pairing_token)
             return
         if args.state is None:
             raise ValueError("advise/simulate require a JSON state file")

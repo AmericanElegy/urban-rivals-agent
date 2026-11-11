@@ -5,6 +5,31 @@ from urban_rivals.engine import Card, Player, State, Move
 
 
 class ProtocolTests(unittest.TestCase):
+    def test_raised_title_ignores_background_digits_and_single_letters(self):
+        from urban_rivals.vision import CanvasReader
+        class OCRStub:
+            def text(self,image,box,minimum):
+                return self.raised if box[1]==.055 else "BARCIUS"
+        reader=object.__new__(CanvasReader)
+        reader.ocr=OCRStub()
+        for contamination in ("E","1 2",""):
+            reader.ocr.raised=contamination
+            self.assertEqual(reader.card_name(None,.4,.09,1),"BARCIUS")
+        reader.ocr.raised="AUSTIN"
+        self.assertEqual(reader.card_name(None,.2,.09,1),"AUSTIN")
+    def test_viewport_crop_scales_and_rejects_bad_geometry(self):
+        from urban_rivals.bridge import crop_viewport
+        class ImageStub:
+            width=3840
+            height=2160
+            def crop(self,box):
+                return box
+        geometry=dict(x=100,y=50,width=1000,height=600,viewportWidth=1920,viewportHeight=1080)
+        self.assertEqual(crop_viewport(ImageStub(),geometry),(200,100,2200,1300))
+        for bad in (dict(geometry,x=-1),dict(geometry,width=3000),dict(geometry,x=float("nan"))):
+            with self.assertRaises(ValueError):
+                crop_viewport(ImageStub(),bad)
+
     def frame(self):
         return dict(schema="urban-rivals/frame/v1",url="https://www.urban-rivals.com/game/play/webgl/",
                     captured_at=100,sequence=1,run_id="a"*32,mode="training",execute=False)

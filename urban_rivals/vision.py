@@ -36,6 +36,27 @@ class LocalOCR:
             return ""
         return " ".join(item[1] for item in result if float(item[2]) >= minimum)
 
+    def number(self,image,box):
+        import numpy as np
+        from PIL import Image
+        w,h=image.size
+        x1,y1,x2,y2=box
+        crop=image.crop((int(x1*w),int(y1*h),int(x2*w),int(y2*h))).convert("RGB")
+        # Stats use white digits over colored icons. Remove those colored icons
+        # before OCR rather than accepting a low-confidence guess at a digit.
+        pixels=np.array(crop)
+        white=(pixels.min(axis=2)>175).astype("uint8")*255
+        monochrome=Image.fromarray(white).convert("RGB")
+        detected=self.text(monochrome,(0,0,1,1),.85)
+        if detected.strip():
+            return detected
+        # Text detection can miss a thin standalone '1'. The numeric crop is
+        # already located; direct recognition is allowed only at high confidence.
+        result,_=self.model(np.array(monochrome),use_det=False,use_cls=False,use_rec=True)
+        if result and float(result[0][1])>=.95 and re.fullmatch(r"\d{1,3}",result[0][0]):
+            return result[0][0]
+        return ""
+
 
 class Catalog:
     def __init__(self, path=None):
@@ -85,8 +106,15 @@ class CanvasReader:
     def text(self,image,box,minimum=.85):
         return self.ocr.text(image,box,minimum)
 
+    def card_name(self,image,x,y,side,minimum=.8):
+        if side==1:
+            raised=self.text(image,(x-.055,.055,x+.075,.105),minimum)
+            if len(re.sub(r"[^a-z]","",normalize(raised)))>=3:
+                return raised
+        return self.text(image,(x-.055,y,x+.065,y+.08),minimum)
+
     def number(self,image,box):
-        text=self.text(image,box)
+        text=self.ocr.number(image,box) if hasattr(self.ocr,"number") else self.text(image,box)
         if not re.fullmatch(r"\s*\d{1,3}\s*",text):
             raise RecognitionError(f"Resource or attack count is unreadable: {text!r}")
         return int(text)
@@ -118,6 +146,26 @@ class CanvasReader:
         yellow=(p[:,:,0]>180)&(p[:,:,1]>140)&(p[:,:,2]<90)
         return True if yellow.sum()>20 else None
 
+    def diagnostics(self,image):
+        """Read every crop independently. Never click, require a timer, or stop at
+        the first unknown name. Useful on a saved board long after a match ends.
+        """
+        report={"banner":self.text(image,(.27,.46,.73,.55),.7),"day":self.day(image),"cards":[]}
+        for side,(name_y,stat_y,star_y) in enumerate(((.54,.80,.785),(.09,.35,.335))):
+            for i,x in enumerate(self.CENTERS):
+                entry={"side":side,"slot":i,"name":self.card_name(image,x,name_y,side,.7)}
+                for label,operation in (
+                    ("power",lambda:self.number(image,(x-.07,stat_y-.025,x-.045,stat_y+.025))),
+                    ("damage",lambda:self.number(image,(x-.07,stat_y+.035,x-.045,stat_y+.09))),
+                    ("stars",lambda:self.stars(image,x,star_y)),
+                    ("catalog",lambda:self.catalog.identify(entry["name"],report["day"]).name)):
+                    try:
+                        entry[label]=operation()
+                    except ValueError as error:
+                        entry[label+"_error"]=str(error)
+                report["cards"].append(entry)
+        return report
+
     def board(self,image,previous=None,submitted=None):
         banner=self.text(image,(.27,.46,.73,.55),.8)
         if "yourturn" not in normalize(banner):
@@ -137,7 +185,7 @@ class CanvasReader:
             hand=[]
             used=[]
             for i,x in enumerate(self.CENTERS):
-                text=self.text(image,(x-.055,name_y,x+.065,name_y+.08),.8)
+                text=self.card_name(image,x,name_y,side,.8)
                 c=self.catalog.identify(text,day)
                 overlay=self.text(image,(x-.055,overlay_y,x+.055,overlay_y+.12),.75)
                 count=re.search(r"[xX×]\s*(\d{1,3})",overlay)

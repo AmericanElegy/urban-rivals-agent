@@ -14,6 +14,24 @@ SCHEMA="urban-rivals/frame/v1"
 MAX_BODY=8*1024*1024
 
 
+def crop_viewport(image,geometry):
+    if geometry is None:
+        return image
+    if not isinstance(geometry,dict):
+        raise ValueError("Invalid viewport geometry")
+    names=("x","y","width","height","viewportWidth","viewportHeight")
+    import math
+    if any(type(geometry.get(n)) not in (int,float) or not math.isfinite(geometry[n]) for n in names):
+        raise ValueError("Incomplete viewport geometry")
+    x,y,w,h,vw,vh=(geometry[n] for n in names)
+    if vw<640 or vh<320 or x<0 or y<0 or w<640 or h<320 or x+w>vw+1 or y+h>vh+1:
+        raise ValueError("Canvas is not fully visible")
+    sx,sy=image.width/vw,image.height/vh
+    if not .5<=sx<=4 or abs(sx-sy)>.02:
+        raise ValueError("Screenshot/viewport scale disagreement")
+    return image.crop((round(x*sx),round(y*sy),round((x+w)*sx),round((y+h)*sy)))
+
+
 def validate_frame(data, now=None):
     if data.get("schema")!=SCHEMA:
         raise ValueError("Unknown frame schema")
@@ -33,12 +51,17 @@ def validate_frame(data, now=None):
         raise ValueError("Missing explicit inspect/execute mode")
 
 
-def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factory=VisionSession):
+def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factory=VisionSession,reuse_token=False):
     if host!="127.0.0.1":
         raise ValueError("Bridge must bind to 127.0.0.1")
-    token=secrets.token_urlsafe(32)
     output=Path(output)
     output.mkdir(parents=True,exist_ok=True)
+    token=secrets.token_urlsafe(32)
+    if reuse_token:
+        token=(output/"pairing-token.txt").read_text(encoding="utf-8").strip()
+        import re
+        if not re.fullmatch(r"[A-Za-z0-9_-]{32,128}",token):
+            raise ValueError("Existing pairing token is invalid")
     (output/"pairing-token.txt").write_text(token,encoding="utf-8")
     sessions={}
     stopped=set()
@@ -100,6 +123,8 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 data=json.loads(self.rfile.read(length))
                 if not isinstance(data,dict):
                     raise ValueError("Expected a JSON object")
+                if self.path=="/ready":
+                    return self.send(200,{"execute_enabled":execute,"capture":"visible-tab-v1"})
                 if self.path=="/shutdown":
                     self.send(200,{"status":"Bridge shutting down"})
                     from threading import Thread
@@ -137,12 +162,16 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 if not raw.startswith(b"\x89PNG\r\n\x1a\n"):
                     raise ValueError("Expected a PNG canvas capture")
                 image=Image.open(io.BytesIO(raw))
+                if image.width>8192 or image.height>4608 or image.width*image.height>12_000_000:
+                    raise ValueError("Viewport screenshot is too large")
+                image=crop_viewport(image,data.get("geometry"))
                 w,h=image.size
                 if not 640<=w<=4096 or not 320<=h<=2304 or not 1.7<=w/h<=1.85:
                     raise ValueError("Unexpected canvas size/aspect ratio; stop and recalibrate")
                 image=image.convert("RGB").resize((1318,744))
                 image.save(output/"latest-canvas.png")
-                result=session.step(image)
+                result=(session.step(image) if session.execute else
+                        {"status":"Canvas captured locally; inspect offline without a turn timer", "action":None,"stop":True})
                 # OCR/search may have taken too long. A late action is never sent.
                 if time.time()-data["captured_at"]>10:
                     raise RecognitionError("OCR/search exceeded the 10-second frame deadline")

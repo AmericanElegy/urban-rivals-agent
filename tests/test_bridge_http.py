@@ -61,6 +61,8 @@ class BridgeHTTPTests(unittest.TestCase):
                 with post(frame,token) as response:
                     result=json.load(response)
                 self.assertIsNone(result["action"])
+                self.assertTrue(result["stop"])
+                self.assertIn("offline",result["status"])
                 with self.assertRaises(HTTPError) as failure:
                     post(frame,token)
                 self.assertEqual(failure.exception.code,422)
