@@ -21,21 +21,21 @@ class Effect:
 
     def __post_init__(self):
         if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability",
-                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out"}:
+                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
-        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer"}:
+        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage"}:
             raise ValueError(f"Unsupported multiplier: {self.multiplier}")
         if self.minimum < 0 or self.maximum < self.minimum:
             raise ValueError("Invalid effect bounds")
         if type(self.threshold) is not int or self.threshold < 0 or (
                 self.condition not in {"bet_over", "bet_under"} and self.threshold != 0):
             raise ValueError("Invalid Bet threshold")
-        if self.stat.startswith(("protect_", "exchange_")) and (
+        if self.stat.startswith(("protect_", "exchange_", "cancel_")) and (
                 self.amount != 0 or self.opponent or self.multiplier != "none"
                 or self.condition in {"defeat", "victory or defeat"}):
-            raise ValueError("Unsupported protection/exchange parameters")
+            raise ValueError("Unsupported protection/exchange/cancel parameters")
 
 
 def parse_effect(text: str) -> tuple[Effect, ...]:
@@ -61,6 +61,15 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         if condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {prefix}")
         text = text.strip()
+    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power|Damage)\s+Modif", text, re.I)
+    if match:
+        return (Effect("cancel_"+match[1].lower(),0,condition=condition,threshold=threshold),)
+    if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
+        return (Effect("stop_bonus",0,True,condition=condition,threshold=threshold),)
+    match = re.fullmatch(r"([+]\d+)\s+Attack\s+Per\s+Opp\.?\s+(Power|Damage)",text,re.I)
+    if match:
+        return (Effect("attack",int(match[1]),condition=condition,
+                       multiplier="opp_"+match[2].lower(),threshold=threshold),)
     match = re.fullmatch(r"Protection:\s*(Power|Damage|Power\s+And\s+Damage)", text, re.I)
     if match:
         if multiplier != "none":
@@ -207,7 +216,8 @@ def resolve(state: State, first: Move, second: Move) -> State:
         multipliers = {"none": 1, "growth": state.round, "degrowth": 5-state.round,
                        "support": sum(x.clan == c.clan for x in p.hand),
                        "brawl": sum(x.clan == cards[1-side].clan for x in state.players[1-side].hand),
-                       "equalizer": cards[1-side].stars}
+                       "equalizer": cards[1-side].stars,
+                       "opp_power": cards[1-side].power, "opp_damage": cards[1-side].damage}
         def enabled(e):
             # Bets count the attack allocation plus its free pill, not Fury's
             # separate three-pill cost or the player's remaining reserve.
@@ -219,14 +229,24 @@ def resolve(state: State, first: Move, second: Move) -> State:
         active.append(tuple(replace(e, amount=e.amount * multipliers[e.multiplier])
                             for e in effects if enabled(e)))
         ability_sizes.append(sum(enabled(e) for e in c.ability))
-    # Supported Stop Opp. Ability is simultaneous. Stop Opp. Bonus and
-    # Protection: Ability/Bonus remain rejected rather than guessed here.
-    blocked = [any(e.stat == "stop_ability" for e in active[1-i]) for i in range(2)]
+    # Retain source identity while resolving stops. Opposing ability/bonus
+    # stop cycles need an observed precedence rule; do not silently choose one.
     for side in range(2):
-        if blocked[side]:
-            # Preserve source identity even when ability/bonus use the same stat
-            # and condition with different Bet thresholds.
-            active[side] = active[side][ability_sizes[side]:]
+        if (any(e.stat=="stop_ability" for e in active[side][ability_sizes[side]:])
+                and any(e.stat=="stop_bonus" for e in active[1-side][:ability_sizes[1-side]])):
+            raise ValueError("Cross-source Stop Ability/Bonus precedence is not yet verified")
+    blocked = [any(e.stat == "stop_ability" for e in active[1-i]) for i in range(2)]
+    abilities=[active[i][:ability_sizes[i]] if not blocked[i] else () for i in range(2)]
+    bonuses=[active[i][ability_sizes[i]:] for i in range(2)]
+    bonus_blocked=[any(e.stat=="stop_bonus" for e in abilities[1-i]+bonuses[1-i]) for i in range(2)]
+    active=[abilities[i]+(() if bonus_blocked[i] else bonuses[i]) for i in range(2)]
+    # Cancel removes the opposing card's modifiers of this type, irrespective
+    # of their source or which card those modifiers would target.
+    cancelled=[{name for name in ("power","damage")
+                if any(e.stat=="cancel_"+name for e in active[1-i])} for i in range(2)]
+    active=[tuple(e for e in row if e.stat not in cancelled[i]
+                  and not (e.stat.startswith("exchange_") and e.stat[9:] in cancelled[i]))
+            for i,row in enumerate(active)]
 
     def stat(side, name, initial):
         result = initial

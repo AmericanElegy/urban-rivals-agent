@@ -29,6 +29,12 @@ Viperine, Wilmot, Gregor Ld) was correctly rejected by the execution reader.
 The local bridge is now running inspect-only with the existing token. See
 LIVE_CALIBRATION.md for the precise blocker and next test prerequisites.
 
+Simulator follow-up: Stop Bonus, Power/Damage cancellation and Attack Per Opp.
+Power/Damage are implemented from official rules. Twelve new regression cases
+bring the Python suite to 87 passing tests. The four recorded board checkpoints
+still pass. Ability-copy semantics remain unverified; the new live opponents
+remain outside the executable catalog. No live input was attempted in this step.
+
 ## Goal and authority
 
 Build an automatic browser player inspired by Oset's thesis. James selected the

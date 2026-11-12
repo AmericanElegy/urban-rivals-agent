@@ -69,9 +69,12 @@ the current matrix solver's convergence, not match win probability or the error
 in the continuation heuristic. Sampling a mixed strategy matters: always selecting
 its most likely move makes play predictable.
 
-Unsupported effect text raises an error, including Stop Opp. Bonus,
-Protection/Cancel/Copy, poison and regeneration, recovery, Oculus and Leader
-mechanics. Nested conditions and many modern keywords are not implemented. Do not remove
+Supported mechanics include Stop Ability/Bonus, Power/Damage Protection and
+Exchange, Power/Damage cancellation, and Attack Per Opp. Power/Damage. See
+MECHANICS_STATUS.md for exact scope and rejection boundaries. Unsupported effect
+text raises an error, including Copy, Protection Ability/Bonus, poison and
+regeneration, recovery, Oculus and Leader mechanics. Nested conditions and many
+modern keywords are not implemented. Do not remove
 unsupported effects to make a real hand load: that would produce incorrect advice.
 Effect ordering for the supported subset still needs comparison with live logs.
 No random attack mode is modeled. No ranking, format legality or deck checking is

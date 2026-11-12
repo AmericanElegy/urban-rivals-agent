@@ -83,3 +83,31 @@ can now be fully recognized; that readiness flag does not enable execution.
 The local bridge was refreshed in inspect-only mode with the existing pairing
 token retained, and authenticated readiness succeeded. No extension reload or
 new pairing is needed. Live action-panel/round-end validation is still required.
+
+## Fresh Training hand follow-up
+
+Checked the official rules again on 2026-11-11:
+https://www.urban-rivals.com/game/rules/
+The Cancel, Stop Ability/Bonus, Per Opp. Power/Damage, Exchange and Equalizer
+sections support these new simulator additions:
+
+- Stop Opp. Bonus removes bonus effects while retaining surviving abilities.
+  An ability-sourced Stop Bonus disabled by Stop Ability does not remove a bonus.
+  Cross-source Stop Ability/Bonus cycles remain rejected pending precedence evidence.
+- Cancel Opp. Power/Damage Modif removes the opposing card's modifiers of that
+  stat from both ability and bonus, including reducers aimed back at the user.
+  Cancel also prevents the matching Exchange; damage cancellation retains Fury.
+- Positive Attack Per Opp. Power/Damage scales from the opponent's printed base
+  stat, before modifiers. Equalizer already existed; its damage-reduction path
+  now has an explicit regression case based on the observed Wilmot text.
+
+Twelve new tests cover these mechanics and rejection boundaries. All 87 Python
+tests pass; the four recorded boards still reconcile three completed rounds.
+These additions have unit evidence, not new live resource-receipt evidence.
+
+The general official Copy section describes copying bonus/power/damage but does
+not document Copy Opp. Ability or its resolution with Stop, conditional abilities
+and Exchange. Copy Opp. Ability remains rejected. The new live hand's cards have
+not been added to the executable catalog, avoiding omitted or guessed effects.
+Next: obtain the official character/bonus description for those exact evolutions
+and verify ability-copy precedence before enabling that hand.
