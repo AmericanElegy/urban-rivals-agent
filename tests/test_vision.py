@@ -88,7 +88,7 @@ class FakeReader:
         return "Test"
 
     def number(self,image,box):
-        return 4 if box==(.74,.55,.79,.64) else self.attack
+        return 4 if box==(.74,.55,.815,.64) else self.attack
 
     def board(self,*args):
         return Board(self.state,None,90,((None,),(None,)))
@@ -158,7 +158,7 @@ class SessionTests(unittest.TestCase):
         s.step(None)
         r.panel=True
         self.panel_step(s)
-        r.number=lambda image,box: 6 if box==(.74,.55,.79,.64) else 7
+        r.number=lambda image,box: 6 if box==(.74,.55,.815,.64) else 7
         with self.assertRaises(RecognitionError):
             self.panel_step(s)
 
@@ -256,3 +256,15 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(s.phase,"reset")
         self.assertEqual(s.pending,pending)
         self.assertEqual(self.panel_step(s)["action"]["x"],.722)
+
+    def test_hud_boxes_follow_their_screen_anchors(self):
+        from urban_rivals.vision import CanvasReader
+        r=object.__new__(CanvasReader)
+        r.set_canvas_css_width(1757.3333333333333)  # 75% reference HUD scale
+        box=r.hud_box((.64,.46,.73,.54))
+        self.assertAlmostEqual(box[0],.605)
+        self.assertAlmostEqual(box[2],.6725)
+        right=r.hud_box((.76,.90,.81,.99),"right","bottom")
+        self.assertAlmostEqual(right[0],.82)
+        self.assertAlmostEqual(right[1],.925)
+        with self.assertRaises(RecognitionError):r.set_canvas_css_width(float("nan"))

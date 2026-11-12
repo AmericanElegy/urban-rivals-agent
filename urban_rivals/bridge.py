@@ -178,6 +178,9 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 w,h=image.size
                 if not 640<=w<=4096 or not 320<=h<=2304 or not 1.7<=w/h<=1.85:
                     raise ValueError("Unexpected canvas size/aspect ratio; stop and recalibrate")
+                reader=getattr(session,"reader",None)
+                if reader is not None and hasattr(reader,"set_canvas_css_width"):
+                    reader.set_canvas_css_width(data.get("geometry",{}).get("width",image.width))
                 image=image.convert("RGB").resize((1318,744))
                 image.save(output/"latest-canvas.png")
                 if session.execute and data.get("focus_resumed"):

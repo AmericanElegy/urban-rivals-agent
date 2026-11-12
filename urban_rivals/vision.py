@@ -218,6 +218,34 @@ class Board:
 
 class CanvasReader:
     CENTERS=(.221,.406,.591,.776)
+    PANEL_ATTACK=(.55,.55,.635,.64)
+    PANEL_DAMAGE=(.74,.55,.815,.64)
+    RESOURCE_BOXES=(
+        ("our_life",(.76,.90,.81,.99),"right","bottom"),
+        ("opponent_life",(.22,0,.275,.08),"left","top"),
+        ("our_pillz",(.68,.90,.735,.99),"right","bottom"),
+        ("opponent_pillz",(.30,0,.35,.08),"left","top"))
+
+    def set_canvas_css_width(self,width):
+        import math
+        if type(width) not in (int,float) or not math.isfinite(width) or not 640<=width<=4096:
+            raise RecognitionError("Uncalibrated canvas CSS width")
+        self.hud_scale=1318/width
+
+    def hud_box(self,box,x_anchor="center",y_anchor="center"):
+        scale=getattr(self,"hud_scale",1.0)
+        anchors={"left":0,"top":0,"center":.5,"right":1,"bottom":1}
+        ax,ay=anchors[x_anchor],anchors[y_anchor]
+        x1,y1,x2,y2=box
+        return (ax+(x1-ax)*scale,ay+(y1-ay)*scale,
+                ax+(x2-ax)*scale,ay+(y2-ay)*scale)
+
+    def turn_seconds(self,image):
+        return parse_timer(self.precise_text(image,self.hud_box((.64,.46,.73,.54)),.8))
+
+    def read_resources(self,image):
+        return {name:self.number(image,self.hud_box(box,ax,ay))
+                for name,box,ax,ay in self.RESOURCE_BOXES}
 
     def __init__(self,ocr=None,catalog=None):
         self.ocr=ocr or LocalOCR()
@@ -299,7 +327,7 @@ class CanvasReader:
 
     @staticmethod
     def stat_box(x,y,damage=False):
-        return (x-.075,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
+        return (x-.066,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
 
     def number(self,image,box,kind="number"):
         if kind in ("attack","damage"):
@@ -338,7 +366,8 @@ class CanvasReader:
     def day(self,image):
         import numpy as np
         w,h=image.size
-        p=np.array(image.crop((int(w*.79),0,int(w*.825),int(h*.08))).convert("RGB"))
+        x1,y1,x2,y2=self.hud_box((.79,0,.825,.08),"right","top")
+        p=np.array(image.crop((int(w*x1),int(h*y1),int(w*x2),int(h*y2))).convert("RGB"))
         yellow=(p[:,:,0]>180)&(p[:,:,1]>140)&(p[:,:,2]<90)
         return True if yellow.sum()>20 else None
 
@@ -358,12 +387,12 @@ class CanvasReader:
             return report
         report["day"]=self.day(image)
         report["round"]=int(re.search(r"ROUND\s*([1-4])",banner,re.I)[1])
-        seconds=parse_timer(self.precise_text(image,(.64,.46,.73,.54),.8))
+        seconds=self.turn_seconds(image)
         report["seconds_left"]=seconds
         report["our_turn"]="yourturn" in normalize(banner)
         report["resources"]={}
-        for label,box in (("our_life",(.76,.90,.81,.99)),("opponent_life",(.22,0,.275,.08)),
-                          ("our_pillz",(.68,.90,.735,.99)),("opponent_pillz",(.30,0,.35,.08))):
+        for label,reference,ax,ay in self.RESOURCE_BOXES:
+            box=self.hud_box(reference,ax,ay)
             try:
                 report["resources"][label]=self.number(image,box)
             except RecognitionError as error:
@@ -413,7 +442,7 @@ class CanvasReader:
         if "yourturn" not in normalize(banner):
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
-        seconds=parse_timer(self.precise_text(image,(.64,.46,.73,.54),.8))
+        seconds=self.turn_seconds(image)
         if seconds is not None and seconds<12:
             raise RecognitionError("Fewer than 12 seconds remain; stopping before a rushed input")
         if not match or seconds is None:
@@ -448,8 +477,11 @@ class CanvasReader:
             raise RecognitionError("First live input profile supports the cataloged Bangers hand only")
         if self.initial_hand is not None and hands!=self.initial_hand:
             raise RecognitionError("Hand/order changed; start a fresh session for each match")
-        life=(self.number(image,(.76,.90,.81,.99)),self.number(image,(.22,0,.275,.08)))
-        pillz=(self.number(image,(.68,.90,.735,.99)),self.number(image,(.30,0,.35,.08)))
+        resources=self.read_resources(image)
+        life=(resources["our_life"],resources["opponent_life"])
+        pillz=(resources["our_pillz"],resources["opponent_pillz"])
+        if previous is None and round_no==1 and (life!=(15,15) or pillz!=(12,12)):
+            raise RecognitionError("Opening Training resources differ from the verified 15 life / 12 pillz profile")
         used=tuple(tuple(i for i,n in enumerate(row) if n is not None) for row in spent)
         if any(len(row)!=round_no-1 for row in used):
             raise RecognitionError("Played-card overlays disagree with round number")
@@ -597,10 +629,10 @@ class VisionSession:
         if normalize(selected)!=normalize(expected):
             raise RecognitionError(f"Selected card differs from {expected}: {selected!r}")
         panel_number=getattr(self.reader,"panel_number",None)
-        attack=(panel_number(image,(.55,.55,.61,.64),"attack") if panel_number
-                else self.reader.number(image,(.55,.55,.61,.64)))
-        damage=(panel_number(image,(.74,.55,.79,.64),"damage") if panel_number
-                else self.reader.number(image,(.74,.55,.79,.64)))
+        attack=(panel_number(image,CanvasReader.PANEL_ATTACK,"attack") if panel_number
+                else self.reader.number(image,CanvasReader.PANEL_ATTACK))
+        damage=(panel_number(image,CanvasReader.PANEL_DAMAGE,"damage") if panel_number
+                else self.reader.number(image,CanvasReader.PANEL_DAMAGE))
         fingerprint=(self.phase,normalize(selected),attack,damage)
         now=self.clock()
         settled=(fingerprint==self.panel_candidate and self.panel_candidate_at is not None

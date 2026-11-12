@@ -75,3 +75,28 @@ test("status polling cannot erase a local token validation error",async()=>{
     assert.equal(started,false);
   }finally{globalThis.setInterval=oldInterval;}
 });
+
+
+test("automatic startup closes the popup only after a successful connection",async()=>{
+  const controls=new Map();
+  for(const id of ["status","start","stop","token","execute"]){
+    controls.set(id,{value:"",checked:false,textContent:"",disabled:false,listeners:{},
+      addEventListener(event,handler){this.listeners[event]=handler;}});
+  }
+  let closed=0,result={error:"Input attachment failed"};
+  globalThis.document={getElementById:id=>controls.get(id)};
+  globalThis.window={close:()=>{closed++;}};
+  globalThis.chrome={runtime:{sendMessage:async message=>message.type==="start"?result:{status:"Not started"}}};
+  const oldInterval=globalThis.setInterval;
+  globalThis.setInterval=()=>0;
+  try{
+    await import("./popup.js?automatic-focus-release");
+    controls.get("token").value="x".repeat(43);
+    controls.get("execute").checked=true;
+    await controls.get("start").listeners.click();
+    assert.equal(closed,0);
+    result={status:"Connected; waiting for the first capture"};
+    await controls.get("start").listeners.click();
+    assert.equal(closed,1);
+  }finally{globalThis.setInterval=oldInterval;}
+});

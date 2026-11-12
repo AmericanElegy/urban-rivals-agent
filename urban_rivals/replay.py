@@ -65,10 +65,11 @@ def replay(manifest_path,output_path="local/ocr-replay-report.json",root=".",rea
             resized=image.resize((round(image.width*scale),round(image.height*scale)))
             canonical=resized.resize((1318,744))
             start=time.perf_counter()
+            reader.set_canvas_css_width(frame.get("canvas_css_width",1318))
             actual=reader.diagnostics(canonical)
             if frame.get("panel") and actual.get("phase")=="stake_panel":
                 actual["panel"]={"name":reader.text(canonical,(.32,.20,.47,.27),.8)}
-                for kind,box in (("attack",(.55,.55,.61,.64)),("damage",(.74,.55,.79,.64))):
+                for kind,box in (("attack",CanvasReader.PANEL_ATTACK),("damage",CanvasReader.PANEL_DAMAGE)):
                     try:
                         actual["panel"][kind]=reader.panel_number(canonical,box,kind)
                     except ValueError as error:
@@ -105,6 +106,8 @@ def verify_match(manifest_path,output_path="local/match-verification.json",root=
             if frame.get("crop"):
                 image=image.crop(frame["crop"])
             image=image.resize((1318,744))
+            if hasattr(reader,"set_canvas_css_width"):
+                reader.set_canvas_css_width(frame.get("canvas_css_width",1318))
             submitted=Move(**frame["submitted"]) if frame.get("submitted") else None
             board=reader.board(image,previous,submitted)
             if board is None:

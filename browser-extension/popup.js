@@ -24,6 +24,9 @@ document.getElementById("start").addEventListener("click",async()=>{
     if(sessionStore)await sessionStore.set({pairingToken:token});
     const result=await chrome.runtime.sendMessage({type:"start",token,execute:executeField.checked});
     status.textContent=result.status || result.error;
+    // A popup can own OS focus independently of its parent browser window.
+    // Release it only after the automatic run passed startup checks.
+    if(executeField.checked&&result.status?.startsWith("Connected;"))window.close();
   }catch(error){localError=true;status.textContent=error.message;}
   finally{starting=false;start.disabled=false;}
 });

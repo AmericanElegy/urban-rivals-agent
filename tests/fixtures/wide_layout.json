@@ -1,0 +1,104 @@
+{
+  "schema": "urban-rivals/ocr-replay/v1",
+  "label_source": "Manually checked untouched 2026-11-12 Training screenshot; viewport crop uses captured visible DOM geometry. Private media stays local.",
+  "hands": {
+    "wide": [
+      [
+        [
+          "Bennie",
+          5,
+          3,
+          2
+        ],
+        [
+          "Doug Snop",
+          7,
+          2,
+          2
+        ],
+        [
+          "Graff Cr",
+          6,
+          1,
+          1
+        ],
+        [
+          "Vermyn Noel",
+          5,
+          4,
+          2
+        ]
+      ],
+      [
+        [
+          "Futoshi Ld",
+          8,
+          4,
+          4
+        ],
+        [
+          "Ryuichi",
+          6,
+          7,
+          4
+        ],
+        [
+          "Xia Leming",
+          6,
+          4,
+          3
+        ],
+        [
+          "Frankie Hi",
+          6,
+          4,
+          3
+        ]
+      ]
+    ]
+  },
+  "frames": [
+    {
+      "id": "wide-round1",
+      "path": "local/wide-layout-board.png",
+      "canvas_css_width": 1766.3125,
+      "phase": "round_board",
+      "hands": "wide",
+      "round": 1,
+      "seconds_left": 112,
+      "observed_card": 1,
+      "used": [
+        [],
+        []
+      ],
+      "resources": {
+        "our_life": 15,
+        "opponent_life": 15,
+        "our_pillz": 12,
+        "opponent_pillz": 12
+      },
+      "engine_ready": true,
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    },
+    {
+      "id": "wide-stake",
+      "path": "local/rescue-uppers-layout.png",
+      "canvas_css_width": 1766.3125,
+      "phase": "stake_panel",
+      "panel": {
+        "name": "Doug Snop",
+        "attack": 36,
+        "damage": 2
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    }
+  ]
+}

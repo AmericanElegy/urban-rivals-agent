@@ -67,9 +67,10 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         return (Effect("copy_ability",0),)
     if re.fullmatch(r"Copy:\s*Opp\.?\s+Damage", text, re.I):
         return (Effect("copy_damage",0,condition=condition,threshold=threshold),)
-    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power|Damage|Attack)\s+Modif", text, re.I)
+    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power(?:\s+And\s+Damage)?|Damage|Attack)\s+Modif", text, re.I)
     if match:
-        return (Effect("cancel_"+match[1].lower(),0,condition=condition,threshold=threshold),)
+        return tuple(Effect("cancel_"+stat,0,condition=condition,threshold=threshold)
+                     for stat in re.split(r"\s+and\s+",match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
         return (Effect("stop_bonus",0,True,condition=condition,threshold=threshold),)
     match = re.fullmatch(r"([+]\d+)\s+Attack\s+Per\s+Opp\.?\s+(Power|Damage)",text,re.I)

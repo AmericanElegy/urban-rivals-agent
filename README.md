@@ -56,7 +56,7 @@ star counting and selected-card detection pass the saved-capture regression set.
 Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The catalog covers 1,344 exact evolutions across 1,341 names, seeded from the
+The catalog covers 1,358 exact evolutions across 1,355 names, seeded from the
 saved training boards and expanded from rendered official clan pages. Unsupported
 mechanics are rejected during import; the source audit lists all 2,507 records. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are

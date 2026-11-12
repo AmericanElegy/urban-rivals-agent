@@ -1345,6 +1345,20 @@
     {"name":"Ziwi Noel","power":8,"damage":6,"stars":5,"clan":"Zenith","ability":"Bet > 6 Pillz: -2 Opp Damage, Min 1","bonus":"Bet > 3 Pillz: +3 Life"},
     {"name":"Lyra","power":8,"damage":3,"stars":3,"clan":"Zenith","ability":"Day: +2 Life, Max. 12","bonus":"Bet > 3 Pillz: +3 Life"},
     {"name":"Goran","power":8,"damage":7,"stars":5,"clan":"Zenith","ability":"+3 Attack Per Opp. Damage","bonus":"Bet > 3 Pillz: +3 Life"},
-    {"name":"Todor","power":9,"damage":7,"stars":5,"clan":"Zenith","ability":"Bet > 5 Pillz: -3 Opp Power, Min 0","bonus":"Bet > 3 Pillz: +3 Life"}
+    {"name":"Todor","power":9,"damage":7,"stars":5,"clan":"Zenith","ability":"Bet > 5 Pillz: -3 Opp Power, Min 0","bonus":"Bet > 3 Pillz: +3 Life"},
+    {"name":"Usman","power":6,"damage":6,"stars":4,"clan":"Bangers","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Power +2"},
+    {"name":"Marmalady","power":6,"damage":3,"stars":2,"clan":"All Stars","ability":"Cancel Opp. Power And Damage Modif.","bonus":"-2 Opp Power, Min 1"},
+    {"name":"Eyrton Cr","power":8,"damage":5,"stars":5,"clan":"All Stars","ability":"Cancel Opp. Power And Damage Modif.","bonus":"-2 Opp Power, Min 1"},
+    {"name":"Futoshi Ld","power":8,"damage":4,"stars":4,"clan":"Fang Pi Clang","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Damage +2"},
+    {"name":"Moutard","power":9,"damage":4,"stars":3,"clan":"La Junta","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Damage +2"},
+    {"name":"Bulma","power":8,"damage":5,"stars":5,"clan":"Rescue","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Support: Attack +3"},
+    {"name":"Handler","power":6,"damage":6,"stars":4,"clan":"Junkz","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Attack +8"},
+    {"name":"Droult","power":6,"damage":3,"stars":2,"clan":"Uppers","ability":"Cancel Opp. Power And Damage Modif.","bonus":"-10 Opp Attack, Min 3"},
+    {"name":"Ymirah Cr","power":8,"damage":7,"stars":5,"clan":"Frozn","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Revenge: Power And Damage +2"},
+    {"name":"Dookor","power":7,"damage":5,"stars":4,"clan":"Dominion","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Growth: -1 Opp Power, Min 4"},
+    {"name":"Pandora","power":8,"damage":4,"stars":3,"clan":"Nightmare","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Stop Opp. Bonus"},
+    {"name":"Zinzinxxt","power":7,"damage":5,"stars":4,"clan":"Sakrohm","ability":"Cancel Opp. Power And Damage Modif.","bonus":"-8 Opp Attack, Min 3"},
+    {"name":"Rhizom","power":7,"damage":4,"stars":3,"clan":"Komboka","ability":"Cancel Opp. Power And Damage Modif.","bonus":"+1 Pillz And Life"},
+    {"name":"Tervel","power":9,"damage":5,"stars":4,"clan":"Zenith","ability":"Cancel Opp. Power And Damage Modif.","bonus":"Bet > 3 Pillz: +3 Life"}
   ]
 }

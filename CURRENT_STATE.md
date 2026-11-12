@@ -15,7 +15,7 @@ information. No discretionary paid model calls are authorized or needed.
 ## Current implementation
 
 - Supported-subset immutable engine and one-round mixed-strategy solver.
-- 1,344 exact evolutions / 1,341 names in urban_rivals/data/training_cards.json.
+- 1,358 exact evolutions / 1,355 names in urban_rivals/data/training_cards.json.
   Public source corpus: 2,507 maximum-level cards across all 36 official clans.
   Unsupported effects and conflicting evolution data are quarantined.
 - Added source-preserving Copy Opp. Ability, Stop Bonus, Power/Damage/Attack Cancel and printed-base Damage Copy,
@@ -39,7 +39,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-115 Python tests and 14 extension tests pass. Fresh Oblivion-board replay passes
+117 Python tests and 15 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -118,8 +118,8 @@ opposing attack modifiers but preserves the attack from paid/free pillz.
 All 2,507 rendered maximum-level card facts from 36 official clan pages were
 collected, with per-clan row counts checked against visible headings. Audit data
 contains only card facts and official source URLs, not prices, holdings, account
-identifiers or images. Import accepted supported mechanics only; 1,170 source
-records were rejected. Current catalog has 1,344 evolutions / 1,341 names.
+identifiers or images. Import accepted supported mechanics only; 1,156 source
+records were rejected. Current catalog has 1,358 evolutions / 1,355 names.
 GhosTown, Leader and Oculus bulk imports remain excluded for their special rules.
 Seeded GhosTown Day-only entries remain unchanged.
 
@@ -128,9 +128,27 @@ retains the verified immutable evolution through later rounds. Name-only replay
 manifests retain their original reference evolution. Four-star Fixit (Reprisal
 Protection) and five-star Fixit (always Protection) are separate entries.
 
-115 Python tests and 14 extension tests pass. Four saved board checkpoints and
+117 Python tests and 15 extension tests pass. Four saved board checkpoints and
 all four completed Oblivion-log rounds remain consistent. Import is idempotent;
 unsupported/conflicting effects are not silently omitted. Automatic live
 selection/stake/confirmation remains unverified. James has left the game on the
 untimed Training menu for a controlled retry; refresh the old bridge process
 once to load these changes before Start. Do not run competing OCR while armed.
+
+## Wide-layout and focus checkpoint (2026-11-12)
+
+The last reported run stopped after 60 seconds without Chrome focus. Automatic
+startup now closes its popup after connection, returning focus to the game.
+Inspection and failed startup keep the popup visible. No focus guards are removed.
+
+HUD crops now follow CSS canvas width and edge/center anchors. A narrower card
+stat crop removes a bright border that appeared as a leading digit. Original
+OCR replay passes 764/764 fields; wide-layout replay passes 159/159 fields at
+three scales. The wide untouched board also passes full state/evolution
+verification in 5.842 seconds. These are offline results, not proven live input.
+Combined Power And Damage Cancel expands into both existing cancel effects;
+14 additional official card evolutions passed strict import.
+
+117 Python tests and 15 extension tests pass. Keep the current token; refresh
+the bridge once before the next automatic test to load these HUD changes.
+No automatic card selection, stake confirmation or completed match is proven.

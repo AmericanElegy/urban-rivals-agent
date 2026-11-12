@@ -163,7 +163,7 @@ Rendered official clan pages expose maximum-level facts. All 36 lists were
 expanded with Display all; each list's visible count was checked against its
 heading. The source corpus totals 2,507 cards. Conservative import rejects
 unsupported text and special-rule clans; no modifiers are dropped to load a
-card. The catalog now has 1,344 exact evolutions / 1,341 distinct names. Existing
+card. The catalog now has 1,358 exact evolutions / 1,355 distinct names. Existing
 seed evolutions take precedence for named replay fixtures; live recognition uses
 observed stats/stars, retaining the chosen evolution through the match.
 Official source links and all rejection reasons are recorded in

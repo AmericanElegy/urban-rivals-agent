@@ -1,0 +1,46 @@
+{
+  "schema": "urban-rivals/recorded-match/v1",
+  "source": "Untouched 2026-11-12 Training board. This is recognition evidence, not an automatic move.",
+  "frames": [
+    {
+      "id": "wide-round-1",
+      "path": "local/wide-layout-board.png",
+      "canvas_css_width": 1766.3125,
+      "expected": {
+        "round": 1,
+        "leader": 1,
+        "observed_card": 1,
+        "life": [
+          15,
+          15
+        ],
+        "pillz": [
+          12,
+          12
+        ],
+        "used": [
+          [],
+          []
+        ],
+        "last_won": [
+          null,
+          null
+        ],
+        "hands": [
+          [
+            "Bennie",
+            "Doug Snop",
+            "Graff Cr",
+            "Vermyn Noel"
+          ],
+          [
+            "Futoshi Ld",
+            "Ryuichi",
+            "Xia Leming",
+            "Frankie Hi"
+          ]
+        ]
+      }
+    }
+  ]
+}

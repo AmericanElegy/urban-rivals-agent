@@ -102,3 +102,9 @@ class CancelScalingTests(unittest.TestCase):
         a=card("a",power=5,ability="-8 Opp. Attack, Min 3")
         b=card("b",power=6,ability="Cancel Opp. Attack Modif.")
         self.assertFalse(duel(a,b).players[0].last_won)
+
+    def test_combined_power_damage_cancel_removes_both_boosts(self):
+        a=card("a",power=7,damage=4,ability="Power And Damage +2",bonus="Power +2")
+        b=card("b",power=8,ability="Cancel Opp. Power And Damage Modif.")
+        self.assertFalse(duel(a,b).players[0].last_won)
+        self.assertEqual(duel(a,b,paid=(1,0)).players[1].life,26)
