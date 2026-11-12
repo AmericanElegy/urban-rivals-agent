@@ -293,3 +293,7 @@ unsupported text or enable special GhosTown/Leader/Oculus rules.
 source records and rejected mechanics separately. Full details are saved to
 local/catalog-coverage.json. The source collection is not a claim of complete
 mechanics, lower-evolution, OCR or live-play coverage.
+
+`python -m urban_rivals reference "Fixit"` looks up the broader card reference,
+including level tables for unsupported mechanics. See REFERENCE_DATABASE.md for
+bulk wiki acquisition, official gap resolution, provenance and candidate limits.

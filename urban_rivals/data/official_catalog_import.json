@@ -2061,16 +2061,20 @@
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=631",
-      "name": "Jeremy Fran\u00c3\u00a7ois",
+      "name": "Jeremy Fran\u00e7ois",
       "result": "existing",
       "card": {
-        "name": "Jeremy Fran\u00c3\u00a7ois",
+        "name": "Jeremy Fran\u00e7ois",
         "power": 6,
         "damage": 7,
         "stars": 5,
         "clan": "All Stars",
         "ability": "-2 Opp Power, Min 6",
         "bonus": "-2 Opp Power, Min 1"
+      },
+      "name_encoding_repair": {
+        "original": "Jeremy Fran\u00c3\u00a7ois",
+        "verified": "Jeremy Fran\u00e7ois"
       }
     },
     {
@@ -25253,16 +25257,20 @@
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2689",
-      "name": "Atel\u00c3\u00b8ps-X",
+      "name": "Atel\u00f8ps-X",
       "result": "existing",
       "card": {
-        "name": "Atel\u00c3\u00b8ps-X",
+        "name": "Atel\u00f8ps-X",
         "power": 8,
         "damage": 4,
         "stars": 3,
         "clan": "Hive",
         "ability": "Bet > 3 Pillz: -2 Opp. Life Min 0",
         "bonus": "Equalizer: -3 Opp Attack, Min 5"
+      },
+      "name_encoding_repair": {
+        "original": "Atel\u00c3\u00b8ps-X",
+        "verified": "Atel\u00f8ps-X"
       }
     },
     {
@@ -26231,16 +26239,20 @@
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2462",
-      "name": "Mecanicl\u00c3\u00a8s",
+      "name": "Mecanicl\u00e8s",
       "result": "existing",
       "card": {
-        "name": "Mecanicl\u00c3\u00a8s",
+        "name": "Mecanicl\u00e8s",
         "power": 9,
         "damage": 8,
         "stars": 5,
         "clan": "Riots",
         "ability": "Cancel Opp. Damage Modif.",
         "bonus": "Victory Or Defeat : +1 Pillz"
+      },
+      "name_encoding_repair": {
+        "original": "Mecanicl\u00c3\u00a8s",
+        "verified": "Mecanicl\u00e8s"
       }
     },
     {
@@ -28395,7 +28407,7 @@
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2625",
-      "name": "El Com\u00c3\u00ban",
+      "name": "El Com\u00fan",
       "result": "rejected",
       "reason": "Unsupported effect: '+1 Attack Per Life Left'",
       "record": {
@@ -28403,10 +28415,14 @@
         "bonus": "+1 Attack Per Life Left",
         "clan": "Huracan",
         "damage": 4,
-        "name": "El Com\u00c3\u00ban",
+        "name": "El Com\u00fan",
         "power": 8,
         "stars": 3,
         "url": "https://www.urban-rivals.com/game/characters/?id_perso=2625"
+      },
+      "name_encoding_repair": {
+        "original": "El Com\u00c3\u00ban",
+        "verified": "El Com\u00fan"
       }
     },
     {
@@ -29659,7 +29675,7 @@
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2682",
-      "name": "Kontr\u00c3\u00b8 Ld",
+      "name": "Kontr\u00f8 Ld",
       "result": "rejected",
       "reason": "Unsupported effect: 'Combust 1, Min 0'",
       "record": {
@@ -29667,15 +29683,19 @@
         "bonus": "After  : Power +3",
         "clan": "Tolvack",
         "damage": 5,
-        "name": "Kontr\u00c3\u00b8 Ld",
+        "name": "Kontr\u00f8 Ld",
         "power": 8,
         "stars": 5,
         "url": "https://www.urban-rivals.com/game/characters/?id_perso=2682"
+      },
+      "name_encoding_repair": {
+        "original": "Kontr\u00c3\u00b8 Ld",
+        "verified": "Kontr\u00f8 Ld"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2680",
-      "name": "T\u00c3\u00b8r",
+      "name": "T\u00f8r",
       "result": "rejected",
       "reason": "Unsupported condition: After  ",
       "record": {
@@ -29683,10 +29703,14 @@
         "bonus": "After  : Power +3",
         "clan": "Tolvack",
         "damage": 5,
-        "name": "T\u00c3\u00b8r",
+        "name": "T\u00f8r",
         "power": 6,
         "stars": 4,
         "url": "https://www.urban-rivals.com/game/characters/?id_perso=2680"
+      },
+      "name_encoding_repair": {
+        "original": "T\u00c3\u00b8r",
+        "verified": "T\u00f8r"
       }
     },
     {

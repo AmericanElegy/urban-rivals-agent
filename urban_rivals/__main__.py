@@ -15,7 +15,7 @@ def sample(advice, rng):
 
 def main():
     parser = argparse.ArgumentParser(description="Urban Rivals local strategy agent")
-    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect", "replay", "verify-match", "verify-log", "coverage"))
+    parser.add_argument("command", choices=("advise", "simulate", "serve", "inspect", "replay", "verify-match", "verify-log", "coverage", "reference"))
     parser.add_argument("state", nargs="?", help="State JSON, canvas PNG, or manifest for the selected command")
     parser.add_argument("--side", type=int, choices=(0, 1), default=0)
     parser.add_argument("--observed-card", type=int)
@@ -28,6 +28,11 @@ def main():
     parser.add_argument("--output", default="local", help="Local canvas/receipt directory")
     args = parser.parse_args()
     try:
+        if args.command=="reference":
+            if not args.state:raise ValueError("reference requires a card name")
+            from .reference_database import lookup_reference
+            print(json.dumps(lookup_reference(args.state),indent=2))
+            return
         if args.command=="coverage":
             from .coverage import catalog_coverage
             result=catalog_coverage()

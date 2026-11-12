@@ -190,3 +190,40 @@ records, lower-evolution limits, rejected reasons and unverified live input.
 Bridge process 37196 is inspect-only, same token. No live input or completed
 automatic match proven. No current automatic run is armed. Public source audit
 remains checked in; private saved-frame diagnostics remain ignored locally.
+
+## Bulk reference acquisition — 2026-11-12
+
+James directed us to expand the card/level/rule reference first and suggested
+checking a wiki/bulk source before individual pages. Public wiki API acquisition
+completed 4,025 main-namespace pages in 81 cached batches. Parsed 2,005 card
+records / 6,279 level entries; 1,964 names match the 2,507 current official cards.
+The GitHub pakoito/CardsFromUrbanRivals dataset was evaluated locally (2,272
+single-level records) but not imported because it does not solve evolutions.
+
+Targeted official collection filled missing wiki entries, malformed levels,
+maximum-stat disagreements, unknown unlock levels and known lower-level conflicts.
+711 public official evolution tables / 2,313 levels were captured, preserving
+per-level abilities, unlock markers, bonus text, visible explanations and URLs.
+Six accented names damaged in the earlier source import were verified against
+card IDs and corrected in the audit and gameplay catalog. No heuristic-only
+name changes and no unsupported mechanics enabled.
+
+New checked-in urban_rivals/data/card_reference.json contains all source facts,
+including unsupported mechanics. Preferred lookup spans 7,927 level records over
+all 2,507 current cards: 711 use official tables, 1,796 use wiki candidates. Zero
+current cards lack an evolution-table source. Wiki-only lower levels remain
+unverified; these counts do not prove complete historical/legal-level coverage.
+88 wiki maximum-stat differences, 13 missing maximum levels, and 523 ability-text
+differences are retained for review (text differences include cosmetic variants).
+
+Commands: python -m urban_rivals reference "Fixit"; collection/rebuild modules
+urban_rivals.wiki_reference and urban_rivals.reference_database. See
+REFERENCE_DATABASE.md for provenance and refresh inputs. Reference facts never
+enter the execution catalog automatically. Known reference cards rejected by
+execution now report the validation/mechanic gap instead of missing card data.
+
+129 Python tests and 15 extension tests pass. Regression verifies official
+four-star Fixit 7/6 Reprisal overrides the wiki's older 7/5 entry for lookup.
+Live automatic play remains unproven and is not armed. Bridge remains inspect-only
+(process 37196 predates reference changes; refresh only when needed). Public
+reference is committed; raw wiki pages, private captures and token remain local.

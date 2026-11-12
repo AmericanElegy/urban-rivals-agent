@@ -201,6 +201,10 @@ class Catalog:
         key=normalize(text)
         matches=([self.evolutions[(key,*stats)]] if (key,*stats) in self.evolutions else []) if stats is not None else [entry for name,entry in self.entries.items() if key==name]
         if len(matches) != 1:
+            from .reference_database import lookup_reference
+            reference=lookup_reference(text)
+            if reference["official_maximum_levels"]:
+                raise RecognitionError(f"Known reference card {text!r}, observed stats {stats}: this evolution/mechanic is not validated for live execution; use the reference command for source facts")
             raise RecognitionError(f"Unknown or ambiguous card name: {text!r}; add its verified evolution to the catalog")
         card, day_only = matches[0]
         if day_only and day is not True:
