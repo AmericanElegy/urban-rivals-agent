@@ -152,3 +152,19 @@ Combined Power And Damage Cancel expands into both existing cancel effects;
 117 Python tests and 15 extension tests pass. Keep the current token; refresh
 the bridge once before the next automatic test to load these HUD changes.
 No automatic card selection, stake confirmation or completed match is proven.
+
+### Retained HUD follow-up
+
+Run 350c0d31-5d26-4c0a-8430-1a2e91f656f9 connected and captured a real
+round-1 board repeatedly, but issued no actions. Stopped explicitly via /stop.
+The client retained reference HUD positions despite a larger CSS canvas;
+width-derived timer crop returned incomplete 01:. A complete reference timer
+now selects that known layout when the width-derived timer is unreadable.
+Saved frame reads 103 seconds and all four resources correctly (15/15,12/12).
+Wide OCR replay remains 159/159; 118 Python tests pass.
+The same frame's raised Dark Morlha damage remains unreadable, and unsupported
+mechanics are not enabled. No live selection or completed automatic match.
+Geometry is now saved locally beside latest-canvas.png for diagnosis.
+Bridge is being restored inspect-only while the user finishes manually.
+
+Retained-HUD fix regression: original 764/764 and wide 159/159 pass. James confirmed menu ready; latest bridge restarted execution-enabled as process 34072 with unchanged token for one fresh match. No competing OCR while armed.

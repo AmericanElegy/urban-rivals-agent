@@ -268,3 +268,16 @@ class SessionTests(unittest.TestCase):
         self.assertAlmostEqual(right[0],.82)
         self.assertAlmostEqual(right[1],.925)
         with self.assertRaises(RecognitionError):r.set_canvas_css_width(float("nan"))
+
+    def test_retained_reference_hud_requires_complete_timer(self):
+        from urban_rivals.vision import CanvasReader
+        r=object.__new__(CanvasReader)
+        r.set_canvas_css_width(1766)
+        r.precise_text=lambda image,box,minimum: "01:43" if box==(.64,.46,.73,.54) else "01:"
+        self.assertEqual(r.turn_seconds(None),103)
+        self.assertEqual(r.hud_scale,1.0)
+        r.set_canvas_css_width(1766)
+        original=r.hud_scale
+        r.precise_text=lambda *args: "01:"
+        self.assertIsNone(r.turn_seconds(None))
+        self.assertEqual(r.hud_scale,original)

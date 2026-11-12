@@ -183,6 +183,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                     reader.set_canvas_css_width(data.get("geometry",{}).get("width",image.width))
                 image=image.convert("RGB").resize((1318,744))
                 image.save(output/"latest-canvas.png")
+                (output/"latest-geometry.json").write_text(json.dumps(data.get("geometry")),encoding="utf-8")
                 if session.execute and data.get("focus_resumed"):
                     session.reset_stability()
                 result=(session.step(image) if session.execute else

@@ -241,7 +241,17 @@ class CanvasReader:
                 ax+(x2-ax)*scale,ay+(y2-ay)*scale)
 
     def turn_seconds(self,image):
-        return parse_timer(self.precise_text(image,self.hud_box((.64,.46,.73,.54)),.8))
+        box=(.64,.46,.73,.54)
+        seconds=parse_timer(self.precise_text(image,self.hud_box(box),.8))
+        if seconds is None and getattr(self,"hud_scale",1.0)!=1.0:
+            # Unity can retain its reference HUD after the browser is resized.
+            # Select that observed layout only from a complete timer. All card,
+            # resource and receipt checks still run before an action is allowed.
+            reference=parse_timer(self.precise_text(image,box,.8))
+            if reference is not None:
+                self.hud_scale=1.0
+                return reference
+        return seconds
 
     def read_resources(self,image):
         return {name:self.number(image,self.hud_box(box,ax,ay))
