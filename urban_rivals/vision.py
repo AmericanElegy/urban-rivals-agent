@@ -516,6 +516,13 @@ class VisionSession:
         self.panel_candidate=None
         self.panel_candidate_at=None
 
+    def reset_stability(self):
+        """Require fresh agreement after a focus pause; retain action receipts."""
+        self.board_candidate=None
+        self.board_candidate_at=None
+        self.panel_candidate=None
+        self.panel_candidate_at=None
+
     def action(self,x,y,status):
         self.panel_candidate=None
         return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}

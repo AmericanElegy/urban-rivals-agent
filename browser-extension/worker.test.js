@@ -89,3 +89,54 @@ test("non-ASCII pairing text is rejected before constructing HTTP headers",async
   assert.equal(fetched,false);
   assert.equal(result.error.includes("x".repeat(40)),false);
 });
+
+
+async function focusScenario({resume=false,loseDuringOCR=false}){
+  let listener,focused=!resume,captures=0,commands=0,stopped=false,posted;
+  const url="https://www.urban-rivals.com/game/play/webgl/";
+  const tab={id:7,windowId:9,active:true,url};
+  const g={x:10,y:10,width:1000,height:562,viewportWidth:1200,viewportHeight:800};
+  globalThis.chrome={tabs:{query:async()=>[tab],get:async()=>tab,captureVisibleTab:async()=>{captures++;return "data:image/png;base64,cGl4ZWxz";}},
+    windows:{get:async()=>({focused})},scripting:{executeScript:async()=>[{result:g}]},
+    debugger:{attach:async()=>{},detach:async()=>{},sendCommand:async()=>{commands++;},onDetach:{addListener:()=>{}}},
+    runtime:{getURL:path=>"chrome-extension://test/"+path,onMessage:{addListener:fn=>{listener=fn;}}}};
+  globalThis.fetch=async(endpoint,options)=>{
+    if(endpoint.endsWith("/ready"))return {ok:true,json:async()=>({execute_enabled:true,engine_revision:"copy-v1"})};
+    if(endpoint.endsWith("/stop")){stopped=true;return {ok:true};}
+    posted=JSON.parse(options.body);
+    if(loseDuringOCR)focused=false;
+    return {ok:true,json:async()=>loseDuringOCR?{sequence:posted.sequence,run_id:posted.run_id,
+      action:{type:"click",x:.5,y:.5}}:{stop:true,status:"Test complete"}};
+  };
+  const originalTimeout=globalThis.setTimeout;
+  globalThis.setTimeout=(fn,ms,...args)=>originalTimeout(fn,ms===650?0:ms,...args);
+  try{
+    await import("./worker.js?focus-"+resume+"-"+loseDuringOCR);
+    const send=message=>new Promise(resolve=>listener(message,{url:"chrome-extension://test/popup.html"},resolve));
+    await send({type:"start",token:"x".repeat(43),execute:true});
+    if(resume){
+      for(let i=0;i<20;i++){
+        const result=await send({type:"status"});
+        if(result.status.startsWith("PAUSED"))break;
+        await new Promise(resolve=>setImmediate(resolve));
+      }
+      assert.equal(captures,0);
+      assert.equal(commands,0);
+      assert.match((await send({type:"status"})).status,/PAUSED/);
+      focused=true;
+    }
+    for(let i=0;i<100&&!stopped;i++)await new Promise(resolve=>originalTimeout(resolve,1));
+    assert.equal(stopped,true);
+    assert.equal(commands,0);
+    if(resume)assert.equal(posted.focus_resumed,true);
+    if(loseDuringOCR)assert.match((await send({type:"status"})).status,/lost focus/);
+  }finally{globalThis.setTimeout=originalTimeout;}
+}
+
+test("unfocused execution pauses without capturing and resumes with fresh stability",async()=>{
+  await focusScenario({resume:true});
+});
+
+test("focus lost during recognition discards the click and stops",async()=>{
+  await focusScenario({loseDuringOCR:true});
+});

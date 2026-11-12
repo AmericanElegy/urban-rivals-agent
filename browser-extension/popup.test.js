@@ -51,3 +51,27 @@ test("an older loaded manifest without storage does not break Start",async()=>{
     assert.equal(controls.get("status").textContent,"Connected");
   }finally{globalThis.setInterval=oldInterval;}
 });
+
+
+test("status polling cannot erase a local token validation error",async()=>{
+  const controls=new Map();
+  for(const id of ["status","start","stop","token","execute"]){
+    controls.set(id,{value:"",checked:false,textContent:"",disabled:false,listeners:{},
+      addEventListener(event,handler){this.listeners[event]=handler;}});
+  }
+  let poll,started=false;
+  globalThis.document={getElementById:id=>controls.get(id)};
+  globalThis.chrome={runtime:{sendMessage:async message=>{
+    started ||= message.type==="start";return {status:"Not started"};}}};
+  const oldInterval=globalThis.setInterval;
+  globalThis.setInterval=fn=>{poll=fn;return 0;};
+  try{
+    await import("./popup.js?sticky-error");
+    controls.get("token").value="x".repeat(40)+"\u200b";
+    await controls.get("start").listeners.click();
+    poll();
+    await new Promise(resolve=>setImmediate(resolve));
+    assert.match(controls.get("status").textContent,/Invalid token characters/);
+    assert.equal(started,false);
+  }finally{globalThis.setInterval=oldInterval;}
+});

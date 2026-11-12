@@ -28,7 +28,7 @@ information. No discretionary paid model calls are authorized or needed.
   the resulting attack before confirming. This shortcut needs live calibration.
 - Local bridge defaults to inspect; execution requires both its flag and popup
   checkbox. No own Fury, login, automatic requeue or unknown-card input.
-- Extension 0.2.3 remembers token in chrome.storage.session only. Old loaded
+- Extension 0.2.4 remembers token in chrome.storage.session only. Old loaded
   manifests without storage no longer crash Start. Execution checkbox stays
   off when reopening. Inspect completion explicitly says automatic play is OFF.
 - Bridge readiness exposes engine revision and logs requested mode without
@@ -37,7 +37,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-100 Python tests and 11 extension tests pass. Fresh Oblivion-board replay passes
+102 Python tests and 14 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -65,10 +65,12 @@ explaining its unavailability afterward. A later non-ASCII-header error came
 from pasted token text; strict character validation now rejects it before fetch.
 James recopied the token and confirmed successful INSPECT capture.
 
-The bridge is now execution-enabled with engine_revision copy-v1 for a bounded
-user-started live attempt, same token retained. Native input restores Chrome to
-half-width, so James is handling final Start/Training PLAY. Do not restart or run
-competing OCR during the attempt. Monitor local receipts; restore inspect after.
+The latest execution attempt reached authenticated /ready but produced no
+execution frame. Physical Escape stopped Computer Use, and the execution bridge
+was shut down. A later Failed to fetch report followed that shutdown. The bridge
+has now been restored and authenticated in INSPECT ONLY mode with the same token
+and engine_revision copy-v1. No live automatic input is confirmed. Native input
+can restore Chrome to half-width; avoid disturbing the user's active game.
 
 Before a bounded live test: verify /ready execution mode and engine_revision,
 fully visible canvas, a single debugger controller, and AUTO waiting status
@@ -79,3 +81,21 @@ frames, uncertain readings or mismatching receipts. Restore inspect afterward.
 All media, tokens, local receipts and pairing files remain ignored under local/.
 OCR uses this checkout's .venv; do not change FantasyBrief's environment.
 The legacy game API is discontinued; current commands need no game API key.
+
+## Focus-pause calibration update
+
+The previous startup stop was Chrome losing focus while James reported status.
+Version 0.2.4 now pauses only at a frame boundary for up to 60 seconds, without
+capture or input while unfocused. Tab/navigation changes still stop; focus lost
+during recognition discards a pending click and stops. Resuming sets a validated
+focus_resumed flag and clears board/panel stability candidates without losing
+pending submission history. Unit tests cover pause/resume and mid-OCR focus loss.
+Popup local validation errors now remain visible instead of being overwritten
+by Not started during status polling.
+
+James reloaded 0.2.4 and confirmed PAUSED status. Bridge process was started
+execution-enabled with the existing token and copy-v1 engine. He was instructed
+to return to Chrome, wait for AUTO waiting, then Training PLAY without replying
+here. Monitor receipts; do not restart or run OCR replays during this attempt.
+One earlier execution frame reached the menu and returned no action, then its
+HTTP client disconnected (WinError 10053). No gameplay input is confirmed yet.

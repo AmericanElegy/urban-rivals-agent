@@ -29,9 +29,13 @@ async function geometry(tabId){
   return g;
 }
 
-async function currentTab(activeRun){
+async function currentTab(activeRun,allowFocusPause=false){
   const tab=await chrome.tabs.get(activeRun.tabId);
   const window=await chrome.windows.get(tab.windowId);
+  // Navigation/tab changes always stop. A focus pause is allowed only before
+  // capture; strict focus checks remain after capture and before dispatch.
+  validateTarget(tab,window,false);
+  if(allowFocusPause&&activeRun.execute&&!window.focused)return null;
   return validateTarget(tab,window,activeRun.execute);
 }
 
@@ -40,7 +44,16 @@ async function loop(activeRun){
     while(run===activeRun){
       if(Date.now()-activeRun.started>15*60*1000)throw new Error("15-minute session limit reached");
       status="Checking the active game tab…";
-      const tab=await bounded(currentTab(activeRun),"Active game tab");
+      const tab=await bounded(currentTab(activeRun,true),"Active game tab");
+      if(!tab){
+        activeRun.pausedAt ??= Date.now();
+        if(Date.now()-activeRun.pausedAt>=60000)throw new Error("Game focus did not return within 60 seconds; stopped");
+        activeRun.focusResumed=true;
+        status="PAUSED: game window is unfocused; no input. Return to Chrome within 60 seconds.";
+        await delay(650);
+        continue;
+      }
+      activeRun.pausedAt=null;
       const g=await geometry(tab.id);
       const captured_at=Date.now()/1000;
       status="Capturing visible game pixels…";
@@ -48,7 +61,8 @@ async function loop(activeRun){
       if(run!==activeRun)return;
       await currentTab(activeRun);
       if(JSON.stringify(await geometry(tab.id))!==JSON.stringify(g))throw new Error("Canvas moved during capture");
-      const frame={schema:"urban-rivals/frame/v1",url:tab.url,mode:"training",execute:activeRun.execute,run_id:activeRun.id,sequence:++activeRun.sequence,captured_at,png:screenshot.replace(/^data:image\/png;base64,/,""),geometry:g};
+      const frame={schema:"urban-rivals/frame/v1",url:tab.url,mode:"training",execute:activeRun.execute,run_id:activeRun.id,sequence:++activeRun.sequence,captured_at,png:screenshot.replace(/^data:image\/png;base64,/,""),geometry:g,focus_resumed:activeRun.focusResumed===true};
+      activeRun.focusResumed=false;
       status="Reading the captured board locally…";
       const response=await fetch(ENDPOINT+"/step",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+activeRun.token},body:JSON.stringify(frame),signal:AbortSignal.timeout(12000)});
       const result=await response.json();

@@ -223,3 +223,24 @@ class SessionTests(unittest.TestCase):
         self.assertEqual(s.expected_attack,21)
         r.attack=21
         self.assertEqual(self.panel_step(s)["action"]["x"],.722)
+
+    def test_focus_resume_requires_two_fresh_boards(self):
+        s=VisionSession(FakeReader(),execute=True,iterations=10)
+        self.assertIsNone(s.step(None)["action"])
+        s.reset_stability()
+        self.assertIsNone(s.step(None)["action"])
+        self.assertIsNotNone(s.step(None)["action"])
+
+    def test_focus_resume_preserves_pending_action_receipt(self):
+        r=FakeReader()
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        s.step(None)
+        r.panel=True
+        self.panel_step(s)
+        self.assertIsNone(s.step(None)["action"])
+        pending=s.pending
+        s.reset_stability()
+        self.assertEqual(s.phase,"reset")
+        self.assertEqual(s.pending,pending)
+        self.assertEqual(self.panel_step(s)["action"]["x"],.722)

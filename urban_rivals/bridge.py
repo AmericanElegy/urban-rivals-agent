@@ -38,6 +38,8 @@ def validate_frame(data, now=None):
     url=urlparse(data.get("url",""))
     if (url.scheme,url.netloc,url.path)!=("https","www.urban-rivals.com","/game/play/webgl/"):
         raise ValueError("Only the Urban Rivals browser game is allowed")
+    if "focus_resumed" in data and type(data["focus_resumed"]) is not bool:
+        raise ValueError("Invalid focus-resume flag")
     timestamp=data.get("captured_at")
     if type(timestamp) not in (int,float) or not 0 <= (now or time.time())-timestamp <= 10:
         raise ValueError("Frame timestamp is stale or in the future")
@@ -178,6 +180,8 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                     raise ValueError("Unexpected canvas size/aspect ratio; stop and recalibrate")
                 image=image.convert("RGB").resize((1318,744))
                 image.save(output/"latest-canvas.png")
+                if session.execute and data.get("focus_resumed"):
+                    session.reset_stability()
                 result=(session.step(image) if session.execute else
                         {"status":"Canvas captured locally; inspect offline without a turn timer", "action":None,"stop":True})
                 # OCR/search may have taken too long. A late action is never sent.

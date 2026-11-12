@@ -273,3 +273,9 @@ loaded manifest lacks storage. Reopening the popup defaults automatic play off.
 The button and completion status distinguish one-frame inspection from automatic
 play. Restart the bridge after engine changes; retain the token with
 -ReusePairingToken. See CURRENT_STATE.md and LIVE_CALIBRATION.md before live tests.
+
+
+Extension 0.2.4 pauses at frame boundaries for up to 60 seconds when its game
+window loses focus. No captures or clicks are sent while paused; returning to
+the game requires fresh matching readings. Navigation/tab changes and focus loss
+during a pending action still stop the run. Popup-local errors remain visible.
