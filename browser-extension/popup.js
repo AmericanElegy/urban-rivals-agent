@@ -19,6 +19,7 @@ document.getElementById("start").addEventListener("click",async()=>{
   starting=true;start.disabled=true;status.textContent="Checking local bridge…";
   try{
     const token=tokenField.value.trim();
+    if(!/^[A-Za-z0-9_-]{32,128}$/.test(token))throw new Error("Invalid token characters. Copy the contents of local/pairing-token.txt; do not paste the PowerShell command itself.");
     if(sessionStore)await sessionStore.set({pairingToken:token});
     const result=await chrome.runtime.sendMessage({type:"start",token,execute:executeField.checked});
     status.textContent=result.status || result.error;

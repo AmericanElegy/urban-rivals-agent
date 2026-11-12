@@ -84,7 +84,9 @@ chrome.runtime.onMessage.addListener((message,sender,reply)=>{
   if(message.type!=="start")return false;
   (async()=>{
     if(run)throw new Error("Stop the current run before starting again");
-    if(typeof message.token!=="string"||message.token.length<32||typeof message.execute!=="boolean")throw new Error("Paste the local pairing token first");
+    if(typeof message.token!=="string"||!message.token)throw new Error("Paste the local pairing token first");
+    if(!/^[A-Za-z0-9_-]{32,128}$/.test(message.token))throw new Error("Invalid token characters. Copy only the contents of local/pairing-token.txt using the PowerShell clipboard command; do not paste the command itself.");
+    if(typeof message.execute!=="boolean")throw new Error("Automatic-play selection is invalid; reopen the popup.");
     const tabs=await chrome.tabs.query({active:true,currentWindow:true});
     const tab=tabs[0];
     if(!tab?.id||!allowedURL(tab.url))throw new Error("Open the Urban Rivals WebGL game tab");

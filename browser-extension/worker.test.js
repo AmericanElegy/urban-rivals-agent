@@ -74,3 +74,18 @@ test("an unreachable bridge explains how to restore the local service",async()=>
   assert.match(result.error,/Local bridge is unavailable/);
   assert.match(result.error,/ReusePairingToken/);
 });
+
+
+test("non-ASCII pairing text is rejected before constructing HTTP headers",async()=>{
+  let listener;
+  let fetched=false;
+  globalThis.chrome={debugger:{onDetach:{addListener:()=>{}}},runtime:{getURL:path=>"chrome-extension://test/"+path,
+      onMessage:{addListener:fn=>{listener=fn;}}}};
+  globalThis.fetch=async()=>{fetched=true;throw new Error("Must not fetch");};
+  await import("./worker.js?unicode-token");
+  const result=await new Promise(resolve=>listener({type:"start",token:"x".repeat(40)+"\u200b",execute:true},
+    {url:"chrome-extension://test/popup.html"},resolve));
+  assert.match(result.error,/Invalid token characters/);
+  assert.equal(fetched,false);
+  assert.equal(result.error.includes("x".repeat(40)),false);
+});

@@ -37,7 +37,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-100 Python tests and 10 extension tests pass. Fresh Oblivion-board replay passes
+100 Python tests and 11 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -61,9 +61,14 @@ untimed Training setup modal. Research tab 19122069 is disposable.
 Pairing works. James loaded extension 0.2.3, reported an error near storage
 initialization and then Failed to fetch. Guarding optional session storage fixes
 the former; the bridge had been stopped during the unsupported-hand attempt,
-explaining its unavailability afterward. It has been restored inspect-only with
-the same token. Reload extension once after these latest popup/worker fixes;
-restart bridge after Python changes, retaining the token.
+explaining its unavailability afterward. A later non-ASCII-header error came
+from pasted token text; strict character validation now rejects it before fetch.
+James recopied the token and confirmed successful INSPECT capture.
+
+The bridge is now execution-enabled with engine_revision copy-v1 for a bounded
+user-started live attempt, same token retained. Native input restores Chrome to
+half-width, so James is handling final Start/Training PLAY. Do not restart or run
+competing OCR during the attempt. Monitor local receipts; restore inspect after.
 
 Before a bounded live test: verify /ready execution mode and engine_revision,
 fully visible canvas, a single debugger controller, and AUTO waiting status
