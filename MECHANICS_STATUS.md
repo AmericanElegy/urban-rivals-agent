@@ -111,3 +111,38 @@ and Exchange. Copy Opp. Ability remains rejected. The new live hand's cards have
 not been added to the executable catalog, avoiding omitted or guessed effects.
 Next: obtain the official character/bonus description for those exact evolutions
 and verify ability-copy precedence before enabling that hand.
+
+## Ability-copy implementation and full battle-log consistency
+
+The official Gibus page supplies the missing bonus definition:
+https://www.urban-rivals.com/game/characters/?id_perso=2261
+Copy Ability replaces its own effect with the original opposing ability;
+Leader/Genesis abilities are excluded. Replacement preserves its source, so a
+bonus copy remains bonus-sourced. Copied conditions and multipliers use the
+copier's initiative, history, clan and opposing stats. Recursive/conditional
+copy remains rejected, as do unverified cross-source stop cycles.
+
+Exact observed evolutions were checked against the signed-in official collection
+and character evolution rows:
+- Gibus (2261): Oblivion, 6/4/3, +3 Attack Per Opp. Damage.
+- Viperine (2508): Oblivion, 9/3/3, Unison Stop Bonus.
+- Wilmot (2250): Oblivion, 7/6/5, Equalizer damage reduction minimum 1.
+- Gregor Ld (2028): Paradox, 9/5/5, Asymmetry Cancel Opp. Power Modif.
+  The generic sheet displayed a lower-evolution Protection ability; the
+  maximum-evolution row, collection row and actual board agree on Cancel.
+- Mercury Cr (1227): Pussycats, 8/4/4, +2 Pillz.
+- Veronica (745): Pussycats, 7/5/4, -2 Opp. Pillz minimum 1 on victory.
+- Eris (575): Sakrohm, 7/7/5, Courage +2 Life.
+- Sol Hona (724): Sakrohm, 6/8/5, -2 Opp. Power minimum 6.
+Card URLs use https://www.urban-rivals.com/game/characters/?id_perso=ID.
+Printed clan bonuses are preserved, even on singleton Gregor (inactive there).
+
+The completed Oblivion match's reverse-order battle log was transcribed with
+account identifiers omitted. Chronological receipts: Joy vs Viperine,
+Fixit vs Gregor, Pacarezza vs Gibus, Graff vs Wilmot. Life progression:
+15/15 -> 15/9 -> 10/9 -> 10/3 -> 10/2. Log bids include the free pill.
+Enumerating affordable Fury flags produces seven consistent complete histories.
+Our third-round Fury is required; opposing Fury choices and final reserves are
+not uniquely observable. verify-log retains all candidates, avoiding invented
+opposing expenditures. This corroborates copied Stop Ability and the conditional
+Exchange/Fury path, but is not an automatic-bot match or proof of every mechanic.

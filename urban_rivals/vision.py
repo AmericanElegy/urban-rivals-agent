@@ -513,8 +513,11 @@ class VisionSession:
         self.clock=clock
         self.board_candidate=None
         self.board_candidate_at=None
+        self.panel_candidate=None
+        self.panel_candidate_at=None
 
     def action(self,x,y,status):
+        self.panel_candidate=None
         return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
 
     def step(self,image):
@@ -572,20 +575,28 @@ class VisionSession:
         if not stake:
             # Animation after confirm is expected, otherwise no blind clicks.
             raise RecognitionError("Stake panel disappeared before a verified submission")
-        selected=self.reader.text(image,(.24,.18,.49,.29),.8)
+        selected=self.reader.text(image,(.32,.20,.47,.27),.8)
         expected=self.state.players[0].hand[self.pending.card].name
         if normalize(selected)!=normalize(expected):
             raise RecognitionError(f"Selected card differs from {expected}: {selected!r}")
-        if self.phase=="selected":
-            self.phase="reset"
-            return self.action(.578,.513,"Reset paid pillz to zero")
         panel_number=getattr(self.reader,"panel_number",None)
         attack=(panel_number(image,(.55,.55,.61,.64),"attack") if panel_number
                 else self.reader.number(image,(.55,.55,.61,.64)))
         damage=(panel_number(image,(.74,.55,.79,.64),"damage") if panel_number
                 else self.reader.number(image,(.74,.55,.79,.64)))
+        fingerprint=(self.phase,normalize(selected),attack,damage)
+        now=self.clock()
+        settled=(fingerprint==self.panel_candidate and self.panel_candidate_at is not None
+                 and 0 <= now-self.panel_candidate_at <= 20)
+        self.panel_candidate=fingerprint
+        self.panel_candidate_at=now
+        if not settled:
+            return {"status":"Waiting for a second matching stake-panel reading", "action":None}
         if damage!=self.panel_damage:
             raise RecognitionError("Damage panel differs from the no-Fury expectation")
+        if self.phase=="selected":
+            self.phase="reset"
+            return self.action(.578,.513,"Reset paid pillz to zero")
         if self.phase=="reset":
             self.base_attack=attack
             if attack!=self.panel_power:
@@ -595,6 +606,12 @@ class VisionSession:
             self.remaining=self.pending.pillz
             self.expected_attack=attack
             self.phase="increment"
+            if self.remaining and self.remaining==self.state.players[0].pillz:
+                # MAX is only used for an exact all-in allocation, after verified
+                # MIN/no-Fury. Its resulting attack must still settle and match.
+                self.expected_attack=self.base_attack*(self.remaining+1)
+                self.remaining=0
+                return self.action(.874,.513,"Allocate all remaining paid pillz with MAX; verify attack")
         elif self.phase=="increment" and attack!=self.expected_attack:
             raise RecognitionError("Displayed attack does not confirm the last pillz increment")
         if self.remaining:

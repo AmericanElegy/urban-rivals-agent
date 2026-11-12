@@ -19,6 +19,14 @@
     {"name":"Austin","power":7,"damage":8,"stars":5,"clan":"Cosmohnuts","ability":"Bet > 5 Pillz: -2 Opp. Damage, Min 1","bonus":"Tune Out"},
     {"name":"Barcius","power":8,"damage":4,"stars":3,"clan":"Cosmohnuts","ability":"Confidence: +3 Life","bonus":"Tune Out"},
     {"name":"Buford","power":7,"damage":3,"stars":3,"clan":"Cosmohnuts","ability":"Bet > 3 Pillz: -4 Opp. Life, Min 3","bonus":"Tune Out"},
-    {"name":"Lucien","power":8,"damage":1,"stars":4,"clan":"Cosmohnuts","ability":"-6 Opp. Life, Min 0","bonus":"Tune Out"}
+    {"name":"Lucien","power":8,"damage":1,"stars":4,"clan":"Cosmohnuts","ability":"-6 Opp. Life, Min 0","bonus":"Tune Out"},
+    {"name":"Gibus","power":6,"damage":4,"stars":3,"clan":"Oblivion","ability":"+3 Attack Per Opp. Damage","bonus":"Copy: Opp. Ability"},
+    {"name":"Viperine","power":9,"damage":3,"stars":3,"clan":"Oblivion","ability":"Unison: Stop Opp. Bonus","bonus":"Copy: Opp. Ability"},
+    {"name":"Wilmot","power":7,"damage":6,"stars":5,"clan":"Oblivion","ability":"Equalizer: -1 Opp. Damage, Min 1","bonus":"Copy: Opp. Ability"},
+    {"name":"Gregor Ld","power":9,"damage":5,"stars":5,"clan":"Paradox","ability":"Asymmetry: Cancel Opp. Power Modif.","bonus":"Asymmetry: Damage +3"},
+    {"name":"Mercury Cr","power":8,"damage":4,"stars":4,"clan":"Pussycats","ability":"+2 Pillz","bonus":"-2 Opp. Damage, Min 1"},
+    {"name":"Veronica","power":7,"damage":5,"stars":4,"clan":"Pussycats","ability":"-2 Opp. Pillz, Min 1","bonus":"-2 Opp. Damage, Min 1"},
+    {"name":"Eris","power":7,"damage":7,"stars":5,"clan":"Sakrohm","ability":"Courage: +2 Life","bonus":"-8 Opp. Attack, Min 3"},
+    {"name":"Sol Hona","power":6,"damage":8,"stars":5,"clan":"Sakrohm","ability":"-2 Opp. Power, Min 6","bonus":"-8 Opp. Attack, Min 3"}
   ]
 }

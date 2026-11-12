@@ -53,8 +53,9 @@ async function loop(activeRun){
       const response=await fetch(ENDPOINT+"/step",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+activeRun.token},body:JSON.stringify(frame),signal:AbortSignal.timeout(12000)});
       const result=await response.json();
       if(run!==activeRun)return;
-      if(!response.ok||result.stop)throw new Error(result.error||result.status||"Bridge stopped");
-      status=result.status||"Reading canvas";
+      if(!response.ok||result.stop)throw new Error(result.error||
+        (!activeRun.execute&&result.stop?"INSPECT complete: canvas captured locally; automatic play is OFF. No clicks.":result.status)||"Bridge stopped");
+      status=(activeRun.execute?"AUTO: ":"INSPECT: ")+(result.status||"Reading canvas");
       const action=validateAction(result,frame);
       if(action){
         if(!activeRun.execute)throw new Error("Inspect mode received a click");
@@ -88,12 +89,18 @@ chrome.runtime.onMessage.addListener((message,sender,reply)=>{
     const tab=tabs[0];
     if(!tab?.id||!allowedURL(tab.url))throw new Error("Open the Urban Rivals WebGL game tab");
     status="Checking local pairing and server mode…";
-    const ping=await fetch(ENDPOINT+"/ready",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+message.token},body:"{}",signal:AbortSignal.timeout(4000)});
+    let ping;
+    try{ping=await fetch(ENDPOINT+"/ready",{method:"POST",headers:{"Content-Type":"application/json",Authorization:"Bearer "+message.token},body:JSON.stringify({execute:message.execute}),signal:AbortSignal.timeout(4000)});}
+    catch{throw new Error("Local bridge is unavailable. Start Start-TrainingAgent.ps1; use -Execute for automatic play and -ReusePairingToken to keep this token.");}
     const ready=await ping.json();
     if(!ping.ok)throw new Error(ready.error||"Pairing failed");
     if(message.execute&&!ready.execute_enabled)throw new Error("Server is inspect-only. Uncheck automatic play before Start.");
+    if(message.execute&&ready.engine_revision!=="copy-v1")throw new Error("Restart the local bridge: its engine is older than this extension.");
     const activeRun={id:crypto.randomUUID(),tabId:tab.id,token:message.token,execute:message.execute,sequence:0,started:Date.now()};
-    if(activeRun.execute)await bounded(chrome.debugger.attach({tabId:tab.id},"1.3"),"Input connection");
+    if(activeRun.execute){
+      try{await bounded(chrome.debugger.attach({tabId:tab.id},"1.3"),"Input connection");}
+      catch(error){throw new Error("Cannot attach game input. Close any ChatGPT/browser debugger on the game tab, then Start again. "+error.message);}
+    }
     try{
       await geometry(tab.id);
       await chrome.scripting.executeScript({target:{tabId:tab.id},func:()=>{

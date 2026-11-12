@@ -1,10 +1,22 @@
 {
   "manifest_version": 3,
   "name": "Urban Rivals Local Training Agent",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Opt-in local-only canvas OCR and Training Bot controls. No cloud model or game API.",
-  "permissions": ["activeTab", "scripting", "debugger"],
-  "host_permissions": ["http://127.0.0.1:8876/*"],
-  "background": {"service_worker": "worker.js", "type": "module"},
-  "action": {"default_popup": "popup.html"}
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "debugger",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1:8876/*"
+  ],
+  "background": {
+    "service_worker": "worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  }
 }

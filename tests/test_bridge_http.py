@@ -38,7 +38,9 @@ class BridgeHTTPTests(unittest.TestCase):
                 self.assertIsNotNone(token,"Bridge startup timed out")
                 endpoint=f"http://127.0.0.1:{port}"
                 with urlopen(endpoint+"/health",timeout=5) as response:
-                    self.assertFalse(json.load(response)["execute_enabled"])
+                    health=json.load(response)
+                    self.assertFalse(health["execute_enabled"])
+                    self.assertEqual(health["engine_revision"],"copy-v1")
                 def post(data,authorization=None,origin=None):
                     headers={"Content-Type":"application/json"}
                     if authorization:

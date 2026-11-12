@@ -72,3 +72,19 @@ fail the replay. No API, paid call, new pairing or new match was required.
 
 71 Python tests, six Node extension tests, a simulator smoke match and offline
 verification of four sequential native boards pass. No live inputs were issued.
+
+## Additional panel and fresh-board calibration
+
+The fresh Oblivion board passes 147/147 fields at three scales, now including
+engine readiness. tests/fixtures/live_training_ocr.json references local media.
+Four recorded stake panels (Fixit, Vermyn Noel, Bennie, Pacarezza) pass 48/48
+checks at three scales via tests/fixtures/stake_panels.json. Dedicated purple
+Attack and pink Damage masks retain the two-read confidence requirement.
+The old title crop returned B FIXIT, B BENNIE, etc. Tightening it to the title
+band excludes the clan logo and reads all four exact names.
+
+Execution waits for two consecutive matching panel readings before MIN, each
+increment and confirmation. Stale attack after increment stops instead of
+repeating the click. These are replay/controller checks; live panel input and
+an automatic completed match remain pending. Do not run multiple OCR replays
+alongside live execution: CPU contention can exceed the 10-second frame limit.

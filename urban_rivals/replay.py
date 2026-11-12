@@ -13,6 +13,9 @@ def compare_report(actual,frame,hands):
         checks.append({"group":group,"field":field,"expected":expected,"actual":value,
                        "result":"pass" if same else "unreadable" if value is None or value=="" else "wrong"})
     check("phase","phase",frame["phase"],actual.get("phase"))
+    if frame.get("panel"):
+        for key,value in frame["panel"].items():
+            check("stake_panel",key,value,actual.get("panel",{}).get(key))
     if frame["phase"]!="round_board":
         return checks
     for key in ("round","seconds_left","observed_card"):
@@ -63,6 +66,13 @@ def replay(manifest_path,output_path="local/ocr-replay-report.json",root=".",rea
             canonical=resized.resize((1318,744))
             start=time.perf_counter()
             actual=reader.diagnostics(canonical)
+            if frame.get("panel") and actual.get("phase")=="stake_panel":
+                actual["panel"]={"name":reader.text(canonical,(.32,.20,.47,.27),.8)}
+                for kind,box in (("attack",(.55,.55,.61,.64)),("damage",(.74,.55,.79,.64))):
+                    try:
+                        actual["panel"][kind]=reader.panel_number(canonical,box,kind)
+                    except ValueError as error:
+                        actual["panel"][kind+"_error"]=str(error)
             checks=compare_report(actual,frame,manifest.get("hands",{}).get(frame.get("hands"),[]))
             for check in checks:
                 groups[check["group"]][check["result"]]+=1
@@ -123,3 +133,48 @@ def verify_match(manifest_path,output_path="local/match-verification.json",root=
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(result,indent=2),encoding="utf-8")
     return result
+
+
+def verify_battle_log(manifest_path):
+    """Keep every Fury interpretation consistent with observed log receipts.
+
+    The log lacks remaining pillz/Fury flags, so never present one candidate as
+    a fully observed match. Illegal budgets and mismatching receipts prune paths.
+    """
+    from itertools import product
+    from .engine import Move, Player, State, resolve
+    from .vision import Catalog
+    manifest=json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    if manifest.get("schema")!="urban-rivals/battle-log/v1":
+        raise ValueError("Unknown battle-log schema")
+    catalog=Catalog()
+    initial=manifest["initial"]
+    hands=[tuple(catalog.identify(name,initial["day"]) for name in row) for row in manifest["hands"]]
+    first=State(tuple(Player(hands[i],life=initial["life"][i],pillz=initial["pillz"][i])
+                      for i in range(2)),leader=initial["leader"],day=initial["day"])
+    paths=[(first,())]
+    counts=[]
+    for receipt in manifest["rounds"]:
+        if any(type(n) is not int or n<1 for n in receipt["attack_pillz"]):
+            raise ValueError("Log attack allocation must include at least the free pill")
+        candidates=[]
+        for state,history in paths:
+            for fury in product((False,True),repeat=2):
+                moves=tuple(Move(receipt["cards"][i],receipt["attack_pillz"][i]-1,fury[i])
+                            for i in range(2))
+                try:
+                    after=resolve(state,*moves)
+                except ValueError:
+                    continue
+                if (tuple(p.life for p in after.players)==tuple(receipt["life_after"])
+                        and after.players[receipt["winner"]].last_won):
+                    candidates.append((after,history+(fury,)))
+        paths=candidates
+        counts.append(len(paths))
+        if not paths:
+            break
+    return {"passed":bool(paths) and len(counts)==len(manifest["rounds"]),
+            "matching_paths":len(paths),"round_path_counts":counts,
+            "possible_fury_histories":[list(history) for _,history in paths],
+            "possible_final_pillz":sorted({tuple(p.pillz for p in state.players) for state,_ in paths}),
+            "limits":"Log consistency only. Fury and remaining pillz are not directly observed; no automatic play is proven."}

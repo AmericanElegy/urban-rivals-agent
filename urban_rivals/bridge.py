@@ -67,6 +67,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
     stopped=set()
     sequences={}
     expected_host=f"127.0.0.1:{port}"
+    from .engine import ENGINE_REVISION
     shared_ocr=None
     if session_factory is VisionSession:
         from .vision import LocalOCR
@@ -105,7 +106,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
             if self.headers.get("Host")!=expected_host:
                 return self.send(403,{"error":"Invalid host"})
             self.send(200 if self.path=="/health" else 404,
-                      {"service":"urban-rivals-local-bridge","execute_enabled":execute})
+                      {"service":"urban-rivals-local-bridge","execute_enabled":execute,"engine_revision":ENGINE_REVISION})
 
         def do_POST(self):
             if self.headers.get("Host")!=expected_host:
@@ -124,7 +125,11 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 if not isinstance(data,dict):
                     raise ValueError("Expected a JSON object")
                 if self.path=="/ready":
-                    return self.send(200,{"execute_enabled":execute,"capture":"visible-tab-v1"})
+                    with (output/"receipts.jsonl").open("a",encoding="utf-8") as stream:
+                        stream.write(json.dumps({"time":time.time(),"event":"ready",
+                            "requested_execute":data.get("execute"),"server_execute":execute,
+                            "engine_revision":ENGINE_REVISION})+"\n")
+                    return self.send(200,{"execute_enabled":execute,"capture":"visible-tab-v1","engine_revision":ENGINE_REVISION})
                 if self.path=="/shutdown":
                     self.send(200,{"status":"Bridge shutting down"})
                     from threading import Thread
@@ -148,7 +153,10 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 if run_id not in sessions:
                     if sessions:
                         raise ValueError("Stop the previous run before starting another")
-                    if shared_ocr is not None:
+                    if session_factory is VisionSession and not (execute and data["execute"]):
+                        from types import SimpleNamespace
+                        sessions[run_id]=SimpleNamespace(execute=False)
+                    elif shared_ocr is not None:
                         from .vision import CanvasReader
                         sessions[run_id]=session_factory(reader=CanvasReader(ocr=shared_ocr),execute=execute and data["execute"])
                     else:

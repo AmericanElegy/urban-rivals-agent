@@ -1,0 +1,90 @@
+{
+  "schema": "urban-rivals/ocr-replay/v1",
+  "label_source": "Four stake panels manually checked in James recording; local media only. No clicks dispatched by replay.",
+  "frames": [
+    {
+      "id": "panel-Fixit",
+      "path": "local/recording/panel-probe-10.png",
+      "crop": [
+        293,
+        169,
+        1612,
+        903
+      ],
+      "phase": "stake_panel",
+      "panel": {
+        "name": "Fixit",
+        "attack": 9,
+        "damage": 6
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    },
+    {
+      "id": "panel-Vermyn Noel",
+      "path": "local/recording/panel-probe-27.png",
+      "crop": [
+        293,
+        169,
+        1612,
+        903
+      ],
+      "phase": "stake_panel",
+      "panel": {
+        "name": "Vermyn Noel",
+        "attack": 7,
+        "damage": 4
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    },
+    {
+      "id": "panel-Bennie",
+      "path": "local/recording/panel-probe-42.png",
+      "crop": [
+        293,
+        169,
+        1612,
+        903
+      ],
+      "phase": "stake_panel",
+      "panel": {
+        "name": "Bennie",
+        "attack": 9,
+        "damage": 3
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    },
+    {
+      "id": "panel-Pacarezza",
+      "path": "local/recording/panel-probe-59.png",
+      "crop": [
+        293,
+        169,
+        1612,
+        903
+      ],
+      "phase": "stake_panel",
+      "panel": {
+        "name": "Pacarezza",
+        "attack": 9,
+        "damage": 5
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ]
+    }
+  ]
+}

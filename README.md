@@ -56,7 +56,7 @@ star counting and selected-card detection pass the saved-capture regression set.
 Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The catalog covers eighteen specific card evolutions from the saved training
+The catalog covers 26 specific card evolutions from the saved training
 boards and recording. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
 Day-only until their Night behavior is cataloged. The first live driver uses no
@@ -72,7 +72,7 @@ its most likely move makes play predictable.
 Supported mechanics include Stop Ability/Bonus, Power/Damage Protection and
 Exchange, Power/Damage cancellation, and Attack Per Opp. Power/Damage. See
 MECHANICS_STATUS.md for exact scope and rejection boundaries. Unsupported effect
-text raises an error, including Copy, Protection Ability/Bonus, poison and
+text raises an error, including recursive/conditional ability copy, stat Copy, Protection Ability/Bonus, poison and
 regeneration, recovery, Oculus and Leader mechanics. Nested conditions and many
 modern keywords are not implemented. Do not remove
 unsupported effects to make a real hand load: that would produce incorrect advice.
@@ -258,3 +258,18 @@ boards, including real round-to-round engine/resource reconciliation. It stops
 on any missing source, recognition failure or mismatched expected receipt. The
 second analyzes the recorded opening hand offline. Neither command clicks or
 queues a game. Full scope and current official sources: [MECHANICS_STATUS.md](MECHANICS_STATUS.md).
+
+
+Additional local verification:
+
+```powershell
+python -m urban_rivals verify-log tests/fixtures/live_copy_battle_log.json
+python -m urban_rivals replay tests/fixtures/stake_panels.json --output local/panel-replay
+```
+
+Extension 0.2.3 keeps pairing in memory for the browser session (requires one
+reload after adding its storage permission). Start still works if an older
+loaded manifest lacks storage. Reopening the popup defaults automatic play off.
+The button and completion status distinguish one-frame inspection from automatic
+play. Restart the bridge after engine changes; retain the token with
+-ReusePairingToken. See CURRENT_STATE.md and LIVE_CALIBRATION.md before live tests.

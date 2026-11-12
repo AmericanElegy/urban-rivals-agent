@@ -1,0 +1,91 @@
+{
+  "leader": 1,
+  "round": 1,
+  "day": true,
+  "players": [
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Fixit",
+          "power": 7,
+          "damage": 6,
+          "stars": 4,
+          "clan": "Bangers",
+          "ability": "Reprisal: Protection: Power And Damage",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Graff Cr",
+          "power": 6,
+          "damage": 1,
+          "stars": 1,
+          "clan": "Bangers",
+          "ability": "Stop Opp. Ability",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Joy",
+          "power": 6,
+          "damage": 6,
+          "stars": 4,
+          "clan": "Bangers",
+          "ability": "+3 Pillz",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Pacarezza",
+          "power": 7,
+          "damage": 5,
+          "stars": 2,
+          "clan": "Bangers",
+          "ability": "Reprisal: Damage Exchange",
+          "bonus": "Power +2"
+        }
+      ]
+    },
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Gibus",
+          "power": 6,
+          "damage": 4,
+          "stars": 3,
+          "clan": "Oblivion",
+          "ability": "+3 Attack Per Opp. Damage",
+          "bonus": "Copy: Opp. Ability"
+        },
+        {
+          "name": "Viperine",
+          "power": 9,
+          "damage": 3,
+          "stars": 3,
+          "clan": "Oblivion",
+          "ability": "Unison: Stop Opp. Bonus",
+          "bonus": "Copy: Opp. Ability"
+        },
+        {
+          "name": "Wilmot",
+          "power": 7,
+          "damage": 6,
+          "stars": 5,
+          "clan": "Oblivion",
+          "ability": "Equalizer: -1 Opp. Damage, Min 1",
+          "bonus": "Copy: Opp. Ability"
+        },
+        {
+          "name": "Gregor Ld",
+          "power": 9,
+          "damage": 5,
+          "stars": 5,
+          "clan": "Paradox",
+          "ability": "Asymmetry: Cancel Opp. Power Modif.",
+          "bonus": "Asymmetry: Damage +3"
+        }
+      ]
+    }
+  ]
+}

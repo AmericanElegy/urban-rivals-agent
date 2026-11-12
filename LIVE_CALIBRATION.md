@@ -42,3 +42,21 @@ was shut down. No automatic live round or full match is confirmed.
 5. Verify selected card, MIN, each increment, single confirmation and the next
    round's exact resource receipt. Unknown readings/mechanics must stop.
 6. Restore inspect-only after the test. No automatic requeue or own Fury.
+
+
+## Superseding follow-up
+
+Copy Ability has now been implemented from the official Gibus bonus definition;
+the original four opponents and the next Pussycats/Sakrohm hand are cataloged.
+The completed first match's battle log has four consistent rounds ending 10/2,
+with opposing Fury/reserve ambiguity retained. No automatic win is claimed.
+The second attempt generated inspect captures but no execution frames. James
+reported Failed to fetch after the bridge was stopped; it was restored inspect
+only with the same token. Version 0.2.3 startup and memory-token handling have
+further fixes pending reload. Do not reuse the historical unknown-hand blocker
+above as current: the catalog now has 26 exact evolutions.
+
+Before the next launch, refresh bridge and extension, confirm actual execution
+readiness and AUTO waiting status while still on the untimed modal. Do not run
+competing OCR replays during that test. A tight selected-title crop and matching
+consecutive panel reads now precede stake actions; they still need live evidence.

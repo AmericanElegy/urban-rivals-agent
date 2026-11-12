@@ -70,6 +70,6 @@ class CancelScalingTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"precedence"):
             duel(a,b)
 
-    def test_copy_ability_remains_rejected(self):
+    def test_recursive_copy_remains_rejected(self):
         with self.assertRaises(ValueError):
-            parse_effect("Copy: Opp. Ability")
+            duel(card("a",ability="Copy: Opp. Ability"),card("b",ability="Copy: Opp. Ability"))

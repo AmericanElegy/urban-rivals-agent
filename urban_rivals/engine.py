@@ -7,6 +7,8 @@ from dataclasses import dataclass, replace
 import re
 from functools import lru_cache
 
+ENGINE_REVISION="copy-v1"
+
 
 @dataclass(frozen=True)
 class Effect:
@@ -21,7 +23,7 @@ class Effect:
 
     def __post_init__(self):
         if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability",
-                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage"}:
+                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage", "copy_ability"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
@@ -52,7 +54,7 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
             condition = "bet_over" if bet[1] == ">" else "bet_under"
             threshold = int(bet[2])
         # Protection's colon belongs to the mechanic, not a condition.
-        if condition == "protection":
+        if condition in {"protection", "copy"}:
             condition = "always"
         else:
             text = remainder
@@ -61,6 +63,8 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         if condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {prefix}")
         text = text.strip()
+    if re.fullmatch(r"Copy:\s*Opp\.?\s+Ability", text, re.I) and condition=="always":
+        return (Effect("copy_ability",0),)
     match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power|Damage)\s+Modif", text, re.I)
     if match:
         return (Effect("cancel_"+match[1].lower(),0,condition=condition,threshold=threshold),)
@@ -198,11 +202,33 @@ def resolve(state: State, first: Move, second: Move) -> State:
         if not is_legal(state, side, move):
             raise ValueError(f"Illegal move for side {side}: {move}")
     cards = [p.hand[m.card] for p, m in zip(state.players, moves)]
+    # Expand from the original opposing ability, before checking conditions.
+    # The replacement retains the copying source (ability or bonus); conditions
+    # and multipliers are evaluated from the copier's side, never the donor's.
+    sources=[]
+    for side,c in enumerate(cards):
+        other=cards[1-side]
+        def expand(row):
+            result=[]
+            for e in row:
+                if e.stat!="copy_ability":
+                    result.append(e)
+                    continue
+                if (e.amount,e.condition,e.multiplier,e.opponent)!=(0,"always","none",False):
+                    raise ValueError("Conditional or modified ability-copy is not verified")
+                if other.clan.casefold() in {"leader","genesis"}:
+                    continue
+                if any(x.stat=="copy_ability" for x in other.ability):
+                    raise ValueError("Recursive ability-copy is not verified")
+                result.extend(other.ability)
+            return tuple(result)
+        bonus_on=sum(x.clan==c.clan for x in state.players[side].hand)>=2
+        sources.append((expand(c.ability),expand(c.bonus) if bonus_on else ()))
     active = []
     ability_sizes = []
     for side, (p, c) in enumerate(zip(state.players, cards)):
-        bonus_on = sum(x.clan == c.clan for x in p.hand) >= 2
-        effects = c.ability + (c.bonus if bonus_on else ())
+        ability,bonus=sources[side]
+        effects = ability + bonus
         if state.day is None and any(e.condition in {"day", "night"} for e in effects):
             raise ValueError("Day/Night effects require the observed game clock")
         unison = all(x.clan == c.clan for x in p.hand)
@@ -228,7 +254,7 @@ def resolve(state: State, first: Move, second: Move) -> State:
             return conditions[e.condition]
         active.append(tuple(replace(e, amount=e.amount * multipliers[e.multiplier])
                             for e in effects if enabled(e)))
-        ability_sizes.append(sum(enabled(e) for e in c.ability))
+        ability_sizes.append(sum(enabled(e) for e in ability))
     # Retain source identity while resolving stops. Opposing ability/bonus
     # stop cycles need an observed precedence rule; do not silently choose one.
     for side in range(2):

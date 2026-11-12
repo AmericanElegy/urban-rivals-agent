@@ -83,6 +83,10 @@ class FakeReader:
 
 
 class SessionTests(unittest.TestCase):
+    def panel_step(self,session):
+        self.assertIsNone(session.step(None)["action"])
+        return session.step(None)
+
     def test_round_hint_skips_full_screen_ocr_but_still_requires_board_read(self):
         class RoundReader(FakeReader):
             read=False
@@ -107,8 +111,8 @@ class SessionTests(unittest.TestCase):
         self.assertIsNone(s.step(None)["action"])
         self.assertEqual(s.step(None)["action"]["x"],.22)
         r.panel=True
-        self.assertEqual(s.step(None)["action"]["x"],.578)
-        self.assertEqual(s.step(None)["action"]["x"],.722)
+        self.assertEqual(self.panel_step(s)["action"]["x"],.578)
+        self.assertEqual(self.panel_step(s)["action"]["x"],.722)
         r.panel=False
         self.assertIsNone(s.step(None)["action"])
 
@@ -118,11 +122,11 @@ class SessionTests(unittest.TestCase):
         s.step(None)
         s.step(None)
         r.panel=True
-        s.step(None)
+        self.panel_step(s)
         s.phase="increment"
         s.expected_attack=14
         with self.assertRaises(RecognitionError):
-            s.step(None)
+            self.panel_step(s)
 
     def test_failed_minimum_reset_is_not_confirmed(self):
         r=FakeReader()
@@ -130,10 +134,10 @@ class SessionTests(unittest.TestCase):
         s.step(None)
         s.step(None)
         r.panel=True
-        s.step(None)
+        self.panel_step(s)
         r.attack=14
         with self.assertRaises(RecognitionError):
-            s.step(None)
+            self.panel_step(s)
 
     def test_fury_damage_is_not_confirmed(self):
         r=FakeReader()
@@ -141,10 +145,10 @@ class SessionTests(unittest.TestCase):
         s.step(None)
         s.step(None)
         r.panel=True
-        s.step(None)
+        self.panel_step(s)
         r.number=lambda image,box: 6 if box==(.74,.55,.79,.64) else 7
         with self.assertRaises(RecognitionError):
-            s.step(None)
+            self.panel_step(s)
 
     def test_board_change_or_long_gap_requires_another_read(self):
         from dataclasses import replace
@@ -179,3 +183,43 @@ class SessionTests(unittest.TestCase):
         r.board=original
         self.assertIsNone(s.step(None)["action"])
         self.assertIsNotNone(s.step(None)["action"])
+
+    def test_stale_attack_after_increment_never_repeats_click(self):
+        r=FakeReader()
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        s.step(None)
+        s.pending=Move(0,1)
+        r.panel=True
+        self.assertEqual(self.panel_step(s)["action"]["x"],.578)
+        self.assertEqual(self.panel_step(s)["action"]["x"],.874)
+        with self.assertRaisesRegex(RecognitionError,"last pillz increment"):
+            self.panel_step(s)
+
+    def test_changing_panel_numbers_do_not_trigger_minimum(self):
+        r=FakeReader()
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        s.step(None)
+        r.panel=True
+        self.assertIsNone(s.step(None)["action"])
+        r.attack=14
+        self.assertIsNone(s.step(None)["action"])
+        r.attack=7
+        self.assertEqual(self.panel_step(s)["action"]["x"],.578)
+
+    def test_all_in_uses_max_once_then_verifies_full_attack(self):
+        from dataclasses import replace
+        r=FakeReader()
+        r.state=replace(r.state,players=tuple(replace(p,pillz=2) for p in r.state.players))
+        s=VisionSession(r,execute=True,iterations=10)
+        s.step(None)
+        s.step(None)
+        s.pending=Move(0,2)
+        r.panel=True
+        self.panel_step(s)
+        action=self.panel_step(s)["action"]
+        self.assertEqual((action["x"],action["y"]),(.874,.513))
+        self.assertEqual(s.expected_attack,21)
+        r.attack=21
+        self.assertEqual(self.panel_step(s)["action"]["x"],.722)

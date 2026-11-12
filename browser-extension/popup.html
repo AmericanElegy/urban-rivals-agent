@@ -3,10 +3,11 @@
 <style>body{width:330px;font:14px system-ui;padding:14px;background:#151923;color:#edf0f6}input{box-sizing:border-box;width:100%;padding:8px;margin:8px 0}button{padding:9px;margin:6px 4px 6px 0}label{display:block}label input{width:auto}#status{white-space:pre-wrap}small{color:#b7c2d4}</style>
 <h2>Local training agent</h2>
 <p>Inspect: capture one visible board, then stop. No fresh match needed. Keep this game tab selected in its window.</p>
+<small>Token is remembered in memory until Chrome or the extension restarts. Automatic play must be checked each time.</small>
 <label>Local pairing token <input id="token" type="password" autocomplete="off"></label>
 <label><input id="execute" type="checkbox"> Play this Training Bot match automatically</label>
 <small>Unchecked: one-frame inspection, no clicks. Automatic play requires a fresh round-1 Training Bot match and a server started for execution. Live validation is still pending. Escape or Stop ends control.</small>
 <p><button id="start">Start</button><button id="stop">Stop</button></p>
 <p id="status">Not started</p>
-<small>Version 0.2.2 · Local only</small>
+<small>Version 0.2.3 · Local only</small>
 <script src="popup.js"></script></html>

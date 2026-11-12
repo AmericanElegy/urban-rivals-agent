@@ -1,0 +1,91 @@
+{
+  "leader": 1,
+  "round": 1,
+  "day": true,
+  "players": [
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Doug Snop",
+          "power": 7,
+          "damage": 2,
+          "stars": 2,
+          "clan": "Bangers",
+          "ability": "+2 Pillz",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Fixit",
+          "power": 7,
+          "damage": 6,
+          "stars": 4,
+          "clan": "Bangers",
+          "ability": "Reprisal: Protection: Power And Damage",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Joy",
+          "power": 6,
+          "damage": 6,
+          "stars": 4,
+          "clan": "Bangers",
+          "ability": "+3 Pillz",
+          "bonus": "Power +2"
+        },
+        {
+          "name": "Randal",
+          "power": 6,
+          "damage": 4,
+          "stars": 3,
+          "clan": "Bangers",
+          "ability": "Stop Opp. Ability",
+          "bonus": "Power +2"
+        }
+      ]
+    },
+    {
+      "life": 15,
+      "pillz": 12,
+      "hand": [
+        {
+          "name": "Mercury Cr",
+          "power": 8,
+          "damage": 4,
+          "stars": 4,
+          "clan": "Pussycats",
+          "ability": "+2 Pillz",
+          "bonus": "-2 Opp. Damage, Min 1"
+        },
+        {
+          "name": "Veronica",
+          "power": 7,
+          "damage": 5,
+          "stars": 4,
+          "clan": "Pussycats",
+          "ability": "-2 Opp. Pillz, Min 1",
+          "bonus": "-2 Opp. Damage, Min 1"
+        },
+        {
+          "name": "Eris",
+          "power": 7,
+          "damage": 7,
+          "stars": 5,
+          "clan": "Sakrohm",
+          "ability": "Courage: +2 Life",
+          "bonus": "-8 Opp. Attack, Min 3"
+        },
+        {
+          "name": "Sol Hona",
+          "power": 6,
+          "damage": 8,
+          "stars": 5,
+          "clan": "Sakrohm",
+          "ability": "-2 Opp. Power, Min 6",
+          "bonus": "-8 Opp. Attack, Min 3"
+        }
+      ]
+    }
+  ]
+}

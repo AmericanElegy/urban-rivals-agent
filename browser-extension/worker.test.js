@@ -41,4 +41,36 @@ test("popup-started inspect run captures one frame with unfocused parent window 
   assert.equal(debuggerCalls,0);
   const result=await new Promise(resolve=>listener({type:"status"},{url:"chrome-extension://test/popup.html"},resolve));
   assert.match(result.status,/captured locally/);
+  assert.match(result.status,/automatic play is OFF/);
+});
+
+
+test("execution refuses an outdated bridge before attaching game input",async()=>{
+  let listener;
+  let attached=0;
+  globalThis.chrome={
+    tabs:{query:async()=>[{id:7,url:"https://www.urban-rivals.com/game/play/webgl/"}]},
+    debugger:{attach:async()=>{attached++;},onDetach:{addListener:()=>{}}},
+    runtime:{getURL:path=>"chrome-extension://test/"+path,onMessage:{addListener:fn=>{listener=fn;}}}
+  };
+  globalThis.fetch=async()=>({ok:true,json:async()=>({execute_enabled:true})});
+  await import("./worker.js?outdated-bridge-test");
+  const result=await new Promise(resolve=>listener({type:"start",token:"x".repeat(43),execute:true},
+    {url:"chrome-extension://test/popup.html"},resolve));
+  assert.match(result.error,/Restart the local bridge/);
+  assert.equal(attached,0);
+});
+
+
+test("an unreachable bridge explains how to restore the local service",async()=>{
+  let listener;
+  globalThis.chrome={tabs:{query:async()=>[{id:7,url:"https://www.urban-rivals.com/game/play/webgl/"}]},
+    debugger:{onDetach:{addListener:()=>{}}},runtime:{getURL:path=>"chrome-extension://test/"+path,
+      onMessage:{addListener:fn=>{listener=fn;}}}};
+  globalThis.fetch=async()=>{throw new TypeError("Failed to fetch");};
+  await import("./worker.js?unreachable-bridge");
+  const result=await new Promise(resolve=>listener({type:"start",token:"x".repeat(43),execute:true},
+    {url:"chrome-extension://test/popup.html"},resolve));
+  assert.match(result.error,/Local bridge is unavailable/);
+  assert.match(result.error,/ReusePairingToken/);
 });

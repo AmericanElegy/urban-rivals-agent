@@ -1,0 +1,93 @@
+{
+  "schema": "urban-rivals/battle-log/v1",
+  "source": "Manually transcribed from the completed Training Bot battle log and final result on 2026-11-11. Private screenshot: local/live-copy-battle-log.png. This match is not attributed to the automatic driver.",
+  "hands": [
+    [
+      "Fixit",
+      "Graff Cr",
+      "Joy",
+      "Pacarezza"
+    ],
+    [
+      "Gibus",
+      "Viperine",
+      "Wilmot",
+      "Gregor Ld"
+    ]
+  ],
+  "initial": {
+    "life": [
+      15,
+      15
+    ],
+    "pillz": [
+      12,
+      12
+    ],
+    "leader": 1,
+    "day": true
+  },
+  "bid_convention": "attack pillz including the free pill; Fury is not shown",
+  "rounds": [
+    {
+      "cards": [
+        2,
+        1
+      ],
+      "attack_pillz": [
+        7,
+        4
+      ],
+      "winner": 0,
+      "life_after": [
+        15,
+        9
+      ]
+    },
+    {
+      "cards": [
+        0,
+        3
+      ],
+      "attack_pillz": [
+        1,
+        2
+      ],
+      "winner": 1,
+      "life_after": [
+        10,
+        9
+      ]
+    },
+    {
+      "cards": [
+        3,
+        0
+      ],
+      "attack_pillz": [
+        7,
+        2
+      ],
+      "winner": 0,
+      "life_after": [
+        10,
+        3
+      ]
+    },
+    {
+      "cards": [
+        1,
+        2
+      ],
+      "attack_pillz": [
+        1,
+        1
+      ],
+      "winner": 0,
+      "life_after": [
+        10,
+        2
+      ]
+    }
+  ]
+}

@@ -23,3 +23,9 @@
 - Run `python -m unittest discover -s tests -v` after engine/controller changes.
 - Verify current mechanics against official rules and reconcile actual live round
   receipts before claiming a mechanic is supported in the real client.
+
+- James requests sustained autonomous work through research, implementation,
+  tests and live calibration. Do not stop after each test; pause only for a
+  required user action, unresolved blocker, or usage limit.
+- Do not run parallel OCR replay workloads during live calibration; they compete
+  for CPU and can exceed the unchanged 10-second frame deadline.
