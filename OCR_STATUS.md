@@ -96,4 +96,4 @@ clock visible. It now returns wait/no action instead of stopping. Known short
 clocks still stop; no hidden round number is inferred. The saved frame passed
 this check at 4.16 seconds. Initial-hand reads select the exact catalog evolution
 from name, power, damage and stars, then cache that immutable hand. Four recorded
-board checkpoints still pass after expanding to 1,358 supported evolutions.
+board checkpoints still pass after expanding to 1,399 supported evolutions.

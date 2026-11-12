@@ -56,7 +56,7 @@ star counting and selected-card detection pass the saved-capture regression set.
 Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The catalog covers 1,358 exact evolutions across 1,355 names, seeded from the
+The catalog covers 1,399 exact evolutions across 1,396 names, seeded from the
 saved training boards and expanded from rendered official clan pages. Unsupported
 mechanics are rejected during import; the source audit lists all 2,507 records. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
@@ -288,3 +288,8 @@ keeps lower-level Fixit/Vermyn entries separate from their maximum evolutions.
 Public source facts and rejection reasons are in
 urban_rivals/data/official_catalog_import.json. The importer does not guess
 unsupported text or enable special GhosTown/Leader/Oculus rules.
+
+`python -m urban_rivals coverage` reports collected maximum-level facts, parsed
+source records and rejected mechanics separately. Full details are saved to
+local/catalog-coverage.json. The source collection is not a claim of complete
+mechanics, lower-evolution, OCR or live-play coverage.

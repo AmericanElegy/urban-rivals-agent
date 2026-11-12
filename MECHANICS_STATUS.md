@@ -163,9 +163,18 @@ Rendered official clan pages expose maximum-level facts. All 36 lists were
 expanded with Display all; each list's visible count was checked against its
 heading. The source corpus totals 2,507 cards. Conservative import rejects
 unsupported text and special-rule clans; no modifiers are dropped to load a
-card. The catalog now has 1,358 exact evolutions / 1,355 distinct names. Existing
+card. The catalog now has 1,399 exact evolutions / 1,396 distinct names. Existing
 seed evolutions take precedence for named replay fixtures; live recognition uses
 observed stats/stars, retaining the chosen evolution through the match.
 Official source links and all rejection reasons are recorded in
 urban_rivals/data/official_catalog_import.json. This is broader mechanic parsing
 and source coverage, not proof of live correctness for every new interaction.
+
+## Per-damage resource recovery
+
+Positive Life/Pillz Per Damage effects use final winning damage, after damage
+modifiers and Fury. Stop Ability removes ability-sourced recovery; losing and
+zero-damage cards gain nothing. Combined multiplier, negative, opponent-targeted
+and defeat variants remain rejected. Source: official rules, Pillz/Life per
+Damage (https://www.urban-rivals.com/game/rules/). Unit coverage passes; no live
+Dr Saw round has been reconciled. Poison and ongoing effects remain unsupported.

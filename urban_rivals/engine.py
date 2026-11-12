@@ -27,8 +27,10 @@ class Effect:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
-        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage"}:
+        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage", "damage_dealt"}:
             raise ValueError(f"Unsupported multiplier: {self.multiplier}")
+        if self.multiplier=="damage_dealt" and (self.stat not in {"life","pillz"} or self.amount<=0 or self.opponent or self.condition in {"defeat","victory or defeat"}):
+            raise ValueError("Per-damage recovery requires a positive own resource effect on victory")
         if self.minimum < 0 or self.maximum < self.minimum:
             raise ValueError("Invalid effect bounds")
         if type(self.threshold) is not int or self.threshold < 0 or (
@@ -73,6 +75,12 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
                      for stat in re.split(r"\s+and\s+",match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
         return (Effect("stop_bonus",0,True,condition=condition,threshold=threshold),)
+    match=re.fullmatch(r"([+]\d+)\s+(Life|Pillz)\s+Per\s+Damage",text,re.I)
+    if match:
+        if multiplier!="none":
+            raise ValueError("Combined per-damage multipliers are not supported")
+        return (Effect(match[2].lower(),int(match[1]),condition=condition,
+                       multiplier="damage_dealt",threshold=threshold),)
     match = re.fullmatch(r"([+]\d+)\s+Attack\s+Per\s+Opp\.?\s+(Power|Damage)",text,re.I)
     if match:
         return (Effect("attack",int(match[1]),condition=condition,
@@ -246,7 +254,8 @@ def resolve(state: State, first: Move, second: Move) -> State:
                        "support": sum(x.clan == c.clan for x in p.hand),
                        "brawl": sum(x.clan == cards[1-side].clan for x in state.players[1-side].hand),
                        "equalizer": cards[1-side].stars,
-                       "opp_power": cards[1-side].power, "opp_damage": cards[1-side].damage}
+                       "opp_power": cards[1-side].power, "opp_damage": cards[1-side].damage,
+                       "damage_dealt":1}
         def enabled(e):
             # Bets count the attack allocation plus its free pill, not Fury's
             # separate three-pill cost or the player's remaining reserve.
@@ -316,6 +325,8 @@ def resolve(state: State, first: Move, second: Move) -> State:
             triggered = (owner != winner if e.condition == "defeat" else
                          True if e.condition == "victory or defeat" else owner == winner)
             if triggered:
+                if e.multiplier=="damage_dealt":
+                    e=replace(e,amount=e.amount*damage,multiplier="none")
                 target = 1 - owner if e.opponent else owner
                 values = life if e.stat == "life" else pillz
                 values[target] = max(0, _modify(values[target], e))

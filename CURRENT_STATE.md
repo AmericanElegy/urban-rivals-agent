@@ -15,7 +15,7 @@ information. No discretionary paid model calls are authorized or needed.
 ## Current implementation
 
 - Supported-subset immutable engine and one-round mixed-strategy solver.
-- 1,358 exact evolutions / 1,355 names in urban_rivals/data/training_cards.json.
+- 1,399 exact evolutions / 1,396 names in urban_rivals/data/training_cards.json.
   Public source corpus: 2,507 maximum-level cards across all 36 official clans.
   Unsupported effects and conflicting evolution data are quarantined.
 - Added source-preserving Copy Opp. Ability, Stop Bonus, Power/Damage/Attack Cancel and printed-base Damage Copy,
@@ -118,8 +118,8 @@ opposing attack modifiers but preserves the attack from paid/free pillz.
 All 2,507 rendered maximum-level card facts from 36 official clan pages were
 collected, with per-clan row counts checked against visible headings. Audit data
 contains only card facts and official source URLs, not prices, holdings, account
-identifiers or images. Import accepted supported mechanics only; 1,156 source
-records were rejected. Current catalog has 1,358 evolutions / 1,355 names.
+identifiers or images. Import accepted supported mechanics only; 1,115 source
+records were rejected. Current catalog has 1,399 evolutions / 1,396 names.
 GhosTown, Leader and Oculus bulk imports remain excluded for their special rules.
 Seeded GhosTown Day-only entries remain unchanged.
 
@@ -168,3 +168,25 @@ Geometry is now saved locally beside latest-canvas.png for diagnosis.
 Bridge is being restored inspect-only while the user finishes manually.
 
 Retained-HUD fix regression: original 764/764 and wide 159/159 pass. James confirmed menu ready; latest bridge restarted execution-enabled as process 34072 with unchanged token for one fresh match. No competing OCR while armed.
+
+## Coverage distinction and Dr Saw follow-up
+
+Run a91dc449-204f-47f0-a841-4361496e3ff5 got past the timer read, then
+stopped on Dr Saw before input. The source facts existed; +1 Life Per Damage
+was not implemented. Official rules at https://www.urban-rivals.com/game/rules/
+Pillz/Life per Damage describe recovery from damage, including Fury. Added
+positive Life/Pillz per-damage victory effects after final damage calculation,
+with reduction, Fury, loss, Stop Ability, zero-damage and invalid-variant tests.
+122 Python tests pass. Strict reimport adds 41 evolutions: 1,392 accepted source
+records, 1,115 rejected, 1,399 catalog evolutions / 1,396 names.
+
+Full saved-hand diagnostics now parse seven cards including Dr Saw; Kersten
+remains rejected for Poison 1 Min 1. This is not an OCR/evolution-data gap.
+Do not ask James to repeat random live matches for each known engine gap.
+Prioritize offline mechanics coverage and full-hand diagnostics before another
+live execution test. New `coverage` CLI separates source collection, parsed
+records, lower-evolution limits, rejected reasons and unverified live input.
+
+Bridge process 37196 is inspect-only, same token. No live input or completed
+automatic match proven. No current automatic run is armed. Public source audit
+remains checked in; private saved-frame diagnostics remain ignored locally.

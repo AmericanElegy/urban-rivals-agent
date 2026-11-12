@@ -48,17 +48,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2555",
       "name": "Smokin Tia",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Power +2",
-        "clan": "Bangers",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Smokin Tia",
         "power": 6,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2555"
+        "clan": "Bangers",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Power +2"
       }
     },
     {
@@ -220,7 +218,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1978",
       "name": "Usman",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Usman",
         "power": 6,
@@ -1384,7 +1382,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2229",
       "name": "Marmalady",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Marmalady",
         "power": 6,
@@ -1746,17 +1744,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1266",
       "name": "Dorothy",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "Reprisal: +1 Life Per Damage",
-        "bonus": "-2 Opp Power, Min 1",
-        "clan": "All Stars",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Dorothy",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1266"
+        "clan": "All Stars",
+        "ability": "Reprisal: +1 Life Per Damage",
+        "bonus": "-2 Opp Power, Min 1"
       }
     },
     {
@@ -2236,17 +2232,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=400",
       "name": "Loma Noju",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-2 Opp Power, Min 1",
-        "clan": "All Stars",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Loma Noju",
         "power": 6,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=400"
+        "clan": "All Stars",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-2 Opp Power, Min 1"
       }
     },
     {
@@ -2294,7 +2288,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=330",
       "name": "Eyrton Cr",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Eyrton Cr",
         "power": 8,
@@ -2872,17 +2866,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1403",
       "name": "Steven Dan",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "Damage +2",
-        "clan": "Fang Pi Clang",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Steven Dan",
         "power": 6,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1403"
+        "clan": "Fang Pi Clang",
+        "ability": "+2 Life Per Damage",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -3064,7 +3056,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=994",
       "name": "Futoshi Ld",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Futoshi Ld",
         "power": 8,
@@ -3134,17 +3126,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=839",
       "name": "Zhu Tang",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Damage +2",
-        "clan": "Fang Pi Clang",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Zhu Tang",
         "power": 8,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=839"
+        "clan": "Fang Pi Clang",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -3412,17 +3402,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=383",
       "name": "Seldnor Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Damage +2",
-        "clan": "Fang Pi Clang",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Seldnor Cr",
         "power": 5,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=383"
+        "clan": "Fang Pi Clang",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -3652,7 +3640,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2715",
       "name": "Moutard",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Moutard",
         "power": 9,
@@ -4078,17 +4066,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1262",
       "name": "Spade",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Damage +2",
-        "clan": "La Junta",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Spade",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1262"
+        "clan": "La Junta",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -4592,17 +4578,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=420",
       "name": "Uxoh",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Damage +2",
-        "clan": "La Junta",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Uxoh",
         "power": 7,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=420"
+        "clan": "La Junta",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -5098,7 +5082,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1844",
       "name": "Bulma",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Bulma",
         "power": 8,
@@ -5894,17 +5878,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=454",
       "name": "Mark",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "Support: Attack +3",
-        "clan": "Rescue",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Mark",
         "power": 6,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=454"
+        "clan": "Rescue",
+        "ability": "+2 Life Per Damage",
+        "bonus": "Support: Attack +3"
       }
     },
     {
@@ -7274,7 +7256,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2536",
       "name": "Handler",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Handler",
         "power": 6,
@@ -7764,17 +7746,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1149",
       "name": "D4 Funk",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "D4 Funk",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1149"
+        "clan": "Junkz",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -7796,17 +7776,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1091",
       "name": "T47",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "T47",
         "power": 6,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1091"
+        "clan": "Junkz",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -7828,17 +7806,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1049",
       "name": "Sferik",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Sferik",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1049"
+        "clan": "Junkz",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -8290,17 +8266,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=286",
       "name": "Perle",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Perle",
         "power": 7,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=286"
+        "clan": "Junkz",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -9776,17 +9750,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2455",
       "name": "Felinite",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "Unison : +1 Life Per Damage",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Felinite",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2455"
+        "clan": "Pussycats",
+        "ability": "Unison : +1 Life Per Damage",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10510,17 +10482,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=711",
       "name": "Ditha",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 5,
+      "result": "added",
+      "card": {
         "name": "Ditha",
         "power": 7,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=711"
+        "clan": "Pussycats",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10682,17 +10652,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=393",
       "name": "Cassio Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Cassio Cr",
         "power": 5,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=393"
+        "clan": "Pussycats",
+        "ability": "+2 Life Per Damage",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10986,7 +10954,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2592",
       "name": "Droult",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Droult",
         "power": 6,
@@ -11924,17 +11892,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=429",
       "name": "Janine",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-10 Opp Attack, Min 3",
-        "clan": "Uppers",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Janine",
         "power": 6,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=429"
+        "clan": "Uppers",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-10 Opp Attack, Min 3"
       }
     },
     {
@@ -12706,7 +12672,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1486",
       "name": "Ymirah Cr",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Ymirah Cr",
         "power": 8,
@@ -13074,17 +13040,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=998",
       "name": "Kalindra Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Revenge: Power And Damage +2",
-        "clan": "Frozn",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Kalindra Cr",
         "power": 8,
+        "damage": 4,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=998"
+        "clan": "Frozn",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Revenge: Power And Damage +2"
       }
     },
     {
@@ -13146,17 +13110,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=987",
       "name": "Sah Brinak Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Revenge: Power And Damage +2",
-        "clan": "Frozn",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Sah Brinak Cr",
         "power": 7,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=987"
+        "clan": "Frozn",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Revenge: Power And Damage +2"
       }
     },
     {
@@ -14124,17 +14086,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=673",
       "name": "Nyema",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Nyema",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=673"
+        "clan": "Jungo",
+        "ability": "+1 Life Per Damage",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -14362,17 +14322,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=586",
       "name": "Kreen Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 5,
+      "result": "added",
+      "card": {
         "name": "Kreen Cr",
         "power": 9,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=586"
+        "clan": "Jungo",
+        "ability": "+1 Life Per Damage",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -14982,17 +14940,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1189",
       "name": "Brody",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+3 Life Per Damage'",
-      "record": {
-        "ability": "+3 Life Per Damage",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Brody",
         "power": 8,
+        "damage": 1,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1189"
+        "clan": "Roots",
+        "ability": "+3 Life Per Damage",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -15144,17 +15100,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=849",
       "name": "Rosen",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Rosen",
         "power": 7,
+        "damage": 4,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=849"
+        "clan": "Roots",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -16030,17 +15984,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1520",
       "name": "Streex",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Streex",
         "power": 8,
+        "damage": 4,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1520"
+        "clan": "Ulu Watu",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16090,17 +16042,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1300",
       "name": "Chel",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Chel",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1300"
+        "clan": "Ulu Watu",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16122,17 +16072,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1244",
       "name": "Pietro",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Pietro",
         "power": 5,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1244"
+        "clan": "Ulu Watu",
+        "ability": "+2 Life Per Damage",
+        "bonus": "Power +2"
       }
     },
     {
@@ -17794,17 +17742,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=883",
       "name": "Kostner",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Kostner",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=883"
+        "clan": "Berzerk",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -18022,17 +17968,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2654",
       "name": "Swiggy Sue",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Tune Out",
-        "clan": "Cosmohnuts",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Swiggy Sue",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2654"
+        "clan": "Cosmohnuts",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Tune Out"
       }
     },
     {
@@ -19178,17 +19122,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1988",
       "name": "Ramak",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "Symmetry: +1 Pillz Per Damage",
-        "bonus": "Asymmetry: Damage +3",
-        "clan": "Paradox",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Ramak",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1988"
+        "clan": "Paradox",
+        "ability": "Symmetry: +1 Pillz Per Damage",
+        "bonus": "Asymmetry: Damage +3"
       }
     },
     {
@@ -19778,17 +19720,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1248",
       "name": "Laurens",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Laurens",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1248"
+        "clan": "Piranas",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -22160,7 +22100,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1754",
       "name": "Dookor",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Dookor",
         "power": 7,
@@ -22833,7 +22773,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2617",
       "name": "Senestra",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
+      "reason": "Per-damage recovery requires a positive own resource effect on victory",
       "record": {
         "ability": "Victory Or Defeat: +1 Life Per Damage",
         "bonus": "Stop Opp. Bonus",
@@ -23232,7 +23172,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1545",
       "name": "Pandora",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Pandora",
         "power": 8,
@@ -23490,17 +23430,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=971",
       "name": "Cutey",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Cutey",
         "power": 6,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=971"
+        "clan": "Nightmare",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23848,33 +23786,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=422",
       "name": "Hel",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Hel",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=422"
+        "clan": "Nightmare",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=358",
       "name": "Kenny Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Kenny Cr",
         "power": 6,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=358"
+        "clan": "Nightmare",
+        "ability": "+2 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23924,17 +23858,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=325",
       "name": "Ambrose Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Ambrose Cr",
         "power": 5,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=325"
+        "clan": "Nightmare",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23954,17 +23886,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=296",
       "name": "Ielena Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Ielena Cr",
         "power": 8,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=296"
+        "clan": "Nightmare",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -24056,17 +23986,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=288",
       "name": "Mojo",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+2 Life Per Damage'",
-      "record": {
-        "ability": "+2 Life Per Damage",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 1,
+      "result": "added",
+      "card": {
         "name": "Mojo",
         "power": 6,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=288"
+        "clan": "Nightmare",
+        "ability": "+2 Life Per Damage",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -24772,17 +24700,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=851",
       "name": "Ernst",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Ernst",
         "power": 6,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=851"
+        "clan": "GHEIST",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -25036,17 +24962,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=424",
       "name": "Dr Saw",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Dr Saw",
         "power": 6,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=424"
+        "clan": "GHEIST",
+        "ability": "+1 Life Per Damage",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -27042,17 +26966,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1222",
       "name": "Grace",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
-      "record": {
-        "ability": "+1 Pillz Per Damage",
-        "bonus": "Victory Or Defeat : +1 Pillz",
-        "clan": "Riots",
-        "damage": 3,
+      "result": "added",
+      "card": {
         "name": "Grace",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1222"
+        "clan": "Riots",
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Victory Or Defeat : +1 Pillz"
       }
     },
     {
@@ -27438,7 +27360,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2041",
       "name": "Zinzinxxt",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Zinzinxxt",
         "power": 7,
@@ -28014,17 +27936,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=696",
       "name": "Jautya",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 4,
+      "result": "added",
+      "card": {
         "name": "Jautya",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=696"
+        "clan": "Sakrohm",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -28232,17 +28152,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=356",
       "name": "Ingsthra",
-      "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
-      "record": {
-        "ability": "+1 Life Per Damage",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 2,
+      "result": "added",
+      "card": {
         "name": "Ingsthra",
         "power": 4,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=356"
+        "clan": "Sakrohm",
+        "ability": "+1 Life Per Damage",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -28847,7 +28765,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1817",
       "name": "La Garra",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
+      "reason": "Unsupported effect: '+1 Attack Per Life Left'",
       "record": {
         "ability": "Revenge: +1 Life Per Damage",
         "bonus": "+1 Attack Per Life Left",
@@ -30508,7 +30426,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1880",
       "name": "Rhizom",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Rhizom",
         "power": 7,
@@ -30954,7 +30872,7 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2574",
       "name": "Tervel",
-      "result": "added",
+      "result": "existing",
       "card": {
         "name": "Tervel",
         "power": 9,
@@ -30999,7 +30917,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2573",
       "name": "Zalindra",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
+      "reason": "Per-damage recovery requires a positive own resource effect on victory",
       "record": {
         "ability": "Defeat: +1 Life Per Damage",
         "bonus": "Bet > 3 Pillz: +3 Life",
@@ -33575,7 +33493,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2014",
       "name": "Griffonmor Cr",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
+      "reason": "Per-damage recovery requires a positive own resource effect on victory",
       "record": {
         "ability": "Victory Or Defeat: +1 Life Per Damage",
         "bonus": "Protection: Ability",
@@ -34055,7 +33973,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1039",
       "name": "Belle",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
+      "reason": "Unsupported effect: 'Protection: Ability'",
       "record": {
         "ability": "+1 Pillz Per Damage",
         "bonus": "Protection: Ability",
@@ -35751,7 +35669,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=764",
       "name": "Oflgn",
       "result": "rejected",
-      "reason": "Unsupported effect: '+1 Life Per Damage'",
+      "reason": "Unsupported effect: 'Recover 2 Pillz Out Of 3'",
       "record": {
         "ability": "+1 Life Per Damage",
         "bonus": "Defeat: Recover 2 Pillz Out Of 3",
