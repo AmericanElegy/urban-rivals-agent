@@ -1,0 +1,87 @@
+{
+  "schema": "urban-rivals/ocr-replay/v1",
+  "label_source": "Manually checked live browser screenshot on 2026-11-11. Canvas crop is manually calibrated; this does not validate extension geometry. Private media remains local.",
+  "hands": {
+    "live": [
+      [
+        [
+          "Fixit",
+          7,
+          6,
+          4
+        ],
+        [
+          "Graff Cr",
+          6,
+          1,
+          1
+        ],
+        [
+          "Joy",
+          6,
+          6,
+          4
+        ],
+        [
+          "Pacarezza",
+          7,
+          5,
+          2
+        ]
+      ],
+      [
+        [
+          "Gibus",
+          6,
+          4,
+          3
+        ],
+        [
+          "Viperine",
+          9,
+          3,
+          3
+        ],
+        [
+          "Wilmot",
+          7,
+          6,
+          5
+        ],
+        [
+          "Gregor Ld",
+          9,
+          5,
+          5
+        ]
+      ]
+    ]
+  },
+  "frames": [
+    {
+      "id": "live-copy-opponent-round1",
+      "path": "local/live-training-diagnostic-canvas.png",
+      "phase": "round_board",
+      "hands": "live",
+      "round": 1,
+      "seconds_left": 102,
+      "observed_card": 1,
+      "used": [
+        [],
+        []
+      ],
+      "resources": {
+        "our_life": 15,
+        "opponent_life": 15,
+        "our_pillz": 12,
+        "opponent_pillz": 12
+      },
+      "scales": [
+        1,
+        0.85,
+        1.15
+      ],
+      "engine_ready": false
+    }
+  ]
+}

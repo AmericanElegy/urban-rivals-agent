@@ -1,53 +1,44 @@
-# Live calibration preparation â€” 2026-11-11
+# Live calibration — 2026-11-11
 
-Status: not yet started. James explicitly authorized a live Training Bot test.
-Browser Chrome 3, existing Urban Rivals tab, is signed in and idle on the Training
-modal. No timed match was launched and no bot gameplay click was executed.
-The current deck display is Bangers, eight cards, twenty stars, power total 49,
-damage total 31. These totals match the intended profile; the actual first hand
-still needs verification. Do not substitute a ranked mode.
+## Latest live observation
 
-James reported an invalid pairing token in the popup. The existing file token
-successfully authenticates to /ready on 127.0.0.1:8876 and the server reports
-inspect-only. Popup pairing remains pending. The question sent to James asks him
-to copy the file with Get-Content -Raw ... | Set-Clipboard, replace the entire
-password field, keep automatic play unchecked, and inspect-capture the menu.
-The nonce must not be put in chat or Git. No token has been rotated.
+Chrome reconnected as browser 4 (previous browser 3 is unavailable). The existing
+signed-in collection tab was navigated through Play to the official WebGL URL.
+Menu scroll and Training-card input succeeded without the previous URL guard
+failure. In this client, the Training card's yellow Play button launches the
+match directly; there is no intervening setup modal. Prepare the bridge before
+pressing it on the next run.
 
-Browser security rejected a chrome://newtab step for automatic transfer because
-only HTTP/HTTPS protocols are allowed. Do not work around that denial with a
-local file URL, browser commands or another browser surface. James must perform
-the local copy/paste step. Native Chrome controls also encountered stale bounds
-and focus changes; rebind fresh returned windows and screenshot geometry before
-any UI input. The last Chrome window was half-width: maximize before calibration
-so the canvas is not undersampled. Do not use stale coordinates.
+The live round-one hand was Fixit, Graff Cr, Joy, Pacarezza versus Gibus,
+Viperine, Wilmot, Gregor Ld. Viperine was the revealed lead. All life totals were
+15 and pillz totals 12, with 01:42 on the saved capture. No card, pillz or confirm
+input was made. Execution remained disabled. The inspect-only bridge was started
+with the existing pairing token retained.
 
-Independent timing check found the complete first step took 10.555 seconds with
-the old full-screen OCR preflight. A narrow round-banner hint now avoids that
-redundant pass; board() still validates the complete hand, stats, resources and
-state. Other phases retain full-screen OCR. The same saved-board dry run then
-took 6.596 seconds. No real input was dispatched by those local dry runs.
-72 Python tests pass. The PowerShell launcher has an explicit -ReusePairingToken
-switch; its syntax parser check passes. Keep the 10-second deadline unchanged.
-The running inspect-only server has not yet loaded this latest phase-hint change.
+Offline diagnostics of a manually cropped fresh browser screenshot passed
+147/147 fields at three scales (3.32–4.86 seconds). Manifest:
+`tests/fixtures/live_training_ocr.json`. Media/receipts stay ignored in local/.
+This validates this board's OCR, not the extension's canvas geometry or automatic
+input. The sticky page header partly overlays the top edge: verify complete
+canvas visibility through extension geometry before enabling execution.
 
-## Resume
+Unknown-card rejection correctly stops execution on Gibus. The new opponents
+need verified exact evolutions and engine coverage for Copy Opp. Ability,
+Stop Opp. Bonus, opponent-damage attack scaling, Equalizer damage reduction and
+conditional cancellation of power modifiers. Do not simply add catalog entries
+before their mechanics are supported and tested.
 
-1. Observe the user's pairing outcome; do not treat waiting as successful pairing.
-2. Keep the game untimed until setup is ready. Confirm full visible canvas at a
-   useful resolution and a fresh round-1 Training Bot board.
-3. Restart the local server with execution and the same token:
-   .\Start-TrainingAgent.ps1 -Execute -ReusePairingToken
-   (stop the existing server using the authenticated /shutdown endpoint first).
-4. Release/detach ChatGPT browser debugging on the game tab before the extension
-   attaches its input debugger. Native screen observations can be used while it
-   runs. Never have both browser-debugging clients control the same game tab.
-5. Check automatic play and Start only on the fresh Training Bot match. Observe
-   actual local receipts and screenshots; stop on any uncertain field or action.
-6. Verify the selected card, MIN reset, each increment, one confirmation, and the
-   next round's resource receipt. No automatic requeue or Fury is enabled.
-7. Stop/restore inspect-only after the bounded test, and report actual outcomes.
+Pairing was previously resolved by James. An earlier execution attempt ended
+when Computer Use could not verify the browser URL, and that execution bridge
+was shut down. No automatic live round or full match is confirmed.
 
-Current request remains live calibration, not more offline-only work. If the
-user fixes pairing, continue this same test without asking for authorization
-again. Browser action policy handoff is the current blocker, not game rules.
+## Next bounded test
+
+1. Verify and implement the observed opponent mechanics against official rules.
+2. Keep the untimed menu visible until ready; ensure complete canvas visibility.
+3. Start the bridge with -Execute -ReusePairingToken only for the bounded test.
+4. Use a single input controller: release browser debugging before the extension
+   attaches its debugger. Native screen observation may remain available.
+5. Verify selected card, MIN, each increment, single confirmation and the next
+   round's exact resource receipt. Unknown readings/mechanics must stop.
+6. Restore inspect-only after the test. No automatic requeue or own Fury.

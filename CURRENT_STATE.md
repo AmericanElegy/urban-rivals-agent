@@ -21,6 +21,14 @@ attack 9 and damage 5 with the existing two-read confidence requirement.
 This is one recorded panel, not validation across all values or live inputs.
 Full-match validation and untimed browser targeting verification remain pending.
 
+Latest live calibration: reconnected Chrome 4 successfully navigated to Training.
+The Training Play button launched round 1 directly. A fresh screenshot passed
+147/147 OCR fields at three scales (3.32–4.86s). Execution was disabled and no
+card/pillz/confirm clicks occurred. The unsupported opponent hand (Gibus,
+Viperine, Wilmot, Gregor Ld) was correctly rejected by the execution reader.
+The local bridge is now running inspect-only with the existing token. See
+LIVE_CALIBRATION.md for the precise blocker and next test prerequisites.
+
 ## Goal and authority
 
 Build an automatic browser player inspired by Oset's thesis. James selected the
