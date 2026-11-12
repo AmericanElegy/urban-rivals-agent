@@ -73,3 +73,32 @@ class CancelScalingTests(unittest.TestCase):
     def test_recursive_copy_remains_rejected(self):
         with self.assertRaises(ValueError):
             duel(card("a",ability="Copy: Opp. Ability"),card("b",ability="Copy: Opp. Ability"))
+
+    def test_copy_damage_uses_base_then_own_fury(self):
+        a=card("a",power=10,damage=2,ability="Copy: Opp. Damage")
+        b=card("b",power=1,damage=6,bonus="Damage +3")
+        self.assertEqual(duel(a,b).players[1].life,24)
+        self.assertEqual(duel(a,b,fury=True).players[1].life,22)
+
+    def test_stopped_or_cancelled_damage_copy_returns_to_base(self):
+        a=card("a",power=10,damage=2,ability="Copy: Opp. Damage")
+        for ability in ("Stop Opp. Ability","Cancel Opp. Damage Modif."):
+            b=card("b",power=1,damage=6,ability=ability)
+            self.assertEqual(duel(a,b).players[1].life,28)
+
+    def test_exchange_precedes_copy_in_either_direction(self):
+        for own,enemy in (("Copy: Opp. Damage","Damage Exchange"),("Damage Exchange","Copy: Opp. Damage")):
+            a=card("a",power=10,damage=2,ability=own)
+            b=card("b",power=1,damage=6,ability=enemy)
+            self.assertEqual(duel(a,b).players[1].life,24)
+
+    def test_attack_cancel_removes_boost_but_keeps_pillz_attack(self):
+        a=card("a",power=5,ability="Attack +20")
+        b=card("b",power=6,ability="Cancel Opp. Attack Modif.")
+        self.assertFalse(duel(a,b).players[0].last_won)
+        self.assertTrue(duel(a,b,paid=(2,0)).players[0].last_won)
+
+    def test_attack_cancel_removes_opposing_reducer(self):
+        a=card("a",power=5,ability="-8 Opp. Attack, Min 3")
+        b=card("b",power=6,ability="Cancel Opp. Attack Modif.")
+        self.assertFalse(duel(a,b).players[0].last_won)

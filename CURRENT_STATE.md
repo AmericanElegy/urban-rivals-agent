@@ -1,6 +1,6 @@
 # Urban Rivals agent current state
 
-Updated 2026-11-11. Owner: James / AmericanElegy.
+Updated 2026-11-12. Owner: James / AmericanElegy.
 Live checkout: C:\Users\James\OneDrive\Documents\ChatGPT\urban-rivals bot
 Private origin: https://github.com/AmericanElegy/urban-rivals-agent
 
@@ -15,8 +15,10 @@ information. No discretionary paid model calls are authorized or needed.
 ## Current implementation
 
 - Supported-subset immutable engine and one-round mixed-strategy solver.
-- 26 exact evolutions in urban_rivals/data/training_cards.json.
-- Added source-preserving Copy Opp. Ability, Stop Bonus, Power/Damage Cancel,
+- 1,344 exact evolutions / 1,341 names in urban_rivals/data/training_cards.json.
+  Public source corpus: 2,507 maximum-level cards across all 36 official clans.
+  Unsupported effects and conflicting evolution data are quarantined.
+- Added source-preserving Copy Opp. Ability, Stop Bonus, Power/Damage/Attack Cancel and printed-base Damage Copy,
   Attack Per Opp. Power/Damage. Recursive/conditional copy and uncertain
   cross-source Stop cycles remain rejected. See MECHANICS_STATUS.md.
 - Board recognition validates names, stats, resources, used cards, initiative,
@@ -37,7 +39,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-102 Python tests and 14 extension tests pass. Fresh Oblivion-board replay passes
+115 Python tests and 14 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -99,3 +101,36 @@ to return to Chrome, wait for AUTO waiting, then Training PLAY without replying
 here. Monitor receipts; do not restart or run OCR replays during this attempt.
 One earlier execution frame reached the menu and returned no action, then its
 HTTP client disconnected (WinError 10053). No gameplay input is confirmed yet.
+
+## Latest catalog and animation checkpoint (2026-11-12)
+
+Live run reached a board but stopped before input on unknown Chlora. A manual
+restart during a card flip obscured the round banner. Unknown names still stop;
+a temporarily unreadable round/timer now waits with no action. Known clocks
+under 12 seconds still stop. The saved flip frame returns wait in 4.16 seconds.
+
+Chlora, Dixie, Jenny, Kreenk Ld, Lord Oon Ld, Kati, Yang Luhan and Yoshito were
+verified against official card pages. Damage Copy uses printed opposing damage
+before bonuses/Fury; own Fury applies afterward. Matching Exchange takes
+precedence, and Stop/Cancel remove the appropriate copy. Attack Cancel removes
+opposing attack modifiers but preserves the attack from paid/free pillz.
+
+All 2,507 rendered maximum-level card facts from 36 official clan pages were
+collected, with per-clan row counts checked against visible headings. Audit data
+contains only card facts and official source URLs, not prices, holdings, account
+identifiers or images. Import accepted supported mechanics only; 1,170 source
+records were rejected. Current catalog has 1,344 evolutions / 1,341 names.
+GhosTown, Leader and Oculus bulk imports remain excluded for their special rules.
+Seeded GhosTown Day-only entries remain unchanged.
+
+Live first-hand recognition now selects exact (name,power,damage,stars), then
+retains the verified immutable evolution through later rounds. Name-only replay
+manifests retain their original reference evolution. Four-star Fixit (Reprisal
+Protection) and five-star Fixit (always Protection) are separate entries.
+
+115 Python tests and 14 extension tests pass. Four saved board checkpoints and
+all four completed Oblivion-log rounds remain consistent. Import is idempotent;
+unsupported/conflicting effects are not silently omitted. Automatic live
+selection/stake/confirmation remains unverified. James has left the game on the
+untimed Training menu for a controlled retry; refresh the old bridge process
+once to load these changes before Start. Do not run competing OCR while armed.

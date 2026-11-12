@@ -1,0 +1,1230 @@
+{
+  "source": "Rendered official Bangers clan page on 2026-11-12; 83 card records. Card facts only; no prices, holdings or account data.",
+  "url": "https://www.urban-rivals.com/game/characters/clan.php?id_clan=31",
+  "entries": [
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2718",
+      "name": "Ratsky",
+      "result": "added",
+      "card": {
+        "name": "Ratsky",
+        "power": 7,
+        "damage": 5,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "-8 Opp Damage, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2657",
+      "name": "Vermyn Noel",
+      "result": "added",
+      "card": {
+        "name": "Vermyn Noel",
+        "power": 5,
+        "damage": 7,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Brawl: -1 Opp Power, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2628",
+      "name": "Hailee",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Ability'",
+      "record": {
+        "ability": "Bet > 2 Pillz: Copy: Opp. Ability",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Hailee",
+        "power": 8,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2628"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2555",
+      "name": "Smokin Tia",
+      "result": "rejected",
+      "reason": "Unsupported effect: '+1 Pillz Per Damage'",
+      "record": {
+        "ability": "+1 Pillz Per Damage",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 3,
+        "name": "Smokin Tia",
+        "power": 6,
+        "stars": 2,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2555"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2513",
+      "name": "Alba",
+      "result": "added",
+      "card": {
+        "name": "Alba",
+        "power": 7,
+        "damage": 6,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Victory Or Defeat : +1 Pillz",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2452",
+      "name": "Malik",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Brawl: +1 Pillz'",
+      "record": {
+        "ability": "Victory Or Defeat : Brawl: +1 Pillz",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Malik",
+        "power": 8,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2452"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2434",
+      "name": "Cynosine",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Recover 1 Pillz Out Of 3'",
+      "record": {
+        "ability": "Unison : Recover 1 Pillz Out Of 3",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Cynosine",
+        "power": 8,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2434"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2392",
+      "name": "Mara Vega",
+      "result": "rejected",
+      "reason": "Unsupported effect: '+2 Attack Per Life Left'",
+      "record": {
+        "ability": "+2 Attack Per Life Left",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 8,
+        "name": "Mara Vega",
+        "power": 6,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2392"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2318",
+      "name": "Zwoosh",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Power Impose'",
+      "record": {
+        "ability": "Power Impose",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Zwoosh",
+        "power": 5,
+        "stars": 2,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2318"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2277",
+      "name": "Masbulla",
+      "result": "rejected",
+      "reason": "Unsupported condition: Killshot",
+      "record": {
+        "ability": "Killshot: +2 Pillz",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Masbulla",
+        "power": 7,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2277"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2211",
+      "name": "Kaskar",
+      "result": "rejected",
+      "reason": "Unsupported effect: '-1 Opp Pow. & Dam., Min 5'",
+      "record": {
+        "ability": "Equalizer: -1 Opp Pow. & Dam., Min 5",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Kaskar",
+        "power": 6,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2211"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2162",
+      "name": "Farell",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Bonus'",
+      "record": {
+        "ability": "Asymmetry: Copy: Opp. Bonus",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Farell",
+        "power": 7,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2162"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2091",
+      "name": "Dodger",
+      "result": "added",
+      "card": {
+        "name": "Dodger",
+        "power": 7,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Brawl: Damage + 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=2029",
+      "name": "Timbo K",
+      "result": "rejected",
+      "reason": "Unsupported effect: '+5 Players Pillz'",
+      "record": {
+        "ability": "Victory Or Defeat : +5 Players Pillz",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Timbo K",
+        "power": 9,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2029"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1978",
+      "name": "Usman",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Cancel Opp. Power And Damage Modif'",
+      "record": {
+        "ability": "Cancel Opp. Power And Damage Modif.",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 6,
+        "name": "Usman",
+        "power": 6,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1978"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1942",
+      "name": "MBalaze",
+      "result": "rejected",
+      "reason": "Unsupported effect: '-1 Opp Att. Per Pillz Left, Min 8'",
+      "record": {
+        "ability": "-1 Opp Att. Per Pillz Left, Min 8",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "MBalaze",
+        "power": 7,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1942"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1917",
+      "name": "Pacarezza",
+      "result": "existing",
+      "card": {
+        "name": "Pacarezza",
+        "power": 7,
+        "damage": 5,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Reprisal: Damage Exchange",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1845",
+      "name": "Christie",
+      "result": "added",
+      "card": {
+        "name": "Christie",
+        "power": 7,
+        "damage": 7,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Equalizer: -3 Opp Attack, Min 2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1804",
+      "name": "Pharah",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Dope 3, Max. 4'",
+      "record": {
+        "ability": "Dope 3, Max. 4",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 5,
+        "name": "Pharah",
+        "power": 8,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1804"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1775",
+      "name": "Blast",
+      "result": "added",
+      "card": {
+        "name": "Blast",
+        "power": 6,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Damage Exchange",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1718",
+      "name": "Sabotage",
+      "result": "added",
+      "card": {
+        "name": "Sabotage",
+        "power": 5,
+        "damage": 5,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "-4 Opp Power, Min 4",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1695",
+      "name": "Shinobi",
+      "result": "added",
+      "card": {
+        "name": "Shinobi",
+        "power": 7,
+        "damage": 8,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1661",
+      "name": "Rueda Buena",
+      "result": "added",
+      "card": {
+        "name": "Rueda Buena",
+        "power": 8,
+        "damage": 3,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Equalizer: Damage +1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1560",
+      "name": "Skinny Bob Ld",
+      "result": "added",
+      "card": {
+        "name": "Skinny Bob Ld",
+        "power": 6,
+        "damage": 3,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "+2 Attack Per Opp. Power",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1569",
+      "name": "Kurt",
+      "result": "added",
+      "card": {
+        "name": "Kurt",
+        "power": 7,
+        "damage": 5,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Growth: -1 Opp Damage, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1503",
+      "name": "Karl",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Recover 2 Pillz Out Of 3'",
+      "record": {
+        "ability": "Defeat: Recover 2 Pillz Out Of 3",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Karl",
+        "power": 7,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1503"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1467",
+      "name": "Dixie",
+      "result": "existing",
+      "card": {
+        "name": "Dixie",
+        "power": 6,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Support: -1 Opp Damage, Min 2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1409",
+      "name": "Joy",
+      "result": "existing",
+      "card": {
+        "name": "Joy",
+        "power": 6,
+        "damage": 6,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "+3 Pillz",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1376",
+      "name": "DJ LBerto",
+      "result": "added",
+      "card": {
+        "name": "DJ LBerto",
+        "power": 6,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Defeat: +2 Pillz Max. 10",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1312",
+      "name": "Clifford",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Protection: Attack'",
+      "record": {
+        "ability": "Protection: Attack",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 6,
+        "name": "Clifford",
+        "power": 7,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1312"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1275",
+      "name": "Pearl",
+      "result": "added",
+      "card": {
+        "name": "Pearl",
+        "power": 7,
+        "damage": 1,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Growth: Damage +1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1253",
+      "name": "MC Leroy",
+      "result": "rejected",
+      "reason": "Unsupported effect: '-1 Opp Pillz. Min 1'",
+      "record": {
+        "ability": "-1 Opp Pillz. Min 1",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "MC Leroy",
+        "power": 7,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1253"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1235",
+      "name": "Zoe",
+      "result": "added",
+      "card": {
+        "name": "Zoe",
+        "power": 5,
+        "damage": 7,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Support: Power +1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1204",
+      "name": "Tasty Tast",
+      "result": "added",
+      "card": {
+        "name": "Tasty Tast",
+        "power": 6,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Revenge: Power And Damage +2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1185",
+      "name": "Duke",
+      "result": "rejected",
+      "reason": "Unsupported effect: '+1 Atk Per Pillz Left'",
+      "record": {
+        "ability": "Courage: +1 Atk Per Pillz Left",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 6,
+        "name": "Duke",
+        "power": 6,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1185"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1164",
+      "name": "B Bazooka",
+      "result": "added",
+      "card": {
+        "name": "B Bazooka",
+        "power": 6,
+        "damage": 8,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "-5 Opp Damage, Min 3",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1135",
+      "name": "Doug Snop",
+      "result": "existing",
+      "card": {
+        "name": "Doug Snop",
+        "power": 7,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "+2 Pillz",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1090",
+      "name": "Dud Z",
+      "result": "rejected",
+      "reason": "Unsupported condition: Stop",
+      "record": {
+        "ability": "Stop: +3 Pillz",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 5,
+        "name": "Dud Z",
+        "power": 6,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1090"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1065",
+      "name": "Blidgey",
+      "result": "rejected",
+      "reason": "Unsupported effect: '-2 Opp Pillz. Min 3'",
+      "record": {
+        "ability": "-2 Opp Pillz. Min 3",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 5,
+        "name": "Blidgey",
+        "power": 6,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1065"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1029",
+      "name": "Lil Jey",
+      "result": "added",
+      "card": {
+        "name": "Lil Jey",
+        "power": 6,
+        "damage": 3,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "-1 Opp Power, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=1007",
+      "name": "Beeboy Cr",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Bonus'",
+      "record": {
+        "ability": "Copy: Opp. Bonus",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Beeboy Cr",
+        "power": 7,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1007"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=964",
+      "name": "Randal",
+      "result": "existing",
+      "card": {
+        "name": "Randal",
+        "power": 6,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=948",
+      "name": "Bubbles",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Recover 1 Pillz Out Of 2'",
+      "record": {
+        "ability": "Defeat: Recover 1 Pillz Out Of 2",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 6,
+        "name": "Bubbles",
+        "power": 6,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=948"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=925",
+      "name": "Raquel",
+      "result": "rejected",
+      "reason": "Unsupported condition: Backlash",
+      "record": {
+        "ability": "Backlash: - 1 Pillz Min 4",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Raquel",
+        "power": 6,
+        "stars": 2,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=925"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=906",
+      "name": "Carlito",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Protection : Damage'",
+      "record": {
+        "ability": "Protection : Damage",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 5,
+        "name": "Carlito",
+        "power": 6,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=906"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=884",
+      "name": "Fixit",
+      "result": "added",
+      "card": {
+        "name": "Fixit",
+        "power": 7,
+        "damage": 6,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Protection: Power And Damage",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=844",
+      "name": "Lucas",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Protection: Bonus'",
+      "record": {
+        "ability": "Protection: Bonus",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 5,
+        "name": "Lucas",
+        "power": 7,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=844"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=809",
+      "name": "Kreenk Ld",
+      "result": "existing",
+      "card": {
+        "name": "Kreenk Ld",
+        "power": 9,
+        "damage": 2,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Copy: Opp. Damage",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=803",
+      "name": "Garrik",
+      "result": "added",
+      "card": {
+        "name": "Garrik",
+        "power": 6,
+        "damage": 3,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Damage +3",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=778",
+      "name": "Kevlaer",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Protection: Bonus'",
+      "record": {
+        "ability": "Protection: Bonus",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 2,
+        "name": "Kevlaer",
+        "power": 7,
+        "stars": 2,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=778"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=744",
+      "name": "Angie",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Power'",
+      "record": {
+        "ability": "Copy: Opp. Power",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 8,
+        "name": "Angie",
+        "power": 6,
+        "stars": 5,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=744"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=718",
+      "name": "Massiv",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Power'",
+      "record": {
+        "ability": "Copy: Opp. Power",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Massiv",
+        "power": 4,
+        "stars": 2,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=718"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=697",
+      "name": "Chlora",
+      "result": "existing",
+      "card": {
+        "name": "Chlora",
+        "power": 6,
+        "damage": 6,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Bonus",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=674",
+      "name": "Loocio",
+      "result": "added",
+      "card": {
+        "name": "Loocio",
+        "power": 6,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Power +2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=641",
+      "name": "Shogunn",
+      "result": "added",
+      "card": {
+        "name": "Shogunn",
+        "power": 7,
+        "damage": 4,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Damage +3",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=617",
+      "name": "Shann Cr",
+      "result": "added",
+      "card": {
+        "name": "Shann Cr",
+        "power": 7,
+        "damage": 6,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Support: + 1 Pillz",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=618",
+      "name": "Bennie",
+      "result": "existing",
+      "card": {
+        "name": "Bennie",
+        "power": 5,
+        "damage": 3,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Power +2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=564",
+      "name": "Sleam",
+      "result": "added",
+      "card": {
+        "name": "Sleam",
+        "power": 3,
+        "damage": 7,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "Courage: Power +4",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=563",
+      "name": "Naykee",
+      "result": "added",
+      "card": {
+        "name": "Naykee",
+        "power": 7,
+        "damage": 3,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Courage: Attack +7",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=532",
+      "name": "Kluwn",
+      "result": "added",
+      "card": {
+        "name": "Kluwn",
+        "power": 5,
+        "damage": 5,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "-2 Opp Power, Min 5",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=531",
+      "name": "Gyro Cr",
+      "result": "added",
+      "card": {
+        "name": "Gyro Cr",
+        "power": 5,
+        "damage": 1,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Damage +4",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=498",
+      "name": "Lennox Cr",
+      "result": "added",
+      "card": {
+        "name": "Lennox Cr",
+        "power": 6,
+        "damage": 6,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Damage +3",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=497",
+      "name": "Leila",
+      "result": "added",
+      "card": {
+        "name": "Leila",
+        "power": 4,
+        "damage": 7,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "No Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=460",
+      "name": "Blaaster Cr",
+      "result": "added",
+      "card": {
+        "name": "Blaaster Cr",
+        "power": 6,
+        "damage": 6,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "-2 Opp Power, Min 3",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=459",
+      "name": "B Ball",
+      "result": "added",
+      "card": {
+        "name": "B Ball",
+        "power": 6,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "-2 Opp Damage, Min 2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=407",
+      "name": "Willy",
+      "result": "added",
+      "card": {
+        "name": "Willy",
+        "power": 5,
+        "damage": 7,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Courage: Power +4",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=408",
+      "name": "BB Cool G",
+      "result": "added",
+      "card": {
+        "name": "BB Cool G",
+        "power": 4,
+        "damage": 6,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "-3 Opp Attack, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=373",
+      "name": "Kevin",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Poison 1, Min 2'",
+      "record": {
+        "ability": "Poison 1, Min 2",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 3,
+        "name": "Kevin",
+        "power": 5,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=373"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=372",
+      "name": "Graff Cr",
+      "result": "added",
+      "card": {
+        "name": "Graff Cr",
+        "power": 6,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=337",
+      "name": "Laetitia",
+      "result": "rejected",
+      "reason": "Unsupported effect: 'Copy: Opp. Power'",
+      "record": {
+        "ability": "Copy: Opp. Power",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 6,
+        "name": "Laetitia",
+        "power": 4,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=337"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=336",
+      "name": "Jenny",
+      "result": "existing",
+      "card": {
+        "name": "Jenny",
+        "power": 5,
+        "damage": 3,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "No Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=292",
+      "name": "MC Decay",
+      "result": "added",
+      "card": {
+        "name": "MC Decay",
+        "power": 2,
+        "damage": 4,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "-2 Opp Power, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=263",
+      "name": "Fifty",
+      "result": "added",
+      "card": {
+        "name": "Fifty",
+        "power": 5,
+        "damage": 7,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=196",
+      "name": "Bodenpower Cr",
+      "result": "added",
+      "card": {
+        "name": "Bodenpower Cr",
+        "power": 7,
+        "damage": 7,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "-5 Opp Attack, Min 2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=197",
+      "name": "Sum Sam Cr",
+      "result": "added",
+      "card": {
+        "name": "Sum Sam Cr",
+        "power": 6,
+        "damage": 8,
+        "stars": 5,
+        "clan": "Bangers",
+        "ability": "Power +4",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=186",
+      "name": "Platoona",
+      "result": "rejected",
+      "reason": "Unsupported condition: Versus  ",
+      "record": {
+        "ability": "Versus  : Defeat: -1 Opp. Pillz, Min 2",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 7,
+        "name": "Platoona",
+        "power": 7,
+        "stars": 4,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=186"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=187",
+      "name": "Vermyn N Cr",
+      "result": "added",
+      "card": {
+        "name": "Vermyn N Cr",
+        "power": 5,
+        "damage": 7,
+        "stars": 4,
+        "clan": "Bangers",
+        "ability": "-4 Opp Damage, Min 1",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=184",
+      "name": "Chikko Cr",
+      "result": "rejected",
+      "reason": "Unsupported effect: '-1 Opp. Pow. And Dam., Min 4'",
+      "record": {
+        "ability": "Growth: -1 Opp. Pow. And Dam., Min 4",
+        "bonus": "Power +2",
+        "clan": "Bangers",
+        "damage": 4,
+        "name": "Chikko Cr",
+        "power": 8,
+        "stars": 3,
+        "url": "https://www.urban-rivals.com/game/characters/?id_perso=184"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=185",
+      "name": "Juicy Lord",
+      "result": "added",
+      "card": {
+        "name": "Juicy Lord",
+        "power": 6,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "-2 Opp Damage, Min 2",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=204",
+      "name": "Saddy",
+      "result": "added",
+      "card": {
+        "name": "Saddy",
+        "power": 5,
+        "damage": 5,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "Stop Opp. Bonus",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=238",
+      "name": "Syd Noze",
+      "result": "added",
+      "card": {
+        "name": "Syd Noze",
+        "power": 3,
+        "damage": 5,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "No Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=201",
+      "name": "Tunned",
+      "result": "added",
+      "card": {
+        "name": "Tunned",
+        "power": 3,
+        "damage": 4,
+        "stars": 3,
+        "clan": "Bangers",
+        "ability": "No Ability",
+        "bonus": "Power +2"
+      }
+    },
+    {
+      "source": "https://www.urban-rivals.com/game/characters/?id_perso=203",
+      "name": "Meroo",
+      "result": "added",
+      "card": {
+        "name": "Meroo",
+        "power": 5,
+        "damage": 2,
+        "stars": 2,
+        "clan": "Bangers",
+        "ability": "No Ability",
+        "bonus": "Power +2"
+      }
+    }
+  ]
+}

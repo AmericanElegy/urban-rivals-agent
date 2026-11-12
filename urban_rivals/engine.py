@@ -23,7 +23,7 @@ class Effect:
 
     def __post_init__(self):
         if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability",
-                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage", "copy_ability"}:
+                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage", "cancel_attack", "copy_ability", "copy_damage"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
@@ -34,7 +34,7 @@ class Effect:
         if type(self.threshold) is not int or self.threshold < 0 or (
                 self.condition not in {"bet_over", "bet_under"} and self.threshold != 0):
             raise ValueError("Invalid Bet threshold")
-        if self.stat.startswith(("protect_", "exchange_", "cancel_")) and (
+        if self.stat.startswith(("protect_", "exchange_", "cancel_", "copy_")) and (
                 self.amount != 0 or self.opponent or self.multiplier != "none"
                 or self.condition in {"defeat", "victory or defeat"}):
             raise ValueError("Unsupported protection/exchange/cancel parameters")
@@ -65,7 +65,9 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         text = text.strip()
     if re.fullmatch(r"Copy:\s*Opp\.?\s+Ability", text, re.I) and condition=="always":
         return (Effect("copy_ability",0),)
-    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power|Damage)\s+Modif", text, re.I)
+    if re.fullmatch(r"Copy:\s*Opp\.?\s+Damage", text, re.I):
+        return (Effect("copy_damage",0,condition=condition,threshold=threshold),)
+    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power|Damage|Attack)\s+Modif", text, re.I)
     if match:
         return (Effect("cancel_"+match[1].lower(),0,condition=condition,threshold=threshold),)
     if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
@@ -268,10 +270,10 @@ def resolve(state: State, first: Move, second: Move) -> State:
     active=[abilities[i]+(() if bonus_blocked[i] else bonuses[i]) for i in range(2)]
     # Cancel removes the opposing card's modifiers of this type, irrespective
     # of their source or which card those modifiers would target.
-    cancelled=[{name for name in ("power","damage")
+    cancelled=[{name for name in ("power","damage","attack")
                 if any(e.stat=="cancel_"+name for e in active[1-i])} for i in range(2)]
     active=[tuple(e for e in row if e.stat not in cancelled[i]
-                  and not (e.stat.startswith("exchange_") and e.stat[9:] in cancelled[i]))
+                  and not (e.stat.startswith(("exchange_","copy_")) and e.stat.split("_",1)[1] in cancelled[i]))
             for i,row in enumerate(active)]
 
     def stat(side, name, initial):
@@ -293,7 +295,10 @@ def resolve(state: State, first: Move, second: Move) -> State:
         values = [getattr(c, name) for c in cards]
         # Exchange changes starting values, bypasses Protection, and precedes
         # ordinary modifiers and Fury. Each round starts from immutable cards.
-        bases[name] = values[::-1] if any(exchanging) else values
+        copying=[any(e.stat=="copy_"+name for e in row) for row in active]
+        # A matching Exchange takes precedence over Copy (official Exchange rule).
+        bases[name] = (values[::-1] if any(exchanging) else
+                       [values[1-i] if copying[i] else values[i] for i in range(2)])
     power = [max(0, stat(i, "power", bases["power"][i])) for i in range(2)]
     attack = [max(0, stat(i, "attack", power[i] * (m.pillz + 1))) for i, m in enumerate(moves)]
     tune_out = any(e.stat == "tune_out" for row in active for e in row)

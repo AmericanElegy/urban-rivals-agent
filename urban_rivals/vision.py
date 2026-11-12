@@ -181,6 +181,7 @@ class Catalog:
         if data.get("schema") != "urban-rivals/cards/v1":
             raise ValueError("Unknown catalog schema")
         self.entries = {}
+        self.evolutions = {}
         for raw in data["cards"]:
             raw = dict(raw)
             day_only = raw.pop("day_only",False)
@@ -188,13 +189,17 @@ class Catalog:
                 raw[field] = parse_effect(raw.get(field,""))
             card = Card(**raw)
             key = normalize(card.name)
-            if key in self.entries:
-                raise ValueError("Duplicate catalog identity")
-            self.entries[key] = (card,day_only)
+            identity=(key,card.power,card.damage,card.stars)
+            if identity in self.evolutions:
+                raise ValueError("Duplicate or conflicting catalog evolution")
+            self.evolutions[identity]=(card,day_only)
+            # Existing manifests name a documented reference evolution. Live
+            # recognition always passes observed stats to select an exact level.
+            self.entries.setdefault(key,(card,day_only))
 
-    def identify(self,text,day):
+    def identify(self,text,day,stats=None):
         key=normalize(text)
-        matches=[entry for name,entry in self.entries.items() if key == name]
+        matches=([self.evolutions[(key,*stats)]] if (key,*stats) in self.evolutions else []) if stats is not None else [entry for name,entry in self.entries.items() if key==name]
         if len(matches) != 1:
             raise RecognitionError(f"Unknown or ambiguous card name: {text!r}; add its verified evolution to the catalog")
         card, day_only = matches[0]
@@ -384,7 +389,7 @@ class CanvasReader:
                 if entry["used"]:
                     entry["stats_status"]="played card; retain previously verified base stats"
                     operations=()
-                for label,operation in operations+(("catalog",lambda:self.catalog.identify(entry["name"],report["day"]).name),):
+                for label,operation in operations+(("catalog",lambda:self.catalog.identify(entry["name"],report["day"],None if entry["used"] else tuple(entry.get(k) for k in ("power","damage","stars"))).name),):
                     try:
                         entry[label]=operation()
                     except ValueError as error:
@@ -409,11 +414,14 @@ class CanvasReader:
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
         seconds=parse_timer(self.precise_text(image,(.64,.46,.73,.54),.8))
-        if not match or seconds is None:
-            raise RecognitionError(f"Round/timer is unreadable: {banner!r}")
-        round_no=int(match[1])
-        if seconds<12:
+        if seconds is not None and seconds<12:
             raise RecognitionError("Fewer than 12 seconds remain; stopping before a rushed input")
+        if not match or seconds is None:
+            # A raised/flipping card can occlude the round banner. This frame
+            # authorizes no action; wait for a complete board instead of ending
+            # the session on a short animation. Known short clocks still stop.
+            return None
+        round_no=int(match[1])
         day=self.day(image)
         hands=[]
         spent=[]
@@ -422,14 +430,16 @@ class CanvasReader:
             used=[]
             for i,x in enumerate(self.CENTERS):
                 text=self.card_name(image,x,name_y,side,.8)
-                c=self.catalog.identify(text,day)
                 used.append(self.played_pillz(image,x,side))
                 if self.initial_hand is None:
                     power=self.number(image,self.stat_box(x,stat_y))
                     damage=self.number(image,self.stat_box(x,stat_y,True))
                     stars=self.stars(image,x,star_y)
-                    if (power,damage,stars)!=(c.power,c.damage,c.stars):
-                        raise RecognitionError(f"{c.name}: screen stats/level disagree with catalog")
+                    c=self.catalog.identify(text,day,(power,damage,stars))
+                else:
+                    c=self.initial_hand[side][i]
+                    if normalize(text)!=normalize(c.name):
+                        raise RecognitionError("Hand/order changed; start a fresh session for each match")
                 hand.append(c)
             hands.append(tuple(hand))
             spent.append(tuple(used))

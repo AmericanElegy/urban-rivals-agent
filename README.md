@@ -56,8 +56,9 @@ star counting and selected-card detection pass the saved-capture regression set.
 Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The catalog covers 26 specific card evolutions from the saved training
-boards and recording. The first input profile supports the cataloged Bangers cards in
+The catalog covers 1,344 exact evolutions across 1,341 names, seeded from the
+saved training boards and expanded from rendered official clan pages. Unsupported
+mechanics are rejected during import; the source audit lists all 2,507 records. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
 Day-only until their Night behavior is cataloged. The first live driver uses no
 Fury; the simulator still models Fury. It plays the current manually opened
@@ -72,7 +73,7 @@ its most likely move makes play predictable.
 Supported mechanics include Stop Ability/Bonus, Power/Damage Protection and
 Exchange, Power/Damage cancellation, and Attack Per Opp. Power/Damage. See
 MECHANICS_STATUS.md for exact scope and rejection boundaries. Unsupported effect
-text raises an error, including recursive/conditional ability copy, stat Copy, Protection Ability/Bonus, poison and
+text raises an error, including recursive/conditional ability copy, Power Copy, Protection Ability/Bonus, poison and
 regeneration, recovery, Oculus and Leader mechanics. Nested conditions and many
 modern keywords are not implemented. Do not remove
 unsupported effects to make a real hand load: that would produce incorrect advice.
@@ -279,3 +280,11 @@ Extension 0.2.4 pauses at frame boundaries for up to 60 seconds when its game
 window loses focus. No captures or clicks are sent while paused; returning to
 the game requires fresh matching readings. Navigation/tab changes and focus loss
 during a pending action still stop the run. Popup-local errors remain visible.
+
+
+Live initial-hand recognition matches both name and observed power/damage/stars.
+Existing recorded manifests retain their documented reference evolution. This
+keeps lower-level Fixit/Vermyn entries separate from their maximum evolutions.
+Public source facts and rejection reasons are in
+urban_rivals/data/official_catalog_import.json. The importer does not guess
+unsupported text or enable special GhosTown/Leader/Oculus rules.

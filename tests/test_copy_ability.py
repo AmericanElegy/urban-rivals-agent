@@ -85,3 +85,17 @@ class AbilityCopyTests(unittest.TestCase):
             while not state.terminal:
                 state=resolve(state,rng.choice(legal_moves(state,0)),rng.choice(legal_moves(state,1)))
                 self.assertTrue(all(p.life>=0 and p.pillz>=0 for p in state.players))
+
+    def test_new_catalog_entries_resolve_against_the_training_deck(self):
+        catalog=Catalog()
+        our_names=("Bennie","Doug Snop","Fixit","Graff Cr","Joy","Pacarezza","Randal","Vermyn Noel")
+        enemy_names=("Chlora","Dixie","Jenny","Kreenk Ld","Lord Oon Ld","Kati","Yang Luhan","Yoshito")
+        for own_name in our_names:
+            for enemy_name in enemy_names:
+                a=catalog.identify(own_name,True)
+                b=catalog.identify(enemy_name,True)
+                for leader in (0,1):
+                    s=State((Player((a,a),life=15),Player((b,b),life=15)),leader=leader,day=True)
+                    for paid in (0,1,3):
+                        after=resolve(s,Move(0,paid),Move(0,paid))
+                        self.assertEqual(after.round,2)

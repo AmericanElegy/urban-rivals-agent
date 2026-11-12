@@ -42,6 +42,18 @@ class ProtocolTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 crop_viewport(ImageStub(),bad)
 
+    def test_occluded_round_or_timer_waits_without_reading_cards(self):
+        from urban_rivals.vision import CanvasReader
+        reader=object.__new__(CanvasReader)
+        for banner,timer in (("R YOUR TURN 01:27","01:27"),("ROUND 1/4 YOUR TURN","?")):
+            reader.text=lambda *args:banner
+            reader.precise_text=lambda *args:timer
+            self.assertIsNone(reader.board(None))
+        reader.text=lambda *args:"ROUND 1/4 YOUR TURN 00:09"
+        reader.precise_text=lambda *args:"00:09"
+        with self.assertRaisesRegex(RecognitionError,"Fewer than 12"):
+            reader.board(None)
+
     def frame(self):
         return dict(schema="urban-rivals/frame/v1",url="https://www.urban-rivals.com/game/play/webgl/",
                     captured_at=100,sequence=1,run_id="a"*32,mode="training",execute=False)

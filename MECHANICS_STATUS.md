@@ -146,3 +146,26 @@ Our third-round Fury is required; opposing Fury choices and final reserves are
 not uniquely observable. verify-log retains all candidates, avoiding invented
 opposing expenditures. This corroborates copied Stop Ability and the conditional
 Exchange/Fury path, but is not an automatic-bot match or proof of every mechanic.
+
+## Printed damage copy, attack cancellation and catalog expansion (2026-11-12)
+
+Official Kreenk Ld page (id_perso=809) defines Damage Copy using printed opposing
+damage, excluding ability, bonus and Fury. Official Yang Luhan (2459) defines
+Attack Cancel as disabling opposing attack increases/reductions while preserving
+attack gained through pillz. Both are implemented and interaction-tested with
+Stop Ability, damage cancellation, Exchange precedence and own Fury.
+
+Chlora (697), Dixie (1467), Jenny (336), Lord Oon Ld (1751), Kati (349), Yoshito
+(2240) were checked at their exact observed/max levels. Lord Oon is Dominion;
+his Growth bonus was inactive as a singleton in the observed Fang Pi hand.
+
+Rendered official clan pages expose maximum-level facts. All 36 lists were
+expanded with Display all; each list's visible count was checked against its
+heading. The source corpus totals 2,507 cards. Conservative import rejects
+unsupported text and special-rule clans; no modifiers are dropped to load a
+card. The catalog now has 1,344 exact evolutions / 1,341 distinct names. Existing
+seed evolutions take precedence for named replay fixtures; live recognition uses
+observed stats/stars, retaining the chosen evolution through the match.
+Official source links and all rejection reasons are recorded in
+urban_rivals/data/official_catalog_import.json. This is broader mechanic parsing
+and source coverage, not proof of live correctness for every new interaction.

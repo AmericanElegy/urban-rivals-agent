@@ -88,3 +88,12 @@ increment and confirmation. Stale attack after increment stops instead of
 repeating the click. These are replay/controller checks; live panel input and
 an automatic completed match remain pending. Do not run multiple OCR replays
 alongside live execution: CPU contention can exceed the 10-second frame limit.
+
+## Exact-level matching and occluded banners (2026-11-12)
+
+A real captured card-flip frame covered ROUND while leaving YOUR TURN and the
+clock visible. It now returns wait/no action instead of stopping. Known short
+clocks still stop; no hidden round number is inferred. The saved frame passed
+this check at 4.16 seconds. Initial-hand reads select the exact catalog evolution
+from name, power, damage and stars, then cache that immutable hand. Four recorded
+board checkpoints still pass after expanding to 1,344 supported evolutions.
