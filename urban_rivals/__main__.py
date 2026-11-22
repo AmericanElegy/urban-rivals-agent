@@ -39,7 +39,8 @@ def main():
             report=Path(args.output)/"catalog-coverage.json"
             report.parent.mkdir(parents=True,exist_ok=True)
             report.write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
-            print(json.dumps({k:v for k,v in result.items() if k not in {"clans","rejected_cards","rejection_reasons"}},indent=2))
+            print(json.dumps({k:v for k,v in result.items() if k not in {
+                "clans","rejected_cards","rejection_reasons","gap_category_examples"}},indent=2))
             print(f"Full report: {report}")
             return
         if args.command=="verify-log":

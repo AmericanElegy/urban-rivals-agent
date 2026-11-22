@@ -300,6 +300,8 @@ unsupported text or enable special GhosTown/Leader/Oculus rules.
 source records and rejected mechanics separately. Full details are saved to
 local/catalog-coverage.json. The source collection is not a claim of complete
 mechanics, lower-evolution, OCR or live-play coverage.
+The current exhaustive category counts and special-clan separation are documented
+in [MECHANICS_GAP_REPORT.md](MECHANICS_GAP_REPORT.md).
 
 After a reviewed parser expansion, `python -m urban_rivals.catalog_import`
 re-evaluates the retained official records and deterministically refreshes the

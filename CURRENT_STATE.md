@@ -41,7 +41,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-154 Python tests and 15 extension tests pass. Fresh Oblivion-board replay passes
+156 Python tests and 15 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -130,7 +130,7 @@ retains the verified immutable evolution through later rounds. Name-only replay
 manifests retain their original reference evolution. Four-star Fixit (Reprisal
 Protection) and five-star Fixit (always Protection) are separate entries.
 
-154 Python tests and 15 extension tests pass. Four saved board checkpoints and
+156 Python tests and 15 extension tests pass. Four saved board checkpoints and
 all four completed Oblivion-log rounds remain consistent. Import is idempotent;
 unsupported/conflicting effects are not silently omitted. Automatic live
 selection/stake/confirmation remains unverified. James has left the game on the
@@ -227,7 +227,7 @@ REFERENCE_DATABASE.md for provenance and refresh inputs. Reference facts never
 enter the execution catalog automatically. Known reference cards rejected by
 execution now report the validation/mechanic gap instead of missing card data.
 
-154 Python tests and 15 extension tests pass. Regression verifies official
+156 Python tests and 15 extension tests pass. Regression verifies official
 four-star Fixit 7/6 Reprisal overrides the wiki's older 7/5 entry for lookup.
 Live automatic play remains unproven and is not armed. Bridge remains inspect-only
 (process 37196 predates reference changes; refresh only when needed). Public
@@ -251,3 +251,11 @@ rejected; the executable catalog is 1,726 evolutions / 1,723 names. This is
 offline mechanics coverage, not live validation. Poison/Toxin/Heal/Regen,
 Stop/Killshot/After/Versus compound conditions, special clans and ambiguous
 cross-source cycles remain rejected.
+
+Task 4 of the retained next-work sequence is complete. The deterministic rebuild
+added zero records and left both catalog artifacts byte-identical. The exhaustive
+788-record gap inventory is checked in as MECHANICS_GAP_REPORT.md: persistent
+effects 200, compound conditions 175, special clans 155, ordinary tail 141,
+advanced scaling/team effects 60, resource cancellation 27, remaining Copy 22,
+and Impose 8. `coverage` now emits these categories plus condition, persistent
+family and special-clan breakdowns on every run.
