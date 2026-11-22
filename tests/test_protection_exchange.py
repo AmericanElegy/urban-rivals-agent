@@ -75,8 +75,8 @@ class ProtectionExchangeTests(unittest.TestCase):
         self.assertEqual(play(a, b, leader=1).players[1].life, 12)
 
     def test_unsupported_special_interactions_stay_rejected(self):
-        for text in ("Protection: Ability", "Protection: Bonus", "Tune Out And Power +2",
-                     "Bet >= 5 Pillz: -2 Opp. Damage, Min 1", "Copy: Opp. Bonus",
+        for text in ("Tune Out And Power +2",
+                     "Bet >= 5 Pillz: -2 Opp. Damage, Min 1",
                      "Defeat: Damage Exchange", "Brawl: Protection: Damage"):
             with self.subTest(text=text), self.assertRaises(ValueError):
                 parse_effect(text)

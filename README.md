@@ -56,7 +56,7 @@ star counting and selected-card detection pass the saved-capture regression set.
 Input coordinates and full live action/receipt handling still need validation. Do not treat passing mocked
 control tests or the synthetic OCR test as a completed live match.
 
-The catalog covers 1,399 exact evolutions across 1,396 names, seeded from the
+The catalog covers 1,726 exact evolutions across 1,723 names, seeded from the
 saved training boards and expanded from rendered official clan pages. Unsupported
 mechanics are rejected during import; the source audit lists all 2,507 records. The first input profile supports the cataloged Bangers cards in
 our hand; the other entries cover the observed opponents. Other cards/evolutions stop recognition. The GhosTown entries are
@@ -70,11 +70,13 @@ the current matrix solver's convergence, not match win probability or the error
 in the continuation heuristic. Sampling a mixed strategy matters: always selecting
 its most likely move makes play predictable.
 
-Supported mechanics include Stop Ability/Bonus, Power/Damage Protection and
-Exchange, Power/Damage cancellation, and Attack Per Opp. Power/Damage. See
+Supported mechanics include Stop Ability/Bonus; Power/Damage/Attack and
+Ability/Bonus Protection; Exchange; Power/Damage cancellation; printed
+Power/Damage and activated Bonus Copy; fractional Pillz recovery; and Attack
+scaling from opposing stats or starting Life/Pillz. See
 MECHANICS_STATUS.md for exact scope and rejection boundaries. Unsupported effect
-text raises an error, including recursive/conditional ability copy, Power Copy, Protection Ability/Bonus, poison and
-regeneration, recovery, Oculus and Leader mechanics. Nested conditions and many
+text raises an error, including recursive/conditional Bonus Copy, poison,
+regeneration, Oculus and Leader mechanics. Nested conditions and many
 modern keywords are not implemented. Do not remove
 unsupported effects to make a real hand load: that would produce incorrect advice.
 Effect ordering for the supported subset still needs comparison with live logs.
@@ -298,6 +300,11 @@ unsupported text or enable special GhosTown/Leader/Oculus rules.
 source records and rejected mechanics separately. Full details are saved to
 local/catalog-coverage.json. The source collection is not a claim of complete
 mechanics, lower-evolution, OCR or live-play coverage.
+
+After a reviewed parser expansion, `python -m urban_rivals.catalog_import`
+re-evaluates the retained official records and deterministically refreshes the
+catalog and rejection audit. It never removes an unsupported effect to admit a
+card.
 
 `python -m urban_rivals reference "Fixit"` looks up the broader card reference,
 including level tables for unsupported mechanics. See REFERENCE_DATABASE.md for

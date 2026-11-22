@@ -1,6 +1,6 @@
 # Urban Rivals agent current state
 
-Updated 2026-11-12. Owner: James / AmericanElegy.
+Updated 2026-11-22. Owner: James / AmericanElegy.
 Live checkout: C:\Users\James\OneDrive\Documents\ChatGPT\urban-rivals bot
 Private origin: https://github.com/AmericanElegy/urban-rivals-agent
 
@@ -15,11 +15,13 @@ information. No discretionary paid model calls are authorized or needed.
 ## Current implementation
 
 - Supported-subset immutable engine and one-round mixed-strategy solver.
-- 1,399 exact evolutions / 1,396 names in urban_rivals/data/training_cards.json.
+- 1,726 exact evolutions / 1,723 names in urban_rivals/data/training_cards.json.
   Public source corpus: 2,507 maximum-level cards across all 36 official clans.
   Unsupported effects and conflicting evolution data are quarantined.
-- Added source-preserving Copy Opp. Ability, Stop Bonus, Power/Damage/Attack Cancel and printed-base Damage Copy,
-  Attack Per Opp. Power/Damage. Recursive/conditional copy and uncertain
+- Added source-preserving Copy Opp. Ability/Bonus, printed Power/Damage Copy,
+  Stop Bonus, Power/Damage/Attack Cancel, Protection Ability/Bonus/Attack,
+  fractional Pillz recovery, and Attack scaling from opposing stats or starting
+  Life/Pillz. Recursive/conditional copy and uncertain
   cross-source Stop cycles remain rejected. See MECHANICS_STATUS.md.
 - Board recognition validates names, stats, resources, used cards, initiative,
   clock and previous-round receipts. Two matching public states are required
@@ -39,7 +41,7 @@ information. No discretionary paid model calls are authorized or needed.
 
 ## Actual evidence
 
-117 Python tests and 15 extension tests pass. Fresh Oblivion-board replay passes
+154 Python tests and 15 extension tests pass. Fresh Oblivion-board replay passes
 147/147 fields at three scales. Four recorded stake panels pass 48/48 fields.
 The earlier board regression passed 764/764 fields; four recorded sequential
 boards still reconcile three completed rounds.
@@ -118,8 +120,8 @@ opposing attack modifiers but preserves the attack from paid/free pillz.
 All 2,507 rendered maximum-level card facts from 36 official clan pages were
 collected, with per-clan row counts checked against visible headings. Audit data
 contains only card facts and official source URLs, not prices, holdings, account
-identifiers or images. Import accepted supported mechanics only; 1,115 source
-records were rejected. Current catalog has 1,399 evolutions / 1,396 names.
+identifiers or images. Import accepted supported mechanics only; 788 source
+records are rejected. Current catalog has 1,726 evolutions / 1,723 names.
 GhosTown, Leader and Oculus bulk imports remain excluded for their special rules.
 Seeded GhosTown Day-only entries remain unchanged.
 
@@ -128,7 +130,7 @@ retains the verified immutable evolution through later rounds. Name-only replay
 manifests retain their original reference evolution. Four-star Fixit (Reprisal
 Protection) and five-star Fixit (always Protection) are separate entries.
 
-117 Python tests and 15 extension tests pass. Four saved board checkpoints and
+154 Python tests and 15 extension tests pass. Four saved board checkpoints and
 all four completed Oblivion-log rounds remain consistent. Import is idempotent;
 unsupported/conflicting effects are not silently omitted. Automatic live
 selection/stake/confirmation remains unverified. James has left the game on the
@@ -225,8 +227,27 @@ REFERENCE_DATABASE.md for provenance and refresh inputs. Reference facts never
 enter the execution catalog automatically. Known reference cards rejected by
 execution now report the validation/mechanic gap instead of missing card data.
 
-132 Python tests and 15 extension tests pass. Regression verifies official
+154 Python tests and 15 extension tests pass. Regression verifies official
 four-star Fixit 7/6 Reprisal overrides the wiki's older 7/5 entry for lookup.
 Live automatic play remains unproven and is not armed. Bridge remains inspect-only
 (process 37196 predates reference changes; refresh only when needed). Public
 reference is committed; raw wiki pages, private captures and token remain local.
+
+## Offline mechanics expansion — 2026-11-22
+
+After completing the official evolution reconciliation, effect-frequency review
+selected four stateless, officially described families before persistent effects.
+Implemented source-aware Protection Ability/Bonus plus Attack punctuation,
+defeat-based fractional Pillz recovery (floor, minimum one, using the full attack
+allocation), Attack Per Life/Pillz Left from pre-move resources, printed Power
+Copy, combined printed Power/Damage Copy, and activated Bonus Copy. Copied bonus
+effects retain the copier's ability/bonus source; inactive, conditional and
+recursive Bonus Copy remain fail-closed.
+
+The idempotent `python -m urban_rivals.catalog_import` refresh re-evaluates all
+retained official maximum-level facts after parser changes. These mechanics add
+327 supported records: parsed source coverage is now 1,719/2,507, with 788
+rejected; the executable catalog is 1,726 evolutions / 1,723 names. This is
+offline mechanics coverage, not live validation. Poison/Toxin/Heal/Regen,
+Stop/Killshot/After/Versus compound conditions, special clans and ambiguous
+cross-source cycles remain rejected.

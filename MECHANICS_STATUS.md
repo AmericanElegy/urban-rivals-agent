@@ -76,8 +76,8 @@ recorded round's final submission is not inferred from an incomplete animation.
 Protection/Exchange have targeted rule-based interaction tests, but no supplied
 receipt isolates their active effects. They remain pending live validation.
 
-Copy, ongoing poison/toxin effects, Stop Bonus, Protection Ability/Bonus and many
-other mechanics remain rejected. Dr Elisa, Mendossa and Caballine stay outside
+Ongoing poison/toxin effects and many compound conditions remain rejected.
+Dr Elisa, Mendossa and Caballine stay outside
 the catalog. The Montana capture therefore remains blocked. The recording hand
 can now be fully recognized; that readiness flag does not enable execution.
 The local bridge was refreshed in inspect-only mode with the existing pairing
@@ -163,7 +163,7 @@ Rendered official clan pages expose maximum-level facts. All 36 lists were
 expanded with Display all; each list's visible count was checked against its
 heading. The source corpus totals 2,507 cards. Conservative import rejects
 unsupported text and special-rule clans; no modifiers are dropped to load a
-card. The catalog now has 1,399 exact evolutions / 1,396 distinct names. Existing
+card. The catalog at that checkpoint had 1,399 exact evolutions / 1,396 distinct names. Existing
 seed evolutions take precedence for named replay fixtures; live recognition uses
 observed stats/stars, retaining the chosen evolution through the match.
 Official source links and all rejection reasons are recorded in
@@ -178,3 +178,27 @@ zero-damage cards gain nothing. Combined multiplier, negative, opponent-targeted
 and defeat variants remain rejected. Source: official rules, Pillz/Life per
 Damage (https://www.urban-rivals.com/game/rules/). Unit coverage passes; no live
 Dr Saw round has been reconciled. Poison and ongoing effects remain unsupported.
+
+## Protection, recovery, scaling and Copy expansion — 2026-11-22
+
+The reconciled official reference made effect frequency measurable. The first
+post-reconciliation expansion implements four stateless families with retained
+official descriptions:
+
+- Protection Ability and Bonus preserve only the protected source while their
+  own protection source remains active. Protection Attack and spaced Damage
+  spellings share the existing negative-modifier protection rule.
+- Recover N Pillz Out Of M triggers on defeat unless explicitly Victory or
+  Defeat, uses the full attack allocation including the free pill, rounds down,
+  and returns at least one Pillz. Stop Ability/Bonus still acts by source.
+- positive Attack Per Life/Pillz Left uses the controlling player's immutable
+  resources at the beginning of the round, before the submitted spend.
+- Power Copy and combined Power/Damage Copy use printed opposing stats. Bonus
+  Copy copies only an activated opposing bonus and retains the copier's source.
+  Conditional and recursive Bonus Copy remain rejected.
+
+An idempotent catalog refresh re-evaluated all 2,507 retained official
+maximum-level facts. Parsed coverage rose from 1,392 to 1,719 records; the
+catalog now contains 1,726 evolutions / 1,723 names. The remaining 788 records
+stay quarantined. This expansion has unit and regression evidence only; it does
+not claim a live automatic match or validate every cross-mechanic interaction.

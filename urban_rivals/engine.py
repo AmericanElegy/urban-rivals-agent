@@ -7,7 +7,7 @@ from dataclasses import dataclass, replace
 import re
 from functools import lru_cache
 
-ENGINE_REVISION="copy-v1"
+ENGINE_REVISION="copy-suite-v1"
 
 
 @dataclass(frozen=True)
@@ -20,14 +20,20 @@ class Effect:
     condition: str = "always"
     multiplier: str = "none"
     threshold: int = 0
+    divisor: int = 1
 
     def __post_init__(self):
         if self.stat not in {"power", "damage", "attack", "life", "pillz", "stop_ability",
-                             "protect_power", "protect_damage", "exchange_power", "exchange_damage", "tune_out", "stop_bonus", "cancel_power", "cancel_damage", "cancel_attack", "copy_ability", "copy_damage"}:
+                             "protect_power", "protect_damage", "protect_attack",
+                             "protect_ability", "protect_bonus", "exchange_power",
+                             "exchange_damage", "tune_out", "stop_bonus",
+                             "cancel_power", "cancel_damage", "cancel_attack",
+                             "copy_ability", "copy_bonus", "copy_power",
+                             "copy_damage", "recover_pillz"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
-        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage", "damage_dealt"}:
+        if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage", "damage_dealt", "life_left", "pillz_left"}:
             raise ValueError(f"Unsupported multiplier: {self.multiplier}")
         if self.multiplier=="damage_dealt" and (self.stat not in {"life","pillz"} or self.amount<=0 or self.opponent or self.condition in {"defeat","victory or defeat"}):
             raise ValueError("Per-damage recovery requires a positive own resource effect on victory")
@@ -36,6 +42,14 @@ class Effect:
         if type(self.threshold) is not int or self.threshold < 0 or (
                 self.condition not in {"bet_over", "bet_under"} and self.threshold != 0):
             raise ValueError("Invalid Bet threshold")
+        if type(self.divisor) is not int or self.divisor < 1:
+            raise ValueError("Invalid effect divisor")
+        if self.stat=="recover_pillz" and (self.amount<1 or self.opponent
+                or self.condition not in {"defeat","victory or defeat"}
+                or self.multiplier!="none"):
+            raise ValueError("Pillz recovery requires an own defeat-based fraction")
+        if self.stat!="recover_pillz" and self.divisor!=1:
+            raise ValueError("Only Pillz recovery uses a divisor")
         if self.stat.startswith(("protect_", "exchange_", "cancel_", "copy_")) and (
                 self.amount != 0 or self.opponent or self.multiplier != "none"
                 or self.condition in {"defeat", "victory or defeat"}):
@@ -67,14 +81,27 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         text = text.strip()
     if re.fullmatch(r"Copy:\s*Opp\.?\s+Ability", text, re.I) and condition=="always":
         return (Effect("copy_ability",0),)
-    if re.fullmatch(r"Copy:\s*Opp\.?\s+Damage", text, re.I):
-        return (Effect("copy_damage",0,condition=condition,threshold=threshold),)
+    if re.fullmatch(r"Copy:?\s*Opp\.?\s+Bonus", text, re.I) and condition=="always":
+        return (Effect("copy_bonus",0),)
+    match=re.fullmatch(r"Copy:?\s*Opp\.?\s+(Power|Damage)", text, re.I)
+    if match:
+        return (Effect("copy_"+match[1].lower(),0,condition=condition,threshold=threshold),)
+    if re.fullmatch(r"Copy:\s*Power\s+And\s+Damage\s+Opp\.?",text,re.I):
+        return (Effect("copy_power",0,condition=condition,threshold=threshold),
+                Effect("copy_damage",0,condition=condition,threshold=threshold))
     match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Power(?:\s+And\s+Damage)?|Damage|Attack)\s+Modif", text, re.I)
     if match:
         return tuple(Effect("cancel_"+stat,0,condition=condition,threshold=threshold)
                      for stat in re.split(r"\s+and\s+",match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
         return (Effect("stop_bonus",0,True,condition=condition,threshold=threshold),)
+    match=re.fullmatch(r"Recover\s+(\d+)\s+Pillz\s+Out\s+Of\s+(\d+)",text,re.I)
+    if match:
+        if multiplier!="none" or condition not in {"always","defeat","victory or defeat"}:
+            raise ValueError("Combined Pillz recovery conditions are not supported")
+        return (Effect("recover_pillz",int(match[1]),minimum=1,
+                       condition="defeat" if condition=="always" else condition,
+                       divisor=int(match[2])),)
     match=re.fullmatch(r"([+]\d+)\s+(Life|Pillz)\s+Per\s+Damage",text,re.I)
     if match:
         if multiplier!="none":
@@ -85,7 +112,11 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
     if match:
         return (Effect("attack",int(match[1]),condition=condition,
                        multiplier="opp_"+match[2].lower(),threshold=threshold),)
-    match = re.fullmatch(r"Protection:\s*(Power|Damage|Power\s+And\s+Damage)", text, re.I)
+    match = re.fullmatch(r"([+]\d+)\s+(?:Attack|Atk)\s+Per\s+(Life|Pillz)\s+Left",text,re.I)
+    if match:
+        return (Effect("attack",int(match[1]),condition=condition,
+                       multiplier=match[2].lower()+"_left",threshold=threshold),)
+    match = re.fullmatch(r"Protection\s*:\s*(Power|Damage|Attack|Ability|Bonus|Power\s+And\s+Damage)", text, re.I)
     if match:
         if multiplier != "none":
             raise ValueError("Protection does not support numeric multipliers")
@@ -219,19 +250,21 @@ def resolve(state: State, first: Move, second: Move) -> State:
     sources=[]
     for side,c in enumerate(cards):
         other=cards[1-side]
+        other_bonus_on=sum(x.clan==other.clan for x in state.players[1-side].hand)>=2
         def expand(row):
             result=[]
             for e in row:
-                if e.stat!="copy_ability":
+                if e.stat not in {"copy_ability","copy_bonus"}:
                     result.append(e)
                     continue
                 if (e.amount,e.condition,e.multiplier,e.opponent)!=(0,"always","none",False):
-                    raise ValueError("Conditional or modified ability-copy is not verified")
+                    raise ValueError("Conditional or modified effect-copy is not verified")
                 if other.clan.casefold() in {"leader","genesis"}:
                     continue
-                if any(x.stat=="copy_ability" for x in other.ability):
-                    raise ValueError("Recursive ability-copy is not verified")
-                result.extend(other.ability)
+                donor=other.ability if e.stat=="copy_ability" else other.bonus if other_bonus_on else ()
+                if any(x.stat in {"copy_ability","copy_bonus"} for x in donor):
+                    raise ValueError("Recursive effect-copy is not verified")
+                result.extend(donor)
             return tuple(result)
         bonus_on=sum(x.clan==c.clan for x in state.players[side].hand)>=2
         sources.append((expand(c.ability),expand(c.bonus) if bonus_on else ()))
@@ -255,6 +288,7 @@ def resolve(state: State, first: Move, second: Move) -> State:
                        "brawl": sum(x.clan == cards[1-side].clan for x in state.players[1-side].hand),
                        "equalizer": cards[1-side].stars,
                        "opp_power": cards[1-side].power, "opp_damage": cards[1-side].damage,
+                       "life_left":p.life,"pillz_left":p.pillz,
                        "damage_dealt":1}
         def enabled(e):
             # Bets count the attack allocation plus its free pill, not Fury's
@@ -267,16 +301,27 @@ def resolve(state: State, first: Move, second: Move) -> State:
         active.append(tuple(replace(e, amount=e.amount * multipliers[e.multiplier])
                             for e in effects if enabled(e)))
         ability_sizes.append(sum(enabled(e) for e in ability))
-    # Retain source identity while resolving stops. Opposing ability/bonus
-    # stop cycles need an observed precedence rule; do not silently choose one.
+    # Retain source identity while resolving stops. Protection: Ability is
+    # normally a bonus (Skeelz); Protection: Bonus is normally an ability.
+    # Each works only while its own source remains active. Opposing cross-source
+    # cycles still need an observed precedence rule and remain fail-closed.
     for side in range(2):
         if (any(e.stat=="stop_ability" for e in active[side][ability_sizes[side]:])
                 and any(e.stat=="stop_bonus" for e in active[1-side][:ability_sizes[1-side]])):
             raise ValueError("Cross-source Stop Ability/Bonus precedence is not yet verified")
-    blocked = [any(e.stat == "stop_ability" for e in active[1-i]) for i in range(2)]
+    raw_abilities=[active[i][:ability_sizes[i]] for i in range(2)]
+    raw_bonuses=[active[i][ability_sizes[i]:] for i in range(2)]
+    stop_bonus_raw=[any(e.stat=="stop_bonus" for e in raw_abilities[1-i]+raw_bonuses[1-i])
+                    for i in range(2)]
+    ability_protected=[any(e.stat=="protect_ability" for e in raw_bonuses[i])
+                       and not stop_bonus_raw[i] for i in range(2)]
+    blocked = [any(e.stat == "stop_ability" for e in active[1-i])
+               and not ability_protected[i] for i in range(2)]
     abilities=[active[i][:ability_sizes[i]] if not blocked[i] else () for i in range(2)]
     bonuses=[active[i][ability_sizes[i]:] for i in range(2)]
-    bonus_blocked=[any(e.stat=="stop_bonus" for e in abilities[1-i]+bonuses[1-i]) for i in range(2)]
+    bonus_protected=[any(e.stat=="protect_bonus" for e in abilities[i]) for i in range(2)]
+    bonus_blocked=[any(e.stat=="stop_bonus" for e in abilities[1-i]+bonuses[1-i])
+                   and not bonus_protected[i] for i in range(2)]
     active=[abilities[i]+(() if bonus_blocked[i] else bonuses[i]) for i in range(2)]
     # Cancel removes the opposing card's modifiers of this type, irrespective
     # of their source or which card those modifiers would target.
@@ -320,11 +365,17 @@ def resolve(state: State, first: Move, second: Move) -> State:
     life[1 - winner] = max(0, life[1 - winner] - damage)
     for owner in range(2):
         for e in active[owner]:
-            if e.stat not in {"life", "pillz"}:
+            if e.stat not in {"life", "pillz", "recover_pillz"}:
                 continue
             triggered = (owner != winner if e.condition == "defeat" else
                          True if e.condition == "victory or defeat" else owner == winner)
             if triggered:
+                if e.stat=="recover_pillz":
+                    # The attack allocation includes the free pill. Official
+                    # recovery rounds the stated fraction down, minimum one.
+                    recovered=max(e.minimum,(moves[owner].pillz+1)*e.amount//e.divisor)
+                    pillz[owner]+=recovered
+                    continue
                 if e.multiplier=="damage_dealt":
                     e=replace(e,amount=e.amount*damage,multiplier="none")
                 target = 1 - owner if e.opponent else owner
