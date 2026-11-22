@@ -191,7 +191,7 @@ Bridge process 37196 is inspect-only, same token. No live input or completed
 automatic match proven. No current automatic run is armed. Public source audit
 remains checked in; private saved-frame diagnostics remain ignored locally.
 
-## Bulk reference acquisition — 2026-11-12
+## Official reference reconciliation — 2026-11-22
 
 James directed us to expand the card/level/rule reference first and suggested
 checking a wiki/bulk source before individual pages. Public wiki API acquisition
@@ -200,21 +200,24 @@ records / 6,279 level entries; 1,964 names match the 2,507 current official card
 The GitHub pakoito/CardsFromUrbanRivals dataset was evaluated locally (2,272
 single-level records) but not imported because it does not solve evolutions.
 
-Targeted official collection filled missing wiki entries, malformed levels,
-maximum-stat disagreements, unknown unlock levels and known lower-level conflicts.
-711 public official evolution tables / 2,313 levels were captured, preserving
-per-level abilities, unlock markers, bonus text, visible explanations and URLs.
+Official collection now covers all 2,507 current card pages and 7,930 evolution
+rows, preserving per-level abilities, unlock markers, bonus text, visible
+explanations and URLs. The strict reconciliation validates every required field,
+level sequence, identity and maximum-level official snapshot: 2,507 cards pass,
+zero require review, and all 624 recorded wiki conflicts are resolved in favor
+of the current official table. Five Day/Night ability pairs and both GhosTown
+bonus states are explicitly retained as conditional official variants.
 Six accented names damaged in the earlier source import were verified against
 card IDs and corrected in the audit and gameplay catalog. No heuristic-only
 name changes and no unsupported mechanics enabled.
 
-New checked-in urban_rivals/data/card_reference.json contains all source facts,
-including unsupported mechanics. Preferred lookup spans 7,927 level records over
-all 2,507 current cards: 711 use official tables, 1,796 use wiki candidates. Zero
-current cards lack an evolution-table source. Wiki-only lower levels remain
-unverified; these counts do not prove complete historical/legal-level coverage.
-88 wiki maximum-stat differences, 13 missing maximum levels, and 523 ability-text
-differences are retained for review (text differences include cosmetic variants).
+Checked-in urban_rivals/data/card_reference.json now uses official tables for all
+7,930 preferred level records. The separate checked-in
+urban_rivals/data/reference_reconciliation.json retains the per-level wiki
+comparison: 2,182 cards differ, including 3,777 missing wiki fields, 3,518 field
+differences, 1,791 levels added from official pages, and 10 wiki-only levels.
+These counts do not prove historical removed-level coverage, mechanics semantics,
+or format legality; those remain separate implementation and validation tasks.
 
 Commands: python -m urban_rivals reference "Fixit"; collection/rebuild modules
 urban_rivals.wiki_reference and urban_rivals.reference_database. See
@@ -222,7 +225,7 @@ REFERENCE_DATABASE.md for provenance and refresh inputs. Reference facts never
 enter the execution catalog automatically. Known reference cards rejected by
 execution now report the validation/mechanic gap instead of missing card data.
 
-129 Python tests and 15 extension tests pass. Regression verifies official
+132 Python tests and 15 extension tests pass. Regression verifies official
 four-star Fixit 7/6 Reprisal overrides the wiki's older 7/5 entry for lookup.
 Live automatic play remains unproven and is not armed. Bridge remains inspect-only
 (process 37196 predates reference changes; refresh only when needed). Public

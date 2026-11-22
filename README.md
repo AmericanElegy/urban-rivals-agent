@@ -78,6 +78,11 @@ regeneration, recovery, Oculus and Leader mechanics. Nested conditions and many
 modern keywords are not implemented. Do not remove
 unsupported effects to make a real hand load: that would produce incorrect advice.
 Effect ordering for the supported subset still needs comparison with live logs.
+
+The separate reference database now contains validated official evolution tables
+for all 2,507 current cards (7,930 level rows). This completes source-fact
+reconciliation, not mechanics support: reference rows enter live play only after
+their effects and interactions are implemented and tested fail-closed.
 No random attack mode is modeled. No ranking, format legality or deck checking is
 implemented. The random simulation opponent is a smoke test, not a performance
 benchmark. No claim of improved playing strength has been established.

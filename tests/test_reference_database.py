@@ -1,5 +1,8 @@
 import unittest
-from urban_rivals.reference_database import wiki_card, plain, preferred_levels, lookup_reference
+from urban_rivals.reference_database import (
+    compare_source_levels, day_night_variants, lookup_reference, plain,
+    preferred_levels, reconcile_reference, wiki_card,
+)
 
 
 def page(text):
@@ -82,3 +85,48 @@ class ReferenceDatabaseTests(unittest.TestCase):
         result=preferred_levels(data,card)
         self.assertIsNone(result['levels'][0]['ability'])
         self.assertEqual(result['source_kind'],'wiki_candidate')
+
+    def test_day_and_night_abilities_are_preserved_as_variants(self):
+        self.assertEqual(day_night_variants(
+            'Day: Cancel Opp. Power Modif.',
+            'Night: -2 Opp Power, Min 6'),{
+                'day':'Day: Cancel Opp. Power Modif.',
+                'night':'Night: -2 Opp Power, Min 6'})
+        self.assertEqual(day_night_variants('Power +2','Night: Power +2'),{})
+
+        card={'name':'Example','clan':'Junkz','source':{'url':'official'}}
+        data={'official_evolution_pages':[{'url':'official','levels':[
+                  {'name':'Example','clan':'Junkz','level':3,'power':7,'damage':5,
+                   'ability':'Night: Power +2','ability_unlock_level':None,'bonus':'Attack +8'}]}],
+              'wiki_candidates':[], 'conditional_bonuses':{},
+              'conditional_abilities':{'official':{
+                  'day':'Day: Cancel Opp. Power Modif.','night':'Night: Power +2'}}}
+        level=preferred_levels(data,card)['levels'][0]
+        self.assertEqual(level['ability_variants']['day'],'Day: Cancel Opp. Power Modif.')
+
+    def test_reconciliation_fails_closed_on_missing_official_field(self):
+        maximum={'name':'Example','clan':'Junkz','level':2,'power':7,'damage':4,
+                 'ability':'Power +2','bonus':'Attack +8','source':{'url':'official'}}
+        row={'name':'Example','clan':'Junkz','level':2,'power':7,'damage':4,
+             'ability':'','ability_unlock_level':None,'bonus':'Attack +8'}
+        data={'official_maximum_levels':[maximum],
+              'official_evolution_pages':[{'url':'official','levels':[row]}],
+              'conditional_bonuses':{},'conflicts':[]}
+        result=reconcile_reference(data)
+        self.assertFalse(result['complete'])
+        self.assertEqual(result['missing_or_invalid_fields'],{'ability':1})
+
+    def test_source_comparison_resolves_to_official_rows(self):
+        maximum={'name':'Example','clan':'Junkz','level':2,'power':7,'damage':4,
+                 'ability':'Power +2','bonus':'Attack +8','source':{'url':'official'}}
+        official={'url':'official','levels':[{
+            'name':'Example','clan':'Junkz','level':2,'power':7,'damage':4,
+            'ability':'Power +2','ability_unlock_level':None,'bonus':'Attack +8'}]}
+        wiki={'name':'Example','clan':'Junkz','ability':'Power +1','bonus':'Attack +8',
+              'ability_unlock_level':2,'levels':[{'level':2,'power':6,'damage':4}],
+              'source':{'url':'wiki'}}
+        result=compare_source_levels({'official_maximum_levels':[maximum],
+            'official_evolution_pages':[official],'wiki_candidates':[wiki]})[0]
+        self.assertTrue(result['resolved'])
+        self.assertEqual(result['decision'],'prefer_official_evolution_table')
+        self.assertIn('field_difference',{d['kind'] for d in result['differences']})

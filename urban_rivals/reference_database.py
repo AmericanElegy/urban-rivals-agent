@@ -15,6 +15,16 @@ def plain(value):
     return " ".join(html.unescape(value).replace("'''","").replace("''","").split())
 
 
+def day_night_variants(*values):
+    """Return a complete official Day/Night pair, or an empty mapping."""
+    variants={}
+    for value in values:
+        if not isinstance(value,str):continue
+        match=re.match(r"^(Day|Night):\s*",value,re.I)
+        if match:variants[match[1].lower()]=value
+    return variants if set(variants)=={"day","night"} else {}
+
+
 def wiki_card(page):
     revision=page.get("revisions",[{}])[0]
     text=revision.get("slots",{}).get("main",{}).get("*","")
@@ -100,8 +110,12 @@ def build_reference(cache="local/wiki-reference-cache",official_evolutions="loca
     # A checkout already contains public official observations. Preserve those
     # when a new machine has only the checked-in snapshot and a fresh wiki cache.
     snapshot=root/"card_reference.json"
-    verified=(json.loads(snapshot.read_text(encoding="utf-8")).get("official_evolution_pages",[])
-              if snapshot.exists() else [])
+    previous=json.loads(snapshot.read_text(encoding="utf-8")) if snapshot.exists() else {}
+    verified=previous.get("official_evolution_pages",[])
+    conditional_bonuses=previous.get("conditional_bonuses",{})
+    conditional_path=Path(official_evolutions).parent/"official-conditional-bonuses.json"
+    if conditional_path.exists():
+        conditional_bonuses.update(json.loads(conditional_path.read_text(encoding="utf-8")))
     verified_by_url={p["url"]:p for p in verified}
     path=Path(official_evolutions)
     if path.exists():
@@ -110,6 +124,21 @@ def build_reference(cache="local/wiki-reference-cache",official_evolutions="loca
                 observation=json.loads(line)
                 verified_by_url[observation["url"]]=observation
     verified=list(verified_by_url.values())
+    conditional_abilities=dict(previous.get("conditional_abilities",{}))
+    for card in official:
+        observed=verified_by_url.get(card["source"]["url"])
+        if not observed or not observed.get("levels"):continue
+        variants=day_night_variants(card.get("ability"),observed["levels"][-1].get("ability"))
+        if variants:
+            conditional_abilities[card["source"]["url"]]=variants
+    for conflict in conflicts:
+        current=by_name.get(normalize(conflict["name"]))
+        observed=verified_by_url.get(current["source"]["url"]) if current else None
+        conflict["resolved"]=observed is not None
+        if observed:
+            conflict["resolution"]={"decision":"prefer_official_evolution_table",
+                                    "url":observed["url"],
+                                    "observed_at":observed.get("collected_at")}
     cache_complete=bool(cache_paths) and "continue" not in last_batch and all(
         path.name==f"batch-{i:04d}.json" for i,path in enumerate(cache_paths))
     if not cache_complete:
@@ -118,6 +147,8 @@ def build_reference(cache="local/wiki-reference-cache",official_evolutions="loca
             "wiki_acquisition":{"public_pages":pages_seen,"batches":len(cache_paths),"complete":cache_complete},
             "official_maximum_levels":official,
             "wiki_candidates":wiki,"official_evolution_pages":verified,
+            "conditional_bonuses":conditional_bonuses,
+            "conditional_abilities":conditional_abilities,
             "conflicts":conflicts,
             "limits":["Wiki candidates never enable live actions automatically.",
                       "Matching maximum stats does not verify lower levels or ability text.",
@@ -135,6 +166,7 @@ def reference_report(data):
             gaps.append({"name":card["name"],"reason":"No wiki evolution record","url":card["source"]["url"]})
         elif any("error" in e for e in candidate["levels"]):
             gaps.append({"name":card["name"],"reason":"Unparsed wiki level statistics","url":card["source"]["url"]})
+    reconciliation=reconcile_reference(data)
     return {"wiki_acquisition":data.get("wiki_acquisition"),
             "official_maximum_level_cards":len(data["official_maximum_levels"]),
             "wiki_cards":len(data["wiki_candidates"]),
@@ -145,7 +177,78 @@ def reference_report(data):
             "conflict_counts":dict(Counter(c["kind"] for c in data["conflicts"])),
             "wiki_gap_cards":gaps,
             "unresolved_wiki_gap_cards":[c for c in gaps if c["url"] not in verified_urls],
+            "reconciliation":reconciliation,
             "limits":data["limits"]}
+
+
+def reconcile_reference(data):
+    """Audit complete observed level tables, without parsing gameplay effects."""
+    observations={p["url"]:p for p in data["official_evolution_pages"]}
+    issues=[]
+    cards_verified=0
+    level_count=0
+    missing_fields=Counter()
+    for card in data["official_maximum_levels"]:
+        url=card["source"]["url"]
+        observed=observations.get(url)
+        if observed is None:
+            issues.append({"name":card["name"],"url":url,"reason":"Official evolution table not observed"})
+            continue
+        rows=observed.get("levels",[])
+        problems=[]
+        if not rows:
+            problems.append("Empty official table")
+        numbers=[r.get("level") for r in rows]
+        if any(type(n) is not int or not 1<=n<=5 for n in numbers):
+            problems.append("Invalid level numbers")
+        elif numbers!=sorted(set(numbers)):
+            problems.append("Duplicate or unordered level numbers")
+        for row in rows:
+            for field in ("name","clan","ability","bonus"):
+                if not isinstance(row.get(field),str) or not row[field].strip():
+                    missing_fields[field]+=1
+                    problems.append(f"Missing {field} at level {row.get('level')}")
+            for field in ("power","damage"):
+                if type(row.get(field)) is not int or row[field]<0:
+                    missing_fields[field]+=1
+                    problems.append(f"Invalid {field} at level {row.get('level')}")
+            if row.get("name")!=card["name"] or row.get("clan")!=card["clan"]:
+                problems.append(f"Card identity differs at level {row.get('level')}")
+            unlock=row.get("ability_unlock_level")
+            if unlock is not None and (type(unlock) is not int or type(row.get("level")) is not int or not row["level"]<unlock<=5):
+                problems.append(f"Invalid ability unlock at level {row.get('level')}")
+            if row.get("ability")=="Ability unlocked at" and unlock is None:
+                missing_fields["ability_unlock_level"]+=1
+                problems.append(f"Missing ability unlock at level {row.get('level')}")
+        if rows and numbers[-1]!=card["level"]:
+            problems.append("Observed maximum level differs from official index")
+        if rows:
+            for field in ("power","damage","ability","bonus"):
+                if normalize(str(rows[-1].get(field)))!=normalize(str(card.get(field))):
+                    if field=="ability" and day_night_variants(rows[-1].get(field),card.get(field)):
+                        continue
+                    variants=data.get("conditional_bonuses",{}).get(card["clan"],{})
+                    known={normalize(v["text"]) for v in variants.values()}
+                    if field=="bonus" and normalize(rows[-1].get(field,"")) in known and normalize(card.get(field,"")) in known:
+                        continue
+                    problems.append(f"Official snapshots disagree on maximum-level {field}")
+        if card["clan"]=="GhosTown" and set(data.get("conditional_bonuses",{}).get("GhosTown",{}))!={"day","night"}:
+            problems.append("Both official Day/Night bonus variants are required")
+        if problems:
+            issues.append({"name":card["name"],"url":url,"reasons":sorted(set(problems))})
+        else:
+            cards_verified+=1
+            level_count+=len(rows)
+    unresolved_conflicts=[c for c in data["conflicts"] if not c.get("resolved",False)]
+    return {"complete":cards_verified==len(data["official_maximum_levels"]) and not unresolved_conflicts,
+            "officially_verified_cards":cards_verified,
+            "officially_verified_level_rows":level_count,
+            "cards_requiring_review":len(issues),
+            "missing_or_invalid_fields":dict(missing_fields),
+            "resolved_wiki_conflicts":len(data["conflicts"])-len(unresolved_conflicts),
+            "unresolved_wiki_conflicts":len(unresolved_conflicts),
+            "issues":issues,
+            "scope":"Current evolution rows exposed by official card pages; not historical removed levels, complete mechanics implementation or live validation."}
 
 
 def preferred_levels(data,card):
@@ -157,6 +260,10 @@ def preferred_levels(data,card):
             levels.append({**raw,"ability_label":raw["ability"],
                            "ability":"No Ability" if locked else raw["ability"],
                            "verification":"official_table_observed"})
+            variants=data.get("conditional_bonuses",{}).get(card["clan"])
+            if variants:levels[-1]["bonus_variants"]=variants
+            ability_variants=data.get("conditional_abilities",{}).get(card["source"]["url"])
+            if ability_variants and not locked:levels[-1]["ability_variants"]=ability_variants
         return {"source_kind":"official","source_url":official["url"],"levels":levels}
     wiki=next((w for w in data["wiki_candidates"] if normalize(w["name"])==normalize(card["name"])),None)
     if not wiki:
@@ -172,6 +279,45 @@ def preferred_levels(data,card):
     return {"source_kind":"wiki_candidate","source_url":wiki["source"]["url"],"levels":levels}
 
 
+def compare_source_levels(data):
+    """Record each lower-level difference, not just maximum-level mismatches."""
+    wiki_by_name={normalize(c["name"]):c for c in data["wiki_candidates"]}
+    observed={p["url"]:p for p in data["official_evolution_pages"]}
+    comparisons=[]
+    for card in data["official_maximum_levels"]:
+        official=observed.get(card["source"]["url"])
+        if not official:
+            comparisons.append({"name":card["name"],"resolved":False,"reason":"Official table not observed"})
+            continue
+        wiki=wiki_by_name.get(normalize(card["name"]))
+        differences=[]
+        reference_rows=preferred_levels({"official_evolution_pages":[],"wiki_candidates":[wiki] if wiki else []},card)
+        old_rows={e["level"]:e for e in reference_rows["levels"]} if wiki else {}
+        official_rows={e["level"]:e for e in official["levels"]}
+        for number,row in official_rows.items():
+            old=old_rows.get(number)
+            if old is None:
+                differences.append({"level":number,"kind":"level_added_from_official"})
+                continue
+            effective_ability="No Ability" if row["ability_unlock_level"] is not None else row["ability"]
+            actual={**row,"ability":effective_ability}
+            for field in ("power","damage","ability","bonus"):
+                before=old.get(field)
+                after=actual[field]
+                equal=normalize(before)==normalize(after) if isinstance(before,str) and isinstance(after,str) else before==after
+                if not equal:
+                    differences.append({"level":number,"field":field,
+                                        "kind":"missing_wiki_field" if before is None else "field_difference",
+                                        "wiki":before,"official":after})
+        for number in old_rows.keys()-official_rows.keys():
+            differences.append({"level":number,"kind":"wiki_level_not_on_current_official_table"})
+        comparisons.append({"name":card["name"],"official_url":official["url"],
+                            "wiki_url":wiki["source"]["url"] if wiki else None,
+                            "resolved":True,"decision":"prefer_official_evolution_table",
+                            "differences":differences})
+    return comparisons
+
+
 def lookup_reference(name):
     data=json.loads((Path(__file__).parent/"data/card_reference.json").read_text(encoding="utf-8"))
     key=normalize(name)
@@ -184,6 +330,7 @@ def lookup_reference(name):
             "preferred_levels":preferred_levels(data,maximum) if maximum else None,
             "wiki_candidates":[c for c in data["wiki_candidates"] if normalize(c["name"])==key],
             "conflicts":[c for c in data["conflicts"] if normalize(c["name"])==key],
+            "level_reconciliation":compare_source_levels({**data,"official_maximum_levels":[maximum]}) if maximum else [],
             "limits":data["limits"]}
 
 
@@ -192,6 +339,10 @@ if __name__=="__main__":
     output=Path(__file__).parent/"data"/"card_reference.json"
     output.write_text(json.dumps(data,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     report=reference_report(data)
+    level_comparison=compare_source_levels(data)
+    comparison_path=Path(__file__).parent/"data/reference_reconciliation.json"
+    comparison_path.write_text(json.dumps({"schema":"urban-rivals/reference-reconciliation/v1",
+        "cards":level_comparison},indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
     report_path=Path("local/reference-coverage.json")
     report_path.parent.mkdir(parents=True,exist_ok=True)
     report_path.write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")

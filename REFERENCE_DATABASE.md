@@ -1,4 +1,4 @@
-# Card reference database — 2026-11-12
+# Card reference database — 2026-11-22
 
 The reference stores facts even when the gameplay engine cannot simulate them.
 It does not change the live execution catalog or authorize unknown mechanics.
@@ -12,22 +12,24 @@ It does not change the live execution catalog or authorize unknown mechanics.
 | Wiki card records parsed | 2,005 |
 | Wiki level entries retained | 6,279 |
 | Wiki cards matched to current official names | 1,964 |
-| Official full evolution tables observed | 711 |
-| Official level entries observed | 2,313 |
-| Preferred level records across current cards | 7,927 |
-| Current cards preferring official level tables | 711 |
-| Current cards retaining wiki candidate tables | 1,796 |
+| Official full evolution tables observed | 2,507 |
+| Official level entries observed | 7,930 |
+| Preferred level records across current cards | 7,930 |
+| Current cards preferring official level tables | 2,507 |
+| Current cards retaining wiki candidate tables | 0 |
 | Current cards without any evolution-table source | 0 |
 
-These counts do not establish that every historical or currently legal evolution
-is present or current. Wiki-only lower levels remain candidates. A card can have
-matching maximum-level stats and outdated lower-level stats or abilities.
+Every current official card page now has a validated evolution table. This does
+not establish that every historical or removed evolution is represented, nor
+does it prove gameplay semantics or format legality.
 
-The official targeted collection covered missing wiki cards, malformed levels,
-maximum-stat differences, ambiguous ability unlocks and known lower-level
-disagreements. Six damaged accented names were verified by official card ID and
-corrected in the source audit and gameplay catalog. No mechanics were enabled
-as a result of those corrections.
+The official collection validates card identity, ordered levels, power, damage,
+ability and bonus text, ability unlock markers, and agreement with the official
+maximum-level index. All 2,507 cards and 7,930 rows pass; no required field or
+wiki conflict remains unresolved. Five official Day/Night ability pairs and both
+GhosTown bonus states are retained as conditional variants. Six damaged accented
+names were verified by official card ID and corrected earlier. No mechanics were
+enabled as a result of the reference reconciliation.
 
 ## Lookup and refresh
 
@@ -51,18 +53,21 @@ The public wiki collector resumes from cached batches and uses no credentials:
 .venv\Scripts\python.exe -m urban_rivals.reference_database
 ```
 
-The latter rebuilds `urban_rivals/data/card_reference.json` and writes a detailed
-report to `local/reference-coverage.json`. Rebuilding retains official evolution
+The latter rebuilds `urban_rivals/data/card_reference.json`, writes the checked-in
+per-level comparison `urban_rivals/data/reference_reconciliation.json`, and writes
+a detailed report to `local/reference-coverage.json`. Rebuilding retains official evolution
 observations already in the checked-in snapshot and merges any newer local
 observations. An incomplete wiki cache cannot replace the reference snapshot.
 
 ## Disagreements and provenance
 
-The wiki/official comparison records 88 differing maximum-stat records, 13
-missing wiki maximum levels, and 523 ability-text differences requiring review.
-Text differences include spelling and punctuation; they are not all balance
-changes. They are retained rather than silently overwritten. Official targeted
-tables resolve acquisition gaps, while the historical wiki evidence remains.
+The source-level comparison covers all 2,507 current cards. Of those, 2,182 have
+at least one difference from the retained wiki evidence and 544 have no matching
+wiki page. It records 3,777 missing wiki fields, 3,518 differing fields, 1,791
+official levels absent from the wiki candidate, and 10 wiki levels absent from
+the current official table. Text differences include spelling and punctuation;
+they are not all balance changes. Every difference is resolved by preferring the
+current official table while retaining the historical wiki evidence and URL.
 
 For example, the wiki's four-star Fixit is 7/5 with a general Protection entry.
 The current official table shows 7/6 with Reprisal Protection. The lookup prefers
