@@ -1,3 +1,5 @@
+import { webcrypto } from "node:crypto";
+globalThis.crypto ??= webcrypto;
 import test from "node:test";
 import assert from "node:assert/strict";
 
@@ -101,7 +103,7 @@ async function focusScenario({resume=false,loseDuringOCR=false}){
     debugger:{attach:async()=>{},detach:async()=>{},sendCommand:async()=>{commands++;},onDetach:{addListener:()=>{}}},
     runtime:{getURL:path=>"chrome-extension://test/"+path,onMessage:{addListener:fn=>{listener=fn;}}}};
   globalThis.fetch=async(endpoint,options)=>{
-    if(endpoint.endsWith("/ready"))return {ok:true,json:async()=>({execute_enabled:true,engine_revision:"copy-v1"})};
+    if(endpoint.endsWith("/ready"))return {ok:true,json:async()=>({execute_enabled:true,engine_revision:"copy-suite-v1"})};
     if(endpoint.endsWith("/stop")){stopped=true;return {ok:true};}
     posted=JSON.parse(options.body);
     if(loseDuringOCR)focused=false;

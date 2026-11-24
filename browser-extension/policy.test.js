@@ -28,5 +28,5 @@ test("actions are fresh, bounded and bound to the exact frame",()=>{
   for(const bad of [{...result,sequence:2},{...result,run_id:"other"},{...result,action:{type:"click",x:2,y:.5}},{...result,action:{type:"click",x:NaN,y:.5}},{...result,action:{type:"navigate",x:.5,y:.5}}]){
     assert.throws(()=>validateAction(bad,frame));
   }
-  assert.throws(()=>validateAction(result,{...frame,captured_at:Date.now()/1000-15}));
+  assert.throws(()=>validateAction(result,{...frame,captured_at:Date.now()/1000-25}));
 });

@@ -61,7 +61,7 @@ class ProtocolTests(unittest.TestCase):
     def test_reject_stale_and_wrong_origin(self):
         f=self.frame()
         validate_frame(f,now=105)
-        for bad in (dict(f,captured_at=80),dict(f,captured_at=106),dict(f,url="https://evil.test/"),dict(f,mode="tourney"),dict(f,sequence=True),dict(f,execute="yes")):
+        for bad in (dict(f,captured_at=80),dict(f,captured_at=106),dict(f,url="https://evil.test/"),dict(f,mode="survivor"),dict(f,sequence=True),dict(f,execute="yes")):
             with self.assertRaises(ValueError):
                 validate_frame(bad,now=105)
 

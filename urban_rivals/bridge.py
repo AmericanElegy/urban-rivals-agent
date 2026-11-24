@@ -9,6 +9,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 from .vision import VisionSession, RecognitionError
+from .mode_policy import VALID_MODES
+from .calibration import load_calibration, save_calibration
 
 SCHEMA="urban-rivals/frame/v1"
 MAX_BODY=8*1024*1024
@@ -47,10 +49,12 @@ def validate_frame(data, now=None):
         raise ValueError("Invalid frame sequence")
     if not isinstance(data.get("run_id"),str) or not 16<=len(data["run_id"])<=80:
         raise ValueError("Missing run identity")
-    if data.get("mode")!="training":
-        raise ValueError("This live driver supports Training Bot only")
+    if data.get("mode") not in VALID_MODES:
+        raise ValueError(f"Unsupported mode: expected one of {VALID_MODES}")
     if type(data.get("execute")) is not bool:
         raise ValueError("Missing explicit inspect/execute mode")
+    if "advisor" in data and type(data["advisor"]) is not bool:
+        raise ValueError("Invalid advisor flag")
 
 
 def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factory=VisionSession,reuse_token=False):
@@ -71,11 +75,13 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
     expected_host=f"127.0.0.1:{port}"
     from .engine import ENGINE_REVISION
     shared_ocr=None
+    shared_catalog=None
     if session_factory is VisionSession:
-        from .vision import LocalOCR
+        from .vision import LocalOCR, Catalog
         from PIL import Image
         shared_ocr=LocalOCR()
         shared_ocr.text(Image.new("RGB",(640,360)),(0,0,1,1))
+        shared_catalog=Catalog(allow_star_fallback=True)
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):
@@ -107,8 +113,10 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
         def do_GET(self):
             if self.headers.get("Host")!=expected_host:
                 return self.send(403,{"error":"Invalid host"})
+            if self.path=="/calibrate":
+                return self.send(200,{"points":load_calibration(output/"calibration.json")})
             self.send(200 if self.path=="/health" else 404,
-                      {"service":"urban-rivals-local-bridge","execute_enabled":execute,"engine_revision":ENGINE_REVISION})
+                      {"service":"urban-rivals-local-bridge","execute_enabled":execute,"engine_revision":ENGINE_REVISION,"modes":list(VALID_MODES)})
 
         def do_POST(self):
             if self.headers.get("Host")!=expected_host:
@@ -143,6 +151,9 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                         stopped.add(run_id)
                         sessions.pop(run_id,None)
                     return self.send(200,{"status":"Stopped"})
+                if self.path=="/calibrate":
+                    points=save_calibration(output/"calibration.json",data)
+                    return self.send(200,{"status":"Calibration saved","points":points})
                 if self.path!="/step":
                     return self.send(404,{"error":"Unknown endpoint"})
                 validate_frame(data)
@@ -155,14 +166,19 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 if run_id not in sessions:
                     if sessions:
                         raise ValueError("Stop the previous run before starting another")
-                    if session_factory is VisionSession and not (execute and data["execute"]):
+                    is_exec = execute and data["execute"]
+                    is_advisor = bool(data.get("advisor", False)) and not is_exec
+                    if session_factory is VisionSession and not is_exec and not is_advisor:
                         from types import SimpleNamespace
-                        sessions[run_id]=SimpleNamespace(execute=False)
+                        sessions[run_id]=SimpleNamespace(execute=False, advisor=False)
                     elif shared_ocr is not None:
                         from .vision import CanvasReader
-                        sessions[run_id]=session_factory(reader=CanvasReader(ocr=shared_ocr),execute=execute and data["execute"])
+                        sessions[run_id]=session_factory(reader=CanvasReader(ocr=shared_ocr,catalog=shared_catalog),execute=is_exec,mode=data["mode"],advisor=is_advisor)
                     else:
-                        sessions[run_id]=session_factory(execute=execute and data["execute"])
+                        if session_factory is VisionSession:
+                            sessions[run_id]=session_factory(execute=is_exec,mode=data["mode"],advisor=is_advisor)
+                        else:
+                            sessions[run_id]=session_factory(execute=is_exec)
                 session=sessions[run_id]
                 if session.execute!=(execute and data["execute"]):
                     raise ValueError("Cannot change inspect/execute mode mid-run")
@@ -186,11 +202,14 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 (output/"latest-geometry.json").write_text(json.dumps(data.get("geometry")),encoding="utf-8")
                 if session.execute and data.get("focus_resumed"):
                     session.reset_stability()
-                result=(session.step(image) if session.execute else
+                result=(session.step(image) if (session.execute or getattr(session,"advisor",False)) else
                         {"status":"Canvas captured locally; inspect offline without a turn timer", "action":None,"stop":True})
                 # OCR/search may have taken too long. A late action is never sent.
-                if time.time()-data["captured_at"]>10:
-                    raise RecognitionError("OCR/search exceeded the 10-second frame deadline")
+                elapsed=time.time()-data["captured_at"]
+                if result.get("action") is not None and elapsed>20:
+                    raise RecognitionError("OCR/search exceeded the 20-second frame deadline")
+                if elapsed>25:
+                    raise RecognitionError("OCR/search exceeded the 25-second frame deadline")
                 result.update({"sequence":data["sequence"],"run_id":run_id})
                 with (output/"receipts.jsonl").open("a",encoding="utf-8") as stream:
                     stream.write(json.dumps({"time":time.time(),**result})+"\n")

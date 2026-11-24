@@ -8,6 +8,8 @@ import time
 import unicodedata
 from .engine import Card, Move, Player, State, parse_effect, resolve
 from .solver import advise
+from .star_catalog import StarCatalog
+from .mode_policy import recommend_move, VALID_MODES
 
 
 def normalize(text):
@@ -30,8 +32,13 @@ class LocalOCR:
         w,h = image.size
         x1,y1,x2,y2 = box
         crop = image.crop((int(x1*w),int(y1*h),int(x2*w),int(y2*h)))
-        scale=1 if crop.width>650 else 3
-        crop = ImageOps.expand(crop.resize((crop.width*scale,crop.height*scale)), border=12, fill="black")
+        if crop.width>900:
+            crop = crop.resize((crop.width//2,crop.height//2))
+        else:
+            scale=1 if crop.width>=300 else 2
+            if scale>1:
+                crop = crop.resize((crop.width*scale,crop.height*scale))
+        crop = ImageOps.expand(crop, border=12, fill="black")
         result, _ = self.detect(np.array(crop)[:,:,::-1].copy(),detail)
         if not result:
             return ""
@@ -48,11 +55,22 @@ class LocalOCR:
         """Restore shared detector settings even when inference fails."""
         detector=self.model.text_det
         previous=detector.limit_side_len
+        prev_type=getattr(detector,"limit_type",None)
         try:
-            detector.limit_side_len=736 if detail else 192
+            if detail:
+                detector.limit_side_len=736
+                if prev_type is not None:
+                    detector.limit_type="max"
+            elif prev_type is not None and pixels is not None and pixels.shape[1]>=300:
+                detector.limit_type="max"
+                detector.limit_side_len=736
+            else:
+                detector.limit_side_len=192
             return self.model(pixels)
         finally:
             detector.limit_side_len=previous
+            if prev_type is not None:
+                detector.limit_type=prev_type
 
     def precise_text(self,image,box,minimum=.85):
         return self.text(image,box,minimum,detail=True)
@@ -175,13 +193,15 @@ def parse_timer(text):
 
 
 class Catalog:
-    def __init__(self, path=None):
+    def __init__(self, path=None, allow_star_fallback=False):
         path = Path(path) if path else Path(__file__).parent / "data" / "training_cards.json"
         data = json.loads(path.read_text(encoding="utf-8"))
         if data.get("schema") != "urban-rivals/cards/v1":
             raise ValueError("Unknown catalog schema")
         self.entries = {}
         self.evolutions = {}
+        self.allow_star_fallback = allow_star_fallback
+        self.star_catalog = StarCatalog() if (allow_star_fallback and path.name == "training_cards.json") else None
         for raw in data["cards"]:
             raw = dict(raw)
             day_only = raw.pop("day_only",False)
@@ -201,6 +221,13 @@ class Catalog:
         key=normalize(text)
         matches=([self.evolutions[(key,*stats)]] if (key,*stats) in self.evolutions else []) if stats is not None else [entry for name,entry in self.entries.items() if key==name]
         if len(matches) != 1:
+            if self.star_catalog is not None:
+                p, d, s = stats if stats is not None else (None, None, None)
+                evo = self.star_catalog.resolve(text, stars=s, power=p, damage=d)
+                if evo is not None:
+                    return evo.card
+                if p is not None and d is not None and text.strip():
+                    return Card(name=text.strip(), power=p, damage=d, stars=s or 1, clan="Unknown")
             from .reference_database import lookup_reference
             reference=lookup_reference(text)
             if reference["official_maximum_levels"]:
@@ -255,11 +282,29 @@ class CanvasReader:
             if reference is not None:
                 self.hud_scale=1.0
                 return reference
+        if seconds is None:
+            wider=parse_timer(self.precise_text(image,(.60,.46,.74,.55),.8))
+            if wider is not None:
+                if getattr(self,"hud_scale",1.0)!=1.0:
+                    self.hud_scale=1.0
+                return wider
         return seconds
 
     def read_resources(self,image):
-        return {name:self.number(image,self.hud_box(box,ax,ay))
-                for name,box,ax,ay in self.RESOURCE_BOXES}
+        resources={}
+        for name,box,ax,ay in self.RESOURCE_BOXES:
+            target=self.hud_box(box,ax,ay)
+            try:
+                resources[name]=self.number(image,target)
+            except RecognitionError as error:
+                if hasattr(self.ocr,"counter"):
+                    try:
+                        resources[name]=self.number(image,target,kind="counter")
+                        continue
+                    except RecognitionError:
+                        pass
+                raise RecognitionError(f"{name}: {error}") from error
+        return resources
 
     def __init__(self,ocr=None,catalog=None):
         self.ocr=ocr or LocalOCR()
@@ -272,6 +317,7 @@ class CanvasReader:
     def round_scene(self,image):
         """A phase hint only: board() must still verify the complete state."""
         banner=self.text(image,(.27,.46,.73,.55),.8)
+        self._last_banner=(id(image),banner)
         return bool(re.search(r"ROUND\s*[1-4]\s*[/|]\s*4",banner,re.I)
                     and "yourturn" in normalize(banner))
 
@@ -296,7 +342,7 @@ class CanvasReader:
 
     @staticmethod
     def raised_marker(image,x):
-        """Find the white selection disc, not letters in scenery above a card."""
+        """Find the white/silver selection disc, not letters in scenery above a card."""
         import cv2
         import numpy as np
         w,h=image.size
@@ -310,6 +356,21 @@ class CanvasReader:
             bx,by,bw,bh=cv2.boundingRect(contour)
             if (70<=area<=650 and .65<=bw/bh<=1.5 and perimeter
                     and 4*3.14159*area/(perimeter*perimeter)>.60
+                    and top+by+bh/2 < .11*h):
+                return True
+        mx=pixels.max(axis=2).astype("int16")
+        mn=pixels.min(axis=2).astype("int16")
+        pill=(((mn>155)&((mx-mn)<35))*255).astype("uint8")
+        pill=cv2.morphologyEx(pill,cv2.MORPH_CLOSE,np.ones((3,3),np.uint8))
+        contours,_=cv2.findContours(pill,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+        for contour in contours:
+            hull=cv2.convexHull(contour)
+            area=cv2.contourArea(contour)
+            hull_area=cv2.contourArea(hull)
+            hull_per=cv2.arcLength(hull,True)
+            bx,by,bw,bh=cv2.boundingRect(contour)
+            if (140<=area<=900 and .65<=bw/bh<=1.5 and hull_per
+                    and 4*3.14159*hull_area/(hull_per*hull_per)>.65
                     and top+by+bh/2 < .11*h):
                 return True
         return False
@@ -334,14 +395,21 @@ class CanvasReader:
         if not self.played_marker(image,x,side):
             return None
         y=.695 if side==0 else .245
-        count=self.number(image,(x+.007,y+.003,x+.04,y+.052),kind="counter")
+        count=None
+        if hasattr(self,"ocr") and hasattr(self.ocr,"text"):
+            raw=self.text(image,(x-.005,y,x+.05,y+.06),.75)
+            match=re.search(r"[x×]\s*(\d{1,2})\b",raw,re.I)
+            if match:
+                count=int(match[1])
+        if count is None:
+            count=self.number(image,(x+.007,y+.003,x+.04,y+.052),kind="counter")
         if not 1<=count<=99:
             raise RecognitionError("Played pill multiplier is outside the supported range")
         return count-1
 
     @staticmethod
     def stat_box(x,y,damage=False):
-        return (x-.066,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
+        return (x-.075,y+(.035 if damage else -.045),x-.025,y+(.09 if damage else .03))
 
     def number(self,image,box,kind="number"):
         if kind in ("attack","damage"):
@@ -361,7 +429,31 @@ class CanvasReader:
         import numpy as np
         pixels=np.array(image.convert("RGB"))
         h,w,_=pixels.shape
-        strip=pixels[int((y-.012)*h):int((y+.012)*h),int((x-.05)*w):int((x+.05)*w)]
+        x1,x2=int((x-.05)*w),int((x+.05)*w)
+        best=None
+        for dy in (.004,0.0,-.005):
+            sy=y+dy
+            strip=pixels[int((sy-.006)*h):int((sy+.006)*h),x1:x2]
+            if strip.size==0 or (strip.max(axis=2)<95).mean()<.35:
+                continue
+            mask=(strip[:,:,0]>180)&(strip[:,:,1]>140)&(strip[:,:,2]<90)
+            occupied=(mask.sum(axis=0)>=3).tolist()
+            runs=[]
+            current=0
+            for value in occupied+[False]:
+                if value:
+                    current+=1
+                elif current:
+                    if 3<=current<=14:
+                        runs.append(current)
+                    current=0
+            if 1<=len(runs)<=5:
+                score=(int(mask.sum()),len(runs),-abs(dy))
+                if best is None or score>best[0]:
+                    best=(score,len(runs))
+        if best is not None:
+            return best[1]
+        strip=pixels[int((y-.012)*h):int((y+.012)*h),x1:x2]
         mask=(strip[:,:,0]>170)&(strip[:,:,1]>120)&(strip[:,:,2]<100)
         occupied=(mask.sum(axis=0)>=3).tolist()
         runs=[]
@@ -451,8 +543,13 @@ class CanvasReader:
         report["engine_ready"]=report["recognition_complete"] and all("catalog_error" not in c for c in report["cards"])
         return report
 
-    def board(self,image,previous=None,submitted=None):
-        banner=self.text(image,(.27,.46,.73,.55),.8)
+    def board(self,image,previous=None,submitted=None,allow_mid_match=False):
+        cached_banner=getattr(self,"_last_banner",None)
+        if cached_banner is not None and cached_banner[0]==id(image):
+            banner=cached_banner[1]
+            self._last_banner=None
+        else:
+            banner=self.text(image,(.27,.46,.73,.55),.8)
         if "yourturn" not in normalize(banner):
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
@@ -465,37 +562,71 @@ class CanvasReader:
             # the session on a short animation. Known short clocks still stop.
             return None
         round_no=int(match[1])
+        if previous is None and round_no!=1 and not allow_mid_match:
+            raise RecognitionError("Start recognition at round 1 before any card is played")
+        if allow_mid_match and previous is not None and round_no<previous.round:
+            self.initial_hand=None
+            previous=None
         day=self.day(image)
         hands=[]
         spent=[]
+        raised_titles={}
         for side, (name_y,overlay_y,stat_y,star_y) in enumerate(((.54,.65,.80,.785),(.09,.20,.35,.335))):
             hand=[]
             used=[]
             for i,x in enumerate(self.CENTERS):
-                text=self.card_name(image,x,name_y,side,.8)
-                used.append(self.played_pillz(image,x,side))
-                if self.initial_hand is None:
-                    power=self.number(image,self.stat_box(x,stat_y))
-                    damage=self.number(image,self.stat_box(x,stat_y,True))
-                    stars=self.stars(image,x,star_y)
-                    c=self.catalog.identify(text,day,(power,damage,stars))
+                if side==1:
+                    rt=self.raised_title(image,x,.8)
+                    raised_titles[i]=rt
+                    text=rt or self.title(image,(x-.055,name_y-.02,x+.065,name_y+.08),.8)
                 else:
-                    c=self.initial_hand[side][i]
-                    if normalize(text)!=normalize(c.name):
-                        raise RecognitionError("Hand/order changed; start a fresh session for each match")
+                    text=self.card_name(image,x,name_y,side,.8)
+                played=self.played_pillz(image,x,side)
+                used.append(played)
+                cached=None
+                if self.initial_hand is not None:
+                    prev_card=self.initial_hand[side][i]
+                    if normalize(text)==normalize(prev_card.name):
+                        cached=prev_card
+                    elif self.catalog.star_catalog is not None and text.strip():
+                        resolved=self.catalog.star_catalog.resolve(text)
+                        if resolved is not None and resolved.norm_name==normalize(prev_card.name):
+                            cached=prev_card
+                if cached is not None:
+                    c=cached
+                elif self.initial_hand is not None and not allow_mid_match:
+                    raise RecognitionError("Hand/order changed; start a fresh session for each match")
+                elif allow_mid_match and played is not None:
+                    try:
+                        c=self.catalog.identify(text,day,None)
+                    except RecognitionError:
+                        c=Card(name=text.strip() or f"Played-{side}-{i+1}",power=1,damage=1,stars=1,clan="Unknown")
+                else:
+                    stars=self.stars(image,x,star_y)
+                    if self.catalog.star_catalog is not None:
+                        evo=self.catalog.star_catalog.resolve(text,stars=stars)
+                        if evo is not None:
+                            c=evo.card
+                        else:
+                            power=self.number(image,self.stat_box(x,stat_y))
+                            damage=self.number(image,self.stat_box(x,stat_y,True))
+                            c=self.catalog.identify(text,day,(power,damage,stars))
+                    else:
+                        power=self.number(image,self.stat_box(x,stat_y))
+                        damage=self.number(image,self.stat_box(x,stat_y,True))
+                        c=self.catalog.identify(text,day,(power,damage,stars))
                 hand.append(c)
             hands.append(tuple(hand))
             spent.append(tuple(used))
         hands=tuple(hands)
-        if any(c.clan!="Bangers" for c in hands[0]):
-            raise RecognitionError("First live input profile supports the cataloged Bangers hand only")
-        if self.initial_hand is not None and hands!=self.initial_hand:
+
+        if self.initial_hand is not None and not allow_mid_match and hands!=self.initial_hand:
             raise RecognitionError("Hand/order changed; start a fresh session for each match")
         resources=self.read_resources(image)
         life=(resources["our_life"],resources["opponent_life"])
         pillz=(resources["our_pillz"],resources["opponent_pillz"])
-        if previous is None and round_no==1 and (life!=(15,15) or pillz!=(12,12)):
-            raise RecognitionError("Opening Training resources differ from the verified 15 life / 12 pillz profile")
+        if previous is None and round_no==1 and (not (1<=life[0]<=30 and 1<=life[1]<=30) or not (0<=pillz[0]<=20 and 0<=pillz[1]<=20)):
+            raise RecognitionError("Opening resources out of valid match range")
         used=tuple(tuple(i for i,n in enumerate(row) if n is not None) for row in spent)
         if any(len(row)!=round_no-1 for row in used):
             raise RecognitionError("Played-card overlays disagree with round number")
@@ -508,7 +639,7 @@ class CanvasReader:
                 continue
             # A revealed opponent lead is enlarged upward. Require its name to
             # appear in the narrow raised title band, not just a bright card.
-            title=self.raised_title(image,x,.8)
+            title=raised_titles.get(i,"")
             if normalize(title)==normalize(hands[1][i].name):
                 lifted.append(i)
         if len(lifted)>1:
@@ -518,7 +649,7 @@ class CanvasReader:
         if previous:
             if round_no==previous.round:
                 last=tuple(p.last_won for p in previous.players)
-                if leader!=previous.leader:
+                if leader!=previous.leader and not allow_mid_match:
                     raise RecognitionError("Initiative recognition changed within a round")
             elif round_no==previous.round+1 and submitted:
                 leader=1-previous.leader
@@ -537,11 +668,24 @@ class CanvasReader:
                     if tuple(p.life for p in after.players)==life and tuple(p.pillz for p in after.players)==pillz:
                         matches.append(tuple(p.last_won for p in after.players))
                 if not matches or len(set(matches))!=1:
-                    raise RecognitionError("Live life/pillz do not reconcile with the engine; stopping")
-                last=matches[0]
-            else:
+                    if self.catalog.star_catalog is not None:
+                        # Unmodeled bespoke abilities (e.g. Killshot, Poison, Consume)
+                        # can shift live life/pillz vs the core engine; trust live HUD values.
+                        our_lost=previous.players[0].life-life[0]
+                        opp_lost=previous.players[1].life-life[1]
+                        if opp_lost>0 and our_lost<=0:
+                            last=(True,False)
+                        elif our_lost>0 and opp_lost<=0:
+                            last=(False,True)
+                        else:
+                            last=(None,None)
+                    else:
+                        raise RecognitionError("Live life/pillz do not reconcile with the engine; stopping")
+                else:
+                    last=matches[0]
+            elif not allow_mid_match:
                 raise RecognitionError("Missed a round; cannot reconstruct public state safely")
-        elif round_no!=1:
+        elif round_no!=1 and not allow_mid_match:
             raise RecognitionError("Start recognition at round 1 before any card is played")
         players=tuple(Player(hands[i],life[i],pillz[i],used[i],last[i]) for i in range(2))
         state=State(players,leader,round_no,day)
@@ -551,9 +695,13 @@ class CanvasReader:
 
 class VisionSession:
     """Single-match, single-action-per-frame state machine. Defaults to inspect."""
-    def __init__(self, reader=None, execute=False, iterations=500, clock=time.monotonic):
+    def __init__(self, reader=None, execute=False, iterations=500, clock=time.monotonic, mode="training", advisor=False):
+        if mode not in VALID_MODES:
+            raise ValueError(f"Unsupported mode: {mode!r}")
         self.reader=reader or CanvasReader()
         self.execute=execute
+        self.advisor=advisor
+        self.mode=mode
         self.iterations=iterations
         self.session_id=uuid.uuid4().hex
         self.state=None
@@ -581,14 +729,33 @@ class VisionSession:
 
     def action(self,x,y,status):
         self.panel_candidate=None
-        return {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
+        res = {"status":status,"action":{"type":"click","x":x,"y":y} if self.execute else None}
+        if getattr(self, "_last_recommendation", None) is not None:
+            res["recommendation"] = self._last_recommendation
+        return res
 
     def step(self,image):
         # Avoid a full-screen detector pass before a complete round-board read.
         # Menus, results, login screens and stake panels retain full-screen OCR.
         round_scene=(self.phase=="board" and hasattr(self.reader,"round_scene")
                      and self.reader.round_scene(image))
-        text="YOUR TURN" if round_scene else self.reader.text(image,(0,0,1,1),.8)
+        stake_hint=False
+        if self.phase!="board" and isinstance(self.reader,CanvasReader):
+            btn_text=self.reader.text(image,(.60,.64,.85,.72),.7)
+            stake_hint="confirmthestake" in normalize(btn_text)
+            if not stake_hint and self.phase=="selected" and not getattr(self,"_panel_seen",False) and self.reader.round_scene(image):
+                waits=getattr(self,"_panel_wait",0)
+                if waits==1:
+                    self._panel_wait=waits+1
+                    card_name=self.state.players[0].hand[self.pending.card].name
+                    return self.action(self.reader.CENTERS[self.pending.card],.69,
+                                       f"Round {self.state.round}: retry select {card_name}")
+                if waits<3:
+                    self._panel_wait=waits+1
+                    return {"status":"Waiting for stake panel to open", "action":None}
+        text=("YOUR TURN" if round_scene else
+              "CONFIRM THE STAKE" if stake_hint else
+              self.reader.text(image,(0,0,1,1),.8))
         norm=normalize(text)
         if "login" in norm or "playasguest" in norm:
             raise RecognitionError("Game requires sign-in; no login is automated")
@@ -597,8 +764,16 @@ class VisionSession:
         stake="confirmthestake" in norm
         if self.phase=="board":
             if stake:
+                if self.advisor and not self.execute:
+                    res={"status":"Advisor: stake panel open; waiting for next round","action":None}
+                    if getattr(self,"_last_recommendation",None) is not None:
+                        res["recommendation"]=self._last_recommendation
+                    return res
                 raise RecognitionError("Unexpected open stake panel; close it before starting")
-            board=self.reader.board(image,self.state,self.submitted)
+            if self.advisor and not self.execute:
+                board=self.reader.board(image,self.state,self.submitted,allow_mid_match=True)
+            else:
+                board=self.reader.board(image,self.state,self.submitted)
             if board is None:
                 self.board_candidate=None
                 return {"status":"Waiting for a readable YOUR TURN board", "action":None}
@@ -618,29 +793,71 @@ class VisionSession:
                 self.board_candidate=None
             self.state=board.state
             if not self.execute:
+                if self.advisor:
+                    rec = recommend_move(self.state, side=0, observed_card=board.observed_card, mode=self.mode)
+                    self._last_recommendation = rec.to_dict()
+                    return {"status":f"Advisor: {rec.reason}", "round":self.state.round,
+                            "cards":[[c.name for c in p.hand] for p in self.state.players],
+                            "recommendation":self._last_recommendation, "action":None}
                 return {"status":"Inspect: board recognized", "round":self.state.round,
                         "cards":[[c.name for c in p.hand] for p in self.state.players],"action":None}
-            advice=advise(self.state,0,board.observed_card,self.iterations,allow_fury=False)
-            import random
-            self.pending=random.SystemRandom().choices(advice.moves,advice.probabilities,k=1)[0]
+            rec = recommend_move(self.state, side=0, observed_card=board.observed_card, mode=self.mode, allow_fury=False)
+            from .engine import Move
+            self.pending = Move(rec.card_index, rec.pillz, rec.fury)
+            self._last_recommendation = rec.to_dict()
             selected=self.state.players[0].hand[self.pending.card]
             effects=selected.ability
             if sum(c.clan==selected.clan for c in self.state.players[0].hand)>=2:
                 effects+=selected.bonus
-            own_power=[e for e in effects if e.stat=="power" and not e.opponent]
-            if any(e.condition!="always" or e.multiplier!="none" for e in own_power):
-                raise RecognitionError("Selected card needs an uncalibrated attack-panel rule")
-            self.panel_power=selected.power+sum(e.amount for e in own_power)
-            self.panel_damage=selected.damage
+            def _cond_active(cond):
+                if cond=="always": return True
+                if cond=="courage": return self.state.leader==0
+                if cond=="reprisal": return self.state.leader==1
+                if cond=="confidence": return self.state.players[0].last_won is True
+                if cond=="revenge": return self.state.players[0].last_won is False
+                if cond=="day": return self.state.day is True
+                if cond=="night": return self.state.day is False
+                return False
+            own_power=[e for e in effects if e.stat=="power" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
+            own_attack=[e for e in effects if e.stat=="attack" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
+            own_damage=[e for e in effects if e.stat=="damage" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
+            self.panel_power=max(1,selected.power+sum(e.amount for e in own_power))
+            self.panel_attack_bonus=sum(e.amount for e in own_attack)
+            self.panel_damage=max(1,selected.damage+sum(e.amount for e in own_damage))
             self.phase="selected"
+            self._panel_wait=0
+            self._panel_seen=False
             return self.action(self.reader.CENTERS[self.pending.card],.69,
                                f"Round {self.state.round}: select {self.state.players[0].hand[self.pending.card].name}")
         if not stake:
+            if isinstance(self.reader,CanvasReader) and self.state is not None:
+                if self.reader.round_scene(image):
+                    cached=getattr(self.reader,"_last_banner",None)
+                    btxt=cached[1] if cached else ""
+                    m=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",btxt,re.I)
+                    if m and int(m[1])>self.state.round:
+                        # Round already advanced (e.g. manual confirm or fast resolve);
+                        # resume seamlessly on the new round instead of stopping.
+                        self.submitted=self.pending
+                        self.phase="board"
+                        self.panel_candidate=None
+                        self._panel_wait=0
+                        self._panel_seen=False
+                        return {"status":f"Round {int(m[1])} started; reading board", "action":None}
+            if self.phase=="selected" and getattr(self,"_panel_wait",0)<5:
+                self._panel_wait=getattr(self,"_panel_wait",0)+1
+                return {"status":"Waiting for stake panel or next round", "action":None}
             # Animation after confirm is expected, otherwise no blind clicks.
             raise RecognitionError("Stake panel disappeared before a verified submission")
+        self._panel_wait=0
+        self._panel_seen=True
         selected=self.reader.text(image,(.32,.20,.47,.27),.8)
         expected=self.state.players[0].hand[self.pending.card].name
-        if normalize(selected)!=normalize(expected):
+        name_ok=(normalize(selected)==normalize(expected))
+        if not name_ok and getattr(getattr(self.reader,"catalog",None),"star_catalog",None) is not None and selected.strip():
+            resolved=self.reader.catalog.star_catalog.resolve(selected)
+            name_ok=(resolved is not None and resolved.norm_name==normalize(expected))
+        if not name_ok:
             raise RecognitionError(f"Selected card differs from {expected}: {selected!r}")
         panel_number=getattr(self.reader,"panel_number",None)
         attack=(panel_number(image,CanvasReader.PANEL_ATTACK,"attack") if panel_number
@@ -661,8 +878,9 @@ class VisionSession:
             self.phase="reset"
             return self.action(.578,.513,"Reset paid pillz to zero")
         if self.phase=="reset":
-            self.base_attack=attack
-            if attack!=self.panel_power:
+            atk_bonus=getattr(self,"panel_attack_bonus",0)
+            self.base_attack=self.panel_power
+            if attack!=self.panel_power+atk_bonus:
                 raise RecognitionError("MIN did not confirm zero paid pillz at the expected power")
             # Fury is intentionally not enabled by the first live driver. A
             # fresh panel defaults off; never reuse a manually edited panel.
@@ -672,7 +890,7 @@ class VisionSession:
             if self.remaining and self.remaining==self.state.players[0].pillz:
                 # MAX is only used for an exact all-in allocation, after verified
                 # MIN/no-Fury. Its resulting attack must still settle and match.
-                self.expected_attack=self.base_attack*(self.remaining+1)
+                self.expected_attack=self.base_attack*(self.remaining+1)+atk_bonus
                 self.remaining=0
                 return self.action(.874,.513,"Allocate all remaining paid pillz with MAX; verify attack")
         elif self.phase=="increment" and attack!=self.expected_attack:

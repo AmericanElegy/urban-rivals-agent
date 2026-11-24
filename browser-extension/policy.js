@@ -4,8 +4,8 @@ export function allowedURL(value){
 }
 export function validateAction(result,frame){
   if(result.sequence!==frame.sequence||result.run_id!==frame.run_id)throw new Error("Mismatched action receipt");
-  if(Date.now()/1000-frame.captured_at>10)throw new Error("Stale action");
   if(!result.action)return null;
+  if(Date.now()/1000-frame.captured_at>20)throw new Error("Stale action");
   const a=result.action;
   if(a.type!=="click"||!Number.isFinite(a.x)||!Number.isFinite(a.y)||a.x<0||a.x>1||a.y<0||a.y>1)throw new Error("Invalid canvas action");
   return a;
