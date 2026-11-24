@@ -588,12 +588,18 @@ class CanvasReader:
                     prev_card=self.initial_hand[side][i]
                     if normalize(text)==normalize(prev_card.name):
                         cached=prev_card
+                    elif self.catalog.star_catalog is not None and played is not None:
+                        # Dimmed played cards have low-contrast titles; retain Round 1 identity.
+                        cached=prev_card
                     elif self.catalog.star_catalog is not None and text.strip():
                         resolved=self.catalog.star_catalog.resolve(text)
                         if resolved is not None and resolved.norm_name==normalize(prev_card.name):
                             cached=prev_card
                 if cached is not None:
                     c=cached
+                elif self.initial_hand is not None and not text.strip():
+                    # Card is mid-animation/flipping; wait for a clean board frame.
+                    return None
                 elif self.initial_hand is not None and not allow_mid_match:
                     raise RecognitionError("Hand/order changed; start a fresh session for each match")
                 elif allow_mid_match and played is not None:
