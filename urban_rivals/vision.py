@@ -708,7 +708,9 @@ class CanvasReader:
             return None
         match=re.search(r"ROUND\s*(\d)\s*[/|]\s*4",banner,re.I)
         seconds=self.turn_seconds(image)
-        if seconds is not None and seconds<12:
+        # The Advisor (mid-match reading) never clicks, so a short clock is no
+        # reason to end its session.
+        if seconds is not None and seconds<12 and not allow_mid_match:
             raise RecognitionError("Fewer than 12 seconds remain; stopping before a rushed input")
         if not match or seconds is None:
             # A raised/flipping card can occlude the round banner. This frame
@@ -738,9 +740,12 @@ class CanvasReader:
                 played=self.played_pillz(image,x,side)
                 used.append(played)
                 cached=None
+                # A running-effect badge pushes the Forfeit button down over
+                # all or part of the opponent's last title.
+                covered=side==1 and "forfe" in normalize(text)
                 if self.initial_hand is not None:
                     prev_card=self.initial_hand[side][i]
-                    if normalize(text)==normalize(prev_card.name):
+                    if covered or normalize(text)==normalize(prev_card.name):
                         cached=prev_card
                     elif self.catalog.star_catalog is not None and played is not None:
                         # Dimmed played cards have low-contrast titles; retain Round 1 identity.
@@ -754,10 +759,11 @@ class CanvasReader:
                             cached=prev_card
                 if cached is not None:
                     c=cached
-                elif side==1 and normalize(text)=="forfeit":
-                    # A running-effect badge pushes the Forfeit button down over
-                    # the last title; wait rather than invent a card.
+                elif covered and played is None:
+                    # Wait rather than invent a card that can still be played.
                     return None
+                elif covered:
+                    c=Card(name=f"Played-{side}-{i+1}",power=1,damage=1,stars=1,clan="Unknown")
                 elif self.initial_hand is not None and not text.strip():
                     # Card is mid-animation/flipping; wait for a clean board frame.
                     return None
