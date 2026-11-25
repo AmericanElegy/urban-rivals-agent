@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import math
 from .engine import Move, State
 from .solver import advise
 
@@ -72,6 +73,21 @@ class Recommendation:
         }
 
 
+# engine.evaluate() returns a life/pillz heuristic (about -15..+15) or +/-10000
+# when the match is decided; it is not a [-1, 1] score. A logistic squash keeps
+# the HUD from pinning at 0%/100%. Rough estimate until whole-match search
+# produces real probabilities.
+WIN_PROB_SLOPE = 0.35
+
+
+def value_to_win_prob(value: float) -> float:
+    if value >= 1000:
+        return 1.0
+    if value <= -1000:
+        return 0.0
+    return 1.0 / (1.0 + math.exp(-WIN_PROB_SLOPE * value))
+
+
 def recommend_move(
     state: State,
     side: int = 0,
@@ -114,7 +130,7 @@ def recommend_move(
 
     card = player.hand[best_move.card]
     stars = card.stars or 1
-    win_prob = max(0.0, min(1.0, (advice.value + 1.0) / 2.0))
+    win_prob = value_to_win_prob(advice.value)
     fury_label = " + Fury" if best_move.fury else ""
     reason = f"[{mode.upper()}] {card.name} ({stars}★) with {best_move.pillz} Pillz{fury_label}"
 

@@ -180,3 +180,17 @@ class LiveReadinessTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WinProbScalingTests(unittest.TestCase):
+    def test_heuristic_values_are_not_pinned(self):
+        from urban_rivals.mode_policy import value_to_win_prob
+        # Values seen in live Advisor receipts that all showed 0% or 100%.
+        self.assertAlmostEqual(value_to_win_prob(0), .5)
+        for value in (1.1105, 5.8462):
+            self.assertTrue(.5 < value_to_win_prob(value) < 1)
+        for value in (-3.1484, -7.2581, -10.0079):
+            self.assertTrue(0 < value_to_win_prob(value) < .5)
+        self.assertLess(value_to_win_prob(-7.2581), value_to_win_prob(-3.1484))
+        self.assertEqual(value_to_win_prob(10000.0), 1.0)
+        self.assertEqual(value_to_win_prob(-9991.165), 0.0)
