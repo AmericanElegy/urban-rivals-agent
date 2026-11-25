@@ -6,6 +6,7 @@ import re
 import uuid
 import time
 import unicodedata
+from types import SimpleNamespace
 from .engine import Card, Move, Player, State, parse_effect, resolve
 from .solver import advise
 from .star_catalog import StarCatalog
@@ -347,42 +348,57 @@ class CanvasReader:
                 shifts.append(("our_",shift))
         return shifts
 
-    BADGE=re.compile(r"([+-]\s*\d+)\s*(POISON|TOXIN|CORROSION|COMBUST|MINDWIPE|HEAL|REGEN|DOPE|CONSUME)"
-                     r"\W*(MIN|MAX)\W*(\d+)",re.I)
+    BADGE=re.compile(r"([+-]\s*\d+)\W*(POISON|TOXIN|CORROSION|COMBUST|MINDWIPE|HEAL|REGEN|DOPE|CONSUME)"
+                     r"(?:\W*(MIN|MAX)\W*(\d+))?",re.I)
 
-    def effect_badges(self,image):
-        """Running effects drawn beside each player's resources, if legible.
+    def effect_badges(self,image,hands,used):
+        """Running effects shown as badges, attributed to the card that caused them.
 
-        A badge is shown on the affected player's side. Effects that harm the
-        player were applied by the opponent; benefits by the player. Unreadable
-        or unknown badges are ignored rather than guessed.
+        Which HUD shows a badge does not say reliably whom it affects, and its
+        Min/Max limit is often not drawn. A badge is accepted only when the
+        played cards that could cause it all agree on the target and limits;
+        otherwise it is ignored rather than guessed.
         """
-        from .engine import PERSISTENT, Persistent
+        from .engine import PERSISTENT, Persistent, _card_effects
         if not hasattr(self.ocr,"tokens"):
             return ((),())
-        rows=((.90,.995),(0,.08))
-        result=[]
-        for side,(y1,y2) in enumerate(rows):
-            # Half-width crops keep small signs such as "+1" legible.
-            text=" ".join(t for half in ((.02,y1,.52,y2),(.48,y1,.98,y2))
-                          for t,_,_ in self.ocr.tokens(image,half,.85))
-            effects={}
-            for match in self.BADGE.finditer(text.replace("·"," ")):
-                amount=int(match[1].replace(" ",""))
-                kind=match[2].lower()
-                bound=int(match[4])
-                part,slot,_=PERSISTENT[kind]
-                harmful=amount<0
-                if harmful!=(kind in {"poison","toxin","corrosion","combust","mindwipe","consume"}):
+        badges=set()
+        for y1,y2 in ((.90,1.0),(0,.1)):
+            # Narrow crops keep small signs such as "+1" legible.
+            for x1,x2 in ((.02,.52),(.48,.98),(.62,1.0),(.8,1.0)):
+                text=" ".join(t for t,_,_ in self.ocr.tokens(image,(x1,y1,x2,y2),.5))
+                for match in self.BADGE.finditer(text.replace("·"," ")):
+                    badges.add((int(match[1].replace(" ","")),match[2].lower(),
+                                (match[3].upper(),int(match[4])) if match[3] else None))
+        if not badges:
+            return ((),())
+        causes=[]
+        state=SimpleNamespace(players=tuple(SimpleNamespace(hand=hand) for hand in hands))
+        for side in range(2):
+            for index in used[side]:
+                try:
+                    _,_,ability,bonus=_card_effects(state,side,index)
+                except ValueError:
                     continue
-                if (match[3].upper()=="MIN")!=harmful:
+                causes+=[(side,e) for e in ability+bonus if e.stat in PERSISTENT]
+        effects=({},{})
+        for amount,kind,limit in sorted(badges,key=str):
+            part,slot,_=PERSISTENT[kind]
+            found=set()
+            for side,e in causes:
+                if e.stat!=kind or e.amount!=amount:
                     continue
-                effects[slot]=Persistent(kind,slot,amount if part in {"life","both"} else 0,
-                                         amount if part in {"pillz","both"} else 0,
-                                         bound if harmful else 0,bound if not harmful else 10000,
-                                         1-side if harmful else side)
-            result.append(tuple(effects[k] for k in sorted(effects)))
-        return tuple(result)
+                if limit and limit!=(("MIN",e.minimum) if amount<0 else ("MAX",e.maximum)):
+                    continue
+                running=Persistent(kind,slot,amount if part in {"life","both"} else 0,
+                                   amount if part in {"pillz","both"} else 0,
+                                   e.minimum,e.maximum,side)
+                targets=(0,1) if e.both else (1-side,) if e.opponent else (side,)
+                found.add(tuple((target,running) for target in targets))
+            if len(found)==1:
+                for target,running in next(iter(found)):
+                    effects[target][slot]=running
+        return tuple(tuple(row[k] for k in sorted(row)) for row in effects)
 
     def _agreeing_number(self,image,box):
         """Shifted reads must agree when nudged, so a clipped "12" can't read "1"."""
@@ -624,12 +640,41 @@ class CanvasReader:
         return len(row)
 
     def day(self,image):
+        """False for the blue night moon, True for the yellow day icon, else None."""
+        if self._night_moon(image):
+            return False
         import numpy as np
         w,h=image.size
         x1,y1,x2,y2=self.hud_box((.79,0,.825,.08),"right","top")
         p=np.array(image.crop((int(w*x1),int(h*y1),int(w*x2),int(h*y2))).convert("RGB"))
         yellow=(p[:,:,0]>180)&(p[:,:,1]>140)&(p[:,:,2]<90)
         return True if yellow.sum()>20 else None
+
+    def _night_moon(self,image):
+        """Find the crescent on its dark HUD panel, wherever a badge pushed it.
+
+        Blue scenery is rejected by requiring the icon's size, thin shape and
+        dark surroundings.
+        """
+        import cv2
+        import numpy as np
+        w,h=image.size
+        x1,y1,x2,y2=self.hud_box((.58,0,.85,.094),"right","top")
+        p=np.array(image.crop((max(0,int(w*x1)),int(h*y1),int(w*x2),int(h*y2))).convert("RGB")).astype("int16")
+        r,g,b=(p[:,:,i] for i in range(3))
+        blue=((b>180)&(g>110)&(r<130)&(b-r>90)).astype("uint8")
+        unit=getattr(self,"hud_scale",1.0)*h/744
+        count,_,stats,_=cv2.connectedComponentsWithStats(blue,connectivity=8)
+        for i in range(1,count):
+            x,y,cw,ch,area=stats[i]
+            if not (15*unit<=cw<=23*unit and 18*unit<=ch<=26*unit
+                    and 80*unit*unit<=area<=180*unit*unit):
+                continue
+            pad=max(2,int(round(5*unit)))
+            around=p[max(0,y-pad):y+ch+pad,max(0,x-pad):x+cw+pad]
+            if (around.max(axis=2)<110).mean()>.6:
+                return True
+        return False
 
     def diagnostics(self,image):
         """Read every crop independently. Never click, require a timer, or stop at
@@ -901,7 +946,7 @@ class CanvasReader:
         if previous is None and round_no>1 and not any(running):
             # Started mid-match: the engine never saw running effects begin,
             # but the game draws them as badges (e.g. "+1 HEAL - MAX 15").
-            running=self.effect_badges(image)
+            running=self.effect_badges(image,hands,used)
         if previous is None or round_no==1:
             self.start_resources=(life,pillz)
         start=getattr(self,"start_resources",None)

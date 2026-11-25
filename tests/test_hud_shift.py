@@ -1,7 +1,11 @@
 """Resource counters shifted by a running-effect badge (live Tourney capture)."""
 import unittest
 
+from urban_rivals.engine import Card, parse_effect
 from urban_rivals.vision import CanvasReader, RecognitionError
+
+HEALER = Card("Healer", 6, 2, 3, "Pussycats", ability=parse_effect("Heal 1 Max. 15"))
+HANDS = ((HEALER,), (HEALER,))
 
 
 class ShiftedHudOCR:
@@ -46,12 +50,13 @@ class HudShiftTests(unittest.TestCase):
             self.reader(ShiftedHudOCR(name_left=.95)).read_resources(None)
 
     def test_running_effect_badge_is_read_for_mid_match_starts(self):
-        ours, theirs = self.reader(ShiftedHudOCR()).effect_badges(None)
+        ours, theirs = self.reader(ShiftedHudOCR()).effect_badges(None, HANDS, ((0,), ()))
         self.assertEqual((ours[0].kind, ours[0].life, ours[0].maximum, ours[0].owner), ("heal", 1, 15, 0))
         self.assertEqual(theirs, ())
 
     def test_inconsistent_badge_is_ignored(self):
-        ours, _ = self.reader(ShiftedHudOCR(badge=("-1", "HEAL·MAX15"))).effect_badges(None)
+        reader = self.reader(ShiftedHudOCR(badge=("-1", "HEAL·MAX15")))
+        ours, _ = reader.effect_badges(None, HANDS, ((0,), ()))
         self.assertEqual(ours, ())
 
 
