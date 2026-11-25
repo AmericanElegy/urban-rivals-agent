@@ -100,3 +100,28 @@ test("automatic startup closes the popup only after a successful connection",asy
     assert.equal(closed,1);
   }finally{globalThis.setInterval=oldInterval;}
 });
+
+test("popup keeps the pairing token in persistent storage across restarts",async()=>{
+  const controls=new Map();
+  for(const id of ["status","start","stop","token","execute"]){
+    controls.set(id,{value:"",checked:false,textContent:"",disabled:false,listeners:{},
+      addEventListener(event,handler){this.listeners[event]=handler;}});
+  }
+  const persistent={pairingToken:"saved-token-"+"y".repeat(40)};
+  const session={};
+  globalThis.document={getElementById:id=>controls.get(id)};
+  globalThis.chrome={storage:{local:{get:async()=>persistent,set:async values=>Object.assign(persistent,values)},
+                              session:{get:async()=>session,set:async values=>Object.assign(session,values)}},
+    runtime:{sendMessage:async()=>({status:"test"})}};
+  const oldInterval=globalThis.setInterval;
+  globalThis.setInterval=()=>0;
+  try{
+    await import("./popup.js?persistent");
+    await new Promise(resolve=>setImmediate(resolve));
+    assert.equal(controls.get("token").value,persistent.pairingToken);
+    controls.get("token").value="new-token-"+"z".repeat(40);
+    await controls.get("token").listeners.change();
+    assert.equal(persistent.pairingToken,"new-token-"+"z".repeat(40));
+    assert.equal(session.pairingToken,undefined);
+  }finally{globalThis.setInterval=oldInterval;}
+});

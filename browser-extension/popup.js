@@ -9,7 +9,9 @@ const runModeField = document.getElementById("runMode");
 let starting = false;
 let localError = false;
 
-const sessionStore = chrome.storage?.session;
+// Persistent extension storage keeps the token across Chrome restarts and
+// extension reloads; the token only authorizes the local 127.0.0.1 bridge.
+const sessionStore = chrome.storage?.local || chrome.storage?.session;
 if (sessionStore) {
   sessionStore.get(["pairingToken", "matchMode", "runMode"]).then((saved) => {
     if (!tokenField.value && typeof saved.pairingToken === "string") tokenField.value = saved.pairingToken;
