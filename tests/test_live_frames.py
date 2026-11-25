@@ -57,3 +57,27 @@ class FailureFrameTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class LegendaryLeadFrameTests(unittest.TestCase):
+    """Tourney round 1: opponent leads with Nega D Ld (white stars, no disc)."""
+
+    def setUp(self):
+        self.image = Image.open(FRAMES / "tourney-r1-legendary-lead.png").convert("RGB")
+
+    def test_white_stars_are_counted(self):
+        import numpy as np
+        pixels = np.array(self.image)
+        self.assertEqual(CanvasReader.white_stars(pixels, CanvasReader.CENTERS[3], .335), 5)
+
+    @unittest.skipUnless(rapidocr_available(), "needs local OCR model")
+    def test_board_reads_legendary_lead(self):
+        from urban_rivals.vision import Catalog, LocalOCR
+        reader = CanvasReader(ocr=LocalOCR(), catalog=Catalog(allow_star_fallback=True))
+        reader.hud_scale = 1.0
+        board = reader.board(self.image)
+        self.assertEqual((board.state.leader, board.observed_card), (1, 3))
+        nega = board.state.players[1].hand[3]
+        self.assertEqual((nega.name, nega.power, nega.damage, nega.stars), ("Nega D Ld", 8, 8, 5))
+        self.assertEqual([c.name for c in board.state.players[0].hand],
+                         ["Hula", "Brittany", "Diana", "Malicia"])

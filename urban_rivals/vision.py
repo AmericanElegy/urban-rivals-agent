@@ -351,6 +351,16 @@ def stake_layout(found,calibration=None):
     return layout
 
 
+def board_summary(state,observed=None):
+    """Compact record of what was read, so odd advice can be checked later."""
+    return {"round":state.round,"leader":state.leader,"observed":observed,"day":state.day,
+            "players":[{"life":p.life,"pillz":p.pillz,"used":list(p.used),
+                        "effects":[list(e) for e in p.effects],
+                        "hand":[f"{c.name} {c.power}/{c.damage} {c.stars}* {c.clan}"
+                                + ("" if c.ability or c.bonus else " (no modeled text)")
+                                for c in p.hand]} for p in state.players]}
+
+
 @dataclass(frozen=True)
 class Board:
     state: State
@@ -634,8 +644,39 @@ class CanvasReader:
                     runs.append(current)
                 current=0
         if not 1 <= len(runs) <= 5:
-            raise RecognitionError("Evolution stars could not be counted")
+            white=self.white_stars(pixels,x,y)
+            if white is None:
+                raise RecognitionError("Evolution stars could not be counted")
+            return white
         return len(runs)
+
+    @staticmethod
+    def white_stars(pixels,x,y):
+        """Legendary (Ld) frames draw their stars white instead of gold.
+
+        Seen live on Nega D Ld (5 white stars) as a raised opponent lead.
+        All probed bands that show 1-5 star-sized runs must agree.
+        """
+        h,w,_=pixels.shape
+        x1,x2=int((x-.05)*w),int((x+.05)*w)
+        counts=set()
+        for dy in (-.005,0.0,.004):
+            strip=pixels[int((y+dy-.006)*h):int((y+dy+.006)*h),x1:x2]
+            if strip.size==0:
+                continue
+            occupied=((strip.min(axis=2)>200).sum(axis=0)>=3).tolist()
+            runs=[]
+            current=0
+            for value in occupied+[False]:
+                if value:
+                    current+=1
+                elif current:
+                    runs.append(current)
+                    current=0
+            stars=[r for r in runs if 4<=r<=14]
+            if 1<=len(stars)<=5 and len(stars)==len(runs):
+                counts.add(len(stars))
+        return counts.pop() if len(counts)==1 else None
 
     def day(self,image):
         import numpy as np
@@ -819,6 +860,17 @@ class CanvasReader:
             title=raised_titles.get(i,"")
             if normalize(title)==normalize(hands[1][i].name):
                 lifted.append(i)
+        if not lifted:
+            # Legendary (Ld) frames have no white selection disc. Read a wider
+            # raised-title band and accept only the card's own name there.
+            import difflib
+            for i,x in enumerate(self.CENTERS):
+                if i in used[1]:
+                    continue
+                band=normalize(self.precise_text(image,(x-.07,.075,x+.085,.115),.7))
+                name=normalize(hands[1][i].name)
+                if len(band)>=4 and difflib.SequenceMatcher(None,band,name).ratio()>=.8:
+                    lifted.append(i)
         if len(lifted)>1:
             raise RecognitionError("Multiple opponent lead candidates")
         if lifted:
@@ -1008,12 +1060,13 @@ class VisionSession:
                     self._last_recommendation = rec.to_dict()
                     return {"status":f"Advisor: {rec.reason}", "round":self.state.round,
                             "cards":[[c.name for c in p.hand] for p in self.state.players],
+                            "board":board_summary(self.state,board.observed_card),
                             "recommendation":self._last_recommendation, "action":None}
                 return {"status":"Inspect: board recognized", "round":self.state.round,
                         "cards":[[c.name for c in p.hand] for p in self.state.players],"action":None}
             rec = recommend_move(self.state, side=0, observed_card=board.observed_card, mode=self.mode)
             self.pending = Move(rec.card_index, rec.pillz, rec.fury)
-            self._last_recommendation = rec.to_dict()
+            self._last_recommendation = {**rec.to_dict(),"board":board_summary(self.state,board.observed_card)}
             selected=self.state.players[0].hand[self.pending.card]
             effects=selected.ability
             if sum(c.clan==selected.clan for c in self.state.players[0].hand)>=2:
