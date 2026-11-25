@@ -1072,6 +1072,8 @@ class VisionSession:
             if sum(c.clan==selected.clan for c in self.state.players[0].hand)>=2:
                 effects+=selected.bonus
             def _cond_active(cond):
+                if "+" in cond:
+                    return all(_cond_active(part) for part in cond.split("+"))
                 if cond=="always": return True
                 if cond=="courage": return self.state.leader==0
                 if cond=="reprisal": return self.state.leader==1
@@ -1147,6 +1149,10 @@ class VisionSession:
             # The Fury toggle did not register (damage unchanged): retry once.
             self._fury_attempts+=1
             return at("fury","Fury did not register; retry once")
+        if self.phase=="selected" and damage!=self.expected_damage and isinstance(damage,int):
+            # The panel is the truth for this card's damage before any Fury; some
+            # conditions (After/Versus/chains) can't be judged from the board.
+            self.panel_damage=self.expected_damage=damage
         if damage!=self.expected_damage:
             raise RecognitionError(
                 f"Damage panel shows {damage}, expected {self.expected_damage} "

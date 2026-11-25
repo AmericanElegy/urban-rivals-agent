@@ -31,8 +31,12 @@ def merge_official_records(catalog,records):
             raw={key:source[key] for key in ("name","power","damage","stars","clan","ability","bonus")}
             if any(type(raw[k]) is not int for k in ("power","damage","stars")):
                 raise ValueError("Stats and stars must be integers")
-            if raw["clan"] in {"GhosTown","Leader","Oculus"}:
-                raise ValueError("Clock-specific, leader or infiltration rules require separately verified entries")
+            # Clan lists for After/Versus/Infiltrates come from the official
+            # description. GhosTown (Day/Night), Leader (Team, Cancel Leader)
+            # and Oculus (Infiltrated) rules are modeled in the engine.
+            from .descriptions import annotate
+            for field in ("ability","bonus"):
+                raw[field]=annotate(raw["name"],raw[field])
             card=parsed(raw)
             key=identity(raw)
             if key in identities:

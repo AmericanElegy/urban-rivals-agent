@@ -1,7 +1,9 @@
 # Urban Rivals mechanics: what the engine knows
 
 Source of truth for each rule is listed. "Official" = https://www.urban-rivals.com/game/rules/.
-Coverage after this audit: **2,158 of 2,507** official max-level cards parse fully (86%, was 68.6%).
+"Card text" = the official per-card ability descriptions stored in `data/card_reference.json`
+(collected from urban-rivals.com character pages).
+Coverage: **2,483 of 2,507** official max-level cards parse fully (99%, was 68.6%).
 Cards that don't parse still play, but their unparsed text is treated as blank.
 
 ## Core fight (modeled)
@@ -58,27 +60,52 @@ Equalizer, Per Opp. Power/Damage, Per Life/Pillz Left, Life/Pillz Per Damage (Of
 | Heal (Care) | Same timing, on you | Your Life ≤ Max | Official |
 | Toxin / Regen | Also at the end of the round played | Min / Max | Official |
 | Consume / Dope | Pillz versions of Toxin / Regen | Min / Max | Official |
-| Replacement | A second effect of the same kind replaces the first | | Official |
+| Corrosion | A Poison worth X × the round it was played; win or lose | Min | Card text |
+| Mindwipe | Toxin-style: opponent loses X Life **and** Pillz each round | Min | Card text |
+| Combust | Poison-style: opponent loses X Life and Pillz from the next round | Min | Card text |
+| Repair | Regen-style: you gain X Life and Pillz | Max | Card text |
+| Slots | Poison/Toxin/Corrosion share one slot, Heal/Regen another; the newer replaces the older "as soon as the latter takes effect" | | Card text |
+
+## More card-text mechanics (modeled)
+
+| Mechanic | Behaviour | Source |
+|---|---|---|
+| After [clans] | Active if your previous-round card was one of those clans (an Oculus never counts) | Card text (clans from each card's description) |
+| Versus [clans] | Active if the opponent's hand holds one of those clans | Official + card text |
+| Chained conditions | e.g. "Day: Courage: Attack +20" — all must hold | Card text |
+| Reanimate | On defeat, +X Life and you can't be KO'd by that damage | Card text |
+| KO is final | Other Life gains don't bring a KO'd player back | Card text (Limitless/Reanimate wording) |
+| Corrupt | Win or lose, your own Life −X (Min) | Card text |
+| Xantiax / "Players" | Both players are affected | Card text |
+| "Cards" | Both fighting cards are affected | Card text |
+| Per Life/Pillz Lost | Scales with Life/Pillz lost since the match started (12/12) | Card text |
+| Per Opp. Damage (Life) | Life gain × opposing Damage | Card text |
+| Team | Every card in your deck gets the ability | Card text |
+| Cancel Leader | Leader abilities off with more than one Leader in the deck | Card text |
+| Infiltrated (Oculus) | Takes the only other clan, or the sole card's clan with two others; none with three or 2+ Oculus | Official + card text |
+| Conditional Copy | e.g. "Reprisal: Copy Opp. Bonus" checks its condition first | Card text |
+| Perfection / Sinister Symmetry / Fatal Killshot | Win the match by KO on Perfect / Symmetry / Killshot win | Card text |
+| Tie-break | Wins equal attacks (cancelled if both have it) | Card text |
+| Bypass / Remove Ability Conditions | Deck-wide passives | Card text |
+| Counter-attack | Play order; read from the screen, nothing to model | Card text |
 
 ## Modeled, but an assumption is unverified
 
 - **Growth: Poison/Heal** — multiplied by the round it was won in, not re-multiplied each tick.
 - **Fury vs. damage reducers** — "-X Opp. Damage" also reduces Fury's +2.
-- **Per Pillz Left** — counts Pillz before this round's bet.
-- **Order of end-of-round Life effects** — damage, then Life/Pillz effects, then lingering ticks, then new effects.
+- **Order of end-of-round effects** — damage, Life/Pillz effects, lingering ticks, then new effects.
+- **Mindwipe/Combust/Repair slots** — treated as their Life and Pillz parts (Toxin+Consume, Poison+rot, Regen+Dope).
+- **Tie-break at match end** — only round ties are modeled; a tied final Life still counts as a tie.
+- **Starting Life/Pillz** for "Lost" scaling — assumed 12/12.
 
-## Not modeled yet (treated as blank text)
+## Not modeled yet (treated as blank text) — 24 cards
 
-| Gap | Cards | What's needed |
+| Gap | Cards | Why |
 |---|---|---|
-| Oculus "Infiltrated" | 75 | Clan-switching rule; the official two-clan wording is inconsistent |
-| GhosTown combos (e.g. "Day: Courage: …") | 59 | Two conditions on one effect |
-| After | 26 | Definition (not on the rules page) |
-| Cancel Leader / Leader cards | 21 | Leader rules |
-| Versus | 18 | Card data omits *which* clan is named |
-| Players / Cards (affect both sides) | ~15 | Straightforward; next batch |
-| Per Life Lost / Per Pillz Lost | ~15 | Starting Life per mode |
-| Reanimate, Mindwipe, Combust, Corrosion, Repair, Rebirth, Xantiax | ~20 | Definitions (not on the rules page) |
-| One-off specials (Overdose, Limitless, Hazard, Illusion, Bypass, Counter-attack, Beyond, …) | ~10 | Individual definitions |
+| Copy in rare forms | ~6 | Conditions after the fight / recursive copies |
+| After/Versus whose description doesn't list clans | 8 | Clan list missing from the stored description |
+| Per-damage gains on defeat | 3 | Wording unclear |
+| Rebirth, Overdose, Limitless, Hazard, Illusion, Beyond | 6 | Randomness, hidden cards, or a 5th round |
+| +1 Pillz Per Round / −1 Opp. Pillz Per Round | 2 | Start-of-round passives |
 
 Run `python -m urban_rivals coverage` for current counts.

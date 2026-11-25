@@ -92,6 +92,8 @@ class ProtectionExchangeTests(unittest.TestCase):
         self.assertEqual(paca.ability[0].condition, "reprisal")
         elisa = catalog.identify("Dr Elisa", True)
         self.assertEqual((elisa.ability[0].stat, elisa.ability[0].amount), ("toxin", 1))
-        for name in ("Mendossa", "Caballine"):
-            with self.subTest(name=name), self.assertRaises(RecognitionError):
-                catalog.identify(name, True)
+        # Conditional bonus copies are modeled now (pre-fight condition checked).
+        for name, condition in (("Mendossa", "reprisal"), ("Caballine", "unison")):
+            with self.subTest(name=name):
+                copy = catalog.identify(name, True).ability[0]
+                self.assertEqual((copy.stat, copy.condition), ("copy_bonus", condition))

@@ -40,7 +40,7 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(resolve(s, Move(0, 0), Move(0, 2)).players[0].life, 10)
 
     def test_unknown_effect_rejected(self):
-        for text in ("Mindwipe 1, Min 0", "After : Power +3", "Infiltrated"):
+        for text in ("Hazard", "After : Power +3", "Overdose"):
             with self.assertRaises(ValueError):
                 parse_effect(text)
 

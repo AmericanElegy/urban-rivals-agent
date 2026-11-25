@@ -27,7 +27,7 @@ class CatalogImportTests(unittest.TestCase):
             with self.assertRaises(RecognitionError):catalog.identify("Test",True,(7,6,3))
 
     def test_unsupported_or_conflicting_text_is_quarantined(self):
-        unsupported=self.record();unsupported.update(name="Mindwipe card",ability="Mindwipe 1, Min 0")
+        unsupported=self.record();unsupported.update(name="Hazard card",ability="Hazard")
         conflict=self.record();conflict["ability"]="Power +8"
         merged,audit=merge_official_records(self.fixture(),[unsupported,conflict])
         self.assertEqual(len(merged["cards"]),1)
@@ -65,11 +65,13 @@ class CatalogImportTests(unittest.TestCase):
         self.assertEqual(merged,data)
         self.assertFalse(any(e["result"]=="added" for e in audit))
 
-    def test_bulk_import_cannot_enable_special_clan_rules(self):
+    def test_special_clans_import_now_that_their_rules_are_modeled(self):
+        # Day/Night chains (GhosTown), Team/Cancel Leader (Leader) and
+        # Infiltrated (Oculus) are engine rules now, so these cards import.
         records=[]
         for clan in ("GhosTown","Leader","Oculus"):
             record=self.record();record.update(name=clan,clan=clan,ability="No Ability",bonus="No Bonus")
             records.append(record)
         merged,audit=merge_official_records(self.fixture(),records)
-        self.assertEqual(len(merged["cards"]),1)
-        self.assertTrue(all(e["result"]=="rejected" for e in audit))
+        self.assertEqual(len(merged["cards"]),4)
+        self.assertTrue(all(e["result"]=="added" for e in audit))

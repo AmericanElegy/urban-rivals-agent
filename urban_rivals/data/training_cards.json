@@ -19470,6 +19470,2949 @@
       "clan": "Vortex",
       "ability": "Stop: Power +2",
       "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Malik",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Bangers",
+      "ability": "Victory Or Defeat : Brawl: +1 Pillz",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Cynosine",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "Unison : Recover 1 Pillz Out Of 3",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Timbo K",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Bangers",
+      "ability": "Victory Or Defeat : +5 Players Pillz",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "MBalaze",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "-1 Opp Att. Per Pillz Left, Min 8",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Platoona",
+      "power": 7,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Bangers",
+      "ability": "Versus [Oculus|Uppers]: Defeat: -1 Opp. Pillz, Min 2",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Sean Rost",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "All Stars",
+      "ability": "Victory Or Defeat: Equalizer: +1 Life",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Hans Spinner",
+      "power": 5,
+      "damage": 5,
+      "stars": 3,
+      "clan": "All Stars",
+      "ability": "-1 Opp Att. Per Life Left, Min 2",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Dan",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "All Stars",
+      "ability": "Day: Growth: -1 Opp Damage, Min 2",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Draconine",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Fang Pi Clang",
+      "ability": "Unison : Defeat : Heal 1 Max. 20",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "P. Steevens Cr",
+      "power": 8,
+      "damage": 2,
+      "stars": 4,
+      "clan": "La Junta",
+      "ability": "+1 Damage Per Life Lost Max. 7",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Pinscherite",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "La Junta",
+      "ability": "Unison : Defeat: +2 Pillz",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Ultra GNRL CR",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "La Junta",
+      "ability": "-1 Opp Power Per Life Lost, Min 2",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Helsa",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "La Junta",
+      "ability": "Conf.: Vict. Or Def.: -2 Opp. Life, Min 0",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Naja Ld",
+      "power": 8,
+      "damage": 5,
+      "stars": 3,
+      "clan": "La Junta",
+      "ability": "Victory Or Defeat : +3 Players Pillz",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Miele",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Versus [Berzerk|Raptors|Uppers]: Heal 1 Max. 11",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Serafina Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Rescue",
+      "ability": "Support: Reanimate: +1 Life",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Lobo",
+      "power": 5,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Reanimate: +2 Life",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Jamtiax",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Junkz",
+      "ability": "Xantiax: -2 Life, Min. 0",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Ultra DJK Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Junkz",
+      "ability": "-1 Opp Damage Per Pillz Lost, Min 1",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Bunny",
+      "power": 4,
+      "damage": 8,
+      "stars": 4,
+      "clan": "Junkz",
+      "ability": "+1 Power Per Life Left Max. 7",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Don Tarazze",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "Versus [Frozn|Oculus|Vortex]: Damage +2",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Ultra Lyse Cr",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "-1 Opp Power Per Pillz Lost, Min 5",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Mascaranga",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Montana",
+      "ability": "Stop: Equalizer: - 1 Opp. Life Min 0",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Giovanni",
+      "power": 7,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "-2 Cards Damage, Min 1",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Mr Kitty",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Pussycats",
+      "ability": "Xantiax: -2 Life, Min. 0",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Miss Denna",
+      "power": 8,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Pussycats",
+      "ability": "-7 Cards Attack, Min 0",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Ashikaze Ld",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Pussycats",
+      "ability": "-1 Opp Att. Per Life Left, Min 4",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Rapell Choan",
+      "power": 5,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Uppers",
+      "ability": "+3 Attack Per Pillz Lost",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Rajesh",
+      "power": 5,
+      "damage": 6,
+      "stars": 2,
+      "clan": "Uppers",
+      "ability": "-2 Cards Damage, Min 4",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Nega D Ld",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Uppers",
+      "ability": "Corrupt 2 Min. 5",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Agglomoth",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Frozn",
+      "ability": "Defeat: Degrowth: +1 Life",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Cadmendus Cr",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Frozn",
+      "ability": "Reanimate: +2 Life",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Ciminompah",
+      "power": 8,
+      "damage": 2,
+      "stars": 4,
+      "clan": "Frozn",
+      "ability": "+1 Life Per Opp. Damage",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Schwarz",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Frozn",
+      "ability": "Day: Confidence: -2 Opp. Pillz & Life, Min 3",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Tormentah",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Frozn",
+      "ability": "+1 Life Per Damage Max. 15",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Graou",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Jungo",
+      "ability": "Day: Courage: +3 Life",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "KinGreow",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "+1 Power Per Life Left Max. 13",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Forty2",
+      "power": 7,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Jungo",
+      "ability": "+1 Power Per Life Left Max. 9",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Pere Fourrure",
+      "power": 8,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "Support: -1 Cards Damage, Min 0",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Otium Cr",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Jungo",
+      "ability": "Confidence: -9 Cards Damage, Min 0",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Tariel",
+      "power": 6,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Jungo",
+      "ability": "-1 Opp Att. Per Life Left, Min 6",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Pistache",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Roots",
+      "ability": "After [La Junta|Roots]: -2 Opp. Pow. & Dam., Min 2",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Chelonite",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Roots",
+      "ability": "Unison: Killshot: +3 Life",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Ultra Kiki Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Roots",
+      "ability": "+2 Attack Per Life Lost",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Douek",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Roots",
+      "ability": "Versus [Oculus]: -2 Opp Damage, Min 1",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Delija Cr",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Roots",
+      "ability": "-2 Cards Power, Min 2",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Kiki I",
+      "power": 4,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Roots",
+      "ability": "+1 Power Per Life Lost Max. 8",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Billy Bob",
+      "power": 8,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Roots",
+      "ability": "Victory Or Defeat : +2 Players Life",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Sunnygoat",
+      "power": 2,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Roots",
+      "ability": "+1 Power Per Life Left Max. 7",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Radoraan",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Ulu Watu",
+      "ability": "-1 Opp Power Per Pillz Lost, Min 5",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Queen Naliah",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Ulu Watu",
+      "ability": "Versus [Leader|Oculus]: Power +2",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Mango",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Ulu Watu",
+      "ability": "-1 Opp Att. Per Life Left, Min 8",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Coraille",
+      "power": 5,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "+1 Power Per Life Left Max. 13",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Razor",
+      "power": 5,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "+1 Power Per Life Lost Max. 9",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "MercuryX",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Berzerk",
+      "ability": "Defeat: Equalizer: +1 Life",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Zell",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Berzerk",
+      "ability": "+1 Power Per Life Lost Max. 14",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Silvano",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Berzerk",
+      "ability": "Defeat: Brawl: +1 Life",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Xantiax Robb Cr",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Berzerk",
+      "ability": "Xantiax: -3 Life, Min. 0",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Beef Cr",
+      "power": 8,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Berzerk",
+      "ability": "Defeat: Backlash: - 2 Life Min 2",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Bobby Cornteeth",
+      "power": 5,
+      "damage": 5,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "Players Combust 1, Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Quantum Qasar",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Cosmohnuts",
+      "ability": "Confidence: Mindwipe 2, Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Molinau",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "Versus [Oculus|Zenith]: Toxin 1, Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Jed LeRouge",
+      "power": 8,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Cosmohnuts",
+      "ability": "Versus [Freaks|Oculus]: -3 Opp. Life Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Sam & Remi Ld",
+      "power": 8,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Cosmohnuts",
+      "ability": "Cards Damage +2",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Cameron",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Cosmohnuts",
+      "ability": "Victory Or Defeat: Corrosion 1, Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Karter",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Cosmohnuts",
+      "ability": "-2 Players Pillz. Min 5",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Noeptus",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Paradox",
+      "ability": "-1 Opp Damage Per Pillz Lost, Min 1",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Padre Nido",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Paradox",
+      "ability": "+1 Power Per Life Lost Max. 14",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Pandemos Cr",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Paradox",
+      "ability": "-4 Cards Damage, Min 0",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Ambazaak",
+      "power": 8,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Piranas",
+      "ability": "Victory Or Defeat : +2 Players Life",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Ciratess",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Piranas",
+      "ability": "Victory Or Defeat: Combust 1, Min 0",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Crook Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Piranas",
+      "ability": "Day: Vict. Or Defeat : +1 Pillz And Life",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Scarlacc",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Raptors",
+      "ability": "Victory Or Defeat: Corrosion 1, Min 0",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Sir Taco",
+      "power": 1,
+      "damage": 5,
+      "stars": 2,
+      "clan": "Dominion",
+      "ability": "+1 Power Per Life Left Max. 8",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Khrull Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Dominion",
+      "ability": "Protection: Cards Power And Damage",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Sata",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Dominion",
+      "ability": "-1 Opp Att. Per Life Left, Min 7",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Wilo Ld",
+      "power": 6,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Dominion",
+      "ability": "Repair 1, Max. 14",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Maslo",
+      "power": 9,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Oblivion",
+      "ability": "Brawl: Reanimate: +1 Life",
+      "bonus": "Copy: Opp. Ability"
+    },
+    {
+      "name": "Ashara",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oblivion",
+      "ability": "Versus [Hive|Riots|Sakrohm|Vortex]: +2 Life",
+      "bonus": "Copy: Opp. Ability"
+    },
+    {
+      "name": "Skeletrezar",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Nightmare",
+      "ability": "Day: Growth: Poison 1, Min 4",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Karkass Cr",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Nightmare",
+      "ability": "Sinister Symmetry",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Malfass",
+      "power": 9,
+      "damage": 1,
+      "stars": 4,
+      "clan": "Nightmare",
+      "ability": "+1 Life Per Opp. Damage",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Effigie",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Nightmare",
+      "ability": "Reanimate: +3 Life",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dragomir",
+      "power": 9,
+      "damage": 4,
+      "stars": 5,
+      "clan": "Nightmare",
+      "ability": "+1 Life Per Damage Max. 13",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dj Korps",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Nightmare",
+      "ability": "Defeat: Growth: -1 Opp. Life, Min 1",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Candy Jack",
+      "power": 3,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Nightmare",
+      "ability": "+1 Power Per Pillz Left Max. 8",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dr Fazorth",
+      "power": 8,
+      "damage": 6,
+      "stars": 4,
+      "clan": "GHEIST",
+      "ability": "-8 Cards Attack, Min 3",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Virtmund",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "GHEIST",
+      "ability": "Mindwipe 1, Min 3",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Nefr0ct0n",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Hive",
+      "ability": "Confidence: -4 Cards Damage, Min 0",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Car0",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Hive",
+      "ability": "Reanimate: +2 Life",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "R0zeheart",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Hive",
+      "ability": "-2 Cards Damage, Min 1",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "D4ggers",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Hive",
+      "ability": "-2 Players Pillz. Min 4",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Buf00n",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Hive",
+      "ability": "Versus [Freaks|Oculus]: -3 Opp. Life Min 0",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Sight Ld",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Hive",
+      "ability": "Versus [Freaks|Oculus]: -3 Opp. Life Min 0",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Hydraereva",
+      "power": 6,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Hive",
+      "ability": "Defeat: Equalizer: +1 Life",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Sansot Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Riots",
+      "ability": "Defeat: Backlash: - 1 Life Min 0",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Merweiss Cr",
+      "power": 9,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Riots",
+      "ability": "Revenge: Mindwipe 2, Min 0",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Glibon Cr",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Sakrohm",
+      "ability": "Perfection",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Ultra Guru Cr",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Sakrohm",
+      "ability": "+3 Attack Per Pillz Lost",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Betwixt",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sakrohm",
+      "ability": "Versus [Oculus]: Stop Opp. Ability",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Ackh",
+      "power": 7,
+      "damage": 4,
+      "stars": 5,
+      "clan": "Sakrohm",
+      "ability": "Victory Or Defeat: Equalizer: +1 Life",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Serleena",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sakrohm",
+      "ability": "Day: Confidence: Damage Exchange",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Oryon",
+      "power": 7,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Sakrohm",
+      "ability": "Versus [Oculus|Sakrohm]: Power Impose",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "La Betucha",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "+1 Attack Per Life Lost",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Acinonite",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Huracan",
+      "ability": "Unison: Killshot: +3 Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Cacto",
+      "power": 7,
+      "damage": 1,
+      "stars": 3,
+      "clan": "Huracan",
+      "ability": "+1 Damage Per Pillz Lost Max. 8",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Resbaladizo",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "Cards Damage +2",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Toucan",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Huracan",
+      "ability": "Victory Or Defeat : +3 Players Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Cascabel",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Huracan",
+      "ability": "Victory Or Defeat : +5 Players Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Exotico",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Huracan",
+      "ability": "Victory Or Defeat: Brawl: +1 Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "La Salerosa",
+      "power": 6,
+      "damage": 3,
+      "stars": 5,
+      "clan": "Huracan",
+      "ability": "+2 Life Per Damage Max. 20",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Selka Riv",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Stop: -13 Opp Attack, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Maelt Riv",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Tolvack",
+      "ability": "Consume 1, Min 2",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Dorga",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Tolvack",
+      "ability": "After [Oculus|Tolvack]: Power +3",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Vande",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Tolvack",
+      "ability": "+1 Attack Per Life Left",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Zerkov",
+      "power": 8,
+      "damage": 4,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Victory Or Defeat : +2 Life",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Molch",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Tolvack",
+      "ability": "Killshot: -2 Opp. Pillz And Life, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Rauta",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Tolvack",
+      "ability": "After [Oculus|Tolvack]: -3 Opp Power, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Karsen",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Disunion: -2 Opp Pow. & Dam., Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Kontrø Ld",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Combust 1, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Tør",
+      "power": 6,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Tolvack",
+      "ability": "Degrowth: -1 Opp Power, Min 2",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Noma",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Tolvack",
+      "ability": "After [Frozn]: +2 Life",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Laarson",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Cancel Opp. Power And Damage Modif.",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Fjell",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Tolvack",
+      "ability": "Revenge : +4 Life",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Ingenmar",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Growth: Attack +5",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Huldra",
+      "power": 9,
+      "damage": 2,
+      "stars": 4,
+      "clan": "Tolvack",
+      "ability": "Toxin 1, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Hildrun",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Tolvack",
+      "ability": "Victory Or Defeat : +3 Pillz",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Vargo",
+      "power": 5,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Tolvack",
+      "ability": "-2 Opp Power And Damage, Min 0",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Drava",
+      "power": 9,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Tolvack",
+      "ability": "Stop Opp. Ability",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Krym",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Tolvack",
+      "ability": "Degrowth: -2 Opp Damage, Min 1",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Scavros",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Tolvack",
+      "ability": "Equalizer: +1 Pillz",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Skarn",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Tolvack",
+      "ability": "-1 Opp Power, Min 6",
+      "bonus": "After [Oculus|Tolvack]: Power +3"
+    },
+    {
+      "name": "Korapacce",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Komboka",
+      "ability": "+3 Attack Per Pillz Lost",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Pantherine",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Komboka",
+      "ability": "Unison: Defeat: +2 Life",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Sheraf",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Komboka",
+      "ability": "Reanimate: +3 Life",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Seta",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Komboka",
+      "ability": "Defeat: Equalizer: +1 Life",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Volkan Cr",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Komboka",
+      "ability": "Victory Or Defeat: Combust 1, Min 3",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Jagan",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Komboka",
+      "ability": "-1 Opp Att. Per Life Left, Min 2",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Mighty Kyrioz",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Zenith",
+      "ability": "Asymmetry: Repair 1, Max. 19",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Nolegs",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Freaks",
+      "ability": "+2 Attack Per Pillz Lost",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Slobodan Cr",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "+1 Players Life",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Torrance Twins",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "Victory Or Defeat : +5 Players Life",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Merrick Cr",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "-2 Cards Damage, Min 1",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Crazy Legs",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "-1 Opp Att. Per Life Left, Min 2",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Velvet Lamento",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Growth: -1 Opp Power, Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Gamber Gus",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Equalizer: +1 Pillz",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Miss Gunslinger",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Degrowth: +1 Pillz",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Gunslinger",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Victory Or Defeat : -2 Opp Pillz. Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Roy",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Cancel Opp. Power Modif.",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Winchester",
+      "power": 7,
+      "damage": 6,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "-2 Opp Power And Damage, Min 6",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Becos Pill",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Revenge: Poison 2, Min 0",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Mrs Chili",
+      "power": 9,
+      "damage": 3,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Toxin 2, Min 0",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Onongada",
+      "power": 7,
+      "damage": 1,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Asymmetry: +5 Life",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Veles Cr",
+      "power": 9,
+      "damage": 1,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "+1 Damage Per Life Left Max. 12",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Hollow Spyke",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Day: -4 Opp Power, Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Heaven",
+      "power": 7,
+      "damage": 1,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "-2 Opp. Pillz And Life, Min 5",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Rony Bones",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Confidence: Stop Opp. Ability",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Kenny West",
+      "power": 8,
+      "damage": 4,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "+1 Life Per Opp. Damage",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Dezba",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "-3 Opp. Life Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "La Comtesse Cr",
+      "power": 8,
+      "damage": 3,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Equalizer: +1 Life",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Codak",
+      "power": 5,
+      "damage": 1,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Asymmetry: Power And Damage + 3",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Guy",
+      "power": 6,
+      "damage": 7,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "-3 Opp Power, Min 5",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Shaferxxt",
+      "power": 5,
+      "damage": 5,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "-3 Opp Damage, Min 2",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Chuck Snow",
+      "power": 6,
+      "damage": 1,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "-5 Opp. Life Min 6",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Miss Calamity",
+      "power": 7,
+      "damage": 2,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Damage Exchange",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "MKali",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Day: +2 Pillz",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Sioux",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Day: Equalizer: -1 Opp Damage, Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "McBrown",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Day: Defeat: Recover 2 Pillz Out Of 3",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Consuelo",
+      "power": 7,
+      "damage": 4,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Day: +1 Pillz Per Damage",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Calamity",
+      "power": 5,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Power Exchange",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Sentenza Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Day: Cancel Opp. Power Modif.",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Dizzy Vulture",
+      "power": 7,
+      "damage": 1,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Day: Equalizer: Damage +1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Djanghost Ld",
+      "power": 5,
+      "damage": 6,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Day: Power +4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Fork Joe",
+      "power": 6,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "-2 Opp Damage, Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Comanche",
+      "power": 9,
+      "damage": 2,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Stop Opp. Ability",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Bambino Cr",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Day: -1 Opp Power & Damage, Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Tannen",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Day: Backlash: - 2 Life Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Poppy Mary Noel",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "+2 Pillz Max. 9",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Ford",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Brawl: -1 Opp Damage, Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Adele",
+      "power": 1,
+      "damage": 5,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Copy: Opp. Power",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Butcher Braxton",
+      "power": 9,
+      "damage": 2,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Growth: Regen 1, Max. 17",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Judge Lynch",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Day: -2 Opp Att. Per Pillz Left, Min 1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Hermosa",
+      "power": 8,
+      "damage": 3,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "-3 Opp. Pillz And Life, Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Digging Bill",
+      "power": 7,
+      "damage": 1,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "-6 Opp. Life Min 0",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Doc Ollie",
+      "power": 6,
+      "damage": 1,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Growth : Power & Damage +1",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Dakota Cr",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Day: Confidence: +1 Life Per Damage",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Flood Ed",
+      "power": 8,
+      "damage": 3,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Copy: Power And Damage Opp.",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Mallory",
+      "power": 1,
+      "damage": 1,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Power And Damage +7",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Hurry Cody",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Copy: Opp. Bonus",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Padre Frollo",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Regen 3, Max. 6",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Powaqa",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Defeat: Recover 2 Pillz Out Of 3",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Ennio",
+      "power": 6,
+      "damage": 3,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Victory Or Defeat : +4 Life",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Guillotinette",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Stop: +3 Pillz",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Poppy Mary",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Dope 1, Max. 11",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Burton",
+      "power": 7,
+      "damage": 1,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Growth: Toxin 1, Min 4",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Wild Holiday Ld",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Vict. Or Def.: -1 Opp Life & Pillz Min 2",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Marshal Cr",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Day: Stop Opp. Bonus",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "John O Clock",
+      "power": 7,
+      "damage": 4,
+      "stars": 5,
+      "clan": "GhosTown",
+      "ability": "Damage +5",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Victor Van Dort",
+      "power": 7,
+      "damage": 4,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "+2 Pillz And Life",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Gus Rope",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GhosTown",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Tuco",
+      "power": 1,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GhosTown",
+      "ability": "Power +9",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Leesa",
+      "power": 5,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Skeelz",
+      "ability": "After [Piranas|Pussycats|Ulu Watu]: -5 Opp Power, Min 2",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Izandro",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Skeelz",
+      "ability": "Reanimate: +3 Life",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Prince Candle",
+      "power": 8,
+      "damage": 2,
+      "stars": 3,
+      "clan": "Skeelz",
+      "ability": "Combust 1, Min 1",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "AbsorptionBoy",
+      "power": 8,
+      "damage": 3,
+      "stars": 4,
+      "clan": "Skeelz",
+      "ability": "+1 Life Per Opp. Damage",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Lady Ametia Cr",
+      "power": 1,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Skeelz",
+      "ability": "+1 Power Per Life Left Max. 13",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Aigwon Noel",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Skeelz",
+      "ability": "Day: Courage: Attack +20",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "D-aleq",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Vortex",
+      "ability": "Versus [Leader|Oculus|Rescue]: -2 Opp. Life Min 0",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "M2 Sansot Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Vortex",
+      "ability": "-2 Cards Damage, Min 1",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Cyb Yose",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Vortex",
+      "ability": "-2 Opp Att. Per Pillz Left, Min 15",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Predtr Ld",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Vortex",
+      "ability": "Versus [Hive|Oculus]: Stop Opp. Ability",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "C Dusk",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Vortex",
+      "ability": "+1 Life Per Damage Max. 8",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Dark Hawk",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Power +3",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Olga",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Freaks|Nightmare|Tolvack]: -2 Opp Power, Min 5",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dunkelstern",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Repris. : Mindwipe 1, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Kalaa",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Junkz|Nightmare|Paradox|Ulu Watu]: Defeat: Heal 1, Max 14",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Synapsburg",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Equalizer: Attack +4",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Wachtmann",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "+1 Pow./ Life Lost Max. 15",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Lowki",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Asym.: -3 Opp Power, Min 2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Hypnos",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Asymmetry: +5 Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Sylth",
+      "power": 9,
+      "damage": 3,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Toxin 2, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Kriegson",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Brwl. : -2 Opp Dam., Min 1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Urbex",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Growth: Dope 1, Max. 20",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Kerozinn",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Rev.: -5 Opp. Pow., Min 1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Drakorah",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Fatal Killshot",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Radden",
+      "power": 8,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Defeat: +2 Pillz",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Dalhia",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "+2 Attack Per Pillz Lost",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Toro",
+      "power": 6,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "-3 Opp Pow. And Dam., Min 1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Rattle",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Raptors|Rescue|Sakrohm]: -2 Opp Damage, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "I. Lecsevy",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Berzerk|Fang Pi Clang|Freaks|Junkz|Sakrohm]: Stop Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "L. Ionvex",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Bangers|Hive|Komboka|Raptors|Vortex]: Mindwipe 1, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "T. Silkvale",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Huracan|Jungo|Montana|Ulu Watu]: Cancel Opp. Pow/dam Mod.",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Dakota",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "Killshot: Regen 1, Max. 15",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Desmond",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Fang Pi Clang|Montana|Ulu Watu]: Cancel Opp. Attack Modif.",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Mandrak",
+      "power": 9,
+      "damage": 1,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Equalizer: +1 Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Emeth",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|GHEIST|Hive|La Junta]: +3 Attack Per Opp. Damage",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Zlatar",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Bangers|GhosTown|Piranas|Uppers]: Stop Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Scylla",
+      "power": 9,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "+3 Pillz And Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Akrakk",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Berzerk|Oblivion|Raptors|Vortex]: Equalizer: -4 Opp Attack, Min 4",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Kjolt",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Freaks|Komboka|Nightmare|Raptors]: Defeat: -3 Opp. Life, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Miselai",
+      "power": 9,
+      "damage": 4,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Dominion|Roots|Sakrohm|Ulu Watu]: Regen 2, Max. 16",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Thanator",
+      "power": 9,
+      "damage": 1,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Frozn|GhosTown|Jungo|Skeelz]: +2 Life Per Opp. Damage",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Kupanda",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Bangers|Berzerk|Komboka|Riots]: Asymm.: Stop Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Shizawa",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Fang Pi Clang|GHEIST|Piranas|Rescue|Zenith]: -4 Opp Damage, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Askai",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Attack +9",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Lamar",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Berzerk|Riots|Sentinel|Skeelz]: Cancel Opp. Pow/dam Mod.",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Dorian",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "-4 Opp Damage, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Blaaster",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "-1 Opp Pow. & Dam., Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Majestic",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Equalizer: Att. +5",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Vixen",
+      "power": 8,
+      "damage": 2,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "-3 Opp. Life Min 4",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Fridlia",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Degrowth: Attack +3",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Uchtul",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Huracan|Nightmare|Piranas|Sakrohm]: Growth: -1 Opp. Life Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Eloxia",
+      "power": 9,
+      "damage": 1,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Toxin 2, Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Slatter",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Frozn|Montana|Oblivion|Uppers]: Stop Opp. Bonus",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Yookie",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Cosmohnut|GhosTown|Jungo|Komboka|Roots]: -2 Opp. Life Min 1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Copper",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Berzerk|Rescue|Sentinel|Vortex]: Growth: Power +1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Pulp Ld",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Komboka|Riots|Skeelz|Vortex]: Attack +8",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark X-0DUS",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Freaks|Frozn|Vortex|Uppers]: Reprisal: Stop Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Morlha",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Cosmohnut|Dominion|GHEIST|Hive|Sakrohm]: Stop Opp. Bonus",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Eklore",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Fang Pi Clang|Montana|Nightmare|Oblivion|Roots]: +1 Atk Per Pillz Left",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Scar",
+      "power": 5,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Jungo|Oblivion|Raptors|Sentinel|Skeelz]: Brawl: Power +1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Vansaar",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "-1 Opp Power, Min 5",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Solomon",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Growth: Attack +2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Morphun",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "+3 Pillz",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Scarlett",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "-2 Opp Pow. And Dam., Min 3",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Waldegrin",
+      "power": 9,
+      "damage": 1,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "-8 Opp. Life Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Zebos",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "-2 Opp Damage, Min 2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Alekperov",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "-2 Opp Power, Min 5",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Bukerzerg",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Berzerk|Junkz|Piranas|Pussycats|Sentinel]: Power +2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Kusm",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "-12 Opp Attack, Min 3",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Rodsey",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "+2 Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Serafina",
+      "power": 8,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Frozn|Hive|Rescue|Ulu Watu|Zenith]: Brawl: +1 Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Nunavik",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Fang Pi Clang|Frozn|Komboka|Zenith]: Courage: Power +4",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Kaizerin",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [GhosTown|Komboka|La Junta|Oblivion|Pussycats]: -2 Opp Pillz. Min 2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Sentogan",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Oculus",
+      "ability": "-1 Opp Pow. & Dam., Min 0",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Phalloide Ld",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Cosmohnut|Freaks|Raptors|Riots|Skeelz]: - 2 Opp. Life Min 2",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Sobek",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Victory Or Defeat : +3 Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Vryer",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "-8 Opp Attack, Min 1",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Carlos",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Equalizer: Attack +3",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Smokey",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Oculus",
+      "ability": "Infiltrates [La Junta|Piranas|Riots|Tolvack|Ulu Watu]: +1 Pillz And Life",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Hailee",
+      "power": 8,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Bangers",
+      "ability": "Bet > 2 Pillz: Copy: Opp. Ability",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Farell",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "Asymmetry: Copy: Opp. Bonus",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Quormac",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "La Junta",
+      "ability": "Asymmetry: Copy: Opp. Ability",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Caballine",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Sentinel",
+      "ability": "Unison : Copy: Opp. Bonus",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "ReportCop",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Sentinel",
+      "ability": "Asymmetry: Copy: Opp. Ability",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Allie",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Montana",
+      "ability": "Revenge: Copy: Opp. Ability",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Mendossa",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Montana",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Samia",
+      "power": 8,
+      "damage": 2,
+      "stars": 3,
+      "clan": "Pussycats",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Lydia",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Uppers",
+      "ability": "Courage: Bonus Protection",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Dylan",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Lavey",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Paradox",
+      "ability": "Asymmetry: Copy: Opp. Ability",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Pepo Brahms",
+      "power": 7,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Dominion",
+      "ability": "Growth: Opp. Attack +2",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Ludicrite",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Dominion",
+      "ability": "Unison : Copy: Opp. Bonus",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Death Wing",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Dominion",
+      "ability": "Day: Courage: Canc. Power & Dam. Mod",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "XU91",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "GHEIST",
+      "ability": "Revenge: Copy Opp. Bonus",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Korakine",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Riots",
+      "ability": "Unison : Copy: Opp. Ability",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Dr Van Wesel Ld",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Riots",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Pleakxxt",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sakrohm",
+      "ability": "Courage: Copy: Opp. Bonus",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Noctezuburro",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "Reprisal: Copy: Opp. Ability",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Noctezuma Cr",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Huracan",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Pauline",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Komboka",
+      "ability": "Reprisal: Copy Opp. Bonus",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Betul",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Komboka",
+      "ability": "Revenge: + 2 Attack Per Opp. Power",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Caldea",
+      "power": 9,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Freaks",
+      "ability": "Asymmetry: Copy: Opp. Bonus",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Musafar",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Freaks",
+      "ability": "Revenge: + 2 Attack Per Opp. Power",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Cravy",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "GhosTown",
+      "ability": "Revenge: Copy Opp. Bonus",
+      "bonus": "Day: Power And Damage + 1"
+    },
+    {
+      "name": "Nexus",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Vortex",
+      "ability": "Revenge: Copy Opp. Bonus",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Izsobahd",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Vortex",
+      "ability": "Stop: -3 Pillz Opp. Min 1",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Sakrh",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Perfect: -4 Opp. Life Min 0",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Memento",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Remove Ability Conditions",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Robert Cobb",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Bypass",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Mr Big Duke",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Cancel Opp. Damage Modif.",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "John Doom",
+      "power": 8,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Reprisal: -2 Opp Power, Min 6",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Melody",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Defeat: Rec. 1 Pillz Out Of 2",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Solomon",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Tie-break",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Eyrik",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: -1 Opp. Power, Min 0",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Vholt",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: -2 Opp. Damage, Min 2",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Ambre",
+      "power": 6,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Courage: Power +3",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Bridget",
+      "power": 9,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Victory Or Defeat: +1 Life",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Hugo",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: +7 Attack",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Ashigaru",
+      "power": 9,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Counter-attack",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Timber",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: +2 Damage Max. 7",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Vansaar",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Leader",
+      "ability": "Team: Killshot: -3 Opp. Life Min 0",
+      "bonus": "Cancel Leader"
+    },
+    {
+      "name": "Dark Yayoi",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Fang Pi Clang|Pussycats|Raptors|Sentinel]: Copy: Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "O. Valosy",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [GHEIST|GhosTown|Roots|Sentinel|Uppers]: Copy: Opp. Bonus",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Lumia",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Freaks|Hive|Junkz|Roots]: Copy: Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Quetzal",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [All Stars|Dominion|Huracan|Komboka]: Copy: Opp. Ability",
+      "bonus": "Infiltrated"
+    },
+    {
+      "name": "Dark Estalt",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Oculus",
+      "ability": "Infiltrates [Dominion|Nightmare|Paradox|Sakrohm|Zenith]: Copy Opp. Bonus",
+      "bonus": "Infiltrated"
     }
   ]
 }

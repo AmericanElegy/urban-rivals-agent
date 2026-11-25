@@ -93,8 +93,9 @@ class StarCatalog:
                     and (unlock_lvl is None or level >= unlock_lvl)
                 )
                 active_ability_text = raw_ability if ability_unlocked else ""
-                ability_effects, ability_parsed = _safe_parse_effects(active_ability_text)
-                bonus_effects, bonus_parsed = _safe_parse_effects(bonus_text)
+                from .descriptions import annotate
+                ability_effects, ability_parsed = _safe_parse_effects(annotate(name, active_ability_text))
+                bonus_effects, bonus_parsed = _safe_parse_effects(annotate(name, bonus_text))
 
                 card = Card(
                     name=name,

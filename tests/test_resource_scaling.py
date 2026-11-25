@@ -37,6 +37,8 @@ class ResourceScalingTests(unittest.TestCase):
         self.assertFalse(result.players[0].last_won)
 
     def test_opponent_or_negative_resource_scaling_stays_rejected(self):
-        for text in ("-1 Opp Att. Per Life Left, Min 2","+1 Opp Attack Per Pillz Left"):
+        # Official: "-1 Opp Att. Per Life Left, Min 2" lowers the opposing Attack
+        # by the owner's remaining Life (now supported, see test_mechanics_v3).
+        for text in ("+1 Opp Attack Per Pillz Left",):
             with self.subTest(text=text),self.assertRaises(ValueError):
                 parse_effect(text)
