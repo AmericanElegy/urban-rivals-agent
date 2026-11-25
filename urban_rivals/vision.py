@@ -548,36 +548,16 @@ class CanvasReader:
     def panel_number(self,image,box,kind):
         return self.number(image,box,kind)
 
-    def stars(self,image,x,y):
-        import numpy as np
-        pixels=np.array(image.convert("RGB"))
-        h,w,_=pixels.shape
-        x1,x2=int((x-.05)*w),int((x+.05)*w)
-        best=None
-        for dy in (.004,0.0,-.005):
-            sy=y+dy
-            strip=pixels[int((sy-.006)*h):int((sy+.006)*h),x1:x2]
-            if strip.size==0 or (strip.max(axis=2)<95).mean()<.35:
-                continue
-            mask=(strip[:,:,0]>180)&(strip[:,:,1]>140)&(strip[:,:,2]<90)
-            occupied=(mask.sum(axis=0)>=3).tolist()
-            runs=[]
-            current=0
-            for value in occupied+[False]:
-                if value:
-                    current+=1
-                elif current:
-                    if 3<=current<=14:
-                        runs.append(current)
-                    current=0
-            if 1<=len(runs)<=5:
-                score=(int(mask.sum()),len(runs),-abs(dy))
-                if best is None or score>best[0]:
-                    best=(score,len(runs))
-        if best is not None:
-            return best[1]
-        strip=pixels[int((y-.012)*h):int((y+.012)*h),x1:x2]
-        mask=(strip[:,:,0]>170)&(strip[:,:,1]>120)&(strip[:,:,2]<100)
+    @staticmethod
+    def _star_mask(strip):
+        r,g,b=(strip[:,:,i].astype("int16") for i in range(3))
+        gold=(r>170)&(g>120)&(b<100)
+        # Limited (Ld) and similar cards draw their stars pale blue.
+        blue=(b>170)&(g>150)&(b>r+25)
+        return gold|blue
+
+    @staticmethod
+    def _star_runs(mask,minimum=3,maximum=14):
         occupied=(mask.sum(axis=0)>=3).tolist()
         runs=[]
         current=0
@@ -585,12 +565,50 @@ class CanvasReader:
             if value:
                 current+=1
             elif current:
-                if current>=3:
+                if minimum<=current<=maximum:
                     runs.append(current)
                 current=0
-        if not 1 <= len(runs) <= 5:
+        return runs
+
+    def stars(self,image,x,y):
+        """Count lit stars as star-sized blobs sitting inside the dark star bar.
+
+        Bright card art beside the bar is too tall or not framed by the bar, so
+        it is not counted. Gold and pale-blue (Ld) stars both count; grey
+        unearned stars do not. Inconsistent evidence raises instead of guessing.
+        """
+        import cv2
+        import numpy as np
+        pixels=np.array(image.convert("RGB"))
+        h,w,_=pixels.shape
+        unit=h/744
+        x1,x2=max(0,int((x-.05)*w)),min(w,int((x+.05)*w))
+        y1,y2=max(0,int((y-.02)*h)),min(h,int((y+.02)*h))
+        window=pixels[y1:y2,x1:x2]
+        mask=self._star_mask(window).astype("uint8")
+        dark=window.max(axis=2)<95
+        count,_,stats,centroids=cv2.connectedComponentsWithStats(mask,connectivity=8)
+        stars=[]
+        for i in range(1,count):
+            bx,by,bw,bh,area=stats[i]
+            if not (4*unit<=bw<=16*unit and 4*unit<=bh<=14*unit and area>=10*unit*unit):
+                continue
+            gap=max(2,int(round(2*unit)))
+            above,below=by-gap,by+bh-1+gap
+            if above<0 or below>=dark.shape[0]:
+                continue
+            columns=slice(bx,bx+bw)
+            if dark[above,columns].mean()<.5 or dark[below,columns].mean()<.5:
+                continue
+            stars.append(centroids[i])
+        if not stars:
             raise RecognitionError("Evolution stars could not be counted")
-        return len(runs)
+        # All stars of one card share a baseline; keep the largest aligned row.
+        rows=[[c for c in stars if abs(c[1]-ref[1])<=3*unit] for ref in stars]
+        row=max(rows,key=len)
+        if not 1<=len(row)<=5 or len(row)!=len(stars):
+            raise RecognitionError("Evolution stars could not be counted")
+        return len(row)
 
     def day(self,image):
         import numpy as np
@@ -731,16 +749,28 @@ class CanvasReader:
                     except RecognitionError:
                         c=Card(name=text.strip() or f"Played-{side}-{i+1}",power=1,damage=1,stars=1,clan="Unknown")
                 else:
-                    stars=self.stars(image,x,star_y)
                     if self.catalog.star_catalog is not None:
-                        evo=self.catalog.star_catalog.resolve(text,stars=stars)
+                        # Printed power/damage pick the level; stars only break
+                        # ties. Either may be unreadable, but not both.
+                        def optional(read):
+                            try:
+                                return read()
+                            except RecognitionError:
+                                return None
+                        stars=optional(lambda:self.stars(image,x,star_y))
+                        power=optional(lambda:self.number(image,self.stat_box(x,stat_y)))
+                        damage=optional(lambda:self.number(image,self.stat_box(x,stat_y,True)))
+                        if stars is None and (power is None or damage is None):
+                            raise RecognitionError("Evolution stars could not be counted")
+                        evo=self.catalog.star_catalog.resolve(text,stars=stars,power=power,damage=damage)
                         if evo is not None:
                             c=evo.card
                         else:
-                            power=self.number(image,self.stat_box(x,stat_y))
-                            damage=self.number(image,self.stat_box(x,stat_y,True))
+                            if power is None or damage is None or stars is None:
+                                raise RecognitionError(f"Unknown card {text!r} without complete stats")
                             c=self.catalog.identify(text,day,(power,damage,stars))
                     else:
+                        stars=self.stars(image,x,star_y)
                         power=self.number(image,self.stat_box(x,stat_y))
                         damage=self.number(image,self.stat_box(x,stat_y,True))
                         c=self.catalog.identify(text,day,(power,damage,stars))
