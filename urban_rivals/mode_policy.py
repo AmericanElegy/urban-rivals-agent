@@ -4,7 +4,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import math
 from .engine import Move, State
-from .solver import advise
+from .planner import plan
 
 VALID_MODES = ("training", "efc", "tourney")
 
@@ -103,13 +103,9 @@ def recommend_move(
     use_fury = cfg.allow_fury if allow_fury is None else allow_fury
     allow_fury_flag = use_fury and player.pillz >= 3
 
-    advice = advise(
-        state,
-        side=side,
-        observed_card=observed_card,
-        iterations=cfg.iterations,
-        allow_fury=allow_fury_flag,
-    )
+    # Whole-match planning: each outcome of this round is valued by the odds of
+    # winning the match from there (rollouts through rounds left, Poison etc.).
+    advice = plan(state, side, observed_card, allow_fury_flag)
 
     best_idx = max(range(len(advice.moves)), key=lambda i: advice.probabilities[i])
     best_move: Move = advice.moves[best_idx]
@@ -130,7 +126,7 @@ def recommend_move(
 
     card = player.hand[best_move.card]
     stars = card.stars or 1
-    win_prob = value_to_win_prob(advice.value)
+    win_prob = advice.win_probability
     fury_label = " + Fury" if best_move.fury else ""
     reason = f"[{mode.upper()}] {card.name} ({stars}★) with {best_move.pillz} Pillz{fury_label}"
 
@@ -143,7 +139,7 @@ def recommend_move(
         pillz=best_move.pillz,
         fury=best_move.fury,
         win_prob=win_prob,
-        value=advice.value,
+        value=advice.win_probability,
         mode=mode,
         reason=reason,
     )
