@@ -148,6 +148,9 @@ class SessionTests(unittest.TestCase):
         r.panel=True
         self.panel_step(s)
         r.attack=14
+        retry=self.panel_step(s)
+        self.assertIn("retry once",retry["status"])
+        self.assertEqual(retry["action"]["x"],.578)
         with self.assertRaises(RecognitionError):
             self.panel_step(s)
 

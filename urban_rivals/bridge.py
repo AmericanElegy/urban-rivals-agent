@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from .vision import VisionSession, RecognitionError
 from .mode_policy import VALID_MODES
-from .calibration import load_calibration, save_calibration
+from .calibration import load_calibration, load_saved_calibration, save_calibration
 
 SCHEMA="urban-rivals/frame/v1"
 MAX_BODY=8*1024*1024
@@ -173,10 +173,12 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                         sessions[run_id]=SimpleNamespace(execute=False, advisor=False)
                     elif shared_ocr is not None:
                         from .vision import CanvasReader
-                        sessions[run_id]=session_factory(reader=CanvasReader(ocr=shared_ocr,catalog=shared_catalog),execute=is_exec,mode=data["mode"],advisor=is_advisor)
+                        sessions[run_id]=session_factory(reader=CanvasReader(ocr=shared_ocr,catalog=shared_catalog),execute=is_exec,mode=data["mode"],advisor=is_advisor,
+                                                          **({"calibration":load_saved_calibration(output/"calibration.json")} if session_factory is VisionSession else {}))
                     else:
                         if session_factory is VisionSession:
-                            sessions[run_id]=session_factory(execute=is_exec,mode=data["mode"],advisor=is_advisor)
+                            sessions[run_id]=session_factory(execute=is_exec,mode=data["mode"],advisor=is_advisor,
+                                                              calibration=load_saved_calibration(output/"calibration.json"))
                         else:
                             sessions[run_id]=session_factory(execute=is_exec)
                 session=sessions[run_id]

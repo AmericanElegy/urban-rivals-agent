@@ -71,6 +71,21 @@ def save_calibration(path: str | Path, payload: dict) -> dict[str, dict[str, flo
     return validated
 
 
+def load_saved_calibration(path: str | Path) -> dict[str, dict[str, float]] | None:
+    """Return only points the user actually saved; never substitute defaults.
+
+    Auto-Play must not mistake the generic default grid for a measured layout.
+    A missing or invalid file returns None so live text location still decides.
+    """
+    target = Path(path)
+    if not target.exists():
+        return None
+    try:
+        return validate_calibration(json.loads(target.read_text(encoding="utf-8")))
+    except (ValueError, OSError):
+        return None
+
+
 def load_calibration(path: str | Path) -> dict[str, dict[str, float]]:
     target = Path(path)
     if not target.exists():

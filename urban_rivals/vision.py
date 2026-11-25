@@ -51,6 +51,38 @@ class LocalOCR:
             items.sort(key=lambda item: min(point[0] for point in item[0]))
         return " ".join(item[1] for item in items)
 
+    def locate(self, image, box, minimum=.8):
+        """Return [(text, score, cx, cy)] with centers normalized to the image.
+
+        Uses the same crop/scale/padding as text(), then maps each detected
+        quadrilateral back to full-canvas coordinates so callers can click it.
+        """
+        import numpy as np
+        from PIL import ImageOps
+        w,h=image.size
+        x1,y1,x2,y2=box
+        left,top=int(x1*w),int(y1*h)
+        crop=image.crop((left,top,int(x2*w),int(y2*h)))
+        factor=1.0
+        if crop.width>900:
+            factor=.5
+        elif crop.width<300:
+            factor=2.0
+        if factor!=1.0:
+            crop=crop.resize((max(1,int(crop.width*factor)),max(1,int(crop.height*factor))))
+        pad=12
+        crop=ImageOps.expand(crop,border=pad,fill="black")
+        result,_=self.detect(np.array(crop)[:,:,::-1].copy(),True)
+        found=[]
+        for points,text,score in result or ():
+            if float(score)<minimum:
+                continue
+            cx=sum(p[0] for p in points)/len(points)
+            cy=sum(p[1] for p in points)/len(points)
+            found.append((text,float(score),
+                          (left+(cx-pad)/factor)/w,(top+(cy-pad)/factor)/h))
+        return found
+
     def detect(self,pixels,detail=False):
         """Restore shared detector settings even when inference fails."""
         detector=self.model.text_det
@@ -239,6 +271,86 @@ class Catalog:
         return card
 
 
+# Reference stake-panel click centers measured on a 1318x744 canvas at
+# hud_scale 1.0. Live layouts shift with browser size, so these are only the
+# last resort; text located on the current frame always wins.
+STAKE_TEXT_DEFAULTS={"min":(.578,.513),"max":(.874,.513),"confirm":(.722,.675)}
+STAKE_ICON_DEFAULTS={"plus":(.874,.442)}
+STAKE_SEARCH_BOX=(.45,.30,1.0,.80)
+CALIBRATION_KEYS={"plus":"pillz_plus","minus":"pillz_minus","fury":"fury_btn","confirm":"confirm_btn"}
+
+
+def _stake_label(text):
+    norm=normalize(text)
+    if norm in ("min","max"):
+        return norm
+    if norm.startswith("confirm"):
+        return "confirm"
+    if "fury" in norm and len(norm)<=12:
+        return "fury"
+    return None
+
+
+def _fit_axis(pairs):
+    """Least-squares a*default+b from (default, observed) pairs.
+
+    One anchor, or anchors sharing a default coordinate, give translation only.
+    An implausible scale also falls back to translation.
+    """
+    if not pairs:
+        return 1.0,0.0
+    defaults=[d for d,_ in pairs]
+    observed=[o for _,o in pairs]
+    md=sum(defaults)/len(defaults)
+    mo=sum(observed)/len(observed)
+    spread=sum((d-md)**2 for d in defaults)
+    if spread>1e-6:
+        a=sum((d-md)*(o-mo) for d,o in pairs)/spread
+        if .5<=a<=1.5:
+            return a,mo-a*md
+    return 1.0,mo-md
+
+
+def stake_layout(found,calibration=None):
+    """Choose click targets for the open stake panel.
+
+    found: [(text, score, cx, cy)] from LocalOCR.locate on the current frame.
+    Priority per target: text located now > saved calibration > the reference
+    layout moved by the offset/scale measured from whichever anchors were found.
+    Returns {target: (x, y)} plus "_source": {target: "text"|"calibration"|"layout"|"default"}.
+    """
+    hits={}
+    ambiguous=set()
+    for text,score,cx,cy in found:
+        label=_stake_label(text)
+        if label is None:
+            continue
+        if label in hits:
+            ambiguous.add(label)
+        hits[label]=(cx,cy)
+    for label in ambiguous:
+        hits.pop(label,None)
+    anchors=[(STAKE_TEXT_DEFAULTS[k],hits[k]) for k in STAKE_TEXT_DEFAULTS if k in hits]
+    ax,bx=_fit_axis([(d[0],o[0]) for d,o in anchors])
+    ay,by=_fit_axis([(d[1],o[1]) for d,o in anchors])
+    moved="layout" if anchors else "default"
+    def project(point):
+        return (min(1.0,max(0.0,ax*point[0]+bx)),min(1.0,max(0.0,ay*point[1]+by)))
+    layout={}
+    source={}
+    for key,point in {**STAKE_TEXT_DEFAULTS,**STAKE_ICON_DEFAULTS,"fury":None,"minus":None}.items():
+        cal_key=CALIBRATION_KEYS.get(key)
+        if key in hits:
+            layout[key],source[key]=hits[key],"text"
+        elif calibration and cal_key in calibration:
+            pt=calibration[cal_key]
+            layout[key],source[key]=(float(pt["x"]),float(pt["y"])),"calibration"
+        elif point is not None:
+            layout[key],source[key]=project(point),moved
+    layout["_source"]=source
+    return layout
+
+
 @dataclass(frozen=True)
 class Board:
     state: State
@@ -313,6 +425,11 @@ class CanvasReader:
 
     def text(self,image,box,minimum=.85):
         return self.ocr.text(image,box,minimum)
+
+    def stake_targets(self,image,calibration=None):
+        locate=getattr(self.ocr,"locate",None)
+        found=locate(image,STAKE_SEARCH_BOX,.8) if locate else []
+        return stake_layout(found,calibration)
 
     def round_scene(self,image):
         """A phase hint only: board() must still verify the complete state."""
@@ -701,7 +818,7 @@ class CanvasReader:
 
 class VisionSession:
     """Single-match, single-action-per-frame state machine. Defaults to inspect."""
-    def __init__(self, reader=None, execute=False, iterations=500, clock=time.monotonic, mode="training", advisor=False):
+    def __init__(self, reader=None, execute=False, iterations=500, clock=time.monotonic, mode="training", advisor=False, calibration=None):
         if mode not in VALID_MODES:
             raise ValueError(f"Unsupported mode: {mode!r}")
         self.reader=reader or CanvasReader()
@@ -725,6 +842,25 @@ class VisionSession:
         self.board_candidate_at=None
         self.panel_candidate=None
         self.panel_candidate_at=None
+        # Only user-saved calibration (see calibration.load_saved_calibration).
+        self.calibration=calibration
+        self.fury_on=False
+        self.expected_damage=None
+        self._min_attempts=0
+        self._fury_attempts=0
+
+    def hand_point(self,index):
+        key=f"hand_{index}"
+        if self.calibration and key in self.calibration:
+            pt=self.calibration[key]
+            return float(pt["x"]),float(pt["y"])
+        return self.reader.CENTERS[index],.69
+
+    def stake_targets(self,image):
+        locate=getattr(self.reader,"stake_targets",None)
+        if locate is None:
+            return stake_layout([],self.calibration)
+        return locate(image,self.calibration)
 
     def reset_stability(self):
         """Require fresh agreement after a focus pause; retain action receipts."""
@@ -754,7 +890,7 @@ class VisionSession:
                 if waits==1:
                     self._panel_wait=waits+1
                     card_name=self.state.players[0].hand[self.pending.card].name
-                    return self.action(self.reader.CENTERS[self.pending.card],.69,
+                    return self.action(*self.hand_point(self.pending.card),
                                        f"Round {self.state.round}: retry select {card_name}")
                 if waits<3:
                     self._panel_wait=waits+1
@@ -807,8 +943,7 @@ class VisionSession:
                             "recommendation":self._last_recommendation, "action":None}
                 return {"status":"Inspect: board recognized", "round":self.state.round,
                         "cards":[[c.name for c in p.hand] for p in self.state.players],"action":None}
-            rec = recommend_move(self.state, side=0, observed_card=board.observed_card, mode=self.mode, allow_fury=False)
-            from .engine import Move
+            rec = recommend_move(self.state, side=0, observed_card=board.observed_card, mode=self.mode)
             self.pending = Move(rec.card_index, rec.pillz, rec.fury)
             self._last_recommendation = rec.to_dict()
             selected=self.state.players[0].hand[self.pending.card]
@@ -830,10 +965,14 @@ class VisionSession:
             self.panel_power=max(1,selected.power+sum(e.amount for e in own_power))
             self.panel_attack_bonus=sum(e.amount for e in own_attack)
             self.panel_damage=max(1,selected.damage+sum(e.amount for e in own_damage))
+            self.expected_damage=self.panel_damage
+            self.fury_on=False
+            self._min_attempts=0
+            self._fury_attempts=0
             self.phase="selected"
             self._panel_wait=0
             self._panel_seen=False
-            return self.action(self.reader.CENTERS[self.pending.card],.69,
+            return self.action(*self.hand_point(self.pending.card),
                                f"Round {self.state.round}: select {self.state.players[0].hand[self.pending.card].name}")
         if not stake:
             if isinstance(self.reader,CanvasReader) and self.state is not None:
@@ -878,35 +1017,68 @@ class VisionSession:
         self.panel_candidate_at=now
         if not settled:
             return {"status":"Waiting for a second matching stake-panel reading", "action":None}
-        if damage!=self.panel_damage:
-            raise RecognitionError("Damage panel differs from the no-Fury expectation")
+        targets=self.stake_targets(image)
+        src=targets["_source"]
+        def at(key,status):
+            x,y=targets[key]
+            return self.action(x,y,f"{status} [{key.upper()} via {src[key]}]")
+        if self.phase=="fury" and damage==self.panel_damage and self._fury_attempts<2:
+            # The Fury toggle did not register (damage unchanged): retry once.
+            self._fury_attempts+=1
+            return at("fury","Fury did not register; retry once")
+        if damage!=self.expected_damage:
+            raise RecognitionError(
+                f"Damage panel shows {damage}, expected {self.expected_damage} "
+                f"({'with' if self.fury_on else 'no'} Fury)")
         if self.phase=="selected":
             self.phase="reset"
-            return self.action(.578,.513,"Reset paid pillz to zero")
+            self._min_attempts=1
+            return at("min","Reset paid pillz to zero")
+        all_in=False
         if self.phase=="reset":
             atk_bonus=getattr(self,"panel_attack_bonus",0)
             self.base_attack=self.panel_power
             if attack!=self.panel_power+atk_bonus:
+                if self._min_attempts<2:
+                    self._min_attempts+=1
+                    return at("min","MIN did not reach zero paid pillz; retry once")
                 raise RecognitionError("MIN did not confirm zero paid pillz at the expected power")
-            # Fury is intentionally not enabled by the first live driver. A
-            # fresh panel defaults off; never reuse a manually edited panel.
+            # A fresh panel defaults Fury off; never reuse a manually edited panel.
             self.remaining=self.pending.pillz
             self.expected_attack=attack
+            if self.pending.fury:
+                if "fury" in targets:
+                    self.phase="fury"
+                    self.fury_on=True
+                    self.expected_damage=self.panel_damage+2
+                    self._fury_attempts=1
+                    return at("fury","Turn on Fury; verify +2 damage")
+                # No Fury button found on screen or in calibration: keep the
+                # same paid pillz and submit honestly without Fury.
+                self.pending=Move(self.pending.card,self.pending.pillz,False)
             self.phase="increment"
-            if self.remaining and self.remaining==self.state.players[0].pillz:
-                # MAX is only used for an exact all-in allocation, after verified
-                # MIN/no-Fury. Its resulting attack must still settle and match.
-                self.expected_attack=self.base_attack*(self.remaining+1)+atk_bonus
-                self.remaining=0
-                return self.action(.874,.513,"Allocate all remaining paid pillz with MAX; verify attack")
+            all_in=True
+        elif self.phase=="fury":
+            if attack!=self.expected_attack:
+                raise RecognitionError("Fury changed the displayed attack unexpectedly")
+            self.phase="increment"
         elif self.phase=="increment" and attack!=self.expected_attack:
             raise RecognitionError("Displayed attack does not confirm the last pillz increment")
+        if (all_in and not self.fury_on and self.remaining
+                and self.remaining==self.state.players[0].pillz):
+            # MAX is only used for an exact all-in allocation, after verified
+            # MIN/no-Fury. Its resulting attack must still settle and match.
+            atk_bonus=getattr(self,"panel_attack_bonus",0)
+            self.expected_attack=self.base_attack*(self.remaining+1)+atk_bonus
+            self.remaining=0
+            return at("max","Allocate all remaining paid pillz with MAX; verify attack")
         if self.remaining:
             self.remaining-=1
             self.expected_attack+=self.base_attack
-            return self.action(.874,.442,"Add one paid pill; verify attack on the next frame")
+            return at("plus","Add one paid pill; verify attack on the next frame")
         # Mark attempted BEFORE the external click. Never retry confirmation.
         self.submitted=self.pending
         self.awaiting_round=self.state.round
         self.phase="board"
-        return self.action(.722,.675,f"Confirm {self.pending.pillz} paid pillz, no Fury")
+        fury_text="with Fury" if self.pending.fury else "no Fury"
+        return at("confirm",f"Confirm {self.pending.pillz} paid pillz, {fury_text}")
