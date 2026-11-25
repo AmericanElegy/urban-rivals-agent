@@ -75,6 +75,25 @@ class LocalOCR:
     def precise_text(self,image,box,minimum=.85):
         return self.text(image,box,minimum,detail=True)
 
+    def tokens(self,image,box,minimum=.5):
+        """Recognized strings with their left edge in canvas units."""
+        import numpy as np
+        from PIL import ImageOps
+        w,h=image.size
+        x1,y1,x2,y2=box
+        crop=image.crop((int(x1*w),int(y1*h),int(x2*w),int(y2*h)))
+        scale=.5 if crop.width>900 else 1 if crop.width>=300 else 2
+        crop=crop.resize((max(1,int(crop.width*scale)),max(1,int(crop.height*scale))))
+        crop=ImageOps.expand(crop,border=12,fill="black")
+        result,_=self.detect(np.array(crop)[:,:,::-1].copy(),True)
+        found=[]
+        for points,text,score in result or ():
+            if float(score)<minimum:
+                continue
+            left=(min(p[0] for p in points)-12)/scale
+            found.append((text,x1+left/w,float(score)))
+        return sorted(found,key=lambda t:t[1])
+
     def title(self,image,box,minimum=.8):
         return self.text(image,box,minimum,first_line=True)
 
@@ -291,10 +310,114 @@ class CanvasReader:
         return seconds
 
     def read_resources(self,image):
+        try:
+            return self._read_resources(image,0)
+        except RecognitionError as error:
+            failure=error
+        # A running-effect badge (e.g. "+1 HEAL - MAX 15") shifts a player's
+        # resource pair sideways. Locate the pair from a recognized number and
+        # require both shifted counters to read before accepting the shift.
+        for shift in self._resource_shifts(image):
+            try:
+                return self._read_resources(image,shift)
+            except RecognitionError:
+                continue
+        raise failure
+
+    # Our resource pair sits at fixed offsets left of our name text, which is
+    # left-aligned in its box (measured on 1318-wide canvases; both the plain
+    # layout and the layout shifted by a running-effect badge agree).
+    NAME_TO_PILLZ=.1386
+    NAME_TO_LIFE=.0596
+
+    def _resource_shifts(self,image):
+        if not hasattr(self.ocr,"tokens"):
+            return []
+        scale=getattr(self,"hud_scale",1.0)
+        boxes={name:self.hud_box(box,ax,ay) for name,box,ax,ay in self.RESOURCE_BOXES}
+        pillz=boxes["our_pillz"]
+        strip=(.02,pillz[1],.98,pillz[3])
+        shifts=[]
+        for text,left,_ in self.ocr.tokens(image,strip,.9):
+            if re.fullmatch(r"[+-]?\d{1,3}",text.strip()):
+                continue
+            shift=round(left-self.NAME_TO_PILLZ*scale-(pillz[0]+pillz[2])/2,4)
+            if abs(shift)>.004 and ("our_",shift) not in shifts:
+                shifts.append(("our_",shift))
+        return shifts
+
+    BADGE=re.compile(r"([+-]\s*\d+)\s*(POISON|TOXIN|CORROSION|COMBUST|MINDWIPE|HEAL|REGEN|DOPE|CONSUME)"
+                     r"\W*(MIN|MAX)\W*(\d+)",re.I)
+
+    def effect_badges(self,image):
+        """Running effects drawn beside each player's resources, if legible.
+
+        A badge is shown on the affected player's side. Effects that harm the
+        player were applied by the opponent; benefits by the player. Unreadable
+        or unknown badges are ignored rather than guessed.
+        """
+        from .engine import PERSISTENT, Persistent
+        if not hasattr(self.ocr,"tokens"):
+            return ((),())
+        rows=((.90,.995),(0,.08))
+        result=[]
+        for side,(y1,y2) in enumerate(rows):
+            # Half-width crops keep small signs such as "+1" legible.
+            text=" ".join(t for half in ((.02,y1,.52,y2),(.48,y1,.98,y2))
+                          for t,_,_ in self.ocr.tokens(image,half,.85))
+            effects={}
+            for match in self.BADGE.finditer(text.replace("·"," ")):
+                amount=int(match[1].replace(" ",""))
+                kind=match[2].lower()
+                bound=int(match[4])
+                part,slot,_=PERSISTENT[kind]
+                harmful=amount<0
+                if harmful!=(kind in {"poison","toxin","corrosion","combust","mindwipe","consume"}):
+                    continue
+                if (match[3].upper()=="MIN")!=harmful:
+                    continue
+                effects[slot]=Persistent(kind,slot,amount if part in {"life","both"} else 0,
+                                         amount if part in {"pillz","both"} else 0,
+                                         bound if harmful else 0,bound if not harmful else 10000,
+                                         1-side if harmful else side)
+            result.append(tuple(effects[k] for k in sorted(effects)))
+        return tuple(result)
+
+    def _agreeing_number(self,image,box):
+        """Shifted reads must agree when nudged, so a clipped "12" can't read "1"."""
+        step=.008*getattr(self,"hud_scale",1.0)
+        values=[]
+        for nudge in (0,-step,step):
+            try:
+                values.append(self.number(image,(box[0]+nudge,box[1],box[2]+nudge,box[3])))
+            except RecognitionError:
+                values.append(None)
+        if values[0] is None or values.count(values[0])<2:
+            raise RecognitionError(f"Resource or attack count is unreadable: {values!r}")
+        return values[0]
+
+    def _read_resources(self,image,shift):
+        prefix,offset=shift if shift else ("",0)
         resources={}
         for name,box,ax,ay in self.RESOURCE_BOXES:
             target=self.hud_box(box,ax,ay)
+            if prefix and name.startswith(prefix):
+                if name=="our_life":
+                    # Life keeps its own offset from the name, not pillz's.
+                    pillz_box=self.hud_box(*[(b,ax2,ay2) for n,b,ax2,ay2 in self.RESOURCE_BOXES if n=="our_pillz"][0])
+                    scale=getattr(self,"hud_scale",1.0)
+                    name_left=(pillz_box[0]+pillz_box[2])/2+offset+self.NAME_TO_PILLZ*scale
+                    centre=name_left-self.NAME_TO_LIFE*scale
+                    half=(target[2]-target[0])/2
+                    target=(centre-half,target[1],centre+half,target[3])
+                else:
+                    target=(target[0]+offset,target[1],target[2]+offset,target[3])
+                if target[0]<0 or target[2]>1:
+                    raise RecognitionError(f"{name}: shifted box leaves the canvas")
             try:
+                if prefix and name.startswith(prefix):
+                    resources[name]=self._agreeing_number(image,target)
+                    continue
                 resources[name]=self.number(image,target)
             except RecognitionError as error:
                 if hasattr(self.ocr,"counter"):
@@ -701,6 +824,10 @@ class CanvasReader:
                 raise RecognitionError("Missed a round; cannot reconstruct public state safely")
         elif round_no!=1 and not allow_mid_match:
             raise RecognitionError("Start recognition at round 1 before any card is played")
+        if previous is None and round_no>1 and not any(running):
+            # Started mid-match: the engine never saw running effects begin,
+            # but the game draws them as badges (e.g. "+1 HEAL - MAX 15").
+            running=self.effect_badges(image)
         if previous is None or round_no==1:
             self.start_resources=(life,pillz)
         start=getattr(self,"start_resources",None)
