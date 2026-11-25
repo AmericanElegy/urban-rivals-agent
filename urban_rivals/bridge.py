@@ -69,6 +69,12 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
         if not re.fullmatch(r"[A-Za-z0-9_-]{32,128}",token):
             raise ValueError("Existing pairing token is invalid")
     (output/"pairing-token.txt").write_text(token,encoding="utf-8")
+    if session_factory is VisionSession:
+        # Whole-match planning runs leaf rollouts on every spare CPU core.
+        import os
+        from .planner import enable_parallel
+        workers=enable_parallel(int(os.environ.get("UR_AGENT_WORKERS","0") or 0) or None)
+        print(f"Planner: {workers} CPU worker(s)",flush=True)
     sessions={}
     stopped=set()
     sequences={}
