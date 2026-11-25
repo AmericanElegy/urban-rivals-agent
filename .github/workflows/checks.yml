@@ -9,10 +9,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      # Vision extras let the real-frame OCR regression tests run, not skip.
+      - run: pip install -e ".[vision]"
       - run: python -m unittest discover -s tests -v
       - run: node --test browser-extension/policy.test.js browser-extension/worker.test.js browser-extension/popup.test.js
       - run: python -m urban_rivals simulate examples/basic.json --games 1 --iterations 100
