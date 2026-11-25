@@ -10,6 +10,7 @@ import sys
 import tempfile
 import time
 import unittest
+from urban_rivals.engine import ENGINE_REVISION
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -40,7 +41,7 @@ class BridgeHTTPTests(unittest.TestCase):
                 with urlopen(endpoint+"/health",timeout=5) as response:
                     health=json.load(response)
                     self.assertFalse(health["execute_enabled"])
-                    self.assertEqual(health["engine_revision"],"copy-suite-v1")
+                    self.assertEqual(health["engine_revision"],ENGINE_REVISION)
                 def post(data,authorization=None,origin=None):
                     headers={"Content-Type":"application/json"}
                     if authorization:

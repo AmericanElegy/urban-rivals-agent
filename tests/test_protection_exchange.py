@@ -90,6 +90,8 @@ class ProtectionExchangeTests(unittest.TestCase):
         paca = catalog.identify("Pacarezza", True)
         self.assertEqual((paca.stars, paca.ability[0].stat), (2, "exchange_damage"))
         self.assertEqual(paca.ability[0].condition, "reprisal")
-        for name in ("Dr Elisa", "Mendossa", "Caballine"):
+        elisa = catalog.identify("Dr Elisa", True)
+        self.assertEqual((elisa.ability[0].stat, elisa.ability[0].amount), ("toxin", 1))
+        for name in ("Mendossa", "Caballine"):
             with self.subTest(name=name), self.assertRaises(RecognitionError):
                 catalog.identify(name, True)

@@ -7,7 +7,17 @@ from dataclasses import dataclass, replace
 import re
 from functools import lru_cache
 
-ENGINE_REVISION="copy-suite-v1"
+ENGINE_REVISION="persistent-v1"
+
+# Persistent end-of-round effects (official rules, urban-rivals.com/game/rules):
+# Poison/Heal(Care) tick at the end of each round AFTER the one they were won
+# in; Toxin/Regen and their Pillz forms Consume/Dope also tick straight after
+# the round they were played. A second effect of the same kind replaces the
+# first. Poison/Toxin/Consume never take the target below Min; Heal/Regen/Dope
+# never raise it above Max.
+PERSISTENT={"poison":("life",True,False),"toxin":("life",True,True),
+            "consume":("pillz",True,True),"heal":("life",False,False),
+            "regen":("life",False,True),"dope":("pillz",False,True)}
 
 
 @dataclass(frozen=True)
@@ -29,7 +39,7 @@ class Effect:
                              "exchange_damage", "tune_out", "stop_bonus",
                              "cancel_power", "cancel_damage", "cancel_attack",
                              "copy_ability", "copy_bonus", "copy_power",
-                             "copy_damage", "recover_pillz"}:
+                             "copy_damage", "recover_pillz", *PERSISTENT}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
         if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
             raise ValueError(f"Unsupported condition: {self.condition}")
@@ -130,6 +140,15 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
                      for stat in re.split(r"\s+and\s+", match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Ability", text, re.I):
         return (Effect("stop_ability", 0, True, condition=condition, threshold=threshold),)
+    match = re.fullmatch(r"(Poison|Toxin|Consume)\s+(\d+)\s*,?\s*Min\.?\s*(\d+)", text, re.I)
+    if match:
+        return (Effect(match[1].lower(), int(match[2]), True, minimum=int(match[3]),
+                       condition=condition, multiplier=multiplier, threshold=threshold),)
+    match = re.fullmatch(r"(Heal|Care|Regen|Regeneration|Dope)\s+(\d+)\s*,?\s*Max\.?\s*(\d+)", text, re.I)
+    if match:
+        kind = {"care": "heal", "regeneration": "regen"}.get(match[1].lower(), match[1].lower())
+        return (Effect(kind, int(match[2]), False, maximum=int(match[3]),
+                       condition=condition, multiplier=multiplier, threshold=threshold),)
     if re.fullmatch(r"Tune\s+Out", text, re.I) and condition == "always":
         return (Effect("tune_out", 0),)
     patterns = (
@@ -173,6 +192,8 @@ class Player:
     pillz: int = 12
     used: tuple[int, ...] = ()
     last_won: bool | None = None
+    # Persistent effects currently acting ON this player: (kind, amount, bound).
+    effects: tuple[tuple[str, int, int], ...] = ()
 
     def __post_init__(self):
         if not 1 <= len(self.hand) <= 4 or self.life < 0 or self.pillz < 0:
@@ -381,8 +402,34 @@ def resolve(state: State, first: Move, second: Move) -> State:
                 target = 1 - owner if e.opponent else owner
                 values = life if e.stat == "life" else pillz
                 values[target] = max(0, _modify(values[target], e))
+    # Effects won in earlier rounds tick now, then this round's new ones start.
+    lingering=[dict((k,(a,b)) for k,a,b in p.effects) for p in state.players]
+    def tick(target,kind,amount,bound):
+        resource,harmful,_=PERSISTENT[kind]
+        values=life if resource=="life" else pillz
+        e=Effect(resource,-amount if harmful else amount,
+                 minimum=bound if harmful else 0,maximum=10000 if harmful else bound)
+        values[target]=max(0,_modify(values[target],e))
+    for target in range(2):
+        for kind,(amount,bound) in lingering[target].items():
+            tick(target,kind,amount,bound)
+    for owner in range(2):
+        for e in active[owner]:
+            if e.stat not in PERSISTENT:
+                continue
+            triggered = (owner != winner if e.condition == "defeat" else
+                         True if e.condition == "victory or defeat" else owner == winner)
+            if not triggered or e.amount<=0:
+                continue
+            target=1-owner if e.opponent else owner
+            bound=e.minimum if PERSISTENT[e.stat][1] else e.maximum
+            lingering[target][e.stat]=(e.amount,bound)
+            if PERSISTENT[e.stat][2]:
+                tick(target,e.stat,e.amount,bound)
     players = tuple(replace(p, life=life[i], pillz=pillz[i], used=p.used + (moves[i].card,),
-                            last_won=i == winner) for i, p in enumerate(state.players))
+                            last_won=i == winner,
+                            effects=tuple(sorted((k,a,b) for k,(a,b) in lingering[i].items())))
+                    for i, p in enumerate(state.players))
     return State(players, 1 - state.leader, state.round + 1, state.day)
 
 
@@ -392,4 +439,15 @@ def evaluate(state: State) -> float:
         return float((a.life > b.life) - (a.life < b.life)) * 10000
     # Explicit heuristic at a one-round horizon; not a claimed match win rate.
     reserve = [sum(c.damage for i, c in enumerate(p.hand) if i not in p.used) for p in (a, b)]
-    return a.life - b.life + .65 * (a.pillz - b.pillz) + .15 * (reserve[0] - reserve[1])
+    life = [a.life, b.life]
+    pillz = [a.pillz, b.pillz]
+    # Credit lingering effects for the rounds still to be played.
+    remaining = max(0, 5 - state.round)
+    for side, p in enumerate((a, b)):
+        for kind, amount, bound in p.effects:
+            resource, harmful, _ = PERSISTENT[kind]
+            values = life if resource == "life" else pillz
+            for _ in range(remaining):
+                values[side] = (max(min(values[side], bound), values[side] - amount) if harmful
+                                else min(max(values[side], bound), values[side] + amount))
+    return life[0] - life[1] + .65 * (pillz[0] - pillz[1]) + .15 * (reserve[0] - reserve[1])

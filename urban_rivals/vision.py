@@ -808,6 +808,9 @@ class CanvasReader:
         leader=0
         observed=None
         lifted=[]
+        # Lingering Poison/Heal/etc. are invisible on the board; carry them
+        # from the engine's resolution of the previous round.
+        lingering=((),())
         for i,x in enumerate(self.CENTERS):
             if i in used[1]:
                 continue
@@ -823,6 +826,7 @@ class CanvasReader:
         if previous:
             if round_no==previous.round:
                 last=tuple(p.last_won for p in previous.players)
+                lingering=tuple(p.effects for p in previous.players)
                 if leader!=previous.leader and not allow_mid_match:
                     raise RecognitionError("Initiative recognition changed within a round")
             elif round_no==previous.round+1 and submitted:
@@ -834,13 +838,23 @@ class CanvasReader:
                     raise RecognitionError("Unexpected card transition")
                 op_index=next(iter(new[1]))
                 matches=[]
+                carried=[]
                 for fury in (False,True):
                     try:
                         after=resolve(previous,submitted,Move(op_index,spent[1][op_index],fury))
                     except ValueError:
                         continue
+                    effects=tuple(p.effects for p in after.players)
+                    carried.append(effects)
                     if tuple(p.life for p in after.players)==life and tuple(p.pillz for p in after.players)==pillz:
                         matches.append(tuple(p.last_won for p in after.players))
+                        matched_effects=effects
+                if len(matches)==1 or (matches and len(set(matches))==1):
+                    lingering=matched_effects
+                elif carried and len(set(carried))==1:
+                    lingering=carried[0]
+                else:
+                    lingering=tuple(p.effects for p in previous.players)
                 if not matches or len(set(matches))!=1:
                     if self.catalog.star_catalog is not None:
                         # Unmodeled bespoke abilities (e.g. Killshot, Poison, Consume)
@@ -861,7 +875,7 @@ class CanvasReader:
                 raise RecognitionError("Missed a round; cannot reconstruct public state safely")
         elif round_no!=1 and not allow_mid_match:
             raise RecognitionError("Start recognition at round 1 before any card is played")
-        players=tuple(Player(hands[i],life[i],pillz[i],used[i],last[i]) for i in range(2))
+        players=tuple(Player(hands[i],life[i],pillz[i],used[i],last[i],lingering[i]) for i in range(2))
         state=State(players,leader,round_no,day)
         self.initial_hand=hands
         return Board(state,observed,seconds,tuple(spent))

@@ -274,17 +274,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1804",
       "name": "Pharah",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 3, Max. 4'",
-      "record": {
-        "ability": "Dope 3, Max. 4",
-        "bonus": "Power +2",
-        "clan": "Bangers",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Pharah",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1804"
+        "clan": "Bangers",
+        "ability": "Dope 3, Max. 4",
+        "bonus": "Power +2"
       }
     },
     {
@@ -970,17 +968,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=373",
       "name": "Kevin",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 2'",
-      "record": {
-        "ability": "Poison 1, Min 2",
-        "bonus": "Power +2",
-        "clan": "Bangers",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Kevin",
         "power": 5,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=373"
+        "clan": "Bangers",
+        "ability": "Poison 1, Min 2",
+        "bonus": "Power +2"
       }
     },
     {
@@ -1870,17 +1866,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=929",
       "name": "Loretta",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 10'",
-      "record": {
-        "ability": "Heal 2 Max. 10",
-        "bonus": "-2 Opp Power, Min 1",
-        "clan": "All Stars",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Loretta",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=929"
+        "clan": "All Stars",
+        "ability": "Heal 2 Max. 10",
+        "bonus": "-2 Opp Power, Min 1"
       }
     },
     {
@@ -2722,17 +2716,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1683",
       "name": "Shao Xue",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 13'",
-      "record": {
-        "ability": "Defeat: Dope 1, Max. 13",
-        "bonus": "Damage +2",
-        "clan": "Fang Pi Clang",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Shao Xue",
         "power": 8,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1683"
+        "clan": "Fang Pi Clang",
+        "ability": "Defeat: Dope 1, Max. 13",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -2794,17 +2786,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1483",
       "name": "Oogway",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 12'",
-      "record": {
-        "ability": "Growth: Heal 1 Max. 12",
-        "bonus": "Damage +2",
-        "clan": "Fang Pi Clang",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Oogway",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1483"
+        "clan": "Fang Pi Clang",
+        "ability": "Growth: Heal 1 Max. 12",
+        "bonus": "Damage +2"
       }
     },
     {
@@ -4858,17 +4848,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2330",
       "name": "Dr Fly",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 14'",
-      "record": {
-        "ability": "Regen 1, Max. 14",
-        "bonus": "Support: Attack +3",
-        "clan": "Rescue",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Dr Fly",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2330"
+        "clan": "Rescue",
+        "ability": "Regen 1, Max. 14",
+        "bonus": "Support: Attack +3"
       }
     },
     {
@@ -5088,17 +5076,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1672",
       "name": "Bose",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 10'",
-      "record": {
-        "ability": "Heal 2 Max. 10",
-        "bonus": "Support: Attack +3",
-        "clan": "Rescue",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Bose",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1672"
+        "clan": "Rescue",
+        "ability": "Heal 2 Max. 10",
+        "bonus": "Support: Attack +3"
       }
     },
     {
@@ -5338,17 +5324,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1137",
       "name": "Campbell",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 15'",
-      "record": {
-        "ability": "Heal 1 Max. 15",
-        "bonus": "Support: Attack +3",
-        "clan": "Rescue",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Campbell",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1137"
+        "clan": "Rescue",
+        "ability": "Heal 1 Max. 15",
+        "bonus": "Support: Attack +3"
       }
     },
     {
@@ -5496,17 +5480,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=828",
       "name": "Ash",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 8'",
-      "record": {
-        "ability": "Heal 1 Max. 8",
-        "bonus": "Support: Attack +3",
-        "clan": "Rescue",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Ash",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=828"
+        "clan": "Rescue",
+        "ability": "Heal 1 Max. 8",
+        "bonus": "Support: Attack +3"
       }
     },
     {
@@ -6866,17 +6848,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=391",
       "name": "Swidz Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 5'",
-      "record": {
-        "ability": "Poison 3, Min 5",
-        "bonus": "Attack +8",
-        "clan": "Sentinel",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Swidz Cr",
         "power": 6,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=391"
+        "clan": "Sentinel",
+        "ability": "Poison 3, Min 5",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -7176,17 +7156,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2479",
       "name": "Hyaenite",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 4'",
-      "record": {
-        "ability": "Unison : Consume 1, Min 4",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Hyaenite",
         "power": 8,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2479"
+        "clan": "Junkz",
+        "ability": "Unison : Consume 1, Min 4",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -7430,17 +7408,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1716",
       "name": "Timanov",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 12'",
-      "record": {
-        "ability": "Dope 1, Max. 12",
-        "bonus": "Attack +8",
-        "clan": "Junkz",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Timanov",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1716"
+        "clan": "Junkz",
+        "ability": "Dope 1, Max. 12",
+        "bonus": "Attack +8"
       }
     },
     {
@@ -8794,17 +8770,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1394",
       "name": "Dr Elisa",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "-12 Opp Attack, Min 8",
-        "clan": "Montana",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Dr Elisa",
         "power": 6,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1394"
+        "clan": "Montana",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "-12 Opp Attack, Min 8"
       }
     },
     {
@@ -8970,17 +8944,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=966",
       "name": "Ivy",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 4'",
-      "record": {
-        "ability": "Poison 2, Min 4",
-        "bonus": "-12 Opp Attack, Min 8",
-        "clan": "Montana",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Ivy",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=966"
+        "clan": "Montana",
+        "ability": "Poison 2, Min 4",
+        "bonus": "-12 Opp Attack, Min 8"
       }
     },
     {
@@ -9014,17 +8986,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=888",
       "name": "Paolo",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 3'",
-      "record": {
-        "ability": "Poison 1, Min 3",
-        "bonus": "-12 Opp Attack, Min 8",
-        "clan": "Montana",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Paolo",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=888"
+        "clan": "Montana",
+        "ability": "Poison 1, Min 3",
+        "bonus": "-12 Opp Attack, Min 8"
       }
     },
     {
@@ -9254,17 +9224,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=505",
       "name": "Enzo",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 5'",
-      "record": {
-        "ability": "Poison 1, Min 5",
-        "bonus": "-12 Opp Attack, Min 8",
-        "clan": "Montana",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Enzo",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=505"
+        "clan": "Montana",
+        "ability": "Poison 1, Min 5",
+        "bonus": "-12 Opp Attack, Min 8"
       }
     },
     {
@@ -9370,17 +9338,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=341",
       "name": "Rosa",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "-12 Opp Attack, Min 8",
-        "clan": "Montana",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Rosa",
         "power": 6,
+        "damage": 6,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=341"
+        "clan": "Montana",
+        "ability": "Poison 1, Min 1",
+        "bonus": "-12 Opp Attack, Min 8"
       }
     },
     {
@@ -9840,17 +9806,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1824",
       "name": "Missandei",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 20'",
-      "record": {
-        "ability": "Victory Or Defeat: Regen 1, Max. 20",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Missandei",
         "power": 9,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1824"
+        "clan": "Pussycats",
+        "ability": "Victory Or Defeat: Regen 1, Max. 20",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10044,17 +10008,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1285",
       "name": "Mina",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 15'",
-      "record": {
-        "ability": "Heal 1 Max. 15",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Mina",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1285"
+        "clan": "Pussycats",
+        "ability": "Heal 1 Max. 15",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10162,17 +10124,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1071",
       "name": "Malicia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 15'",
-      "record": {
-        "ability": "Defeat : Heal 1 Max. 15",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Malicia",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1071"
+        "clan": "Pussycats",
+        "ability": "Defeat : Heal 1 Max. 15",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10290,17 +10250,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=857",
       "name": "Cherry",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 10'",
-      "record": {
-        "ability": "Heal 2 Max. 10",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Cherry",
         "power": 8,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=857"
+        "clan": "Pussycats",
+        "ability": "Heal 2 Max. 10",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10394,17 +10352,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=690",
       "name": "Muze",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 1'",
-      "record": {
-        "ability": "Poison 2, Min 1",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Muze",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=690"
+        "clan": "Pussycats",
+        "ability": "Poison 2, Min 1",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -10776,17 +10732,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=140",
       "name": "Wanda Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 3'",
-      "record": {
-        "ability": "Poison 1, Min 3",
-        "bonus": "-2 Opp Damage, Min 1",
-        "clan": "Pussycats",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Wanda Cr",
         "power": 8,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=140"
+        "clan": "Pussycats",
+        "ability": "Poison 1, Min 3",
+        "bonus": "-2 Opp Damage, Min 1"
       }
     },
     {
@@ -11744,17 +11698,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=430",
       "name": "Sydney",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 2'",
-      "record": {
-        "ability": "Poison 2, Min 2",
-        "bonus": "-10 Opp Attack, Min 3",
-        "clan": "Uppers",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Sydney",
         "power": 7,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=430"
+        "clan": "Uppers",
+        "ability": "Poison 2, Min 2",
+        "bonus": "-10 Opp Attack, Min 3"
       }
     },
     {
@@ -12058,17 +12010,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2560",
       "name": "Rahtikap",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 16'",
-      "record": {
-        "ability": "Growth: Heal 1 Max. 16",
-        "bonus": "Revenge: Power And Damage +2",
-        "clan": "Frozn",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Rahtikap",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2560"
+        "clan": "Frozn",
+        "ability": "Growth: Heal 1 Max. 16",
+        "bonus": "Revenge: Power And Damage +2"
       }
     },
     {
@@ -12426,17 +12376,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1671",
       "name": "Nannah",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 11'",
-      "record": {
-        "ability": "Dope 1, Max. 11",
-        "bonus": "Revenge: Power And Damage +2",
-        "clan": "Frozn",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Nannah",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1671"
+        "clan": "Frozn",
+        "ability": "Dope 1, Max. 11",
+        "bonus": "Revenge: Power And Damage +2"
       }
     },
     {
@@ -12574,17 +12522,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1405",
       "name": "Drak",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 16'",
-      "record": {
-        "ability": "Regen 1, Max. 16",
-        "bonus": "Revenge: Power And Damage +2",
-        "clan": "Frozn",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Drak",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1405"
+        "clan": "Frozn",
+        "ability": "Regen 1, Max. 16",
+        "bonus": "Revenge: Power And Damage +2"
       }
     },
     {
@@ -13530,17 +13476,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1383",
       "name": "Abey",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 3'",
-      "record": {
-        "ability": "Toxin 1, Min 3",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Abey",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1383"
+        "clan": "Jungo",
+        "ability": "Toxin 1, Min 3",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -13560,17 +13504,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1307",
       "name": "Byron",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Growth: Poison 1, Min 0",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Byron",
         "power": 9,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1307"
+        "clan": "Jungo",
+        "ability": "Growth: Poison 1, Min 0",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -13648,17 +13590,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1123",
       "name": "Flint",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 16'",
-      "record": {
-        "ability": "Heal 1 Max. 16",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Flint",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1123"
+        "clan": "Jungo",
+        "ability": "Heal 1 Max. 16",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -13794,17 +13734,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=840",
       "name": "Eggman",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 12'",
-      "record": {
-        "ability": "Heal 2 Max. 12",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Eggman",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=840"
+        "clan": "Jungo",
+        "ability": "Heal 2 Max. 12",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -13882,17 +13820,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=722",
       "name": "Hystrix",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Hystrix",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=722"
+        "clan": "Jungo",
+        "ability": "Poison 1, Min 0",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -14016,17 +13952,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=601",
       "name": "Sylth Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 1'",
-      "record": {
-        "ability": "Poison 3, Min 1",
-        "bonus": "+2 Life",
-        "clan": "Jungo",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Sylth Cr",
         "power": 8,
+        "damage": 2,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=601"
+        "clan": "Jungo",
+        "ability": "Poison 3, Min 1",
+        "bonus": "+2 Life"
       }
     },
     {
@@ -14264,17 +14198,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2639",
       "name": "Avani",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 20'",
-      "record": {
-        "ability": "Growth: Regen 1, Max. 20",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Avani",
         "power": 9,
+        "damage": 4,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2639"
+        "clan": "Roots",
+        "ability": "Growth: Regen 1, Max. 20",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14338,17 +14270,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2366",
       "name": "Towesky",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 2, Max. 8'",
-      "record": {
-        "ability": "Regen 2, Max. 8",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Towesky",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2366"
+        "clan": "Roots",
+        "ability": "Regen 2, Max. 8",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14384,17 +14314,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2275",
       "name": "Saguaro",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 15'",
-      "record": {
-        "ability": "Regen 1, Max. 15",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Saguaro",
         "power": 8,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2275"
+        "clan": "Roots",
+        "ability": "Regen 1, Max. 15",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14670,17 +14598,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1392",
       "name": "Leliana",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max 15'",
-      "record": {
-        "ability": "Defeat: Regen 1, Max 15",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Leliana",
         "power": 7,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1392"
+        "clan": "Roots",
+        "ability": "Defeat: Regen 1, Max 15",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14700,17 +14626,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1310",
       "name": "Mildred",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 11'",
-      "record": {
-        "ability": "Growth: Heal 1 Max. 11",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Mildred",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1310"
+        "clan": "Roots",
+        "ability": "Growth: Heal 1 Max. 11",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14802,17 +14726,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1115",
       "name": "Willow",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 10'",
-      "record": {
-        "ability": "Defeat : Heal 1 Max. 10",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Willow",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1115"
+        "clan": "Roots",
+        "ability": "Defeat : Heal 1 Max. 10",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14918,17 +14840,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=909",
       "name": "Gretchen",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 10'",
-      "record": {
-        "ability": "Heal 2 Max. 10",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Gretchen",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=909"
+        "clan": "Roots",
+        "ability": "Heal 2 Max. 10",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -14948,17 +14868,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=829",
       "name": "Gudvibz",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 6'",
-      "record": {
-        "ability": "Heal 1 Max. 6",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Gudvibz",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=829"
+        "clan": "Roots",
+        "ability": "Heal 1 Max. 6",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -15160,17 +15078,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=416",
       "name": "Tshern",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 5'",
-      "record": {
-        "ability": "Poison 3, Min 5",
-        "bonus": "Stop Opp. Ability",
-        "clan": "Roots",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Tshern",
         "power": 7,
+        "damage": 2,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=416"
+        "clan": "Roots",
+        "ability": "Poison 3, Min 5",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -15448,17 +15364,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2603",
       "name": "Abby Salia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 12'",
-      "record": {
-        "ability": "Growth: Heal 1 Max. 12",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Abby Salia",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2603"
+        "clan": "Ulu Watu",
+        "ability": "Growth: Heal 1 Max. 12",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16028,17 +15942,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=978",
       "name": "Lianah Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 20'",
-      "record": {
-        "ability": "Heal 1 Max. 20",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Lianah Ld",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=978"
+        "clan": "Ulu Watu",
+        "ability": "Heal 1 Max. 20",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16058,17 +15970,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=955",
       "name": "Eddie Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 13'",
-      "record": {
-        "ability": "Heal 2 Max. 13",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Eddie Cr",
         "power": 8,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=955"
+        "clan": "Ulu Watu",
+        "ability": "Heal 2 Max. 13",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16116,17 +16026,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=845",
       "name": "Ulawele",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 10'",
-      "record": {
-        "ability": "Heal 1 Max. 10",
-        "bonus": "Power +2",
-        "clan": "Ulu Watu",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Ulawele",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=845"
+        "clan": "Ulu Watu",
+        "ability": "Heal 1 Max. 10",
+        "bonus": "Power +2"
       }
     },
     {
@@ -16746,17 +16654,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2443",
       "name": "Ledoux",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Victory Or Defeat: Toxin 1, Min 0",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Ledoux",
         "power": 8,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2443"
+        "clan": "Berzerk",
+        "ability": "Victory Or Defeat: Toxin 1, Min 0",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -17082,17 +16988,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1440",
       "name": "Gemmz",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 2, Min 2'",
-      "record": {
-        "ability": "Toxin 2, Min 2",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Gemmz",
         "power": 8,
+        "damage": 1,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1440"
+        "clan": "Berzerk",
+        "ability": "Toxin 2, Min 2",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -17112,17 +17016,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1420",
       "name": "Wagner",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Defeat: Poison 1, Min 1",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Wagner",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1420"
+        "clan": "Berzerk",
+        "ability": "Defeat: Poison 1, Min 1",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -17282,17 +17184,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1094",
       "name": "Konrad",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Konrad",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1094"
+        "clan": "Berzerk",
+        "ability": "Poison 1, Min 0",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -17730,17 +17630,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=861",
       "name": "Esther",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 2'",
-      "record": {
-        "ability": "Poison 1, Min 2",
-        "bonus": "-2 Opp. Life Min 2",
-        "clan": "Berzerk",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Esther",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=861"
+        "clan": "Berzerk",
+        "ability": "Poison 1, Min 2",
+        "bonus": "-2 Opp. Life Min 2"
       }
     },
     {
@@ -18050,17 +17948,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2400",
       "name": "Obyl Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "Tune Out",
-        "clan": "Cosmohnuts",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Obyl Ld",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2400"
+        "clan": "Cosmohnuts",
+        "ability": "Poison 1, Min 0",
+        "bonus": "Tune Out"
       }
     },
     {
@@ -18272,17 +18168,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2620",
       "name": "Demusa",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 3, Min 0'",
-      "record": {
-        "ability": "Symmetry: Toxin 3, Min 0",
-        "bonus": "Asymmetry: Damage +3",
-        "clan": "Paradox",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Demusa",
         "power": 9,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2620"
+        "clan": "Paradox",
+        "ability": "Symmetry: Toxin 3, Min 0",
+        "bonus": "Asymmetry: Damage +3"
       }
     },
     {
@@ -19234,17 +19128,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2011",
       "name": "Segar",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 4'",
-      "record": {
-        "ability": "Support: Dope 1, Max. 4",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Segar",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2011"
+        "clan": "Piranas",
+        "ability": "Support: Dope 1, Max. 4",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -19350,17 +19242,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1696",
       "name": "Barden",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 11'",
-      "record": {
-        "ability": "Dope 1, Max. 11",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Barden",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1696"
+        "clan": "Piranas",
+        "ability": "Dope 1, Max. 11",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -19524,17 +19414,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1231",
       "name": "Raskal",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Raskal",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1231"
+        "clan": "Piranas",
+        "ability": "Poison 1, Min 1",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -19794,17 +19682,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=747",
       "name": "Pesth",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Pesth",
         "power": 7,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=747"
+        "clan": "Piranas",
+        "ability": "Poison 1, Min 0",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -19908,17 +19794,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=622",
       "name": "Greesh",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 2'",
-      "record": {
-        "ability": "Poison 2, Min 2",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Piranas",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Greesh",
         "power": 6,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=622"
+        "clan": "Piranas",
+        "ability": "Poison 2, Min 2",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -20742,17 +20626,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1454",
       "name": "Ratchek",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Poison 2, Min 3",
-        "bonus": "Cancel Opp. Attack Modif.",
-        "clan": "Raptors",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Ratchek",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1454"
+        "clan": "Raptors",
+        "ability": "Poison 2, Min 3",
+        "bonus": "Cancel Opp. Attack Modif."
       }
     },
     {
@@ -20918,17 +20800,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1353",
       "name": "Chopper Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "Cancel Opp. Attack Modif.",
-        "clan": "Raptors",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Chopper Ld",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1353"
+        "clan": "Raptors",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "Cancel Opp. Attack Modif."
       }
     },
     {
@@ -21108,17 +20988,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2705",
       "name": "Raaz",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 10'",
-      "record": {
-        "ability": "Dope 1, Max. 10",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Raaz",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2705"
+        "clan": "Dominion",
+        "ability": "Dope 1, Max. 10",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21170,17 +21048,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2604",
       "name": "Bernd",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Defeat: Poison 1, Min 0",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Bernd",
         "power": 6,
+        "damage": 7,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2604"
+        "clan": "Dominion",
+        "ability": "Defeat: Poison 1, Min 0",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21200,17 +21076,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2523",
       "name": "Dame Karkass Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Victory Or Defeat: Toxin 1, Min 0",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Dame Karkass Cr",
         "power": 9,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2523"
+        "clan": "Dominion",
+        "ability": "Victory Or Defeat: Toxin 1, Min 0",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21304,17 +21178,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2304",
       "name": "Death Adder II",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 2'",
-      "record": {
-        "ability": "Consume 1, Min 2",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 8,
+      "result": "existing",
+      "card": {
         "name": "Death Adder II",
         "power": 8,
+        "damage": 8,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2304"
+        "clan": "Dominion",
+        "ability": "Consume 1, Min 2",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21348,17 +21220,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2193",
       "name": "Whirlyboy",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 14'",
-      "record": {
-        "ability": "Heal 1 Max. 14",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Whirlyboy",
         "power": 7,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2193"
+        "clan": "Dominion",
+        "ability": "Heal 1 Max. 14",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21454,17 +21324,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1976",
       "name": "Fridlia Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Fridlia Cr",
         "power": 8,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1976"
+        "clan": "Dominion",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21486,17 +21354,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1936",
       "name": "Hydra",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 16'",
-      "record": {
-        "ability": "Defeat : Heal 1 Max. 16",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Hydra",
         "power": 7,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1936"
+        "clan": "Dominion",
+        "ability": "Defeat : Heal 1 Max. 16",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21576,17 +21442,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1842",
       "name": "Bertie",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 3'",
-      "record": {
-        "ability": "Poison 3, Min 3",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Bertie",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1842"
+        "clan": "Dominion",
+        "ability": "Poison 3, Min 3",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21696,17 +21560,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1783",
       "name": "Frogo",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 13'",
-      "record": {
-        "ability": "Defeat : Heal 1 Max. 13",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Frogo",
         "power": 6,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1783"
+        "clan": "Dominion",
+        "ability": "Defeat : Heal 1 Max. 13",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21770,17 +21632,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1761",
       "name": "Stoneheart",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 12'",
-      "record": {
-        "ability": "Defeat: Dope 1, Max. 12",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Stoneheart",
         "power": 6,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1761"
+        "clan": "Dominion",
+        "ability": "Defeat: Dope 1, Max. 12",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21828,17 +21688,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1756",
       "name": "Artax",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 2'",
-      "record": {
-        "ability": "Poison 2, Min 2",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Artax",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1756"
+        "clan": "Dominion",
+        "ability": "Poison 2, Min 2",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -21944,17 +21802,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1748",
       "name": "Tyris Flare",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 4'",
-      "record": {
-        "ability": "Consume 1, Min 4",
-        "bonus": "Growth: -1 Opp Power, Min 4",
-        "clan": "Dominion",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Tyris Flare",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1748"
+        "clan": "Dominion",
+        "ability": "Consume 1, Min 4",
+        "bonus": "Growth: -1 Opp Power, Min 4"
       }
     },
     {
@@ -22006,17 +21862,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2613",
       "name": "Anoda",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "Copy: Opp. Ability",
-        "clan": "Oblivion",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Anoda",
         "power": 9,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2613"
+        "clan": "Oblivion",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "Copy: Opp. Ability"
       }
     },
     {
@@ -22208,17 +22062,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2295",
       "name": "Pere Barali",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 18'",
-      "record": {
-        "ability": "Heal 1 Max. 18",
-        "bonus": "Copy: Opp. Ability",
-        "clan": "Oblivion",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Pere Barali",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2295"
+        "clan": "Oblivion",
+        "ability": "Heal 1 Max. 18",
+        "bonus": "Copy: Opp. Ability"
       }
     },
     {
@@ -22238,17 +22090,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2282",
       "name": "Wiper",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "Copy: Opp. Ability",
-        "clan": "Oblivion",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Wiper",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2282"
+        "clan": "Oblivion",
+        "ability": "Poison 1, Min 0",
+        "bonus": "Copy: Opp. Ability"
       }
     },
     {
@@ -22558,17 +22408,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2561",
       "name": "Moloss",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 3'",
-      "record": {
-        "ability": "Defeat: Poison 1, Min 3",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Moloss",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2561"
+        "clan": "Nightmare",
+        "ability": "Defeat: Poison 1, Min 3",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -22606,17 +22454,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2502",
       "name": "Chiropterine",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Unison : Poison 1, Min 0",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Chiropterine",
         "power": 8,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2502"
+        "clan": "Nightmare",
+        "ability": "Unison : Poison 1, Min 0",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -22738,17 +22584,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2073",
       "name": "Enevia Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 2, Min 1'",
-      "record": {
-        "ability": "Toxin 2, Min 1",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Enevia Cr",
         "power": 9,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2073"
+        "clan": "Nightmare",
+        "ability": "Toxin 2, Min 1",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -22866,17 +22710,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1682",
       "name": "Zis",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Zis",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1682"
+        "clan": "Nightmare",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23060,17 +22902,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1191",
       "name": "Seth",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 2'",
-      "record": {
-        "ability": "Poison 1, Min 2",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Seth",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1191"
+        "clan": "Nightmare",
+        "ability": "Poison 1, Min 2",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23204,17 +23044,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=911",
       "name": "Karrion Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 0'",
-      "record": {
-        "ability": "Poison 2, Min 0",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Karrion Cr",
         "power": 7,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=911"
+        "clan": "Nightmare",
+        "ability": "Poison 2, Min 0",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23430,17 +23268,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=536",
       "name": "Azel",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 3'",
-      "record": {
-        "ability": "Poison 3, Min 3",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Azel",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=536"
+        "clan": "Nightmare",
+        "ability": "Poison 3, Min 3",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23502,17 +23338,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=457",
       "name": "Timmy",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 4'",
-      "record": {
-        "ability": "Poison 2, Min 4",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Timmy",
         "power": 7,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=457"
+        "clan": "Nightmare",
+        "ability": "Poison 2, Min 4",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23560,17 +23394,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=357",
       "name": "Sheitane",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 1'",
-      "record": {
-        "ability": "Poison 2, Min 1",
-        "bonus": "Stop Opp. Bonus",
-        "clan": "Nightmare",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Sheitane",
         "power": 6,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=357"
+        "clan": "Nightmare",
+        "ability": "Poison 2, Min 1",
+        "bonus": "Stop Opp. Bonus"
       }
     },
     {
@@ -23864,17 +23696,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2432",
       "name": "Musardine",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 0'",
-      "record": {
-        "ability": "Unison : Consume 1, Min 0",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Musardine",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2432"
+        "clan": "GHEIST",
+        "ability": "Unison : Consume 1, Min 0",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24054,17 +23884,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1746",
       "name": "Darling",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Darling",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1746"
+        "clan": "GHEIST",
+        "ability": "Poison 1, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24114,17 +23942,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1580",
       "name": "Hoffman",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 4'",
-      "record": {
-        "ability": "Consume 1, Min 4",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Hoffman",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1580"
+        "clan": "GHEIST",
+        "ability": "Consume 1, Min 4",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24158,17 +23984,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1449",
       "name": "Hachi",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 2'",
-      "record": {
-        "ability": "Growth: Poison 1, Min 2",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Hachi",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1449"
+        "clan": "GHEIST",
+        "ability": "Growth: Poison 1, Min 2",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24232,17 +24056,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1267",
       "name": "Boomer",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 4'",
-      "record": {
-        "ability": "Revenge: Poison 3, Min 4",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Boomer",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1267"
+        "clan": "GHEIST",
+        "ability": "Revenge: Poison 3, Min 4",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24278,17 +24100,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1171",
       "name": "Ganx",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Ganx",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1171"
+        "clan": "GHEIST",
+        "ability": "Poison 1, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24380,17 +24200,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=960",
       "name": "Kersten",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Kersten",
         "power": 6,
+        "damage": 6,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=960"
+        "clan": "GHEIST",
+        "ability": "Poison 1, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24454,17 +24272,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=822",
       "name": "Wurmhol",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 4'",
-      "record": {
-        "ability": "Defeat: Poison 1, Min 4",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Wurmhol",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=822"
+        "clan": "GHEIST",
+        "ability": "Defeat: Poison 1, Min 4",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24556,17 +24372,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=634",
       "name": "Dolly Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 1'",
-      "record": {
-        "ability": "Poison 2, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Dolly Cr",
         "power": 7,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=634"
+        "clan": "GHEIST",
+        "ability": "Poison 2, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24628,17 +24442,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=545",
       "name": "Ludmilla",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 4'",
-      "record": {
-        "ability": "Poison 2, Min 4",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Ludmilla",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=545"
+        "clan": "GHEIST",
+        "ability": "Poison 2, Min 4",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24756,33 +24568,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=362",
       "name": "Miss Twice Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Poison 1, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Miss Twice Cr",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=362"
+        "clan": "GHEIST",
+        "ability": "Poison 1, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=338",
       "name": "Nina",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 1'",
-      "record": {
-        "ability": "Poison 2, Min 1",
-        "bonus": "Stop Opp. Ability",
-        "clan": "GHEIST",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Nina",
         "power": 7,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=338"
+        "clan": "GHEIST",
+        "ability": "Poison 2, Min 1",
+        "bonus": "Stop Opp. Ability"
       }
     },
     {
@@ -24974,17 +24782,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2709",
       "name": "H4rp3r",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 2'",
-      "record": {
-        "ability": "Toxin 1, Min 2",
-        "bonus": "Equalizer: -3 Opp Attack, Min 5",
-        "clan": "Hive",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "H4rp3r",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2709"
+        "clan": "Hive",
+        "ability": "Toxin 1, Min 2",
+        "bonus": "Equalizer: -3 Opp Attack, Min 5"
       }
     },
     {
@@ -25590,17 +25396,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1576",
       "name": "Araaknat",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 2'",
-      "record": {
-        "ability": "Poison 2, Min 2",
-        "bonus": "Equalizer: -3 Opp Attack, Min 5",
-        "clan": "Hive",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Araaknat",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1576"
+        "clan": "Hive",
+        "ability": "Poison 2, Min 2",
+        "bonus": "Equalizer: -3 Opp Attack, Min 5"
       }
     },
     {
@@ -25648,17 +25452,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1555",
       "name": "Pillzinator",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 0'",
-      "record": {
-        "ability": "Consume 1, Min 0",
-        "bonus": "Equalizer: -3 Opp Attack, Min 5",
-        "clan": "Hive",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Pillzinator",
         "power": 7,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1555"
+        "clan": "Hive",
+        "ability": "Consume 1, Min 0",
+        "bonus": "Equalizer: -3 Opp Attack, Min 5"
       }
     },
     {
@@ -25752,33 +25554,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1539",
       "name": "Delta",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 4'",
-      "record": {
-        "ability": "Poison 2, Min 4",
-        "bonus": "Equalizer: -3 Opp Attack, Min 5",
-        "clan": "Hive",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Delta",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1539"
+        "clan": "Hive",
+        "ability": "Poison 2, Min 4",
+        "bonus": "Equalizer: -3 Opp Attack, Min 5"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1537",
       "name": "Wave Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 4'",
-      "record": {
-        "ability": "Consume 1, Min 4",
-        "bonus": "Equalizer: -3 Opp Attack, Min 5",
-        "clan": "Hive",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Wave Ld",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1537"
+        "clan": "Hive",
+        "ability": "Consume 1, Min 4",
+        "bonus": "Equalizer: -3 Opp Attack, Min 5"
       }
     },
     {
@@ -26280,17 +26078,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1738",
       "name": "Automaton",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 2'",
-      "record": {
-        "ability": "Poison 1, Min 2",
-        "bonus": "Victory Or Defeat : +1 Pillz",
-        "clan": "Riots",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Automaton",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1738"
+        "clan": "Riots",
+        "ability": "Poison 1, Min 2",
+        "bonus": "Victory Or Defeat : +1 Pillz"
       }
     },
     {
@@ -27084,17 +26880,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1951",
       "name": "Litchxxt",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 12'",
-      "record": {
-        "ability": "Growth: Heal 1 Max. 12",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Litchxxt",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1951"
+        "clan": "Sakrohm",
+        "ability": "Growth: Heal 1 Max. 12",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -27148,17 +26942,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1745",
       "name": "VX Nembus",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 3'",
-      "record": {
-        "ability": "Growth: Poison 1, Min 3",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "VX Nembus",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1745"
+        "clan": "Sakrohm",
+        "ability": "Growth: Poison 1, Min 3",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -27366,17 +27158,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1181",
       "name": "Lear Barduh",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 15'",
-      "record": {
-        "ability": "Heal 1 Max. 15",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Lear Barduh",
         "power": 7,
+        "damage": 6,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1181"
+        "clan": "Sakrohm",
+        "ability": "Heal 1 Max. 15",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -27452,17 +27242,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1014",
       "name": "Lakit Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 4 Max. 7'",
-      "record": {
-        "ability": "Heal 4 Max. 7",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Lakit Cr",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1014"
+        "clan": "Sakrohm",
+        "ability": "Heal 4 Max. 7",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -27610,17 +27398,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=739",
       "name": "Sigma Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 4, Min 4'",
-      "record": {
-        "ability": "Poison 4, Min 4",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Sigma Cr",
         "power": 8,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=739"
+        "clan": "Sakrohm",
+        "ability": "Poison 4, Min 4",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -27810,17 +27596,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=402",
       "name": "Thomson",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 5'",
-      "record": {
-        "ability": "Poison 1, Min 5",
-        "bonus": "-8 Opp Attack, Min 3",
-        "clan": "Sakrohm",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Thomson",
         "power": 6,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=402"
+        "clan": "Sakrohm",
+        "ability": "Poison 1, Min 5",
+        "bonus": "-8 Opp Attack, Min 3"
       }
     },
     {
@@ -28346,17 +28130,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1997",
       "name": "Senorita Frog",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 3, Max. 6'",
-      "record": {
-        "ability": "Regen 3, Max. 6",
-        "bonus": "+1 Attack Per Life Left",
-        "clan": "Huracan",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Senorita Frog",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1997"
+        "clan": "Huracan",
+        "ability": "Regen 3, Max. 6",
+        "bonus": "+1 Attack Per Life Left"
       }
     },
     {
@@ -28636,17 +28418,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1416",
       "name": "Mama Killa",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 15'",
-      "record": {
-        "ability": "Regen 1, Max. 15",
-        "bonus": "+1 Attack Per Life Left",
-        "clan": "Huracan",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Mama Killa",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1416"
+        "clan": "Huracan",
+        "ability": "Regen 1, Max. 15",
+        "bonus": "+1 Attack Per Life Left"
       }
     },
     {
@@ -28884,17 +28664,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1121",
       "name": "Tabasco Fire",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 3'",
-      "record": {
-        "ability": "Poison 1, Min 3",
-        "bonus": "+1 Attack Per Life Left",
-        "clan": "Huracan",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Tabasco Fire",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1121"
+        "clan": "Huracan",
+        "ability": "Poison 1, Min 3",
+        "bonus": "+1 Attack Per Life Left"
       }
     },
     {
@@ -29014,17 +28792,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1104",
       "name": "La Cobra",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 18'",
-      "record": {
-        "ability": "Heal 1 Max. 18",
-        "bonus": "+1 Attack Per Life Left",
-        "clan": "Huracan",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "La Cobra",
         "power": 7,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1104"
+        "clan": "Huracan",
+        "ability": "Heal 1 Max. 18",
+        "bonus": "+1 Attack Per Life Left"
       }
     },
     {
@@ -29114,17 +28890,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1097",
       "name": "Zapatino",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 2'",
-      "record": {
-        "ability": "Poison 2, Min 2",
-        "bonus": "+1 Attack Per Life Left",
-        "clan": "Huracan",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Zapatino",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1097"
+        "clan": "Huracan",
+        "ability": "Poison 2, Min 2",
+        "bonus": "+1 Attack Per Life Left"
       }
     },
     {
@@ -29147,7 +28921,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2704",
       "name": "Maelt Riv",
       "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 2'",
+      "reason": "Unsupported condition: After  ",
       "record": {
         "ability": "Consume 1, Min 2",
         "bonus": "After  : Power +3",
@@ -29355,7 +29129,7 @@
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2673",
       "name": "Huldra",
       "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
+      "reason": "Unsupported condition: After  ",
       "record": {
         "ability": "Toxin 1, Min 0",
         "bonus": "After  : Power +3",
@@ -29732,17 +29506,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2053",
       "name": "Jakobs",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 12'",
-      "record": {
-        "ability": "Regen 1, Max. 12",
-        "bonus": "+1 Pillz And Life",
-        "clan": "Komboka",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Jakobs",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2053"
+        "clan": "Komboka",
+        "ability": "Regen 1, Max. 12",
+        "bonus": "+1 Pillz And Life"
       }
     },
     {
@@ -29918,17 +29690,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1898",
       "name": "Hatice",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 1, Max. 4'",
-      "record": {
-        "ability": "Support: Dope 1, Max. 4",
-        "bonus": "+1 Pillz And Life",
-        "clan": "Komboka",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Hatice",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1898"
+        "clan": "Komboka",
+        "ability": "Support: Dope 1, Max. 4",
+        "bonus": "+1 Pillz And Life"
       }
     },
     {
@@ -30284,33 +30054,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2600",
       "name": "Talhia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Dope 3, Max. 4'",
-      "record": {
-        "ability": "Dope 3, Max. 4",
-        "bonus": "Bet > 3 Pillz: +3 Life",
-        "clan": "Zenith",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Talhia",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2600"
+        "clan": "Zenith",
+        "ability": "Dope 3, Max. 4",
+        "bonus": "Bet > 3 Pillz: +3 Life"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2596",
       "name": "Zhiara",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 1'",
-      "record": {
-        "ability": "Revenge: Poison 2, Min 1",
-        "bonus": "Bet > 3 Pillz: +3 Life",
-        "clan": "Zenith",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Zhiara",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2596"
+        "clan": "Zenith",
+        "ability": "Revenge: Poison 2, Min 1",
+        "bonus": "Bet > 3 Pillz: +3 Life"
       }
     },
     {
@@ -30538,17 +30304,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2697",
       "name": "Bicephina",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Asymmetry: +3 Pillz And Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Bicephina",
         "power": 9,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2697"
+        "clan": "Freaks",
+        "ability": "Asymmetry: +3 Pillz And Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30586,33 +30350,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2505",
       "name": "Porcusite",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Unison : -2 Opp Damage, Min 0",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Porcusite",
         "power": 9,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2505"
+        "clan": "Freaks",
+        "ability": "Unison : -2 Opp Damage, Min 0",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2458",
       "name": "Twistery",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Equalizer: +1 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Twistery",
         "power": 9,
+        "damage": 2,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2458"
+        "clan": "Freaks",
+        "ability": "Equalizer: +1 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30650,49 +30410,43 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2303",
       "name": "Sofilia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Support: Attack +4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Sofilia",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2303"
+        "clan": "Freaks",
+        "ability": "Support: Attack +4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2238",
       "name": "Schaap",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Asymmetry: Power +2",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Schaap",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2238"
+        "clan": "Freaks",
+        "ability": "Asymmetry: Power +2",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2196",
       "name": "Makoto",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Asymmetry: Attack +9",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Makoto",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2196"
+        "clan": "Freaks",
+        "ability": "Asymmetry: Attack +9",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30714,17 +30468,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=2106",
       "name": "Majestic",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Attack +16",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Majestic",
         "power": 9,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=2106"
+        "clan": "Freaks",
+        "ability": "Attack +16",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30778,17 +30530,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1937",
       "name": "Cole",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-2 Opp Power And Damage, Min 6",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Cole",
         "power": 8,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1937"
+        "clan": "Freaks",
+        "ability": "-2 Opp Power And Damage, Min 6",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30810,33 +30560,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1837",
       "name": "Fraggle",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Revenge: Stop Opp. Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Fraggle",
         "power": 8,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1837"
+        "clan": "Freaks",
+        "ability": "Revenge: Stop Opp. Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1797",
       "name": "Mago",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Cancel Opp. Power Modif.",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Mago",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1797"
+        "clan": "Freaks",
+        "ability": "Cancel Opp. Power Modif.",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -30858,241 +30604,211 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1719",
       "name": "Zaveli",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+3 Pillz",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Zaveli",
         "power": 9,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1719"
+        "clan": "Freaks",
+        "ability": "+3 Pillz",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1688",
       "name": "Pl4gue Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Brawl: Power +1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Pl4gue Ld",
         "power": 6,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1688"
+        "clan": "Freaks",
+        "ability": "Brawl: Power +1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1680",
       "name": "Jezebel",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-2 Opp Damage, Min 1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Jezebel",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1680"
+        "clan": "Freaks",
+        "ability": "-2 Opp Damage, Min 1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1644",
       "name": "Cletus",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Equalizer: -1 Opp Damage, Min 1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Cletus",
         "power": 8,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1644"
+        "clan": "Freaks",
+        "ability": "Equalizer: -1 Opp Damage, Min 1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1620",
       "name": "Langoustina",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Growth: +1 Pillz",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Langoustina",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1620"
+        "clan": "Freaks",
+        "ability": "Growth: +1 Pillz",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1591",
       "name": "Orfeo",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 3, Max. 4'",
-      "record": {
-        "ability": "Regen 3, Max. 4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Orfeo",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1591"
+        "clan": "Freaks",
+        "ability": "Regen 3, Max. 4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1524",
       "name": "Ramath",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Growth: +1 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Ramath",
         "power": 9,
+        "damage": 4,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1524"
+        "clan": "Freaks",
+        "ability": "Growth: +1 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1484",
       "name": "Zera",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Support: Power +1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Zera",
         "power": 6,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1484"
+        "clan": "Freaks",
+        "ability": "Support: Power +1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1437",
       "name": "Antoinette",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: -2 Opp. Pillz, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Antoinette",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1437"
+        "clan": "Freaks",
+        "ability": "Defeat: -2 Opp. Pillz, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1363",
       "name": "Arturo Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Growth: -1 Opp Power, Min 4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Arturo Cr",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1363"
+        "clan": "Freaks",
+        "ability": "Growth: -1 Opp Power, Min 4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1315",
       "name": "Matriochka",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Protection: Attack",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Matriochka",
         "power": 8,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1315"
+        "clan": "Freaks",
+        "ability": "Protection: Attack",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1284",
       "name": "Hundun",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+1 Atk Per Pillz Left",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Hundun",
         "power": 5,
+        "damage": 4,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1284"
+        "clan": "Freaks",
+        "ability": "+1 Atk Per Pillz Left",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1259",
       "name": "Barbacoatl",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Courage: Stop Opp. Bonus",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Barbacoatl",
         "power": 8,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1259"
+        "clan": "Freaks",
+        "ability": "Courage: Stop Opp. Bonus",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1233",
       "name": "Caesar",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: +1 Pillz",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Caesar",
         "power": 6,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1233"
+        "clan": "Freaks",
+        "ability": "Defeat: +1 Pillz",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1193",
       "name": "Liona",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-10 Opp Attack, Min 8",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Liona",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1193"
+        "clan": "Freaks",
+        "ability": "-10 Opp Attack, Min 8",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -31130,81 +30846,71 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1096",
       "name": "Shazam",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Copy: Opp. Bonus",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Shazam",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1096"
+        "clan": "Freaks",
+        "ability": "Copy: Opp. Bonus",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1072",
       "name": "Madelone",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: -2 Opp. Pillz, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Madelone",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1072"
+        "clan": "Freaks",
+        "ability": "Defeat: -2 Opp. Pillz, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1047",
       "name": "Quasichoco",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-2 Opp Damage, Min 1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Quasichoco",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1047"
+        "clan": "Freaks",
+        "ability": "-2 Opp Damage, Min 1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1024",
       "name": "Bertha",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Power And Damage +1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Bertha",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1024"
+        "clan": "Freaks",
+        "ability": "Power And Damage +1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1000",
       "name": "Daqun",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: +3 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Daqun",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1000"
+        "clan": "Freaks",
+        "ability": "Defeat: +3 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -31226,113 +30932,99 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=920",
       "name": "Wonald",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: +2 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Wonald",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=920"
+        "clan": "Freaks",
+        "ability": "Defeat: +2 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=893",
       "name": "Igor",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 1 Max. 10'",
-      "record": {
-        "ability": "Heal 1 Max. 10",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Igor",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=893"
+        "clan": "Freaks",
+        "ability": "Heal 1 Max. 10",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=872",
       "name": "Rhyno",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-5 Opp Damage, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Rhyno",
         "power": 7,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=872"
+        "clan": "Freaks",
+        "ability": "-5 Opp Damage, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=855",
       "name": "Bikini Joe Ld",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Protection: Bonus",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Bikini Joe Ld",
         "power": 9,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=855"
+        "clan": "Freaks",
+        "ability": "Protection: Bonus",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=838",
       "name": "Karmov",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+2 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Karmov",
         "power": 7,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=838"
+        "clan": "Freaks",
+        "ability": "+2 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=811",
       "name": "Pyro",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Defeat: Recover 1 Pillz Out Of 2",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Pyro",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=811"
+        "clan": "Freaks",
+        "ability": "Defeat: Recover 1 Pillz Out Of 2",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=784",
       "name": "Magda",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-3 Opp Power, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Magda",
         "power": 5,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=784"
+        "clan": "Freaks",
+        "ability": "-3 Opp Power, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -31354,81 +31046,71 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=732",
       "name": "Piotr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-3 Opp. Life Min 0",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Piotr",
         "power": 7,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=732"
+        "clan": "Freaks",
+        "ability": "-3 Opp. Life Min 0",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=705",
       "name": "Harleen",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-2 Opp. Life Min 1",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Harleen",
         "power": 7,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=705"
+        "clan": "Freaks",
+        "ability": "-2 Opp. Life Min 1",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=681",
       "name": "Bogdan",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Stop Opp. Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Bogdan",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=681"
+        "clan": "Freaks",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=668",
       "name": "Oren",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+3 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Oren",
         "power": 7,
+        "damage": 6,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=668"
+        "clan": "Freaks",
+        "ability": "+3 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=637",
       "name": "Grudj Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+2 Pillz",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Grudj Cr",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=637"
+        "clan": "Freaks",
+        "ability": "+2 Pillz",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -31450,33 +31132,29 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=590",
       "name": "Olga Noel",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Power +3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Olga Noel",
         "power": 6,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=590"
+        "clan": "Freaks",
+        "ability": "Power +3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=583",
       "name": "Twyh",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "+5 Life",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Twyh",
         "power": 5,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=583"
+        "clan": "Freaks",
+        "ability": "+5 Life",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -31498,385 +31176,337 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=543",
       "name": "Cassandra",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Asymmetry: Power +4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Cassandra",
         "power": 9,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=543"
+        "clan": "Freaks",
+        "ability": "Asymmetry: Power +4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=544",
       "name": "Maamoon",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Stop Opp. Bonus",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 6,
+      "result": "existing",
+      "card": {
         "name": "Maamoon",
         "power": 6,
+        "damage": 6,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=544"
+        "clan": "Freaks",
+        "ability": "Stop Opp. Bonus",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=496",
       "name": "Akendram",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-6 Opp Attack, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Akendram",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=496"
+        "clan": "Freaks",
+        "ability": "-6 Opp Attack, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=495",
       "name": "Olga Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-2 Opp Power, Min 5",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Olga Cr",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=495"
+        "clan": "Freaks",
+        "ability": "-2 Opp Power, Min 5",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=455",
       "name": "Erpeto",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Courage: Power +3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Erpeto",
         "power": 6,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=455"
+        "clan": "Freaks",
+        "ability": "Courage: Power +3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=456",
       "name": "Esmeralda",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Attack +10",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Esmeralda",
         "power": 6,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=456"
+        "clan": "Freaks",
+        "ability": "Attack +10",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=439",
       "name": "Wolfgang",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-4 Opp Damage, Min 2",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Wolfgang",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=439"
+        "clan": "Freaks",
+        "ability": "-4 Opp Damage, Min 2",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=411",
       "name": "Ironfield",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Copy: Opp. Damage",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Ironfield",
         "power": 7,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=411"
+        "clan": "Freaks",
+        "ability": "Copy: Opp. Damage",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=412",
       "name": "Soushee",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-3 Opp Damage, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Soushee",
         "power": 6,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=412"
+        "clan": "Freaks",
+        "ability": "-3 Opp Damage, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=394",
       "name": "Eve",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-10 Opp Attack, Min 5",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Eve",
         "power": 7,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=394"
+        "clan": "Freaks",
+        "ability": "-10 Opp Attack, Min 5",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=395",
       "name": "Crassus",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Damage +4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Crassus",
         "power": 7,
+        "damage": 3,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=395"
+        "clan": "Freaks",
+        "ability": "Damage +4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=396",
       "name": "Kharl",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "No Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Kharl",
         "power": 5,
+        "damage": 5,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=396"
+        "clan": "Freaks",
+        "ability": "No Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=397",
       "name": "Titus",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Power +4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Titus",
         "power": 4,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=397"
+        "clan": "Freaks",
+        "ability": "Power +4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=392",
       "name": "Diyo Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "No Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Diyo Cr",
         "power": 4,
+        "damage": 7,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=392"
+        "clan": "Freaks",
+        "ability": "No Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=389",
       "name": "Maciej",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-3 Opp Power, Min 6",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Maciej",
         "power": 7,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=389"
+        "clan": "Freaks",
+        "ability": "-3 Opp Power, Min 6",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=387",
       "name": "Nanastasia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Copy: Opp. Power",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Nanastasia",
         "power": 5,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=387"
+        "clan": "Freaks",
+        "ability": "Copy: Opp. Power",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=386",
       "name": "Zoltan",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-3 Opp Damage, Min 3",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Zoltan",
         "power": 6,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=386"
+        "clan": "Freaks",
+        "ability": "-3 Opp Damage, Min 3",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=388",
       "name": "Miss Ming",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Courage: Power +4",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Miss Ming",
         "power": 3,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=388"
+        "clan": "Freaks",
+        "ability": "Courage: Power +4",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=385",
       "name": "Splata Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Stop Opp. Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Splata Cr",
         "power": 8,
+        "damage": 5,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=385"
+        "clan": "Freaks",
+        "ability": "Stop Opp. Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=384",
       "name": "Geuner Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Damage +2",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Geuner Cr",
         "power": 4,
+        "damage": 3,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=384"
+        "clan": "Freaks",
+        "ability": "Damage +2",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=379",
       "name": "Vassili",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Attack +6",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "Vassili",
         "power": 6,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=379"
+        "clan": "Freaks",
+        "ability": "Attack +6",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=378",
       "name": "Boris Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "-4 Opp Power, Min 0",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Boris Cr",
         "power": 5,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=378"
+        "clan": "Freaks",
+        "ability": "-4 Opp Power, Min 0",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=381",
       "name": "Dacha Macha",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "No Ability",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Dacha Macha",
         "power": 6,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=381"
+        "clan": "Freaks",
+        "ability": "No Ability",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=380",
       "name": "Graziella",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 3'",
-      "record": {
-        "ability": "Stop Opp. Bonus",
-        "bonus": "Poison 2, Min 3",
-        "clan": "Freaks",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Graziella",
         "power": 5,
+        "damage": 2,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=380"
+        "clan": "Freaks",
+        "ability": "Stop Opp. Bonus",
+        "bonus": "Poison 2, Min 3"
       }
     },
     {
@@ -33120,17 +32750,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1915",
       "name": "Dr Swamp",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 0'",
-      "record": {
-        "ability": "Poison 2, Min 0",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Dr Swamp",
         "power": 8,
+        "damage": 1,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1915"
+        "clan": "Skeelz",
+        "ability": "Poison 2, Min 0",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33250,17 +32878,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1547",
       "name": "Nekron",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Regen 1, Max. 15'",
-      "record": {
-        "ability": "Growth: Regen 1, Max. 15",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Nekron",
         "power": 9,
+        "damage": 3,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1547"
+        "clan": "Skeelz",
+        "ability": "Growth: Regen 1, Max. 15",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33350,17 +32976,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1372",
       "name": "Galactea",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Toxin 1, Min 0'",
-      "record": {
-        "ability": "Toxin 1, Min 0",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Galactea",
         "power": 8,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1372"
+        "clan": "Skeelz",
+        "ability": "Toxin 1, Min 0",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33408,17 +33032,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1220",
       "name": "Dounia Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Poison 1, Min 0",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 2,
+      "result": "existing",
+      "card": {
         "name": "Dounia Cr",
         "power": 9,
+        "damage": 2,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1220"
+        "clan": "Skeelz",
+        "ability": "Poison 1, Min 0",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33552,17 +33174,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=958",
       "name": "Todd",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 5'",
-      "record": {
-        "ability": "Poison 2, Min 5",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Todd",
         "power": 7,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=958"
+        "clan": "Skeelz",
+        "ability": "Poison 2, Min 5",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33596,17 +33216,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=887",
       "name": "Snowflake",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Heal 2 Max. 12'",
-      "record": {
-        "ability": "Heal 2 Max. 12",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Snowflake",
         "power": 7,
+        "damage": 4,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=887"
+        "clan": "Skeelz",
+        "ability": "Heal 2 Max. 12",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33700,17 +33318,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=781",
       "name": "Eloxia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 0'",
-      "record": {
-        "ability": "Defeat: Poison 1, Min 0",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 7,
+      "result": "existing",
+      "card": {
         "name": "Eloxia",
         "power": 7,
+        "damage": 7,
         "stars": 5,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=781"
+        "clan": "Skeelz",
+        "ability": "Defeat: Poison 1, Min 0",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -33912,17 +33528,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=654",
       "name": "Greem Cr",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 3, Min 2'",
-      "record": {
-        "ability": "Poison 3, Min 2",
-        "bonus": "Protection: Ability",
-        "clan": "Skeelz",
-        "damage": 4,
+      "result": "existing",
+      "card": {
         "name": "Greem Cr",
         "power": 7,
+        "damage": 4,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=654"
+        "clan": "Skeelz",
+        "ability": "Poison 3, Min 2",
+        "bonus": "Protection: Ability"
       }
     },
     {
@@ -34388,17 +34002,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1697",
       "name": "C-Arib",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Consume 1, Min 2'",
-      "record": {
-        "ability": "Consume 1, Min 2",
-        "bonus": "Defeat: Recover 2 Pillz Out Of 3",
-        "clan": "Vortex",
-        "damage": 5,
+      "result": "existing",
+      "card": {
         "name": "C-Arib",
         "power": 8,
+        "damage": 5,
         "stars": 4,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1697"
+        "clan": "Vortex",
+        "ability": "Consume 1, Min 2",
+        "bonus": "Defeat: Recover 2 Pillz Out Of 3"
       }
     },
     {
@@ -34496,17 +34108,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=1466",
       "name": "Sarah",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 1, Min 1'",
-      "record": {
-        "ability": "Growth: Poison 1, Min 1",
-        "bonus": "Defeat: Recover 2 Pillz Out Of 3",
-        "clan": "Vortex",
-        "damage": 3,
+      "result": "existing",
+      "card": {
         "name": "Sarah",
         "power": 8,
+        "damage": 3,
         "stars": 3,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=1466"
+        "clan": "Vortex",
+        "ability": "Growth: Poison 1, Min 1",
+        "bonus": "Defeat: Recover 2 Pillz Out Of 3"
       }
     },
     {
@@ -35070,17 +34680,15 @@
     {
       "source": "https://www.urban-rivals.com/game/characters/?id_perso=762",
       "name": "Cyb Lhia",
-      "result": "rejected",
-      "reason": "Unsupported effect: 'Poison 2, Min 4'",
-      "record": {
-        "ability": "Poison 2, Min 4",
-        "bonus": "Defeat: Recover 2 Pillz Out Of 3",
-        "clan": "Vortex",
-        "damage": 1,
+      "result": "existing",
+      "card": {
         "name": "Cyb Lhia",
         "power": 8,
+        "damage": 1,
         "stars": 2,
-        "url": "https://www.urban-rivals.com/game/characters/?id_perso=762"
+        "clan": "Vortex",
+        "ability": "Poison 2, Min 4",
+        "bonus": "Defeat: Recover 2 Pillz Out Of 3"
       }
     },
     {
