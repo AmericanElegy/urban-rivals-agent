@@ -268,6 +268,7 @@ class Board:
 
 class CanvasReader:
     CENTERS=(.221,.406,.591,.776)
+    SELECTED_DROP=.017
     PANEL_ATTACK=(.55,.55,.635,.64)
     PANEL_DAMAGE=(.74,.55,.815,.64)
     RESOURCE_BOXES=(
@@ -508,7 +509,10 @@ class CanvasReader:
         purple=(r>80)&(b>100)&(g<r*.7)&(g<b*.7)
         yellow=(r>170)&(g>140)&(b<120)
         star_y=.785 if side==0 else .335
-        stars=np.array(image.convert("RGB"))[int((star_y-.012)*h):int((star_y+.012)*h),int((x-.05)*w):int((x+.05)*w)].astype("int16")
+        # Our selected card is drawn enlarged, which moves its lit stars below
+        # the resting bar. Purple/yellow art must not make it look played.
+        star_bottom=star_y+(.03 if side==0 else .012)
+        stars=np.array(image.convert("RGB"))[int((star_y-.012)*h):int(star_bottom*h),int((x-.05)*w):int((x+.05)*w)].astype("int16")
         sr,sg,sb=[stars[:,:,i] for i in range(3)]
         bright_stars=(sr>200)&(sg>120)&(sb<sg*.55)
         return bool(purple.sum()>=6 and yellow.sum()>=4 and bright_stars.sum()<3)
@@ -752,14 +756,19 @@ class CanvasReader:
                     if self.catalog.star_catalog is not None:
                         # Printed power/damage pick the level; stars only break
                         # ties. Either may be unreadable, but not both.
+                        # Our selected card is drawn enlarged, so its stars and
+                        # stats sit lower than on a resting card.
+                        offsets=(0,self.SELECTED_DROP) if side==0 else (0,)
                         def optional(read):
-                            try:
-                                return read()
-                            except RecognitionError:
-                                return None
-                        stars=optional(lambda:self.stars(image,x,star_y))
-                        power=optional(lambda:self.number(image,self.stat_box(x,stat_y)))
-                        damage=optional(lambda:self.number(image,self.stat_box(x,stat_y,True)))
+                            for drop in offsets:
+                                try:
+                                    return read(drop)
+                                except RecognitionError:
+                                    pass
+                            return None
+                        stars=optional(lambda d:self.stars(image,x,star_y+d))
+                        power=optional(lambda d:self.number(image,self.stat_box(x,stat_y+d)))
+                        damage=optional(lambda d:self.number(image,self.stat_box(x,stat_y+d,True)))
                         if stars is None and (power is None or damage is None):
                             raise RecognitionError("Evolution stars could not be counted")
                         evo=self.catalog.star_catalog.resolve(text,stars=stars,power=power,damage=damage)
