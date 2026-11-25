@@ -461,8 +461,12 @@ class CanvasReader:
     def raised_title(self,image,x,minimum=.8):
         if not self.raised_marker(image,x):
             return ""
-        raised=self.precise_text(image,(x-.025,.075,x+.085,.115),minimum)
-        return raised if len(re.sub(r"[^a-z]","",normalize(raised)))>=3 else ""
+        # Some enlarged cards rise higher than the usual title band.
+        for top in (.075,.06):
+            raised=self.precise_text(image,(x-.025,top,x+.085,.115),minimum)
+            if len(re.sub(r"[^a-z]","",normalize(raised)))>=3:
+                return raised
+        return ""
 
     @staticmethod
     def raised_marker(image,x):
@@ -738,10 +742,17 @@ class CanvasReader:
                         cached=prev_card
                     elif self.catalog.star_catalog is not None and text.strip():
                         resolved=self.catalog.star_catalog.resolve(text)
-                        if resolved is not None and resolved.norm_name==normalize(prev_card.name):
+                        # A title that names no card at all (garbled while
+                        # animating, or covered by the Forfeit button) cannot
+                        # change a hand that is fixed for the whole match.
+                        if resolved is None or resolved.norm_name==normalize(prev_card.name):
                             cached=prev_card
                 if cached is not None:
                     c=cached
+                elif side==1 and normalize(text)=="forfeit":
+                    # A running-effect badge pushes the Forfeit button down over
+                    # the last title; wait rather than invent a card.
+                    return None
                 elif self.initial_hand is not None and not text.strip():
                     # Card is mid-animation/flipping; wait for a clean board frame.
                     return None
@@ -816,23 +827,36 @@ class CanvasReader:
         if lifted:
             leader,observed=1,lifted[0]
         if previous:
+            new=[set(used[i])-set(previous.players[i].used) for i in range(2)]
             if round_no==previous.round:
                 last=tuple(p.last_won for p in previous.players)
-                if leader!=previous.leader and not allow_mid_match:
-                    raise RecognitionError("Initiative recognition changed within a round")
-            elif round_no==previous.round+1 and submitted:
+                running=tuple(p.effects for p in previous.players)
+                if leader!=previous.leader:
+                    if not allow_mid_match:
+                        raise RecognitionError("Initiative recognition changed within a round")
+                    if previous.leader==1:
+                        # The opponent's raised lead is hidden in this frame.
+                        return None
+            elif round_no==previous.round+1 and (submitted or (allow_mid_match and all(len(s)==1 for s in new))):
                 leader=1-previous.leader
                 if leader==1 and observed is None:
+                    if allow_mid_match:
+                        return None
                     raise RecognitionError("Opponent lead has not been identified")
-                new=[set(used[i])-set(previous.players[i].used) for i in range(2)]
-                if any(len(s)!=1 for s in new) or submitted.card not in new[0]:
+                if any(len(s)!=1 for s in new) or (not allow_mid_match and submitted.card not in new[0]):
                     raise RecognitionError("Unexpected card transition")
-                op_index=next(iter(new[1]))
+                our_index,op_index=(next(iter(s)) for s in new)
+                if allow_mid_match:
+                    # The Advisor never clicks, so read what was actually
+                    # played from our own dimmed card; Fury is inferred below.
+                    ours=[Move(our_index,spent[0][our_index],fury) for fury in (False,True)]
+                else:
+                    ours=[submitted]
                 matches=[]
                 candidates=[]
-                for fury in (False,True):
+                for our_move,fury in ((m,f) for m in ours for f in (False,True)):
                     try:
-                        after=resolve(previous,submitted,Move(op_index,spent[1][op_index],fury))
+                        after=resolve(previous,our_move,Move(op_index,spent[1][op_index],fury))
                     except ValueError:
                         continue
                     candidates.append(after)
