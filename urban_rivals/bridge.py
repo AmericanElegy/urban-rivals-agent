@@ -4,6 +4,7 @@ import binascii
 import io
 import json
 import secrets
+from collections import deque
 import time
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
@@ -55,6 +56,29 @@ def validate_frame(data, now=None):
         raise ValueError("Missing explicit inspect/execute mode")
     if "advisor" in data and type(data["advisor"]) is not bool:
         raise ValueError("Invalid advisor flag")
+
+
+def save_failure_frames(output,run_id,error,frames=None):
+    """Keep the last few canvases of a stopped run so failures can be inspected.
+
+    latest-canvas.png is overwritten every frame; this preserves the frames that
+    led up to the stop in local/failures/<time>-<run>/ with the error text.
+    """
+    frames=list(frames if frames is not None else RECENT_FRAMES)
+    if not frames:
+        return None
+    try:
+        folder=Path(output)/"failures"/f"{time.strftime('%Y%m%d-%H%M%S')}-{str(run_id or 'run')[:8]}"
+        folder.mkdir(parents=True,exist_ok=True)
+        for sequence,image in frames:
+            image.save(folder/f"frame-{sequence:04d}.png")
+        (folder/"error.txt").write_text(str(error),encoding="utf-8")
+        return folder
+    except OSError:
+        return None
+
+
+RECENT_FRAMES=deque(maxlen=6)
 
 
 def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factory=VisionSession,reuse_token=False):
@@ -201,6 +225,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                     reader.set_canvas_css_width(data.get("geometry",{}).get("width",image.width))
                 image=image.convert("RGB").resize((1318,744))
                 image.save(output/"latest-canvas.png")
+                RECENT_FRAMES.append((data["sequence"],image))
                 (output/"latest-geometry.json").write_text(json.dumps(data.get("geometry")),encoding="utf-8")
                 if session.execute and data.get("focus_resumed"):
                     session.reset_stability()
@@ -221,6 +246,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 self.send(200,result)
             except (ValueError,TypeError,KeyError,OSError,binascii.Error) as error:
                 run_id=data.get("run_id") if isinstance(locals().get("data"),dict) else None
+                save_failure_frames(output,run_id,error)
                 if run_id:
                     stopped.add(run_id)
                     sessions.pop(run_id,None)
@@ -233,6 +259,7 @@ def serve(host="127.0.0.1",port=8876,execute=False,output="local",session_factor
                 self.send(422,result)
             except Exception as error:
                 # Unexpected OCR/runtime errors must also stop, never trigger a retry.
+                save_failure_frames(output,data.get("run_id") if isinstance(locals().get("data"),dict) else None,error)
                 if isinstance(locals().get("data"),dict):
                     stopped.add(data.get("run_id"))
                     sessions.pop(data.get("run_id"),None)

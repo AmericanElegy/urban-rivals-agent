@@ -402,10 +402,50 @@ class CanvasReader:
                 return wider
         return seconds
 
+    # Center x of our cyan life heart at hud_scale 1 with the plain bottom bar.
+    # Measured on a live round-4 frame where a HEAL button pushed the bar left.
+    OUR_HEART_X=.758
+
+    @staticmethod
+    def find_our_heart(image):
+        """Locate the cyan life heart in the bottom HUD; (cx, cy) or None."""
+        import cv2
+        import numpy as np
+        w,h=image.size
+        top=int(.88*h)
+        strip=np.array(image.crop((0,top,w,h)).convert("RGB")).astype("int16")
+        r,g,b=strip[...,0],strip[...,1],strip[...,2]
+        mask=((r<190)&(g>200)&(b>200)&(g-r>50)).astype("uint8")
+        count,_,stats,centers=cv2.connectedComponentsWithStats(mask)
+        best=None
+        for i in range(1,count):
+            x,y,cw,ch,area=stats[i]
+            if not (.012*h<=ch<=.04*h and .6<=cw/ch<=1.6 and area>=.4*cw*ch):
+                continue
+            if best is None or area>best[0]:
+                best=(area,(centers[i][0]/w,(centers[i][1]+top)/h))
+        return best[1] if best else None
+
+    def bottom_bar_shift(self,image):
+        """Horizontal shift of our bottom resource bar (e.g. a HEAL button)."""
+        try:
+            heart=self.find_our_heart(image)
+        except Exception:
+            return 0.0
+        if heart is None:
+            return 0.0
+        scale=getattr(self,"hud_scale",1.0)
+        reference=1+(self.OUR_HEART_X-1)*scale
+        dx=heart[0]-reference
+        return dx if abs(dx)>=.01 else 0.0
+
     def read_resources(self,image):
         resources={}
+        shift=self.bottom_bar_shift(image) if image is not None else 0.0
         for name,box,ax,ay in self.RESOURCE_BOXES:
             target=self.hud_box(box,ax,ay)
+            if shift and name.startswith("our_"):
+                target=(target[0]+shift,target[1],target[2]+shift,target[3])
             try:
                 resources[name]=self.number(image,target)
             except RecognitionError as error:
@@ -426,10 +466,21 @@ class CanvasReader:
     def text(self,image,box,minimum=.85):
         return self.ocr.text(image,box,minimum)
 
-    def stake_targets(self,image,calibration=None):
+    def stake_text(self,image):
+        """Located stake-panel words for this frame (cached per image)."""
+        cached=getattr(self,"_stake_cache",None)
+        if cached and cached[0] is image:
+            return cached[1]
         locate=getattr(self.ocr,"locate",None)
         found=locate(image,STAKE_SEARCH_BOX,.8) if locate else []
-        return stake_layout(found,calibration)
+        self._stake_cache=(image,found)
+        return found
+
+    def stake_open(self,image):
+        return any(_stake_label(text)=="confirm" for text,*_ in self.stake_text(image))
+
+    def stake_targets(self,image,calibration=None):
+        return stake_layout(self.stake_text(image),calibration)
 
     def round_scene(self,image):
         """A phase hint only: board() must still verify the complete state."""
@@ -885,6 +936,9 @@ class VisionSession:
         if self.phase!="board" and isinstance(self.reader,CanvasReader):
             btn_text=self.reader.text(image,(.60,.64,.85,.72),.7)
             stake_hint="confirmthestake" in normalize(btn_text)
+            if not stake_hint:
+                # The panel can sit off the reference box; search the whole panel area.
+                stake_hint=self.reader.stake_open(image)
             if not stake_hint and self.phase=="selected" and not getattr(self,"_panel_seen",False) and self.reader.round_scene(image):
                 waits=getattr(self,"_panel_wait",0)
                 if waits==1:
