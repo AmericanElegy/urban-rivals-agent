@@ -75,7 +75,7 @@ class ReferenceDatabaseTests(unittest.TestCase):
     def test_known_reference_is_not_reported_as_missing_card_data(self):
         from urban_rivals.vision import Catalog, RecognitionError
         with self.assertRaisesRegex(RecognitionError,'Known reference card'):
-            Catalog().identify('Masbulla',True,(7,7,5))
+            Catalog().identify('Quantum Qasar',True,(9,8,5))
 
     def test_unknown_wiki_unlock_does_not_invent_a_level_ability(self):
         card={'name':'Example','source':{'url':'official'}}

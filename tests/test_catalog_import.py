@@ -27,7 +27,7 @@ class CatalogImportTests(unittest.TestCase):
             with self.assertRaises(RecognitionError):catalog.identify("Test",True,(7,6,3))
 
     def test_unsupported_or_conflicting_text_is_quarantined(self):
-        unsupported=self.record();unsupported.update(name="Impose card",ability="Power Impose")
+        unsupported=self.record();unsupported.update(name="Mindwipe card",ability="Mindwipe 1, Min 0")
         conflict=self.record();conflict["ability"]="Power +8"
         merged,audit=merge_official_records(self.fixture(),[unsupported,conflict])
         self.assertEqual(len(merged["cards"]),1)

@@ -7,7 +7,31 @@ from dataclasses import dataclass, replace
 import re
 from functools import lru_cache
 
-ENGINE_REVISION="persistent-v1"
+ENGINE_REVISION="mechanics-v2"
+
+CONDITIONS={"always","courage","reprisal","confidence","revenge","defeat",
+            "victory or defeat","day","night","unison","disunion","symmetry",
+            "asymmetry","bet_over","bet_under","perfect","killshot","stop"}
+# Decided after the fight: these only carry Life/Pillz (incl. persistent) effects.
+POST_ROUND={"defeat","victory or defeat","perfect","killshot"}
+
+# Card text abbreviations seen in official data -> canonical wording.
+_ABBREVIATIONS=(
+    (r"\bVict\.?\s+Or\s+Def(?:eat)?\.?", "Victory Or Defeat"),
+    (r"\bConf\.", "Confidence"), (r"\bRepris\.", "Reprisal"), (r"\bRev\.", "Revenge"),
+    (r"\bAsymm?\.", "Asymmetry"), (r"\bBrwl\.", "Brawl"),
+    (r"\bRecov?\.", "Recover"), (r"\bCanc\.", "Cancel"),
+    (r"\bProt(?:ec|ect)?\.\s*:?\s*", "Protection: "),
+    (r"\bPow\b\.?", "Power"), (r"\bDmg\b\.?", "Damage"), (r"\bDam\b\.?", "Damage"),
+    (r"\bAt[tk]\b\.?", "Attack"), (r"\bMod\b\.?", "Modif"),
+    (r"\s*&\s*", " And "), (r"\s*/\s*", " And "), (r"\bPillz\.\s*(Min|Max)\b", r"Pillz, \1"), (r";", ":"),
+)
+
+
+def normalize_text(text: str) -> str:
+    for pattern, replacement in _ABBREVIATIONS:
+        text = re.sub(pattern, replacement, text, flags=re.I)
+    return re.sub(r"\s+", " ", text).strip()
 
 # Persistent end-of-round effects (official rules, urban-rivals.com/game/rules):
 # Poison/Heal(Care) tick at the end of each round AFTER the one they were won
@@ -39,9 +63,10 @@ class Effect:
                              "exchange_damage", "tune_out", "stop_bonus",
                              "cancel_power", "cancel_damage", "cancel_attack",
                              "copy_ability", "copy_bonus", "copy_power",
-                             "copy_damage", "recover_pillz", *PERSISTENT}:
+                             "copy_damage", "recover_pillz", *PERSISTENT,
+                             "impose_power", "impose_damage", "cancel_life", "cancel_pillz"}:
             raise ValueError(f"Unsupported effect stat: {self.stat}")
-        if self.condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
+        if self.condition not in CONDITIONS:
             raise ValueError(f"Unsupported condition: {self.condition}")
         if self.multiplier not in {"none", "support", "brawl", "growth", "degrowth", "equalizer", "opp_power", "opp_damage", "damage_dealt", "life_left", "pillz_left"}:
             raise ValueError(f"Unsupported multiplier: {self.multiplier}")
@@ -60,7 +85,9 @@ class Effect:
             raise ValueError("Pillz recovery requires an own defeat-based fraction")
         if self.stat!="recover_pillz" and self.divisor!=1:
             raise ValueError("Only Pillz recovery uses a divisor")
-        if self.stat.startswith(("protect_", "exchange_", "cancel_", "copy_")) and (
+        if self.condition in POST_ROUND - {"defeat", "victory or defeat"} and self.stat not in {"life", "pillz", *PERSISTENT}:
+            raise ValueError("Perfect/Killshot conditions require life or pillz effects")
+        if self.stat.startswith(("protect_", "exchange_", "cancel_", "copy_", "impose_")) and (
                 self.amount != 0 or self.opponent or self.multiplier != "none"
                 or self.condition in {"defeat", "victory or defeat"}):
             raise ValueError("Unsupported protection/exchange/cancel parameters")
@@ -68,9 +95,18 @@ class Effect:
 
 def parse_effect(text: str) -> tuple[Effect, ...]:
     """Parse a deliberately small, auditable subset of English card text."""
-    text = text.strip().rstrip(".")
+    text = normalize_text(text.strip()).rstrip(".")
     if text.lower() in ("", "none", "no ability", "no bonus"):
         return ()
+    # Backlash: the card's own player pays (official rules: abilities that cost
+    # your own Life or Pillz); it fires when the card wins, like other effects.
+    backlash = re.match(r"Backlash\s*:\s*(.*)", text, re.I)
+    if backlash:
+        inner = parse_effect(backlash[1])
+        if any(e.stat not in {"life", "pillz", *PERSISTENT} or e.condition != "always" for e in inner):
+            raise ValueError("Only plain Backlash Life/Pillz/Poison costs are supported")
+        return tuple(replace(e, opponent=False, amount=-abs(e.amount) if e.stat in {"life", "pillz"} else e.amount)
+                     for e in inner)
     condition, multiplier, threshold = "always", "none", 0
     if ":" in text:
         prefix, remainder = text.split(":", 1)
@@ -86,7 +122,7 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
             text = remainder
         if condition in {"support", "brawl", "growth", "degrowth", "equalizer"}:
             multiplier, condition = condition, "always"
-        if condition not in {"always", "courage", "reprisal", "confidence", "revenge", "defeat", "victory or defeat", "day", "night", "unison", "disunion", "symmetry", "asymmetry", "bet_over", "bet_under"}:
+        if condition not in CONDITIONS:
             raise ValueError(f"Unsupported condition: {prefix}")
         text = text.strip()
     if re.fullmatch(r"Copy:\s*Opp\.?\s+Ability", text, re.I) and condition=="always":
@@ -103,6 +139,13 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
     if match:
         return tuple(Effect("cancel_"+stat,0,condition=condition,threshold=threshold)
                      for stat in re.split(r"\s+and\s+",match[1].lower()))
+    match = re.fullmatch(r"(Power|Damage)\s+Impose", text, re.I)
+    if match:
+        return (Effect("impose_" + match[1].lower(), 0, condition=condition, threshold=threshold),)
+    match = re.fullmatch(r"Cancel\s+Opp\.?\s+(Pillz\s+And\s+Life|Life|Pillz)\s+Modif", text, re.I)
+    if match:
+        return tuple(Effect("cancel_" + stat, 0, condition=condition, threshold=threshold)
+                     for stat in re.split(r"\s+and\s+", match[1].lower()))
     if re.fullmatch(r"Stop\s+Opp\.?\s+Bonus", text, re.I):
         return (Effect("stop_bonus",0,True,condition=condition,threshold=threshold),)
     match=re.fullmatch(r"Recover\s+(\d+)\s+Pillz\s+Out\s+Of\s+(\d+)",text,re.I)
@@ -160,7 +203,7 @@ def parse_effect(text: str) -> tuple[Effect, ...]:
         if match:
             values = match.groupdict()
             stats = re.split(r"\s+and\s+", values["stat"].lower())
-            if condition in {"defeat", "victory or defeat"} and any(stat not in {"life", "pillz"} for stat in stats):
+            if condition in POST_ROUND and any(stat not in {"life", "pillz"} for stat in stats):
                 raise ValueError("Post-round conditions require life or pillz effects")
             return tuple(Effect(stat, int(values["amount"].replace(" ", "")),
                            bool(values.get("opp")),
@@ -303,7 +346,10 @@ def resolve(state: State, first: Move, second: Move) -> State:
                       "day": state.day is True, "night": state.day is False,
                       "unison": unison, "disunion": not unison,
                       "symmetry": moves[side].card == moves[1-side].card,
-                      "asymmetry": moves[side].card != moves[1-side].card}
+                      "asymmetry": moves[side].card != moves[1-side].card,
+                      # Decided later: Perfect/Killshot after the fight, Stop by the
+                      # opposing Stop Opp. Ability below.
+                      "perfect": True, "killshot": True, "stop": True}
         multipliers = {"none": 1, "growth": state.round, "degrowth": 5-state.round,
                        "support": sum(x.clan == c.clan for x in p.hand),
                        "brawl": sum(x.clan == cards[1-side].clan for x in state.players[1-side].hand),
@@ -338,18 +384,22 @@ def resolve(state: State, first: Move, second: Move) -> State:
                        and not stop_bonus_raw[i] for i in range(2)]
     blocked = [any(e.stat == "stop_ability" for e in active[1-i])
                and not ability_protected[i] for i in range(2)]
-    abilities=[active[i][:ability_sizes[i]] if not blocked[i] else () for i in range(2)]
-    bonuses=[active[i][ability_sizes[i]:] for i in range(2)]
+    # "Stop:" effects activate only when Stop Opp. Ability blocks this card;
+    # everything else in a blocked ability is removed.
+    abilities=[tuple(e for e in active[i][:ability_sizes[i]] if (e.condition=="stop")==blocked[i])
+               for i in range(2)]
+    bonuses=[tuple(e for e in active[i][ability_sizes[i]:] if e.condition!="stop") for i in range(2)]
     bonus_protected=[any(e.stat=="protect_bonus" for e in abilities[i]) for i in range(2)]
     bonus_blocked=[any(e.stat=="stop_bonus" for e in abilities[1-i]+bonuses[1-i])
                    and not bonus_protected[i] for i in range(2)]
     active=[abilities[i]+(() if bonus_blocked[i] else bonuses[i]) for i in range(2)]
     # Cancel removes the opposing card's modifiers of this type, irrespective
     # of their source or which card those modifiers would target.
-    cancelled=[{name for name in ("power","damage","attack")
+    cancelled=[{name for name in ("power","damage","attack","life","pillz")
                 if any(e.stat=="cancel_"+name for e in active[1-i])} for i in range(2)]
     active=[tuple(e for e in row if e.stat not in cancelled[i]
-                  and not (e.stat.startswith(("exchange_","copy_")) and e.stat.split("_",1)[1] in cancelled[i]))
+                  and not (e.stat in PERSISTENT and PERSISTENT[e.stat][0] in cancelled[i])
+                  and not (e.stat.startswith(("exchange_","copy_","impose_")) and e.stat.split("_",1)[1] in cancelled[i]))
             for i,row in enumerate(active)]
 
     def stat(side, name, initial):
@@ -372,14 +422,40 @@ def resolve(state: State, first: Move, second: Move) -> State:
         # Exchange changes starting values, bypasses Protection, and precedes
         # ordinary modifiers and Fury. Each round starts from immutable cards.
         copying=[any(e.stat=="copy_"+name for e in row) for row in active]
+        imposing=[any(e.stat=="impose_"+name for e in row) for row in active]
+        if any(imposing) and (all(imposing) or any(exchanging) or any(copying)):
+            raise ValueError(f"{name.title()} Impose against Copy/Exchange/Impose is not yet verified")
         # A matching Exchange takes precedence over Copy (official Exchange rule).
+        # Impose forces the imposer's starting value onto the opposing card.
         bases[name] = (values[::-1] if any(exchanging) else
-                       [values[1-i] if copying[i] else values[i] for i in range(2)])
+                       [values[1-i] if (copying[i] or imposing[1-i]) else values[i] for i in range(2)])
     power = [max(0, stat(i, "power", bases["power"][i])) for i in range(2)]
     attack = [max(0, stat(i, "attack", power[i] * (m.pillz + 1))) for i, m in enumerate(moves)]
     tune_out = any(e.stat == "tune_out" for row in active for e in row)
     contest = [m.pillz + 1 for m in moves] if tune_out else attack
-    winner = max(range(2), key=lambda i: (contest[i], -cards[i].stars, i == state.leader))
+    def ranking(values):
+        return max(range(2), key=lambda i: (values[i], -cards[i].stars, i == state.leader))
+    winner = ranking(contest)
+    loser = 1 - winner
+    # Killshot: won with at least twice the opposing Attack (official rules).
+    killshot = attack[winner] >= 2 * attack[loser]
+    # Perfect: won with exactly the Pillz needed, i.e. one paid pill fewer
+    # (all else equal) would not have won. Zero paid Pillz is always exact.
+    perfect = True
+    if moves[winner].pillz > 0:
+        fewer = list(contest)
+        fewer[winner] = (moves[winner].pillz if tune_out else
+                         max(0, stat(winner, "attack", power[winner] * moves[winner].pillz)))
+        perfect = ranking(fewer) != winner
+
+    def triggered(owner, e):
+        if e.condition == "defeat":
+            return owner != winner
+        if e.condition == "victory or defeat":
+            return True
+        if owner != winner:
+            return False
+        return {"perfect": perfect, "killshot": killshot}.get(e.condition, True)
     life = [p.life for p in state.players]
     pillz = [p.pillz - m.pillz - 3 * m.fury for p, m in zip(state.players, moves)]
     damage = max(0, stat(winner, "damage", bases["damage"][winner] + 2 * moves[winner].fury))
@@ -388,9 +464,7 @@ def resolve(state: State, first: Move, second: Move) -> State:
         for e in active[owner]:
             if e.stat not in {"life", "pillz", "recover_pillz"}:
                 continue
-            triggered = (owner != winner if e.condition == "defeat" else
-                         True if e.condition == "victory or defeat" else owner == winner)
-            if triggered:
+            if triggered(owner, e):
                 if e.stat=="recover_pillz":
                     # The attack allocation includes the free pill. Official
                     # recovery rounds the stated fraction down, minimum one.
@@ -412,14 +486,19 @@ def resolve(state: State, first: Move, second: Move) -> State:
         values[target]=max(0,_modify(values[target],e))
     for target in range(2):
         for kind,(amount,bound) in lingering[target].items():
+            resource,harmful,_=PERSISTENT[kind]
+            # Harmful effects on a player came from the opponent; helpful ones are
+            # the player's own. Cancel Opp. Life/Pillz Modif. pauses the
+            # opponent's for this round only (official rules).
+            source=1-target if harmful else target
+            if resource in cancelled[source]:
+                continue
             tick(target,kind,amount,bound)
     for owner in range(2):
         for e in active[owner]:
             if e.stat not in PERSISTENT:
                 continue
-            triggered = (owner != winner if e.condition == "defeat" else
-                         True if e.condition == "victory or defeat" else owner == winner)
-            if not triggered or e.amount<=0:
+            if not triggered(owner, e) or e.amount<=0:
                 continue
             target=1-owner if e.opponent else owner
             bound=e.minimum if PERSISTENT[e.stat][1] else e.maximum

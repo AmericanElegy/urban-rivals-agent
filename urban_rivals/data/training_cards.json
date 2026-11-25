@@ -17301,6 +17301,2175 @@
       "clan": "Vortex",
       "ability": "Poison 2, Min 4",
       "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Zwoosh",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Bangers",
+      "ability": "Power Impose",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Masbulla",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Bangers",
+      "ability": "Killshot: +2 Pillz",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Kaskar",
+      "power": 6,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Bangers",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 5",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "MC Leroy",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "-1 Opp Pillz. Min 1",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Dud Z",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "Stop: +3 Pillz",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Blidgey",
+      "power": 6,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Bangers",
+      "ability": "-2 Opp Pillz. Min 3",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Raquel",
+      "power": 6,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Bangers",
+      "ability": "Backlash: - 1 Pillz Min 4",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Chikko Cr",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Bangers",
+      "ability": "Growth: -1 Opp. Pow. And Dam., Min 4",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Barakatic",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "All Stars",
+      "ability": "Stop: -2 Opp Power, Min 3",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "B Mappe Cr",
+      "power": 3,
+      "damage": 8,
+      "stars": 5,
+      "clan": "All Stars",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 1",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Morrigan",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "All Stars",
+      "ability": "Stop: -5 Opp. Dmg, Min 1",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Raoul",
+      "power": 7,
+      "damage": 4,
+      "stars": 4,
+      "clan": "All Stars",
+      "ability": "Killshot: +5 Life",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Karen",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "All Stars",
+      "ability": "Stop: -3 Opp. Life, Min 0",
+      "bonus": "-2 Opp Power, Min 1"
+    },
+    {
+      "name": "Tinner",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Fang Pi Clang",
+      "ability": "Confidence: +1 Life Per Dmg.",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Kurishen Sensei",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Fang Pi Clang",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Ramar",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Fang Pi Clang",
+      "ability": "Killshot: +4 Life Max. 16",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Tameshi",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Fang Pi Clang",
+      "ability": "Revenge: -2 Opp Pow. & Dmg,min 3",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Muntendon",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Fang Pi Clang",
+      "ability": "Stop: Atk. +12",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Nakata",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Fang Pi Clang",
+      "ability": "Stop: Power +2",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Sung Tsu",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Fang Pi Clang",
+      "ability": "Stop: Power +2",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Hattori",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Fang Pi Clang",
+      "ability": "Courage: -4 Opp. Dmg, Min 2",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Sgt Stormblade",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "La Junta",
+      "ability": "Damage Impose",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Grimsnyff",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "La Junta",
+      "ability": "Killshot: -3 Opp. Life Min 2",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "W4r Ld",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "La Junta",
+      "ability": "Brawl: -1 Opp Pow. & Dam., Min 4",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Iguana Samson",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "La Junta",
+      "ability": "Stop: -3 Opp. Life, Min 0",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Curtiss",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "La Junta",
+      "ability": "Stop: +4 Pillz",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Victoria",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "La Junta",
+      "ability": "Stop: -3 Opp Power, Min 1",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Nahomi",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "La Junta",
+      "ability": "Stop: Power +3",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Naginata",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "La Junta",
+      "ability": "-5 Opp Pillz. Min 6",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Dacote",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "La Junta",
+      "ability": "Stop: Damage +4",
+      "bonus": "Damage +2"
+    },
+    {
+      "name": "Dr Gigova Cr",
+      "power": 8,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Rescue",
+      "ability": "Courage: -9 Opp. Dmg, Min 0",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Dr Horatio",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Perfect: +2 Life",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Mia Levy",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Rescue",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Curie",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Stop: Damage +4",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Lennard",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Rescue",
+      "ability": "Killshot: +3 Life",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Sequoyah",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Wolf",
+      "power": 6,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Rescue",
+      "ability": "Stop: Power +4",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Nancy",
+      "power": 7,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Rescue",
+      "ability": "Confidence: +1 Life Per Dmg.",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Beverly",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Stop: Damage +3",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Vinny",
+      "power": 5,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Rescue",
+      "ability": "Stop: Power +3",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Glosh",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Rescue",
+      "ability": "Stop: Power +3",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Denise",
+      "power": 4,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Rescue",
+      "ability": "Courage: -2 Opp. Dmg, Min 2",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Anita",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Rescue",
+      "ability": "Courage: +1 Life Per Dmg",
+      "bonus": "Support: Attack +3"
+    },
+    {
+      "name": "Cango & Tash",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sentinel",
+      "ability": "Day: Cancel Opp. Pow. & Dam. Mod.",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Ginette",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sentinel",
+      "ability": "Damage Impose",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Gahar",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Sentinel",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 5",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Kastagnard",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sentinel",
+      "ability": "Stop: Power And Damage +2",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Fletcher",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sentinel",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Palmer",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Sentinel",
+      "ability": "Stop: Damage +3",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Valentina Ld",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Sentinel",
+      "ability": "Killshot: -3 Opp. Life Min 0",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Flinch",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Sentinel",
+      "ability": "Stop: -4 Opp Power, Min 3",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Kyle",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sentinel",
+      "ability": "Stop: Damage +3",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Zhang",
+      "power": 7,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Sentinel",
+      "ability": "Stop: Damage +4",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Malia",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Sentinel",
+      "ability": "Stop: +3 Life",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Quest",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Junkz",
+      "ability": "Killshot: +2 Pillz And Life",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Mozaert",
+      "power": 6,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Junkz",
+      "ability": "Power Impose",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Adriane",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Junkz",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Soneta",
+      "power": 4,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Junkz",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 3",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Jigi",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Junkz",
+      "ability": "Stop: +3 Pillz",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Fast Johnny",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Junkz",
+      "ability": "Stop: -4 Opp. Dmg, Min 1",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Skyler",
+      "power": 6,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Junkz",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Jarez",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Junkz",
+      "ability": "Stop: +3 Pillz",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Vanish",
+      "power": 8,
+      "damage": 4,
+      "stars": 5,
+      "clan": "Junkz",
+      "ability": "Confidence: +1 Life Per Dmg.",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Tremorh",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Junkz",
+      "ability": "-2 Opp Pillz. Min 1",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Gil Cr",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Junkz",
+      "ability": "-3 Opp Pillz. Min 4",
+      "bonus": "Attack +8"
+    },
+    {
+      "name": "Cusaghi",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "Reprisal: Cancel Opp Pow & Dam Mod",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Baresco",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Montana",
+      "ability": "Killshot: -2 Opp. Life Min 2",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Figaro",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "Day: -1 Opp Power & Damage, Min 1",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Tio",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Montana",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Giacomo",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Montana",
+      "ability": "Stop: Poison 3, Min 2",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Anna",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Montana",
+      "ability": "Stop: Damage +4",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Belladone Cr",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Montana",
+      "ability": "Stop: Atk. +7",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Zodiack",
+      "power": 5,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Montana",
+      "ability": "Day: Power Impose",
+      "bonus": "-12 Opp Attack, Min 8"
+    },
+    {
+      "name": "Choko",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Pussycats",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Roxie",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Pussycats",
+      "ability": "-2 Opp Pillz. Min 4",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Lorea",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Pussycats",
+      "ability": "Courage: +1 Life Per Dmg",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Ivana",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Pussycats",
+      "ability": "Stop: -3 Opp. Dmg, Min 3",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Ninja Nyne",
+      "power": 7,
+      "damage": 8,
+      "stars": 4,
+      "clan": "Pussycats",
+      "ability": "Bet > 1 Pillz: -3 Opp. Pow. & Dam., Min 3",
+      "bonus": "-2 Opp Damage, Min 1"
+    },
+    {
+      "name": "Drs Ledou",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Uppers",
+      "ability": "Day: Cancel Opp. Pillz & Life Modif.",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Golden B",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Uppers",
+      "ability": "Symmetry: -2 Opp Pow. And Dam., Min 1",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Mads",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Uppers",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 4",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "McLayton",
+      "power": 5,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Uppers",
+      "ability": "Brawl: -1 Opp Pow. & Dam., Min 3",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Kristen Dust",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Uppers",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Fonzie",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Uppers",
+      "ability": "Stop: -3 Opp. Life, Min 1",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Sean East",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Uppers",
+      "ability": "Killshot: -3 Opp. Life Min 1",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Josephine",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Uppers",
+      "ability": "Stop: Power And Damage +2",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Magnar",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Uppers",
+      "ability": "Reprisal: Protect. Power And Damage",
+      "bonus": "-10 Opp Attack, Min 3"
+    },
+    {
+      "name": "Feragar",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Frozn",
+      "ability": "Perfect: Regen 1, Max. 17",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Krudo&Kravian",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Frozn",
+      "ability": "Perfect: +2 Pillz",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Zelina",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Frozn",
+      "ability": "Degrowth: -1 Opp Pow. & Dam., Min 2",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Gerdah",
+      "power": 9,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Frozn",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Krompah",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Frozn",
+      "ability": "Vict. Or Def.: -1 Opp Life & Pillz Min 1",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Forjoten Ld",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Frozn",
+      "ability": "Reprisal: Protect. Power And Damage",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Oda Helpah Cr",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Frozn",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Mottah",
+      "power": 8,
+      "damage": 3,
+      "stars": 4,
+      "clan": "Frozn",
+      "ability": "-3 Opp Pillz. Min 6",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Nunavik",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Frozn",
+      "ability": "Stop: Power And Damage +2",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Ruru",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Frozn",
+      "ability": "Courage: -4 Opp. Dmg, Min 2",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Yodd",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Frozn",
+      "ability": "Revenge: Protec. Power And Dmg",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Brampah Noel",
+      "power": 6,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Frozn",
+      "ability": "-2 Opp Pillz. Min 3",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Thorpah Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Frozn",
+      "ability": "-2 Opp Pillz. Min 1",
+      "bonus": "Revenge: Power And Damage +2"
+    },
+    {
+      "name": "Superpaquito",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "Killshot: +3 Life",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Merrie",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Jungo",
+      "ability": "Stop: -3 Opp Pow. & Dmg,min 1",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Excess Ld",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Jungo",
+      "ability": "Stop: +2 Life",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Flea",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Jungo",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Houtay",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Jungo",
+      "ability": "Courage: -2 Opp. Dmg, Min 2",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Cheep",
+      "power": 8,
+      "damage": 2,
+      "stars": 3,
+      "clan": "Jungo",
+      "ability": "Stop: -3 Opp. Dmg, Min 1",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Ashiko",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Jungo",
+      "ability": "Stop: +3 Life",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Adler",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Jungo",
+      "ability": "Stop: Damage +3",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Niva",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "Courage: -4 Opp. Dmg, Min 2",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Greow Cr",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "Stop: Power +3",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Scotty",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Jungo",
+      "ability": "Stop: Damage +3",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Dagouba",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Jungo",
+      "ability": "Stop: Atk. +8",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Elea Cr",
+      "power": 6,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Jungo",
+      "ability": "Stop: Power +3",
+      "bonus": "+2 Life"
+    },
+    {
+      "name": "Miss Nova",
+      "power": 7,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Roots",
+      "ability": "Courage: -4 Opp. Dmg, Min 2",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Ellie",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Roots",
+      "ability": "Courage: +1 Life Per Dmg",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Kally",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Skipper",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "Stop: +3 Life",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Linkos Ld",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Ulu Watu",
+      "ability": "Killshot: +4 Life",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Sam",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Ulu Watu",
+      "ability": "Cancel Opp. Pillz Modif.",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Fuzzy June",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Ulu Watu",
+      "ability": "Stop: +3 Life",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Janice",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Ulu Watu",
+      "ability": "Stop: Power +3",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Lucia",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Ulu Watu",
+      "ability": "Stop: Damage +2",
+      "bonus": "Power +2"
+    },
+    {
+      "name": "Bertung",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Berzerk",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Mrs Spool Cr",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Berzerk",
+      "ability": "Killshot: -3 Opp. Life Min 0",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Chang",
+      "power": 5,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Berzerk",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 3",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Hercule",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Berzerk",
+      "ability": "Backlash: - 1 Pillz Min 4",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Sprinter",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Berzerk",
+      "ability": "Stop: -2 Opp. Life, Min 0",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Bernie",
+      "power": 8,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Berzerk",
+      "ability": "Backlash: - 2 Life Min 2",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Sylvia Ld",
+      "power": 9,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Berzerk",
+      "ability": "Backlash: - 3 Life Min 3",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Cortez Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Berzerk",
+      "ability": "Backlash: - 2 Life Min 4",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Norman",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Berzerk",
+      "ability": "Backlash: - 1 Pillz Min 4",
+      "bonus": "-2 Opp. Life Min 2"
+    },
+    {
+      "name": "Leviastoned",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Cosmohnuts",
+      "ability": "Stop: +3 Life",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Tatiana",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Cosmohnuts",
+      "ability": "Perfect: +2 Pillz",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Pinch",
+      "power": 6,
+      "damage": 7,
+      "stars": 3,
+      "clan": "Cosmohnuts",
+      "ability": "Backlash: Poison 1, Min 3",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Curcan Noel",
+      "power": 5,
+      "damage": 4,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "Cancel Opp. Pillz Modif.",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Paw Paw",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "Killshot: +3 Life",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Maraval",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "-1 Opp Pillz. Min 0",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Pepe Andrei",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Cosmohnuts",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Jacob",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Cosmohnuts",
+      "ability": "Damage Impose",
+      "bonus": "Tune Out"
+    },
+    {
+      "name": "Madas",
+      "power": 9,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Paradox",
+      "ability": "Reprisal: Cancel Opp Pow & Dam Mod",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Honikai",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Paradox",
+      "ability": "Reprisal: Damage Impose",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Fateh",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Paradox",
+      "ability": "Courage: -3 Opp. Dmg, Min 2",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Aneta",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Paradox",
+      "ability": "Courage: -2 Opp Pow. & Dam., Min 2",
+      "bonus": "Asymmetry: Damage +3"
+    },
+    {
+      "name": "Barcelo",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Piranas",
+      "ability": "Killshot: +3 Pillz",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "IronJaw",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Piranas",
+      "ability": "Killshot: -2 Opp. Life Min 0",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dr Alma",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Piranas",
+      "ability": "Growth: -1 Opp Pillz. Min 1",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Sheryl",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Piranas",
+      "ability": "-3 Opp Pillz. Min 4",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dalhia Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Piranas",
+      "ability": "-3 Opp Pillz. Min 4",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Andsom",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Piranas",
+      "ability": "-3 Opp Pillz. Min 3",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Katan",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Piranas",
+      "ability": "Killshot: +2 Pillz And Life",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Hawkins Cr",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Piranas",
+      "ability": "-2 Opp Pillz. Min 1",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Dementosa",
+      "power": 9,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Raptors",
+      "ability": "Asymmetry: -5 Opp Pow. & Dam., Min 5",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Horace",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Raptors",
+      "ability": "Killshot: -3 Opp. Life Min 2",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Wilkinson",
+      "power": 9,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Raptors",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Finn",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Raptors",
+      "ability": "Courage: -3 Opp. Dmg, Min 2",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Clarice",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Raptors",
+      "ability": "Reprisal: Cancel Opp Pow & Dam Mod",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Lucky Noel",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Raptors",
+      "ability": "Stop: -5 Opp. Life, Min 5",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Drakorah Cr",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Raptors",
+      "ability": "Killshot: -6 Opp. Life Min 0",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Bones",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Raptors",
+      "ability": "Stop: Power And Damage +2",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "July",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Raptors",
+      "ability": "Revenge: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Ryujin Cr",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Raptors",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "Lucky",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Raptors",
+      "ability": "Killshot: -4 Opp. Life Min 2",
+      "bonus": "Cancel Opp. Attack Modif."
+    },
+    {
+      "name": "SpineHeadMan",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Dominion",
+      "ability": "Killshot: -2 Opp. Pillz And Life, Min 2",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Madrat",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Dominion",
+      "ability": "Killshot: Toxin 1, Min 0",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Boglin",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Dominion",
+      "ability": "-2 Opp Pillz. Min 5",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "BroKen",
+      "power": 4,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Dominion",
+      "ability": "Degrowth: -1 Opp Pow. & Dam., Min 2",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Peeps",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Dominion",
+      "ability": "Killshot: Regen 1, Max. 15",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Babe",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Dominion",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Ardwizz",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Dominion",
+      "ability": "Stop: Heal 2 Max. 20",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Ghoonbones",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Dominion",
+      "ability": "Backlash: Growth: - 1 Life Min 2",
+      "bonus": "Growth: -1 Opp Power, Min 4"
+    },
+    {
+      "name": "Firmin",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Oblivion",
+      "ability": "Killshot: +4 Life",
+      "bonus": "Copy: Opp. Ability"
+    },
+    {
+      "name": "Kochar",
+      "power": 8,
+      "damage": 2,
+      "stars": 3,
+      "clan": "Oblivion",
+      "ability": "Damage Impose",
+      "bonus": "Copy: Opp. Ability"
+    },
+    {
+      "name": "Hann",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Oblivion",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Copy: Opp. Ability"
+    },
+    {
+      "name": "Zombiyaki",
+      "power": 1,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Nightmare",
+      "ability": "Power Impose",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Sukareto",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Nightmare",
+      "ability": "Courage: -2 Opp Pow. & Dam., Min 3",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Phillips",
+      "power": 6,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Nightmare",
+      "ability": "Stop: Power +3",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Proffer Man",
+      "power": 7,
+      "damage": 6,
+      "stars": 3,
+      "clan": "Nightmare",
+      "ability": "Backlash: - 3 Life Min 1",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Uchtul Cr",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Nightmare",
+      "ability": "Backlash: - 5 Life Min 0",
+      "bonus": "Stop Opp. Bonus"
+    },
+    {
+      "name": "Vact",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GHEIST",
+      "ability": "Killshot: -3 Opp. Life Min 1",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Ghenom",
+      "power": 8,
+      "damage": 6,
+      "stars": 3,
+      "clan": "GHEIST",
+      "ability": "Backlash: - 3 Life Min 0",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Rekt Ld",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "GHEIST",
+      "ability": "Courage: -2 Opp Pow. & Dam., Min 3",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "XU-B0t",
+      "power": 4,
+      "damage": 5,
+      "stars": 5,
+      "clan": "GHEIST",
+      "ability": "Growth : Power & Damage +1",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Balorg",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "GHEIST",
+      "ability": "Courage; -2 Opp Pillz. Min 1",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Hriger",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "GHEIST",
+      "ability": "-1 Opp Pillz. Min 1",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Gork",
+      "power": 7,
+      "damage": 8,
+      "stars": 5,
+      "clan": "GHEIST",
+      "ability": "Backlash: Poison 2, Min 4",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Mini Mund",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "GHEIST",
+      "ability": "Stop: Power +3",
+      "bonus": "Stop Opp. Ability"
+    },
+    {
+      "name": "Sunwuk0ng",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Hive",
+      "ability": "Growth: -1 Opp Pillz. Min 0",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "IP-Otaam",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Hive",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "EdwiiJ",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Hive",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "VeeXn",
+      "power": 8,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Hive",
+      "ability": "Killshot: -1 Opp Pillz. Min 4",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Quaack",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Hive",
+      "ability": "Stop: Poison 3, Min 1",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Mjollnirah",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Hive",
+      "ability": "-2 Opp Pillz. Min 1",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Strigoi",
+      "power": 8,
+      "damage": 7,
+      "stars": 4,
+      "clan": "Hive",
+      "ability": "Backlash: - 3 Life Min 2",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Easter",
+      "power": 7,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Hive",
+      "ability": "-2 Opp Pillz. Min 5",
+      "bonus": "Equalizer: -3 Opp Attack, Min 5"
+    },
+    {
+      "name": "Daphne",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Riots",
+      "ability": "Stop: Atk. +16",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Violet",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Riots",
+      "ability": "Cancel Opp. Pillz Modif.",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Lindsey",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Riots",
+      "ability": "Revenge: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Victory Or Defeat : +1 Pillz"
+    },
+    {
+      "name": "Cyloxxt",
+      "power": 9,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Sakrohm",
+      "ability": "Perfect: -5 Opp. Life Min 0",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Wyztuur Cr",
+      "power": 9,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Sakrohm",
+      "ability": "Stop: Atk. +15",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Ylati",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Sakrohm",
+      "ability": "Stop: Heal 3 Max. 14",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Tara",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Sakrohm",
+      "ability": "Killshot: +5 Life Max. 17",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Hemera",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Sakrohm",
+      "ability": "Stop: -5 Opp. Dmg, Min 1",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Dobbs Ld",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Sakrohm",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 1",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "Nata",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Sakrohm",
+      "ability": "Stop: Damage +3",
+      "bonus": "-8 Opp Attack, Min 3"
+    },
+    {
+      "name": "El Factor",
+      "power": 5,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Huracan",
+      "ability": "Growth : Power & Damage +1",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Parasito",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "Courage: Prot.: Power & Damage",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "El Nazca",
+      "power": 7,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "Killshot: +4 Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Rey Mono",
+      "power": 6,
+      "damage": 5,
+      "stars": 3,
+      "clan": "Huracan",
+      "ability": "Stop: Power And Damage +2",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Cage Troy",
+      "power": 6,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Huracan",
+      "ability": "Stop: -3 Opp Power, Min 4",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Mister Pollo",
+      "power": 7,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Huracan",
+      "ability": "Stop: +3 Life",
+      "bonus": "+1 Attack Per Life Left"
+    },
+    {
+      "name": "Diomede",
+      "power": 9,
+      "damage": 3,
+      "stars": 4,
+      "clan": "Komboka",
+      "ability": "Vict. Or Def.: -2 Opp Life & Pillz Min 0",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Akirale",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Komboka",
+      "ability": "Perfect: +2 Pillz",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Torkan",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Komboka",
+      "ability": "Killshot: +2 Pillz And Life",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Uttam",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Komboka",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "+1 Pillz And Life"
+    },
+    {
+      "name": "Imbris Cr",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Zenith",
+      "ability": "Bet > 6 Pillz: -2 Opp Pillz. Min 1",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Stoyan",
+      "power": 9,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Zenith",
+      "ability": "Cancel Opp. Life Modif.",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Nox Ld",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Zenith",
+      "ability": "Day: -2 Opp Pillz. Min 0",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Ziwi",
+      "power": 6,
+      "damage": 3,
+      "stars": 2,
+      "clan": "Zenith",
+      "ability": "Confidence: -2 Opp Pow. & Damage, Min 0",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Radamir",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Zenith",
+      "ability": "Killshot: +2 Pillz",
+      "bonus": "Bet > 3 Pillz: +3 Life"
+    },
+    {
+      "name": "Frendan",
+      "power": 6,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Freaks",
+      "ability": "Equalizer: -1 Opp Pow. & Dam., Min 2",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Magic Alice",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Drayton",
+      "power": 8,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "Killshot: +4 Life",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Marzo",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "Stop: -2 Opp Pow. & Dmg,min 2",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Hindelga",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Freaks",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 3",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Varoslav",
+      "power": 7,
+      "damage": 3,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "-2 Opp Pillz. Min 3",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Baldovino",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Freaks",
+      "ability": "-2 Opp Pillz. Min 3",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Mira",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Freaks",
+      "ability": "Stop: Power +3",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Hula",
+      "power": 8,
+      "damage": 2,
+      "stars": 2,
+      "clan": "Freaks",
+      "ability": "Perfect: Consume 1, Min 3",
+      "bonus": "Poison 2, Min 3"
+    },
+    {
+      "name": "Slaack",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Skeelz",
+      "ability": "Brawl: -1 Opp Pow. & Dam., Min 4",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Goure",
+      "power": 8,
+      "damage": 5,
+      "stars": 5,
+      "clan": "Skeelz",
+      "ability": "Vict. Or Def.: -2 Opp Life & Pillz Min 2",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Kephren",
+      "power": 8,
+      "damage": 5,
+      "stars": 4,
+      "clan": "Skeelz",
+      "ability": "Courage: -4 Opp. Dmg, Min 2",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Saho",
+      "power": 6,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Skeelz",
+      "ability": "-2 Opp Pillz. Min 4",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "Manfred",
+      "power": 8,
+      "damage": 4,
+      "stars": 4,
+      "clan": "Skeelz",
+      "ability": "Confidence: +1 Life Per Dmg.",
+      "bonus": "Protection: Ability"
+    },
+    {
+      "name": "C-Ortez",
+      "power": 8,
+      "damage": 8,
+      "stars": 5,
+      "clan": "Vortex",
+      "ability": "Backlash: - 1 Pillz Min 4",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "RiK-L",
+      "power": 7,
+      "damage": 7,
+      "stars": 5,
+      "clan": "Vortex",
+      "ability": "Reprisal: -2 Opp Pow. & Dmg,min 1",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Omega Dregn",
+      "power": 8,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Vortex",
+      "ability": "Killshot: -4 Opp. Life Min 0",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Behemoth Cr",
+      "power": 9,
+      "damage": 9,
+      "stars": 5,
+      "clan": "Vortex",
+      "ability": "Cancel Opp. Pillz & Life Modif.",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Cristalys",
+      "power": 8,
+      "damage": 6,
+      "stars": 5,
+      "clan": "Vortex",
+      "ability": "Cancel Opp. Pillz Modif.",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Schluck",
+      "power": 7,
+      "damage": 6,
+      "stars": 4,
+      "clan": "Vortex",
+      "ability": "Stop: Power +4",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "Drorb Cr",
+      "power": 8,
+      "damage": 1,
+      "stars": 2,
+      "clan": "Vortex",
+      "ability": "Stop: Damage +3",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
+    },
+    {
+      "name": "C Blade",
+      "power": 7,
+      "damage": 4,
+      "stars": 3,
+      "clan": "Vortex",
+      "ability": "Stop: Power +2",
+      "bonus": "Defeat: Recover 2 Pillz Out Of 3"
     }
   ]
 }
