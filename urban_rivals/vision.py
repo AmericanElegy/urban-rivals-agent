@@ -519,7 +519,12 @@ class CanvasReader:
         stars=np.array(image.convert("RGB"))[int((star_y-.012)*h):int(star_bottom*h),int((x-.05)*w):int((x+.05)*w)].astype("int16")
         sr,sg,sb=[stars[:,:,i] for i in range(3)]
         bright_stars=(sr>200)&(sg>120)&(sb<sg*.55)
-        return bool(purple.sum()>=6 and yellow.sum()>=4 and bright_stars.sum()<3)
+        # A played card is darkened all over. Foil and purple art can look like
+        # the pill marker, but its ability text stays bright until it is played.
+        text_y=.82 if side==0 else .37
+        panel=np.array(image.convert("RGB"))[int(text_y*h):int((text_y+.07)*h),int((x-.025)*w):int((x+.06)*w)]
+        lit_text=panel.size and (panel.min(axis=2)>200).mean()>.01
+        return bool(purple.sum()>=6 and yellow.sum()>=4 and bright_stars.sum()<3 and not lit_text)
 
     def played_pillz(self,image,x,side):
         """Read only verified dimmed-card markers, including the free pill."""
