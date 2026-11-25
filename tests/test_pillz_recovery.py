@@ -42,7 +42,7 @@ class PillzRecoveryTests(unittest.TestCase):
                          ("defeat",1,2,1))
 
     def test_combined_or_player_targeted_variants_remain_rejected(self):
-        for text in ("Unison: Recover 1 Pillz Out Of 2",
-                     "Recover 1 Players Pillz Out Of 2"):
+        for text in ("Support: Recover 1 Pillz Out Of 2",
+                     "Unison: Recover 1 Players Pillz Out Of 2"):
             with self.subTest(text=text),self.assertRaises(ValueError):
                 parse_effect(text)

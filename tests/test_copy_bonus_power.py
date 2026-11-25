@@ -44,8 +44,8 @@ class CopyBonusPowerTests(unittest.TestCase):
         result=resolve(battle(copier,opponent),Move(0,0),Move(0,0))
         self.assertFalse(result.players[0].last_won)
 
-    def test_conditional_and_recursive_bonus_copy_remain_rejected(self):
-        with self.assertRaises(ValueError):parse_effect("Reprisal: Copy Opp. Bonus")
+    def test_modified_and_recursive_bonus_copy_remain_rejected(self):
+        with self.assertRaises(ValueError):parse_effect("Support: Copy Opp. Bonus")
         copier=card("copier",5,"Copy: Opp. Bonus")
         recursive=card("recursive",7,bonus="Copy: Opp. Bonus",clan="copy clan")
         with self.assertRaisesRegex(ValueError,"Recursive effect-copy"):

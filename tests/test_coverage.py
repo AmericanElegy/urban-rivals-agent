@@ -25,5 +25,5 @@ class CoverageInventoryTests(unittest.TestCase):
     def test_gap_inventory_is_exhaustive(self):
         result=catalog_coverage()
         self.assertEqual(sum(result["gap_categories"].values()),result["rejected_source_records"])
-        self.assertEqual(sum(result["special_clan_gaps"].values()),result["gap_categories"]["special_clans"])
-        self.assertEqual(sum(result["persistent_effect_gaps"].values()),result["gap_categories"]["persistent_round_effects"])
+        self.assertEqual(sum(result["special_clan_gaps"].values()),result["gap_categories"].get("special_clans",0))
+        self.assertEqual(sum(result["persistent_effect_gaps"].values()),result["gap_categories"].get("persistent_round_effects",0))

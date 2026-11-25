@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 from .engine import Card, parse_effect
 from .vision import normalize
+from .card_text import annotate
 
 
 def merge_official_records(catalog,records):
@@ -31,8 +32,8 @@ def merge_official_records(catalog,records):
             raw={key:source[key] for key in ("name","power","damage","stars","clan","ability","bonus")}
             if any(type(raw[k]) is not int for k in ("power","damage","stars")):
                 raise ValueError("Stats and stars must be integers")
-            if raw["clan"] in {"GhosTown","Leader","Oculus"}:
-                raise ValueError("Clock-specific, leader or infiltration rules require separately verified entries")
+            for field in ("ability","bonus"):
+                raw[field]=annotate(raw[field],raw["clan"],source.get("url"),field)
             card=parsed(raw)
             key=identity(raw)
             if key in identities:

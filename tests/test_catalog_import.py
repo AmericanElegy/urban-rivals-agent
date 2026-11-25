@@ -27,7 +27,7 @@ class CatalogImportTests(unittest.TestCase):
             with self.assertRaises(RecognitionError):catalog.identify("Test",True,(7,6,3))
 
     def test_unsupported_or_conflicting_text_is_quarantined(self):
-        unsupported=self.record();unsupported.update(name="Poison card",ability="Poison 2, Min 1")
+        unsupported=self.record();unsupported.update(name="Overdose card",ability="Overdose")
         conflict=self.record();conflict["ability"]="Power +8"
         merged,audit=merge_official_records(self.fixture(),[unsupported,conflict])
         self.assertEqual(len(merged["cards"]),1)
@@ -65,11 +65,18 @@ class CatalogImportTests(unittest.TestCase):
         self.assertEqual(merged,data)
         self.assertFalse(any(e["result"]=="added" for e in audit))
 
-    def test_bulk_import_cannot_enable_special_clan_rules(self):
-        records=[]
-        for clan in ("GhosTown","Leader","Oculus"):
-            record=self.record();record.update(name=clan,clan=clan,ability="No Ability",bonus="No Bonus")
-            records.append(record)
-        merged,audit=merge_official_records(self.fixture(),records)
+    def test_clan_lists_must_come_from_official_descriptions(self):
+        # A Versus/After ability whose source page names no clans stays rejected.
+        record=self.record();record.update(name="Versus card",ability="Versus  : Power +2")
+        merged,audit=merge_official_records(self.fixture(),[record])
         self.assertEqual(len(merged["cards"]),1)
-        self.assertTrue(all(e["result"]=="rejected" for e in audit))
+        self.assertEqual(audit[0]["result"],"rejected")
+
+    def test_special_clans_import_with_official_annotations(self):
+        catalog=json.loads(Path("urban_rivals/data/training_cards.json").read_text())["cards"]
+        ghostown=[c for c in catalog if c["clan"]=="GhosTown" and not c.get("day_only")]
+        self.assertTrue(ghostown and all(" / " in c["bonus"] for c in ghostown))
+        tolvack=[c for c in catalog if c["clan"]=="Tolvack"]
+        self.assertTrue(tolvack and all(c["bonus"].startswith("After(Oculus|Tolvack):") for c in tolvack))
+        oculus=[c for c in catalog if c["clan"]=="Oculus" and c["ability"] not in ("","No Ability")]
+        self.assertTrue(oculus and all(c["ability"].startswith("Infiltrates(") for c in oculus))

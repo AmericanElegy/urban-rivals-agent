@@ -307,7 +307,7 @@ chrome.runtime.onMessage.addListener((message, sender, reply) => {
     if (message.execute && !ready.execute_enabled) {
       throw new Error("Server is inspect-only. Start with -Execute for Auto-Play, or use Advisor mode.");
     }
-    if (message.execute && ready.engine_revision !== "copy-suite-v1") {
+    if (message.execute && ready.engine_revision !== "persistent-suite-v2") {
       throw new Error("Restart the local bridge: its engine is older than this extension.");
     }
     const activeRun = {

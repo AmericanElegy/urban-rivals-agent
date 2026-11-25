@@ -40,7 +40,7 @@ class BridgeHTTPTests(unittest.TestCase):
                 with urlopen(endpoint+"/health",timeout=5) as response:
                     health=json.load(response)
                     self.assertFalse(health["execute_enabled"])
-                    self.assertEqual(health["engine_revision"],"copy-suite-v1")
+                    self.assertEqual(health["engine_revision"],"persistent-suite-v2")
                 def post(data,authorization=None,origin=None):
                     headers={"Content-Type":"application/json"}
                     if authorization:

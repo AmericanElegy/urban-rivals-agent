@@ -637,6 +637,7 @@ class CanvasReader:
         if any(len(row)!=round_no-1 for row in used):
             raise RecognitionError("Played-card overlays disagree with round number")
         last=(None,None)
+        running=((),())
         leader=0
         observed=None
         lifted=[]
@@ -666,13 +667,20 @@ class CanvasReader:
                     raise RecognitionError("Unexpected card transition")
                 op_index=next(iter(new[1]))
                 matches=[]
+                candidates=[]
                 for fury in (False,True):
                     try:
                         after=resolve(previous,submitted,Move(op_index,spent[1][op_index],fury))
                     except ValueError:
                         continue
+                    candidates.append(after)
                     if tuple(p.life for p in after.players)==life and tuple(p.pillz for p in after.players)==pillz:
                         matches.append(tuple(p.last_won for p in after.players))
+                        running=tuple(p.effects for p in after.players)
+                if not matches and candidates:
+                    # Running effects (Poison, Heal, Dope...) are not drawn on the
+                    # board; keep the engine's view from the no-Fury candidate.
+                    running=tuple(p.effects for p in candidates[0].players)
                 if not matches or len(set(matches))!=1:
                     if self.catalog.star_catalog is not None:
                         # Unmodeled bespoke abilities (e.g. Killshot, Poison, Consume)
@@ -693,7 +701,12 @@ class CanvasReader:
                 raise RecognitionError("Missed a round; cannot reconstruct public state safely")
         elif round_no!=1 and not allow_mid_match:
             raise RecognitionError("Start recognition at round 1 before any card is played")
-        players=tuple(Player(hands[i],life[i],pillz[i],used[i],last[i]) for i in range(2))
+        if previous is None or round_no==1:
+            self.start_resources=(life,pillz)
+        start=getattr(self,"start_resources",None)
+        players=tuple(Player(hands[i],life[i],pillz[i],used[i],last[i],running[i],
+                             start[0][i] if start else None,start[1][i] if start else None)
+                      for i in range(2))
         state=State(players,leader,round_no,day)
         self.initial_hand=hands
         return Board(state,observed,seconds,tuple(spent))
@@ -824,9 +837,14 @@ class VisionSession:
                 if cond=="day": return self.state.day is True
                 if cond=="night": return self.state.day is False
                 return False
-            own_power=[e for e in effects if e.stat=="power" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
-            own_attack=[e for e in effects if e.stat=="attack" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
-            own_damage=[e for e in effects if e.stat=="damage" and not e.opponent and e.multiplier=="none" and _cond_active(e.condition)]
+            def _plain(e,name):
+                # Gated, both-sides or scaled effects are not predicted here; a
+                # resulting panel mismatch stops execution instead of guessing.
+                return (e.stat==name and not e.opponent and not e.both and not e.gates
+                        and e.multiplier=="none" and _cond_active(e.condition))
+            own_power=[e for e in effects if _plain(e,"power")]
+            own_attack=[e for e in effects if _plain(e,"attack")]
+            own_damage=[e for e in effects if _plain(e,"damage")]
             self.panel_power=max(1,selected.power+sum(e.amount for e in own_power))
             self.panel_attack_bonus=sum(e.amount for e in own_attack)
             self.panel_damage=max(1,selected.damage+sum(e.amount for e in own_damage))

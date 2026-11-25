@@ -15,6 +15,7 @@ import re
 import unicodedata
 
 from .engine import Card, Effect, parse_effect
+from .card_text import annotate
 
 
 def _normalize(text: str) -> str:
@@ -92,7 +93,8 @@ class StarCatalog:
                     and raw_ability.lower() not in {"none", "no ability", "-"}
                     and (unlock_lvl is None or level >= unlock_lvl)
                 )
-                active_ability_text = raw_ability if ability_unlocked else ""
+                active_ability_text = annotate(raw_ability, clan, page.get("url"), "ability") if ability_unlocked else ""
+                bonus_text = annotate(bonus_text, clan, page.get("url"), "bonus")
                 ability_effects, ability_parsed = _safe_parse_effects(active_ability_text)
                 bonus_effects, bonus_parsed = _safe_parse_effects(bonus_text)
 

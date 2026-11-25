@@ -37,6 +37,6 @@ class ResourceScalingTests(unittest.TestCase):
         self.assertFalse(result.players[0].last_won)
 
     def test_opponent_or_negative_resource_scaling_stays_rejected(self):
-        for text in ("-1 Opp Att. Per Life Left, Min 2","+1 Opp Attack Per Pillz Left"):
+        for text in ("+1 Opp Attack Per Pillz Left","-1 Attack Per Life Left"):
             with self.subTest(text=text),self.assertRaises(ValueError):
                 parse_effect(text)
