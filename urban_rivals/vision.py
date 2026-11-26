@@ -615,7 +615,9 @@ class CanvasReader:
         y1,y2=max(0,int((y-.02)*h)),min(h,int((y+.02)*h))
         window=pixels[y1:y2,x1:x2]
         mask=self._star_mask(window).astype("uint8")
-        dark=window.max(axis=2)<95
+        r,g,b=(window[:,:,i].astype("int16") for i in range(3))
+        # The bar is near-black, or green while a highlighted condition applies.
+        dark=(window.max(axis=2)<95)|((r<90)&(g>r+30)&(g>b+10)&(g<200))
         count,_,stats,centroids=cv2.connectedComponentsWithStats(mask,connectivity=8)
         stars=[]
         for i in range(1,count):
@@ -629,7 +631,10 @@ class CanvasReader:
             columns=slice(bx,bx+bw)
             if dark[above,columns].mean()<.5 or dark[below,columns].mean()<.5:
                 continue
-            stars.append(centroids[i])
+            stars.append((centroids[i],bh))
+        # Stars of one card are drawn alike; drop shorter bright scraps of art.
+        tallest=max((height for _,height in stars),default=0)
+        stars=[centre for centre,height in stars if height>=.7*tallest]
         if not stars:
             raise RecognitionError("Evolution stars could not be counted")
         # All stars of one card share a baseline; keep the largest aligned row.
@@ -826,14 +831,16 @@ class CanvasReader:
                         # Our selected card is drawn enlarged, so its stars and
                         # stats sit lower than on a resting card.
                         offsets=(0,self.SELECTED_DROP) if side==0 else (0,)
-                        def optional(read):
+                        # A raised opposing lead lifts its stars the same way.
+                        star_offsets=offsets if side==0 else (0,-self.SELECTED_DROP)
+                        def optional(read,offsets=offsets):
                             for drop in offsets:
                                 try:
                                     return read(drop)
                                 except RecognitionError:
                                     pass
                             return None
-                        stars=optional(lambda d:self.stars(image,x,star_y+d))
+                        stars=optional(lambda d:self.stars(image,x,star_y+d),star_offsets)
                         power=optional(lambda d:self.number(image,self.stat_box(x,stat_y+d)))
                         damage=optional(lambda d:self.number(image,self.stat_box(x,stat_y+d,True)))
                         if stars is None and (power is None or damage is None):
